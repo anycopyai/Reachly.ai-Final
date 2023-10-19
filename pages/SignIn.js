@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import firebase from '../lib/firebase'; // Update the path based on your project structure
+import { auth } from '../lib/firebase'; // Import Firebase Auth from your firebase.js
+
 import Header from './Header'; // Replace this with the actual path to your Header component
 
 const SignIn = () => {
@@ -12,7 +13,7 @@ const SignIn = () => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password); // Use auth from firebase.js
       router.push('/dashboard');
     } catch (error) {
       setError(error.message);
@@ -22,7 +23,7 @@ const SignIn = () => {
   const googleSignIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
-      await firebase.auth().signInWithPopup(provider);
+      await auth.signInWithPopup(provider); // Use auth from firebase.js
       router.push('/dashboard');
     } catch (error) {
       setError(error.message);
@@ -89,7 +90,7 @@ const SignIn = () => {
               onClick={googleSignIn}
               className="inline-block rounded-lg bg-white border border-gray-300 px-5 py-3 text-sm font-medium text-gray-500 mt-4"
             >
-              Sign in with Googl
+              Sign in with Google
             </button>
           </form>
         </div>

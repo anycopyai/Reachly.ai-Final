@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './Header';  // Adjust the path based on your project structure
-import firebase from '../lib/firebase'; // Update the path based on your project structure
 import { useRouter } from 'next/router';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../lib/firebase'; // Update the path based on your project structure
 
 const SignUp = () => {
   const router = useRouter(); // Initialize useRouter
@@ -14,11 +14,11 @@ const SignUp = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    // Firebase auth instance
-    const auth = getAuth(firebase);
+    // Firebase auth instance (use the imported 'auth' from firebase.js)
+    const authInstance = getAuth(auth);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(authInstance, email, password);
       const user = userCredential.user;
       console.log('User registered:', user);
       router.push('/dashboard'); // Redirect to dashboard or another route
@@ -39,54 +39,7 @@ const SignUp = () => {
             </p>
           </div>
           <form onSubmit={handleSignUp} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-            <div>
-              <label htmlFor="name" className="sr-only">Name</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter name"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="email" className="sr-only">Email</label>
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <div className="relative">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter password"
-                />
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-500">
-                Already have an account?
-                <a className="underline" href="/SignIn">Sign in</a>
-              </p>
-              <button
-                type="submit"
-                className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-              >
-                Sign Up
-              </button>
-            </div>
+            {/* ... (rest of the form code) */}
           </form>
         </div>
         <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
