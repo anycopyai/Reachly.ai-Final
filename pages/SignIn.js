@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { auth } from '../lib/firebase'; // Import Firebase Auth from your firebase.js
-
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'; // Import Firebase auth functions
 import Header from './Header'; // Replace this with the actual path to your Header component
 
 const SignIn = () => {
@@ -9,11 +9,12 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const authInstance = getAuth(); // Initialize Firebase Auth
 
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(email, password); // Use auth from firebase.js
+      await signInWithEmailAndPassword(authInstance, email, password); // Use signInWithEmailAndPassword
       router.push('/dashboard');
     } catch (error) {
       setError(error.message);
@@ -21,9 +22,9 @@ const SignIn = () => {
   };
 
   const googleSignIn = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new GoogleAuthProvider(); // Initialize GoogleAuthProvider
     try {
-      await auth.signInWithPopup(provider); // Use auth from firebase.js
+      await signInWithPopup(authInstance, provider); // Use signInWithPopup
       router.push('/dashboard');
     } catch (error) {
       setError(error.message);

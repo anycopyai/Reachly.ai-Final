@@ -1,29 +1,31 @@
-import React from 'react';
-import Header from './Header';  // Adjust the path based on your project structure
-import { useRouter } from 'next/router';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../lib/firebase'; // Update the path based on your project structure
+import React, { useState } from 'react';
+import Header from './Header';
+import firebase from '../lib/firebase';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/router'; // Import useRouter from next/router
 
 const SignUp = () => {
-  const router = useRouter(); // Initialize useRouter
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleSignUp = async (event) => {
-    event.preventDefault();
+  const auth = getAuth(firebase);
+  const router = useRouter(); // Use useRouter from next/router
 
-    // Retrieve user input
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-
-    // Firebase auth instance (use the imported 'auth' from firebase.js)
-    const authInstance = getAuth(auth);
-
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(authInstance, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('User registered:', user);
-      router.push('/dashboard'); // Redirect to dashboard or another route
+      setError(null);
+
+      // Redirect to the welcome page after successful sign-up
+      router.push('/welcome');
     } catch (error) {
       console.error('Error signing up:', error);
+      setError(error.message);
     }
   };
 
@@ -38,8 +40,65 @@ const SignUp = () => {
               Create your account to get started. It's quick and easy!
             </p>
           </div>
+
           <form onSubmit={handleSignUp} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-            {/* ... (rest of the form code) */}
+            <div>
+              <label htmlFor="name" className="sr-only">Name</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter name"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="email" className="sr-only">Email</label>
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter email"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="password" className="sr-only">Password</label>
+              <div className="relative">
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter password"
+                />
+              </div>
+            </div>
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-gray-500">
+                Already have an account?
+                <a className="underline" href="/SignIn">Sign in</a>
+              </p>
+
+              <button
+                type="submit"
+                className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              >
+                Sign Up
+              </button>
+            </div>
           </form>
         </div>
         <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
