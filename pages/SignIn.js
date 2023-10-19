@@ -89,7 +89,7 @@ const SignIn = () => {
               onClick={googleSignIn}
               className="inline-block rounded-lg bg-white border border-gray-300 px-5 py-3 text-sm font-medium text-gray-500 mt-4"
             >
-              Sign in with Google
+              Sign in with Googl
             </button>
           </form>
         </div>
