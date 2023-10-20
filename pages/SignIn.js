@@ -7,7 +7,7 @@ import Header from './Header'; // Replace this with the actual path to your Head
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null); // Change the initial state to null
   const router = useRouter();
   const authInstance = getAuth(); // Initialize Firebase Auth
 
@@ -17,7 +17,14 @@ const SignIn = () => {
       await signInWithEmailAndPassword(authInstance, email, password); // Use signInWithEmailAndPassword
       router.push('/dashboard');
     } catch (error) {
-      setError(error.message);
+      // Handle Firebase authentication errors separately
+      if (error.code === 'auth/user-not-found') {
+        setError('User not found. Please check your email.');
+      } else if (error.code === 'auth/wrong-password') {
+        setError('Incorrect password. Please try again.'); // Custom error message for wrong password
+      } else {
+        setError('An error occurred. Please try again later.');
+      }
     }
   };
 
@@ -27,7 +34,7 @@ const SignIn = () => {
       await signInWithPopup(authInstance, provider); // Use signInWithPopup
       router.push('/dashboard');
     } catch (error) {
-      setError(error.message);
+      setError('An error occurred. Please try again later.');
     }
   };
 
