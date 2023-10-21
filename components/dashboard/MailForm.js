@@ -17,34 +17,36 @@ function MailForm({ onGenerate }) {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white p-8 rounded-lg shadow-md space-y-6 w-[768px]">
-                <h2 className="text-3xl font-semibold text-gray-800">Personalized Mail</h2>
-
-                <div className="flex flex-col space-y-4">
-                    <label htmlFor="website" className="text-lg font-medium text-gray-600">Website URL:</label>
-                    <div className="relative border border-gray-300 rounded-lg focus-within:border-blue-500 transition-all">
-                        <input 
-                            type="text" 
-                            id="website" 
-                            value={website} 
-                            onChange={(e) => setWebsite(e.target.value)} 
-                            placeholder="Enter website URL..." 
-                            className="block w-full pl-10 pr-4 py-2 bg-transparent focus:outline-none"
-                        />
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <FontAwesomeIcon icon={faGlobe} className="text-gray-400" />
+        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-lg">
+                <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
+                    Generate Personalized Mail
+                </h1>
+                <form onSubmit={handleSubmit} className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+                    <div>
+                        <label htmlFor="website" className="sr-only">Website URL</label>
+                        <div className="relative">
+                            <input 
+                                type="text" 
+                                id="website" 
+                                value={website} 
+                                onChange={(e) => setWebsite(e.target.value)} 
+                                placeholder="Enter website URL..." 
+                                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            />
+                            <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                                <FontAwesomeIcon icon={faGlobe} className="text-gray-400" />
+                            </span>
                         </div>
                     </div>
                     {error && <p className="text-red-500 text-sm">{error}</p>}
-                </div>
-
-                <button 
-                    onClick={handleSubmit}
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring focus:ring-blue-300 transition-all transform hover:scale-105"
-                >
-                    Generate Personalized Mail
-                </button>
+                    <button 
+                        type="submit" 
+                        className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+                    >
+                        Generate
+                    </button>
+                </form>
             </div>
         </div>
     );
