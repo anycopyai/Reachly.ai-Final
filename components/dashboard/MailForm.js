@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 function MailForm({ onGenerate }) {
     const [website, setWebsite] = useState('');
+    const [file, setFile] = useState(null);
     const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
@@ -12,8 +13,12 @@ function MailForm({ onGenerate }) {
             setError('Please enter a website.');
             return;
         }
-        setError(''); // Clear any previous error messages
-        onGenerate(website);
+        setError('');
+        onGenerate(website, file);
+    };
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
     };
 
     return (
@@ -37,6 +42,22 @@ function MailForm({ onGenerate }) {
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                                 <FontAwesomeIcon icon={faGlobe} className="text-gray-400" />
                             </span>
+                        </div>
+                    </div>
+                    <div className="flex space-x-2">
+                        <div className="relative">
+                            <input 
+                                type="file" 
+                                id="file"
+                                onChange={handleFileChange}
+                                className="sr-only"
+                            />
+                            <label htmlFor="file">
+                                <img src="/images/csv-icon.png" alt="CSV Icon" className="cursor-pointer w-10 h-10"/>
+                            </label>
+                        </div>
+                        <div>
+                            <img src="/images/google-sheet-icon.png" alt="Google Sheet Icon" className="cursor-pointer w-10 h-10"/>
                         </div>
                     </div>
                     {error && <p className="text-red-500 text-sm">{error}</p>}
