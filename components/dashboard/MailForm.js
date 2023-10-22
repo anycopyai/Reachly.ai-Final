@@ -37,7 +37,7 @@ function MailForm({ onGenerate }) {
                                 value={website} 
                                 onChange={(e) => setWebsite(e.target.value)} 
                                 placeholder="Enter website URL..." 
-                                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                                className="w-full rounded-lg border-2 border-reachly-blue p-4 pe-12 text-sm shadow-sm" // Updated the border class
                             />
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                                 <FontAwesomeIcon icon={faGlobe} className="text-gray-400" />
@@ -53,11 +53,11 @@ function MailForm({ onGenerate }) {
                                 className="sr-only"
                             />
                             <label htmlFor="file">
-                                <img src="/images/csv-icon.png" alt="CSV Icon" className="cursor-pointer w-10 h-10"/>
+                                <img src="/images/csv.png" alt="CSV Icon" className="cursor-pointer w-10 h-10"/>
                             </label>
                         </div>
                         <div>
-                            <img src="/images/google-sheet-icon.png" alt="Google Sheet Icon" className="cursor-pointer w-10 h-10"/>
+                            <img src="/images/google-sheets.svg" alt="Google Sheet Icon" className="cursor-pointer w-10 h-10"/>
                         </div>
                     </div>
                     {error && <p className="text-red-500 text-sm">{error}</p>}
