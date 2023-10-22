@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MdPowerSettingsNew, MdPerson, MdContacts, MdMail, MdList, MdMenu } from 'react-icons/md';
+import Link from 'next/link';  // Importing Link from Next.js
 
 function Sidebar() {
   const [trialDays, setTrialDays] = useState(7);
@@ -42,17 +43,19 @@ function Sidebar() {
         {/* Navigation Links */}
         <ul className="menu w-56">
           {[
-            { icon: <MdContacts />, label: 'Projects', href: '#' },
-            { icon: <MdMail />, label: 'Lead List', href: '#' },
-            { icon: <MdList />, label: 'Integrations', href: '#' },
+            { icon: <MdContacts />, label: 'Projects', href: '/Projects' },
+            { icon: <MdMail />, label: 'Lead List', href: '/Leads' },
+            { icon: <MdList />, label: 'Integrations', href: '/integration' },
           ].map((item, index) => (
             <li key={item.label}>
-              <a href={item.href} className={`flex items-center space-x-4 p-2 ${index === 1 ? 'bg-opacity-50' : ''}`}>
-                <div className="text-blue-500">
-                  {React.cloneElement(item.icon, { size: 28 })}
-                </div>
-                <span className="text-gray-200">{item.label}</span>
-              </a>
+              <Link href={item.href}>
+                <a className={`flex items-center space-x-4 p-2 ${index === 1 ? 'bg-opacity-50' : ''}`}>
+                  <div className="text-blue-500">
+                    {React.cloneElement(item.icon, { size: 28 })}
+                  </div>
+                  <span className="text-gray-200">{item.label}</span>
+                </a>
+              </Link>
             </li>
           ))}
         </ul>
