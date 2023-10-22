@@ -13,7 +13,7 @@ export default function Dashboard() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 2000);
+        }, 1000);
     }, []);
 
     const handleGenerateMail = () => {
@@ -24,56 +24,16 @@ export default function Dashboard() {
 
     if (loading) {
         return (
-            <div className="skeleton-wrapper flex">
+            <div className="skeleton-wrapper flex min-h-screen">
                 <div className="skeleton-sidebar"></div>
-                <div className="skeleton-content">
-                    <div className="skeleton-box"></div>
-                    <div className="skeleton-box"></div>
-                    <div className="skeleton-box"></div>
+                <div className="skeleton-content flex flex-col justify-center items-center">
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
+                    <div className="skeleton-line"></div>
                 </div>
-                <style jsx>{`
-                    .skeleton-wrapper {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        z-index: 1000;
-                        background-color: #f0f0f0;
-                    }
-
-                    .skeleton-sidebar {
-                        width: 240px;
-                        height: 100vh;
-                        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-                        background-size: 200% 100%;
-                        animation: shimmer 1.5s infinite;
-                        margin-right: 20px;
-                    }
-
-                    .skeleton-content {
-                        flex: 1;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 20px;
-                    }
-
-                    .skeleton-box {
-                        height: 100px;
-                        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-                        background-size: 200% 100%;
-                        animation: shimmer 1.5s infinite;
-                    }
-
-                    @keyframes shimmer {
-                        0% {
-                            background-position: -200% 0;
-                        }
-                        100% {
-                            background-position: 200% 0;
-                        }
-                    }
-                `}</style>
             </div>
         );
     }
