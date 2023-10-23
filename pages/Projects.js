@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from '../components/dashboard/Sidebar'; // Corrected the path here
-import { useRouter } from 'next/router'; // Import Next.js router
-import DaisyUIMenu from '../components/dashboard/DaisyUIMenu'; // Import DaisyUI menu
+import Sidebar from '../components/dashboard/Sidebar';
+import { useRouter } from 'next/router';
+import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
+import AlertBadge from '../components/dashboard/AlertBadge'; // Import AlertBadge
 
 function Projects() {
     const [trialDays, setTrialDays] = useState(7);  // State to hold trial days
@@ -29,16 +30,11 @@ function Projects() {
             <Sidebar />
             <div className="flex flex-col flex-1">
                 <DaisyUIMenu />
+                
+                {/* Add AlertBadge just below DaisyUIMenu */}
+                <AlertBadge trialDays={trialDays} />
 
                 <div className="flex-1 p-10">
-                    {/* DaisyUI Success Alert */}
-                    <div className="alert alert-success mb-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{`Your trial ends in ${trialDays} days. Upgrade now!`}</span>
-                    </div>
-
                     {/* New Project Button */}
                     <div className="flex justify-start mb-5">
                         <button
