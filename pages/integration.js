@@ -6,22 +6,22 @@ function Integration() {
     const integrations = [
         {
             name: 'HubSpot',
-            icon: <img src="your_hubspot_icon_url.png" alt="HubSpot" className="w-12 h-12" />,
+            icon: <img src="/images/hubspot.png" alt="HubSpot" className="w-12 h-12" />,
             description: 'Connect with your HubSpot account to manage leads more efficiently.'
         },
         {
-            name: 'Pipedrive',
-            icon: <img src="your_pipedrive_icon_url.png" alt="Pipedrive" className="w-12 h-12" />,
-            description: 'Sync your Pipedrive sales data and automate your sales workflow.'
+            name: 'Outreach',
+            icon: <img src="/images/outreach.png" alt="Outreach" className="w-12 h-12" />,
+            description: 'Sync your Outreach sales data and automate your sales workflow.'
         },
         {
             name: 'Google Sheet',
-            icon: <img src="your_google_sheet_icon_url.png" alt="Google Sheet" className="w-12 h-12" />,
+            icon: <img src="/images/google-sheets.png" alt="Google Sheet" className="w-12 h-12" />,
             description: 'Import data from and export data to your Google Sheets.'
         },
         {
             name: 'Zapier',
-            icon: <img src="your_zapier_icon_url.png" alt="Zapier" className="w-12 h-12" />,
+            icon: <img src="/images/zapier.png" alt="Zapier" className="w-12 h-12" />,
             description: 'Automate workflows by connecting Reachly with thousands of apps on Zapier.'
         },
     ];
