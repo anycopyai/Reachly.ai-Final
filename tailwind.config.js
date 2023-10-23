@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        'reachly-blue': '#0233f5',        'reachly-bg': '#F3F6FC', // Adding the custom background color
+        'reachly-blue': '#21018a',        'reachly-bg': '#F3F6FC', // Adding the custom background color
         
 
 
