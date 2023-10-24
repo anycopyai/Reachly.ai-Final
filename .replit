@@ -1,6 +1,8 @@
 entrypoint = "pages/index.js"
 
 run = "npm run dev"
+hidden = [".config", "package-lock.json"]
+modules = ["nodejs-18:v3-20230608-f4cd419"]
 
 [nix]
 channel = "stable-21_11"
@@ -64,3 +66,8 @@ support = true
       sourceMaps = true
       stopOnEntry = false
       type = "pwa-node"
+
+[deployment]
+run = ["node", "index.js"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
