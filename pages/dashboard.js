@@ -1,20 +1,29 @@
-import { requireAuth } from '../lib/requireAuth'; // adjust the path as needed
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
+import { useUser } from '../contexts/UserContext';
+import AutoLogout from '../lib/AutoLogout'; // Adjust path according to your directory structure
 
 
-
-export async function getServerSideProps(context) {
-  return await requireAuth(context);
-}
 function Dashboard() {
+  const { user, loadingAuthState } = useUser(); // Destructure both user and loadingAuthState
+  const router = useRouter();
+
+  useEffect(() => {
+    // If not loading and no user, redirect to login
+    if (!loadingAuthState && !user) {
+      router.push('/SignIn');
+    }
+  }, [user, loadingAuthState]); // Add loadingAuthState as a dependency
+
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,9 +65,13 @@ function Dashboard() {
           </div>
         </div>
         {showModal && <MailModal mailContent={mailContent} setMailContent={setMailContent} onClose={() => setShowModal(false)} />}
+        <AutoLogout user={user} timeoutDuration={1800000} /> {/* Here, 1800000 milliseconds is for 30 minutes */}
+
       </div>
     </div>
   );
 }
+
+
 
 export default Dashboard;

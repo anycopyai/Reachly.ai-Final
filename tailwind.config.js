@@ -1,10 +1,9 @@
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false,
   theme: {
     extend: {
       backgroundColor: {
-        'reachly-blue': '#21018a',        'reachly-bg': '#F3F6FC', // Adding the custom background color
+        'reachly-blue': '#00184d',        'reachly-bg': '#F3F6FC', // Adding the custom background color
         
 
 

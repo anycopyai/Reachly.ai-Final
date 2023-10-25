@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Header /> {/* Adding Header here */}
-      <section className="bg-gray-900 text-white">
+      <section className="bg-blue-900 text-white">
         <div
           className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center"
         >
@@ -15,9 +15,9 @@ export default function Home() {
             <h1
               className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
             >
-              Understand User Flow.
+             AI Powered Personalized 
 
-              <span className="sm:block"> Increase Conversion. </span>
+              <span className="sm:block">Outreach At Scale </span>
             </h1>
 
             <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">

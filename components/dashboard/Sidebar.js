@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { MdPowerSettingsNew, MdPerson, MdContacts, MdMail, MdList, MdMenu } from 'react-icons/md';
+import { useRouter } from 'next/router'; // <-- Import the useRouter hook
+import { auth } from '../../lib/firebase';
 import Link from 'next/link';  // Importing Link from Next.js
 
 function Sidebar() {
@@ -9,7 +11,16 @@ function Sidebar() {
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
+  const router = useRouter(); // <-- Use the useRouter hook
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      router.push('/SignIn'); // <-- Redirect to login after successful logout
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
   return (
     <>
       {/* Mobile Drawer Button */}
@@ -71,11 +82,12 @@ function Sidebar() {
         </div>
 
         {/* Logout Section */}
+        {/* Logout Section */}
         <div className="absolute bottom-6 left-5 flex items-center space-x-3 p-2 rounded-md">
           <MdPowerSettingsNew className="text-red-500" size={28} />
-          <a href="#" className="text-gray-200 text-md">
+          <button onClick={handleLogout} className="text-gray-200 text-md">
             Logout
-          </a>
+          </button>
         </div>
 
         {/* Close drawer button for mobile */}

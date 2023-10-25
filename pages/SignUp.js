@@ -1,116 +1,125 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import firebase from '../lib/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useRouter } from 'next/router'; // Import useRouter from next/router
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../lib/firebase'; 
+import { useRouter } from 'next/router';
 
-const SignUp = () => {
+function SignUp() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [error, setError] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const auth = getAuth(firebase);
-  const router = useRouter(); // Use useRouter from next/router
-
+  const router = useRouter();
+  
   const handleSignUp = async (e) => {
-    e.preventDefault();
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log('User registered:', user);
-      setError(null);
+      e.preventDefault();
+      if (password !== confirmPassword) {
+        console.error("Passwords don't match");
+        // Inform the user that passwords don't match
+        return;
+      }
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        // Save the username to the user's Firestore document or the Realtime Database
+        // Redirect to the dashboard after successful signup
+        router.push('/dashboard');
+      } catch (error) {
+        console.error('Error signing up:', error.message);
+        // Display error message to the user
+      }
+  };
 
-      // Redirect to the welcome page after successful sign-up
-      router.push('/welcome');
+
+  const handleSignUpWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+      setError(''); // Clear any previous error messages
     } catch (error) {
-      console.error('Error signing up:', error);
-      setError(error.message);
+      setError('Error signing up with Google: ' + error.message);
     }
   };
 
   return (
-    <div className="bg-white h-screen flex flex-col">
-      <Header />
-      <section className="relative flex flex-wrap lg:h-screen lg:items-center">
-        <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-3xl">Sign Up Today!</h1>
-            <p className="mt-4 text-gray-500">
-              Create your account to get started. It's quick and easy!
-            </p>
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12">
+        <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
+          <h1 className="text-3xl font-semibold mb-6 text-gray-700">Sign Up</h1>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
           </div>
-
-          <form onSubmit={handleSignUp} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
-            <div>
-              <label htmlFor="name" className="sr-only">Name</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter name"
-                />
-              </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-600">Confirm Password</label>
+            <input 
+              type="password" 
+              id="confirm-password" 
+              name="confirm-password" 
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+              className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            />
+          </div>
+          {/* Display error message here */}
+          {error && (
+            <div className="text-red-500 mt-4 mb-4">
+              {error}
             </div>
-
-            <div>
-              <label htmlFor="email" className="sr-only">Email</label>
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <div className="relative">
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter password"
-                />
-              </div>
-            </div>
-
-            {error && <p className="text-red-500">{error}</p>}
-
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-500">
-                Already have an account?
-                <a className="underline" href="/SignIn">Sign in</a>
-              </p>
-
-              <button
-                type="submit"
-                className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-              >
-                Sign Up
-              </button>
-            </div>
-          </form>
+          )}
+          <button 
+              onClick={handleSignUp} 
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md mb-4 transition duration-300 ease-in-out"
+          >
+            Sign Up
+          </button>
+          <div className="flex items-center justify-between mb-4">
+            <button 
+                onClick={handleSignUpWithGoogle} 
+                className="bg-white hover:bg-gray-100 text-gray-600 p-3 rounded-md border w-full flex items-center justify-center transition duration-300 ease-in-out"
+            >
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="h-5 w-5 mr-2" />
+              Sign Up with Google
+            </button>
+          </div>
+          <div className="text-center text-sm text-gray-600">
+            Already have an account? <a href="SignIn" className="text-blue-500 hover:underline">Sign In</a>
+            
+          </div>
+          
         </div>
-        <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
-          <img
-            alt="Welcome"
-            src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </div>
-      </section>
-    </div>
+        
+      </div>
+    
   );
-};
+}
 
 export default SignUp;
