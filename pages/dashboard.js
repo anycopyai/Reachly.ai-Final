@@ -5,7 +5,7 @@ import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import { useUser } from '../contexts/UserContext';
-import AutoLogout from '../lib/AutoLogout'; // Adjust path according to your directory structure
+import AutoLogout from '../utils/AutoLogout'; // Adjust path according to your directory structure
 
 
 function Dashboard() {
