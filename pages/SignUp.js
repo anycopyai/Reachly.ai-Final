@@ -44,7 +44,7 @@ function SignUp() {
   };
 
   return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12">
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12"style={{ marginTop: 0 }}>
         <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
           <h1 className="text-3xl font-semibold mb-6 text-gray-700">Sign Up</h1>
           <div className="mb-4">
