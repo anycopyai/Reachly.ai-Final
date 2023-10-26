@@ -5,39 +5,20 @@ import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import { useUser } from '../contexts/UserContext';
-import AutoLogout from '../utils/AutoLogout'; // Adjust path according to your directory structure
-
+import AutoLogout from '../utils/AutoLogout';
 
 function Dashboard() {
-  const { user, loadingAuthState } = useUser(); // Destructure both user and loadingAuthState
+  const { user, loadingAuthState } = useUser();
   const router = useRouter();
 
-  useEffect(() => {
-    // If not loading and no user, redirect to login
-    if (!loadingAuthState && !user) {
-      router.push('/SignIn');
-    }
-  }, [user, loadingAuthState]); // Add loadingAuthState as a dependency
+  // If not loading and no user, redirect to login
+  if (!loadingAuthState && !user) {
+    router.push('/SignIn');
+    return null;  // Return null to stop rendering
+  }
 
-  const [website, setWebsite] = useState('');
-  const [mailContent, setMailContent] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
-  const handleGenerateMail = () => {
-    const generatedMail = `Generated mail for ${website}`;
-    setMailContent(generatedMail);
-    setShowModal(true);
-  };
-
-  if (loading) {
+  // If still loading, show loading skeleton
+  if (loadingAuthState) {
     return (
       <div className="skeleton-wrapper flex min-h-screen">
         <div className="skeleton-sidebar"></div>
@@ -53,6 +34,23 @@ function Dashboard() {
     );
   }
 
+  const [website, setWebsite] = useState('');
+  const [mailContent, setMailContent] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  const handleGenerateMail = () => {
+    const generatedMail = `Generated mail for ${website}`;
+    setMailContent(generatedMail);
+    setShowModal(true);
+  };
+
   return (
     <div className="flex min-h-screen bg-reachly-bg">
       <Sidebar />
@@ -65,13 +63,10 @@ function Dashboard() {
           </div>
         </div>
         {showModal && <MailModal mailContent={mailContent} setMailContent={setMailContent} onClose={() => setShowModal(false)} />}
-        <AutoLogout user={user} timeoutDuration={1800000} /> {/* Here, 1800000 milliseconds is for 30 minutes */}
-
+        <AutoLogout user={user} timeoutDuration={1800000} />
       </div>
     </div>
   );
 }
-
-
 
 export default Dashboard;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../lib/firebase'; 
 import { useRouter } from 'next/router';
+import Link from 'next/link';  // Importing Link from Next.js
+
 
 function SignUp() {
   const [name, setName] = useState('');

@@ -1,12 +1,13 @@
 import React from 'react';
+import { auth } from '../../lib/firebase';  // Adjust the path accordingly
 import { FaBell } from 'react-icons/fa';
 import { useRouter } from 'next/router'; // <-- Import the useRouter hook
 import Link from 'next/link';  // Importing Link from Next.js
 import { useUser } from '../../contexts/UserContext';  // Update the path accordingly
 
-
 function DaisyUIMenu() {
   const { user, loadingAuthState } = useUser();
+  const router = useRouter();  // <-- Initialize the router here
 
     // Static values for demonstration, replace with actual values
     const userName = "John Doe";

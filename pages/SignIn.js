@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../lib/firebase'; // Adjust the path based on where your firebase.js file is located
 import { useRouter } from 'next/router';  // <-- Import useRouter
+import Link from 'next/link';  // Importing Link from Next.js
 
 
 function SignIn() {
