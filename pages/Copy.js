@@ -3,15 +3,12 @@ import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 
 export default function AutomatedEmail() {
   return (
-    <div className="flex flex-col min-h-screen bg-reachly-bg">
-      <div className="fixed top-0 left-0 right-0 z-30">
-        <DaisyUIMenu />
+    <div className="flex min-h-screen bg-reachly-bg">
+      <div className="fixed top-0 left-0 h-full bg-reachly-bg z-20">
+        <Sidebar />
       </div>
-      <div className="flex mt-16 min-h-screen">  {/* Adjust 16 to match the height of your nav bar */}
-        <div className="fixed top-16 left-0 h-full bg-reachly-bg z-20 w-64"> {/* Adjust 16 to match the height of your nav bar and w-64 to match the width of your sidebar */}
-          <Sidebar />
-        </div>
-        <div className="flex-1 flex flex-col ml-64">
+       <div className="flex-1 flex flex-col ml-64"> 
+        <DaisyUIMenu />
 
         {/* Start of Automated Email Section */}
         <div className="flex-1 p-10 grid grid-cols-12 gap-4">
