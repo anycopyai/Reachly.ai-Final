@@ -7,7 +7,7 @@ export default function AutomatedEmail() {
       <div className="fixed top-0 left-0 h-full bg-reachly-bg z-10">
         <Sidebar />
       </div>
-      <div className="flex-1 flex flex-col">
+       <div className="flex-1 flex flex-col ml-[sidebarWidth]"> 
         <DaisyUIMenu />
 
         {/* Start of Automated Email Section */}
