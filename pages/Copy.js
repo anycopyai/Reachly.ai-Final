@@ -4,7 +4,9 @@ import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 export default function AutomatedEmail() {
   return (
     <div className="flex min-h-screen bg-reachly-bg">
-      <Sidebar />
+      <div className="fixed top-0 left-0 h-full bg-reachly-bg z-10">
+        <Sidebar />
+      </div>
       <div className="flex-1 flex flex-col">
         <DaisyUIMenu />
 
