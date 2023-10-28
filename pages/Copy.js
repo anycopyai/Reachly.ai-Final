@@ -32,7 +32,7 @@ export default function AutomatedEmail() {
             {/* Main Email Template */}
             <div className="mb-8 bg-gray-100 p-6 rounded-lg shadow-xs">
               <p className="text-gray-800 mb-4"><span className="font-semibold text-lg">Subject:</span> Welcome Aboard, {{'{{First Name}}'}}</p>
-              <p className="text-gray-600 leading-relaxed mb-6">Dear {{'{{First Name}}'}},</p>
+              <p className="text-gray-600 leading-relaxed mb-6">Dear</p>
               <p className="text-gray-600 leading-relaxed mb-6">Thrilled to have you with us! Experience the power of a thriving community.</p>
               <p className="text-gray-600 leading-relaxed">With appreciation,<br />The Community Team</p>
             </div>
@@ -40,7 +40,7 @@ export default function AutomatedEmail() {
             {/* First Follow-Up */}
             <div className="mb-8 bg-gray-100 p-6 rounded-lg shadow-xs">
               <p className="text-gray-800 mb-4"><span className="font-semibold text-lg">Subject:</span> Discover Our Resources, {{'{{First Name}}'}}</p>
-              <p className="text-gray-600 leading-relaxed mb-6">Hello {{'{{First Name}}'}},</p>
+              <p className="text-gray-600 leading-relaxed mb-6">Hello </p>
               <p className="text-gray-600 leading-relaxed mb-6">Dive deep into our resources. Curated especially for you!</p>
               <p className="text-gray-600 leading-relaxed">Best wishes,<br />The Resource Team</p>
             </div>
@@ -48,7 +48,7 @@ export default function AutomatedEmail() {
             {/* Second Follow-Up */}
             <div className="mb-8 bg-gray-100 p-6 rounded-lg shadow-xs">
               <p className="text-gray-800 mb-4"><span className="font-semibold text-lg">Subject:</span> We'd Love Your Feedback, {{'{{First Name}}'}}</p>
-              <p className="text-gray-600 leading-relaxed mb-6">Hi {{'{{First Name}}'}},</p>
+              <p className="text-gray-600 leading-relaxed mb-6">Hi </p>
               <p className="text-gray-600 leading-relaxed mb-6">We cherish your thoughts. Let us know how we're doing and if there's anything we can help with.</p>
               <p className="text-gray-600 leading-relaxed">Best,<br />The Support Team</p>
             </div>
