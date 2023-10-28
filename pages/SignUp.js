@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth } from '../lib/firebase'; 
+import { auth,db } from '../lib/firebase'; 
+import { doc, setDoc } from "firebase/firestore"; 
+
 import { useRouter } from 'next/router';
 import Link from 'next/link';  // Importing Link from Next.js
 
@@ -13,25 +15,41 @@ function SignUp() {
   const [error, setError] = useState('');
 
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false); // Add this state variable
   
   const handleSignUp = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
+    setIsLoading(true); // Set loading to true when signup starts
+    try {
       if (password !== confirmPassword) {
         console.error("Passwords don't match");
-        // Inform the user that passwords don't match
+        setError("Passwords don't match"); // Inform the user that passwords don't match
+        setIsLoading(false); // Stop loading if passwords don't match
         return;
       }
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        // Save the username to the user's Firestore document or the Realtime Database
-        // Redirect to the dashboard after successful signup
-        router.push('/dashboard');
-      } catch (error) {
-        console.error('Error signing up:', error.message);
-        // Display error message to the user
-      }
+
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Save the user details to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+      });
+
+      // Redirect to the dashboard after successful signup
+      router.push('/dashboard');
+      setIsLoading(false); // Set loading back to false when user is redirected
+
+    } catch (error) {
+      console.error('Error signing up:', error.message);
+      setError(error.message); // Display error message to the user
+      setIsLoading(false); // Stop loading if an error occurs
+    }
   };
+
+
 
 
   const handleSignUpWithGoogle = async () => {
@@ -97,12 +115,16 @@ function SignUp() {
               {error}
             </div>
           )}
+          {/* Modify this button */}
           <button 
-              onClick={handleSignUp} 
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md mb-4 transition duration-300 ease-in-out"
+            onClick={handleSignUp} 
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md mb-4 transition duration-300 ease-in-out"
+            disabled={isLoading}
           >
-            Sign Up
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
           </button>
+
+          {/* Modify this button */}
           <div className="flex items-center justify-between mb-4">
             <button 
                 onClick={handleSignUpWithGoogle} 
