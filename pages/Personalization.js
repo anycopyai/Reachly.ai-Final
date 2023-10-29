@@ -1,7 +1,7 @@
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 
-export default function AutomatedEmail() {
+export default function Personalization() {
   return (
     <div className="flex min-h-screen bg-reachly-bg">
       <div className="fixed top-0 left-0 h-full bg-reachly-bg z-20">
@@ -59,10 +59,10 @@ export default function AutomatedEmail() {
             <div className="flex items-center justify-between border-t pt-6 mt-6">
               <div className="flex items-center space-x-4">
                 <div className="text-gray-600 text-sm">Crafted by</div>
-                <div className="font-semibold text-lg">ChatGPT®</div>
+                <div className="font-semibold text-lg">QuickQuill®</div>
               </div>
               <div>
-                <a href="https://openai.com" className="text-blue-500 hover:underline">https://openai.com</a>
+                <a href="https://openai.com" className="text-blue-500 hover:underline">https://elixcent.com</a>
               </div>
             </div>
 
