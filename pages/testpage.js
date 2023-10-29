@@ -1,23 +1,28 @@
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-export default function Home() {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("https://w9rx4mu3pa.execute-api.ap-south-1.amazonaws.com/api/hello");
-      const data = await response.text();  // or response.json() if your API returns JSON
-      console.log("Data from Flask API:", data);
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-    }
-  };
+const MyComponent = () => {
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetchData();
+    // Replace the URL with your Flask API's URL
+    const url = 'https://api.elixcent.com/api_endpoint';
+
+    axios.get(url)
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   }, []);
 
   return (
     <div>
-      {/* Your component JSX */}
+      <h1>Data from API</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
-}
+};
+
+export default MyComponent;

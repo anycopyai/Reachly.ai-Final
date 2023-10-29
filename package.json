@@ -20,7 +20,7 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "amazon-cognito-identity-js": "^6.3.6",
         "aws-sdk": "^2.1478.0",
-        "axios": "^1.5.1",
+        "axios": "^1.6.0",
         "firebase": "^10.5.0",
         "firebase-admin": "^11.11.0",
         "graphql": "^16.8.1",
