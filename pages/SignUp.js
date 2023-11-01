@@ -3,86 +3,96 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } f
 import { auth, db } from '../lib/firebase'; 
 import { doc, setDoc } from "firebase/firestore"; 
 import { useRouter } from 'next/router';
-import Link from 'next/link';  // Importing Link from Next.js
-
-
-
+import Link from 'next/link';
+import axios from 'axios';  // Use ES6 import for Axios
 
 function SignUp() {
-const [name, setName] = useState('');
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [confirmPassword, setConfirmPassword] = useState('');
-const [error, setError] = useState('');
-const [isLoading, setIsLoading] = useState(false);
-const [isSuccessful, setIsSuccessful] = useState(false);
-const [showToast, setShowToast] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
+  const router = useRouter();
 
-const router = useRouter();
+  const resetErrors = () => {
+    setError('');
+  };
 
-const resetErrors = () => {
-  setError('');
-};
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    resetErrors();
 
-const handleSignUp = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
-  resetErrors();
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
 
-  setTimeout(() => {
-    setShowToast(false);
-  }, 3000); // Hides after 3 seconds
+    if (password !== confirmPassword) {
+      setError("Passwords don't match");
+      setIsLoading(false);
+      return;
+    }
 
-  
-  if (password !== confirmPassword) {
-    setError("Passwords don't match");
-    setIsLoading(false);
-    return;
-  }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+      });
 
-    await setDoc(doc(db, "users", user.uid), {
-      name,
-      email,
-    });
+      // Initialize user with 15 free credits via Flask API
+      await axios.post('http://your_flask_api_url/initialize_user', { uid: user.uid });
 
-    router.push('/dashboard');
-    // Redirect to the dashboard after successful signup
-    // Redirect to the dashboard after successful signup
-    setIsSuccessful(true);
-    setShowToast(true);
+      // Call your Next.js API route to forward data to your Flask backend
+      const response = await axios.post('/api/handlesignup', {
+        email,
+        password,
+        name
+      });
 
-    setIsLoading(false);
-  } catch (error) {
-    setIsLoading(false);
-    if (error.code === 'auth/email-already-in-use') {
-      setError("Email already in use");
-    } else if (error.code === 'auth/invalid-email') {
-      setError("Invalid email format");
-    } else if (error.code === 'auth/weak-password') {
-      setError("Password is too weak");
-    } else {
+      if (response.data.success) {
+        router.push('/dashboard');
+        setIsSuccessful(true);
+        setShowToast(true);
+      } else {
+        setError("Failed to authenticate with the backend service");
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.message); // More generalized error message
+    }
+  };
+
+  const handleSignUpWithGoogle = async () => {
+    setIsLoading(true);
+    resetErrors();
+    try {
+      const userCredential = await signInWithPopup(auth, new GoogleAuthProvider());
+      const user = userCredential.user;
+
+      // Initialize user with 15 free credits via Flask API
+      await axios.post('http://your_flask_api_url/initialize_user', { uid: user.uid });
+
+      // Similarly, you can also forward Google auth info to your Flask backend if needed
+
+      router.push('/dashboard');
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
       setError("Something went wrong. Please try again.");
     }
-  }
-};
+  };
 
-const handleSignUpWithGoogle = async () => {
-  setIsLoading(true);
-  resetErrors();
-  try {
-    await signInWithPopup(auth, new GoogleAuthProvider());
-    router.push('/dashboard');
-    setIsLoading(false);
-  } catch (error) {
-    setIsLoading(false);
-    setError("Something went wrong. Please try again.");
-  }
-};
+
+
 return (
   <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12">
     <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
