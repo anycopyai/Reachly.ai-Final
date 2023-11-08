@@ -1,3 +1,5 @@
+// Members Component
+
 import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
@@ -9,7 +11,7 @@ function Members() {
     const [members, setMembers] = useState([
         {
             id: 1,
-            name: 'ranjit Rajput',
+            name: 'Ranjit Rajput',
             email: 'ranjit@rdm.in',
             role: 'Owner',
         },
@@ -17,11 +19,15 @@ function Members() {
     const [showPopup, setShowPopup] = useState(false);
 
     const handleMemberInvited = (newMember) => {
-        setMembers([...members, newMember]);
+        // Send newMember details to the backend.
+        // For demonstration, we're directly adding to the members list.
+        setMembers([...members, { ...newMember, id: members.length + 1 }]);
         setShowPopup(false);
     };
 
     const handleRemoveMember = (id) => {
+        // Send removal request to the backend.
+        // Update frontend after backend confirmation.
         setMembers(members.filter(member => member.id !== id));
     };
 

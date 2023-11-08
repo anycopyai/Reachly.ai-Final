@@ -3,8 +3,7 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } f
 import { auth, db } from '../lib/firebase'; 
 import { doc, setDoc } from "firebase/firestore"; 
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import axios from 'axios';  // Use ES6 import for Axios
+import axios from 'axios';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -41,19 +40,22 @@ function SignUp() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
+      // Initialize user with 15 free credits and a trial subscription in Firestore
       await setDoc(doc(db, "users", user.uid), {
         name,
         email,
+        credits: 15,
+        subscription_type: 'Trial'
       });
 
-      // Initialize user with 15 free credits via Flask API
-      await axios.post('http://your_flask_api_url/initialize_user', { uid: user.uid });
-
-      // Call your Next.js API route to forward data to your Flask backend
+      // Here you add additional parameters to send to your Flask API, like 'aid'
       const response = await axios.post('/api/handlesignup', {
+        uid: user.uid,
         email,
         password,
-        name
+        name,
+        aid: 'some-aid', // Replace with actual aid value
+        credits: 15 // Sending initial credits information
       });
 
       if (response.data.success) {
@@ -67,7 +69,7 @@ function SignUp() {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      setError(error.message); // More generalized error message
+      setError(error.message);
     }
   };
 
@@ -78,20 +80,37 @@ function SignUp() {
       const userCredential = await signInWithPopup(auth, new GoogleAuthProvider());
       const user = userCredential.user;
 
-      // Initialize user with 15 free credits via Flask API
-      await axios.post('http://your_flask_api_url/initialize_user', { uid: user.uid });
+      // Initialize user with 15 free credits and a trial subscription in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name: user.displayName,
+        email: user.email,
+        credits: 15,
+        subscription_type: 'Trial'
+      });
 
-      // Similarly, you can also forward Google auth info to your Flask backend if needed
+      // Also send the Google sign up data to your Flask API
+      const response = await axios.post('/api/handlesignup', {
+        uid: user.uid,
+        email: user.email,
+        name: user.displayName,
+        aid: 'some-aid', // Replace with actual aid value
+        credits: 15 // Sending initial credits information
+      });
 
-      router.push('/dashboard');
+      if (response.data.success) {
+        router.push('/dashboard');
+        setIsSuccessful(true);
+        setShowToast(true);
+      } else {
+        setError("Failed to authenticate with the backend service");
+      }
+
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       setError("Something went wrong. Please try again.");
     }
   };
-
-
 
 return (
   <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12">
@@ -142,9 +161,6 @@ return (
             className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           />
         </div>
-       
-
-
         {error && (
           <div className="text-red-500 mt-4 mb-4">
             {error}
@@ -172,5 +188,8 @@ return (
     )}
   </div>
 );
-};
+
+}
+
 export default SignUp;
+

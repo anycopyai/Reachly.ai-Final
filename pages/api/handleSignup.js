@@ -1,20 +1,25 @@
 import * as admin from 'firebase-admin';
 import { existsSync } from 'fs';
 import axios from 'axios'; // Import Axios
+import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 // Initialize Firebase Admin if not already initialized
 if (!admin.apps.length) {
   const serviceAccountPath = './reachly-47ee5-firebase-adminsdk-toxtn-b28d403c19.json';
   if (existsSync(serviceAccountPath)) {
     const serviceAccount = require(serviceAccountPath);
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
+    initializeApp({
+      credential: cert(serviceAccount),
     });
   } else {
     console.error('Firebase Admin SDK service account not found');
     process.exit(1);
   }
 }
+
+// Firestore instance
+const db = getFirestore();
 
 export default async function handleSignup(req, res) {
   const { email, password, name } = req.body;
@@ -30,20 +35,26 @@ export default async function handleSignup(req, res) {
     // Generate a custom JWT token for the client
     const customToken = await admin.auth().createCustomToken(userRecord.uid);
 
-    // Here you can forward the request to your Flask backend.
-    // Replace 'http://localhost:5000/api/handlesignup' with the actual URL of your Flask API.
-    const flaskResponse = await axios.post('http://localhost:5000/api/handlesignup', {
-      uid: userRecord.uid,
-      email,
-      customToken,
+    // Add initial user data to Firestore
+    const userRef = db.collection('users').doc(userRecord.uid);
+    await userRef.set({
+      email: email,
+      displayName: name,
+      credits: 15, // Assign 15 credits to the user
+      trial: true, // Start with a trial subscription
+      createdAt: FieldValue.serverTimestamp(), // Firebase server timestamp
     });
 
-    if (flaskResponse.data.success) {
-      // Send the token back to the client along with Flask API response
-      res.status(200).json({ token: customToken, flaskData: flaskResponse.data });
-    } else {
-      res.status(500).json({ error: 'Flask API returned an error', flaskData: flaskResponse.data });
-    }
+    // No need to forward to Flask backend if you handle everything here
+    // Respond with the custom token and additional data
+    res.status(200).json({
+      uid: userRecord.uid,
+      token: customToken,
+      email: email,
+      name: name,
+      credits: 15,
+      trial: true
+    });
 
   } catch (error) {
     console.error('Error creating user:', error);
