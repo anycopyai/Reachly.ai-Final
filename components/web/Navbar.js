@@ -9,56 +9,81 @@ const Navbar = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const premiumButtonClasses = "text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium";
-
   return (
-    <nav className="bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-[#1d0254] shadow-lg">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex">
+          <div className="flex px-2 lg:px-0">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <a className="font-bold text-xl text-gray-800">QuickQuill®</a>
+                <a className="font-bold text-xl text-white">QuickQuill®</a>
               </Link>
             </div>
           </div>
-          <div className="hidden md:flex">
-            <div className="ml-4 flex items-center md:ml-6">
-              <Link href="/login">
-                <a className={`${premiumButtonClasses} hidden md:block`}>Login</a>
-              </Link>
-              <Link href="/signup">
-                <a className={`${premiumButtonClasses} ml-4`}>Sign Up</a>
-              </Link>
-            </div>
+          <div className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-4">
+            {/* Navigation Links */}
+            <Link href="/features">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Features</a>
+            </Link>
+            <Link href="/pricing">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+            </Link>
+            <Link href="/resources">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+            </Link>
+            <Link href="/login">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+            </Link>
+            <Link href="/signup">
+              <a className="ml-4 inline-flex items-center justify-center px-5 py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                Sign Up
+              </a>
+            </Link>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="flex items-center lg:hidden">
+            {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <svg className={`${isMobileMenuOpen ? 'hidden' : 'block'} h-6 w-6`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-              <svg className={`${isMobileMenuOpen ? 'block' : 'hidden'} h-6 w-6`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              {/* Icons adjusted to show a white color */}
+              {isMobileMenuOpen ? (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`} id="mobile-menu">
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link href="/login">
-            <a className={`${premiumButtonClasses} block md:hidden`}>Login</a>
+      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden`} id="mobile-menu">
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {/* Mobile Navigation Links */}
+          <Link href="/features">
+            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Features</a>
           </Link>
-          <Link href="/signup">
-            <a className={`${premiumButtonClasses} block mt-1 md:hidden`}>Sign Up</a>
+          <Link href="/pricing">
+            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+          </Link>
+          <Link href="/resources">
+            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+          </Link>
+          <Link href="/SignIn">
+            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Login</a>
+          </Link>
+          <Link href="/SignUp">
+            <a className="block w-full mt-1 px-4 py-2 text-center font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+              Sign Up
+            </a>
           </Link>
         </div>
       </div>
