@@ -20,27 +20,11 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-4">
-            {/* Navigation Links */}
-            <Link href="/features">
-              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Features</a>
-            </Link>
-            <Link href="/pricing">
-              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
-            </Link>
-            <Link href="/resources">
-              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
-            </Link>
-            <Link href="/login">
-              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Login</a>
-            </Link>
-            <Link href="/signup">
-              <a className="ml-4 inline-flex items-center justify-center px-5 py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
-                Sign Up
-              </a>
-            </Link>
-          </div>
           <div className="flex items-center lg:hidden">
+            {/* Login Link for Mobile */}
+            <Link href="/login">
+              <a className="mr-2 text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+            </Link>
             {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
@@ -62,31 +46,47 @@ const Navbar = () => {
               )}
             </button>
           </div>
+          <div className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-4">
+            <Link href="/features">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Features</a>
+            </Link>
+            <Link href="/pricing">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+            </Link>
+            <Link href="/resources">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+            </Link>
+            <Link href="/SignIn">
+              <a className="text-white hover:text-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+            </Link>
+            <Link href="/SignUp">
+              <a className="ml-4 inline-flex items-center justify-center px-5 py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                Sign Up
+              </a>
+            </Link>            {/* ... */}
+          </div>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden`} id="mobile-menu">
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          {/* Mobile Navigation Links */}
-          <Link href="/features">
-            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Features</a>
-          </Link>
-          <Link href="/pricing">
-            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
-          </Link>
-          <Link href="/resources">
-            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Resources</a>
-          </Link>
-          <Link href="/SignIn">
-            <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Login</a>
-          </Link>
-          <Link href="/SignUp">
-            <a className="block w-full mt-1 px-4 py-2 text-center font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-              Sign Up
-            </a>
-          </Link>
-        </div>
-      </div>
+      <Link href="/features">
+        <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Features</a>
+      </Link>
+      <Link href="/pricing">
+        <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+      </Link>
+      <Link href="/resources">
+        <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+      </Link>
+      <Link href="/SignIn">
+        <a className="text-white hover:text-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Login</a>
+      </Link>
+      <Link href="/SignUp">
+        <a className="block w-full mt-1 px-4 py-2 text-center font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          Sign Up
+        </a>
+      </Link>      </div>
     </nav>
   );
 };

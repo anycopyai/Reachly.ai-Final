@@ -15,7 +15,7 @@ const Hero = () => {
               Elevate your email campaigns with AI-driven personalization. Secure more meetings, amplify replies, and boost revenue. Simple, effective, and scalable.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-4">
-              <Link href="/signup">
+              <Link href="/SignUp">
                 <a className="inline-block bg-blue-600 text-base font-medium px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300" style={{ fontFamily: "'Inter', sans-serif" }}>
                   Try Free for 14 Days
                 </a>
