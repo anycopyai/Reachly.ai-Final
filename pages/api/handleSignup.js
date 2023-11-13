@@ -1,63 +1,51 @@
-import * as admin from 'firebase-admin';
-import { existsSync } from 'fs';
-import axios from 'axios'; // Import Axios
-import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
-import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
-
-// Initialize Firebase Admin if not already initialized
-if (!admin.apps.length) {
-  const serviceAccountPath = './reachly-47ee5-firebase-adminsdk-toxtn-b28d403c19.json';
-  if (existsSync(serviceAccountPath)) {
-    const serviceAccount = require(serviceAccountPath);
-    initializeApp({
-      credential: cert(serviceAccount),
-    });
-  } else {
-    console.error('Firebase Admin SDK service account not found');
-    process.exit(1);
-  }
-}
-
-// Firestore instance
-const db = getFirestore();
+import { admin, db } from './firebaseAdmin'; // Importing initialized Firebase Admin and Firestore
+import { FieldValue } from 'firebase-admin/firestore';
 
 export default async function handleSignup(req, res) {
-  const { email, password, name } = req.body;
+  const { uid, email, name, token } = req.body;
+
+  // Validate request body
+  if (!uid || !email || !name || !token) {
+    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  }
 
   try {
-    // Use the Admin SDK to create a new user
-    const userRecord = await admin.auth().createUser({
-      email,
-      password,
-      displayName: name,
-    });
+    // Verify the token
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    if (decodedToken.uid !== uid) {
+      throw new Error('Token does not match the provided UID');
+    }
 
-    // Generate a custom JWT token for the client
-    const customToken = await admin.auth().createCustomToken(userRecord.uid);
+    // Check if user already exists in Firestore
+    const userRef = db.collection('users').doc(uid);
+    const doc = await userRef.get();
+    if (!doc.exists) {
+      // Add initial user data to Firestore
+      await userRef.set({
+        email: email,
+        displayName: name,
+        credits: 20, // Assign 20 credits for email copy generation
+        trialDays: 7, // 7 days of trial
+        emailsSent: 0, // Initial count of emails sent
+        contactsAdded: 0, // Initial count of contacts added
+        createdAt: FieldValue.serverTimestamp(), // Firebase server timestamp
+      });
+    } else {
+      console.log(`User with UID ${uid} already exists.`);
+    }
 
-    // Add initial user data to Firestore
-    const userRef = db.collection('users').doc(userRecord.uid);
-    await userRef.set({
-      email: email,
-      displayName: name,
-      credits: 15, // Assign 15 credits to the user
-      trial: true, // Start with a trial subscription
-      createdAt: FieldValue.serverTimestamp(), // Firebase server timestamp
-    });
-
-    // No need to forward to Flask backend if you handle everything here
-    // Respond with the custom token and additional data
+    // Respond with success message
     res.status(200).json({
-      uid: userRecord.uid,
-      token: customToken,
+      success: true,
+      uid: uid,
       email: email,
       name: name,
-      credits: 15,
-      trial: true
+      credits: 20,
+      trialDays: 7
     });
 
   } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).send(error);
+    console.error('Error in handleSignup:', error);
+    res.status(500).json({ success: false, error: error.message });
   }
 }

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth, db } from '../lib/firebase'; 
-import { doc, setDoc } from "firebase/firestore"; 
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../lib/firebase';
+import SignUpForm from '../components/signup/SignUpForm';
+import GoogleSignUpButton from '../components/signup/GoogleSignUpButton';
+import ErrorMessage from '../components/signup/ErrorMessage';
+import { db } from '../lib/firebaseAdmin'; // Import Firestore
+import { FieldValue } from 'firebase-admin/firestore';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -12,23 +15,12 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessful, setIsSuccessful] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-
   const router = useRouter();
-
-  const resetErrors = () => {
-    setError('');
-  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    resetErrors();
-
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+    setError('');
 
     if (password !== confirmPassword) {
       setError("Passwords don't match");
@@ -40,156 +32,52 @@ function SignUp() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Initialize user with 15 free credits and a trial subscription in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        name,
-        email,
-        credits: 15,
-        subscription_type: 'Trial'
-      });
+      // Update user profile if needed
+      await updateProfile(user, { displayName: name });
 
-      // Here you add additional parameters to send to your Flask API, like 'aid'
-      const response = await axios.post('/api/handlesignup', {
-        uid: user.uid,
-        email,
-        password,
-        name,
-        aid: 'some-aid', // Replace with actual aid value
-        credits: 15 // Sending initial credits information
-      });
+      // Send initial data to Firestore
+      const userData = {
+        email: email,
+        displayName: name,
+        credits: 20,
+        trialDays: 7,
+        emailsSent: 0,
+        contactsAdded: 0,
+        createdAt: FieldValue.serverTimestamp(),
+      };
 
-      if (response.data.success) {
-        router.push('/dashboard');
-        setIsSuccessful(true);
-        setShowToast(true);
-      } else {
-        setError("Failed to authenticate with the backend service");
-      }
+      // Use the user's UID as the document ID in Firestore
+      await db.collection('users').doc(user.uid).set(userData);
 
-      setIsLoading(false);
+      router.push('/dashboard');
     } catch (error) {
+      setError(error.message || "Failed to sign up. Please try again.");
+    } finally {
       setIsLoading(false);
-      setError(error.message);
     }
   };
 
-  const handleSignUpWithGoogle = async () => {
-    setIsLoading(true);
-    resetErrors();
-    try {
-      const userCredential = await signInWithPopup(auth, new GoogleAuthProvider());
-      const user = userCredential.user;
+  return (
+    <section className="relative flex flex-wrap lg:h-screen lg:items-center">
+      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+        {/* ... Rest of your component JSX ... */}
+        <SignUpForm 
+          onSignUp={handleSignUp}
+          isLoading={isLoading}
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+        />
 
-      // Initialize user with 15 free credits and a trial subscription in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        name: user.displayName,
-        email: user.email,
-        credits: 15,
-        subscription_type: 'Trial'
-      });
-
-      // Also send the Google sign up data to your Flask API
-      const response = await axios.post('/api/handlesignup', {
-        uid: user.uid,
-        email: user.email,
-        name: user.displayName,
-        aid: 'some-aid', // Replace with actual aid value
-        credits: 15 // Sending initial credits information
-      });
-
-      if (response.data.success) {
-        router.push('/dashboard');
-        setIsSuccessful(true);
-        setShowToast(true);
-      } else {
-        setError("Failed to authenticate with the backend service");
-      }
-
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setError("Something went wrong. Please try again.");
-    }
-  };
-
-return (
-  <div className="min-h-screen bg-gray-100 flex items-center justify-center mt-12">
-    <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-      <h1 className="text-3xl font-semibold mb-6 text-gray-700">Sign Up</h1>
-      <form onSubmit={handleSignUp}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            value={name}
-            onChange={e => setName(e.target.value)}
-            className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password</label>
-          <input 
-            type="password" 
-            id="password" 
-            name="password" 
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-600">Confirm Password</label>
-          <input 
-            type="password" 
-            id="confirm-password" 
-            name="confirm-password" 
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-            className="mt-2 p-3 w-full rounded-md border focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-          />
-        </div>
-        {error && (
-          <div className="text-red-500 mt-4 mb-4">
-            {error}
-          </div>
-        )}
-        <button 
-          type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md mb-4 transition duration-300 ease-in-out"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Signing Up...' : 'Sign Up'}
-        </button>
-      </form>
-      <button 
-        onClick={handleSignUpWithGoogle} 
-        className="bg-white hover:bg-gray-100 text-gray-600 p-3 rounded-md border w-full flex items-center justify-center transition duration-300 ease-in-out"
-      >
-        Sign Up with Google
-      </button>
-    </div>
-    {showToast && (
-      <div className="fixed bottom-0 right-0 m-6 bg-green-500 text-white py-2 px-4 rounded">
-        Signup was successful! Redirecting...
+        {/* ... Rest of your component JSX ... */}
       </div>
-    )}
-  </div>
-);
-
+    </section>
+  );
 }
 
 export default SignUp;
-

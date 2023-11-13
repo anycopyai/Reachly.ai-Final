@@ -1,14 +1,4 @@
-import * as admin from "firebase-admin";
-import axios from 'axios';
-
-// Initialize Firebase Admin SDK
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert("./reachly-47ee5-firebase-adminsdk-toxtn-b28d403c19.json"),
-  });
-}
-
-const auth = admin.auth();
+import { admin } from './firebaseAdmin'; // Importing initialized Firebase Admin
 
 export default async (req, res) => {
   const token = req.headers.authorization?.replace('Bearer ', '');
@@ -19,7 +9,7 @@ export default async (req, res) => {
   }
 
   try {
-    const decodedToken = await auth.verifyIdToken(token);
+    const decodedToken = await admin.auth().verifyIdToken(token);
 
     try {
       const backendResponse = await axios.post('https://api.elixcent.com/auth', {
