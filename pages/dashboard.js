@@ -15,7 +15,7 @@ function Dashboard() {
 
   // If not loading and no user, redirect to login
   if (!loadingAuthState && !user) {
-    router.push('/SignIn');
+    router.push('/Login');
     return null;  // Return null to stop rendering
   }
 
