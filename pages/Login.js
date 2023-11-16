@@ -70,7 +70,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full h-12 px-4 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
-                        <Link href="/reset-password">
+                        <Link href="/ForgotPassword">
                             <a className="text-sm text-indigo-600 hover:text-indigo-800 float-right mt-2">Forgot Password?</a>
                         </Link>
                     </div>
