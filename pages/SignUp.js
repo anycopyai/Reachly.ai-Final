@@ -4,6 +4,9 @@ import { useRouter } from 'next/router';
 import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import Link from 'next/link';
+
+
 
 export default function Signup() {
     const router = useRouter();

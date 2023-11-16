@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import EmailTemplate from '../components/dashboard/EmailTemplate';
+import Link from 'next/link';
+
 
 export default function Personalization() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

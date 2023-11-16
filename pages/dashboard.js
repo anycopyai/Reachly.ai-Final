@@ -6,6 +6,8 @@ import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import { useUser } from '../contexts/UserContext';
 import AutoLogout from '../utils/AutoLogout';
+import Link from 'next/link';
+
 
 function Dashboard() {
   const { user, loadingAuthState } = useUser();

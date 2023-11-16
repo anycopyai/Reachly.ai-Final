@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../lib/firebase'; // Adjust the path
 import { FcGoogle } from 'react-icons/fc'; // Ensure you have react-icons installed
+import Link from 'next/link';
 
 // Assume Google login function is defined elsewhere
 // import { signInWithGoogle } from '../path-to-auth-functions';
