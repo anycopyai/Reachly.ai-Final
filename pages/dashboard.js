@@ -1,57 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
-import { useUser } from '../contexts/UserContext';
 import AutoLogout from '../utils/AutoLogout';
-import Link from 'next/link';
-
+import { UserContext } from '../contexts/UserContext';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function Dashboard() {
-  const { user, loadingAuthState } = useUser();
+  const { user, loading } = useContext(UserContext);
   const router = useRouter();
-
-  // If not loading and no user, redirect to login
-  if (!loadingAuthState && !user) {
-    router.push('/Login');
-    return null;  // Return null to stop rendering
-  }
-
-  // If still loading, show loading skeleton
-  if (loadingAuthState) {
-    return (
-      <div className="skeleton-wrapper flex min-h-screen">
-        <div className="skeleton-sidebar"></div>
-        <div className="skeleton-content flex flex-col justify-center items-center">
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line"></div>
-        </div>
-      </div>
-    );
-  }
-
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+    if (!loading && !user) {
+      router.push('/Login');
+    }
+  }, [user, loading, router]);
 
   const handleGenerateMail = () => {
     const generatedMail = `Generated mail for ${website}`;
     setMailContent(generatedMail);
     setShowModal(true);
   };
+
+  if (loading) {
+    // Loading state
+    return   <div className="loader-container">
+        <div className="loader"></div>
+      </div>;
+  }
 
   return (
     <div className="flex min-h-screen bg-reachly-bg">

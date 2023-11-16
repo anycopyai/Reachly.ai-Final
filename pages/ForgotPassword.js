@@ -19,7 +19,7 @@ function ForgotPassword() {
 
     try {
       await sendPasswordResetEmail(auth, email);
-    router.push('/password-reset-sent');  // <-- Redirect to password-reset-sent page
+    router.push('/PasswordResetSent');  // <-- Redirect to password-reset-sent page
     } catch (error) {
       setError(error.message);
     }

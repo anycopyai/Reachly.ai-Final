@@ -18,7 +18,7 @@ function PasswordResetSent() {
 
         <div className="text-center text-sm text-gray-600">
           Remembered your password? 
-          <Link href="/SignIn">
+          <Link href="/Login">
             <a className="text-blue-500 hover:underline ml-2">Sign In</a>
           </Link>
         </div>
