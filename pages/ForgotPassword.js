@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../lib/firebase'; // Adjust the path based on where your firebase.js file is located
 import { useRouter } from 'next/router';  // <-- Import useRouter
+import Link from 'next/link';
 
 
 function ForgotPassword() {
