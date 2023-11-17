@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { auth } from '../lib/firebase'; // Adjust the path
 import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
