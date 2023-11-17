@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import AutoLogout from '../utils/AutoLogout';
-import { checkServerSideAuth } from '../utils/auth'; // Importing the utility
+import { useRouter } from 'next/router';
 
-function Dashboard({ user }) {
+function Dashboard() {
+  const { user, loading } = useContext(UserContext);
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      // Redirect to login if not authenticated
+      router.push('/Login');
+    }
+  }, [user, loading, router]);
 
   const handleGenerateMail = () => {
     const generatedMail = `Generated mail for ${website}`;
     setMailContent(generatedMail);
     setShowModal(true);
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Or any loading spinner
+  }
 
   return (
     <div className="flex min-h-screen bg-reachly-bg">
@@ -34,21 +48,5 @@ function Dashboard({ user }) {
     </div>
   );
 }
-
-// Server-side authentication with getServerSideProps using auth utility
-export const getServerSideProps = async (context) => {
-  const user = await checkServerSideAuth(context);
-
-  if (!user) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: { user } };
-};
 
 export default Dashboard;
