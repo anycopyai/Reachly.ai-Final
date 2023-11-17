@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useRouter } from 'next/router';
-import { auth, db } from '../../lib/firebase';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { FaThumbtack, FaPhone, FaQuestionCircle, FaBell, FaCog, FaUser, FaCreditCard, FaUsers, FaArrowUp } from 'react-icons/fa'; // Make sure all icons are imported
-import { userStore } from '../../stores/UserStore'; // Import the UserStore
+import { FaThumbtack, FaPhone, FaQuestionCircle, FaBell, FaCog, FaUser, FaCreditCard, FaUsers, FaArrowUp } from 'react-icons/fa';
 
 const DaisyUIMenu = observer(() => {
-  const router = useRouter();
+  const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState({ name: '', role: '', credits: 0 });
+  const router = useRouter();
+  const auth = getAuth();
 
   useEffect(() => {
-    if (userStore.user) {
-      const docRef = doc(db, "users", userStore.user.uid);
-      getDoc(docRef).then(docData => {
-        if (docData.exists()) {
-          const data = docData.data();
-          setUserInfo({ name: data.name, role: data.role, credits: data.credits });
-        } else {
-          console.log("No such document!");
-        }
-      });
-    }
-  }, [userStore.user]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        const docRef = doc(db, "users", user.uid);
+        getDoc(docRef).then(docData => {
+          if (docData.exists()) {
+            const data = docData.data();
+            setUserInfo({ name: data.name, role: data.role, credits: data.credits });
+          } else {
+            console.log("No such document!");
+          }
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
 
   const handleLogout = () => {
     auth.signOut().then(() => {
@@ -33,12 +42,14 @@ const DaisyUIMenu = observer(() => {
   };
 
   const firstInitial = userInfo.name ? userInfo.name[0] : 'U';
-
   const navbarStyle = {
     position: 'sticky',
     top: 0,
-    zIndex: 50, // Adjust the z-index as needed
+    zIndex: 50,
   };
+
+  // ... rest of your component code
+  // No changes needed in the JSX part
 
   return (
     <div className="relative w-full">
