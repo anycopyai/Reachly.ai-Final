@@ -6,8 +6,6 @@ import { BsMicrosoft } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Link from 'next/link';
 
-
-
 export default function Signup() {
     const router = useRouter();
     const [userData, setUserData] = useState({
@@ -49,19 +47,22 @@ export default function Signup() {
             return;
         }
         try {
-            await axios.post('https://api.elixcent.com/signup', {
+            const response = await axios.post('https://api.elixcent.com/signup', {
                 name: userData.name,
                 email: userData.email,
                 password: userData.password
             });
-            router.push('/dashboard'); // Replace with your dashboard path
+
+            // Store the token received from the server
+            localStorage.setItem('token', response.data.token);
+
+            router.push('/dashboard'); // Navigate to the dashboard
         } catch (error) {
             setIsSubmitting(false);
             setErrors({ form: error.response.data.error || "An unexpected error occurred. Please try again." });
         }
     };
 
-// ... [Previous code, including imports and function definitions]
 
 const handleGoogleSignup = async () => {
     // Implement Google signup logic here

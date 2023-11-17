@@ -4,9 +4,9 @@ import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import AutoLogout from '../utils/AutoLogout';
-import { checkServerSideAuth } from '../utils/auth'; // Import your auth utility
+import { checkServerSideAuth } from '../utils/auth'; // Importing the utility
 
-function Dashboard() {
+function Dashboard({ user }) {
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -35,20 +35,20 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
-
-// Add getServerSideProps for server-side authentication check
+// Server-side authentication with getServerSideProps using auth utility
 export const getServerSideProps = async (context) => {
   const user = await checkServerSideAuth(context);
 
   if (!user) {
     return {
       redirect: {
-        destination: '/Login',
+        destination: '/login',
         permanent: false,
       },
     };
   }
 
-  return { props: {} };
+  return { props: { user } };
 };
+
+export default Dashboard;
