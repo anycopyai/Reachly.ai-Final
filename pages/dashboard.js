@@ -4,6 +4,7 @@ import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
+import LoadingSpinner from '../components/LoadingSpinner'; // Import the spinner component
 import AutoLogout from '../utils/AutoLogout';
 import { useRouter } from 'next/router';
 
@@ -28,7 +29,7 @@ function Dashboard() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Or any loading spinner
+    return <LoadingSpinner />; // Display the spinner while loading
   }
 
   return (
