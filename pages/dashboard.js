@@ -1,39 +1,21 @@
-import { useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
 import AutoLogout from '../utils/AutoLogout';
-import { UserContext } from '../contexts/UserContext';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { checkServerSideAuth } from '../utils/auth'; // Import your auth utility
 
 function Dashboard() {
-  const { user, loading } = useContext(UserContext);
-  const router = useRouter();
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/Login');
-    }
-  }, [user, loading, router]);
 
   const handleGenerateMail = () => {
     const generatedMail = `Generated mail for ${website}`;
     setMailContent(generatedMail);
     setShowModal(true);
   };
-
-  if (loading) {
-    // Loading state
-    return   <div className="loader-container">
-        <div className="loader"></div>
-      </div>;
-  }
 
   return (
     <div className="flex min-h-screen bg-reachly-bg">
@@ -54,3 +36,19 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+// Add getServerSideProps for server-side authentication check
+export const getServerSideProps = async (context) => {
+  const user = await checkServerSideAuth(context);
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/Login',
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+};
