@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
+import { firebaseApp } from '../lib/firebase.js'; // Adjust the path to your firebase.js file
+
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FcGoogle } from 'react-icons/fc';
@@ -64,17 +67,26 @@ export default function Signup() {
     };
 
 
-const handleGoogleSignup = async () => {
-    // Implement Google signup logic here
-    // Example: signInWithPopup(auth, new GoogleAuthProvider());
-    // ...
-};
+  const handleGoogleSignup = async () => {
+      try {
+          const provider = new GoogleAuthProvider();
+          const result = await signInWithPopup(auth, provider);
+          // Process the result and redirect or handle user data
+      } catch (error) {
+          // Handle errors here
+      }
+  };
 
-const handleMicrosoftSignup = async () => {
-    // Implement Microsoft signup logic here
-    // Example: signInWithPopup(auth, new OAuthProvider('microsoft.com'));
-    // ...
-};
+  const handleMicrosoftSignup = async () => {
+      try {
+          const provider = new OAuthProvider('microsoft.com');
+          const result = await signInWithPopup(auth, provider);
+          // Process the result and redirect or handle user data
+      } catch (error) {
+          // Handle errors here
+      }
+  };
+
 
 return (
     <div className="flex flex-col md:flex-row min-h-screen">
