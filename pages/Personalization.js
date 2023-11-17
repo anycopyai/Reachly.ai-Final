@@ -1,56 +1,31 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import EmailTemplate from '../components/dashboard/EmailTemplate';
-import { useRouter } from 'next/router';
+import withAuth from '../hoc/withAuth'; // Adjust the import path as needed
 
-export default function Personalization() {
-  const { user, loading } = useContext(UserContext);
+function Personalization({ user }) { // user prop is now provided by the HOC
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
-    if (!loading) {
-      if (!user) {
-        // Redirect to login if not authenticated
-        router.push('/Login');
-      } else {
-        // Handle resize logic only if user is authenticated
-        const handleResize = () => {
-          const desktop = window.innerWidth > 768;
-          setIsDesktop(desktop);
-          setSidebarCollapsed(!desktop);
-        };
+    const handleResize = () => {
+      const desktop = window.innerWidth > 768;
+      setIsDesktop(desktop);
+      setSidebarCollapsed(!desktop);
+    };
 
-        handleResize();
-        window.addEventListener('resize', handleResize);
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
-      }
-    }
-  }, [user, loading, router]);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     if (isDesktop) {
       setSidebarCollapsed(!sidebarCollapsed);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        {/* Replace with your preferred spinner/loader component */}
-        <div className="loader"></div>
-      </div>
-    );
-  }
-
-  // Render content only if not loading and user is authenticated
-  if (!user) return null;
-
-
 
   return (
     <div className="flex min-h-screen bg-reachly-bg">
@@ -77,3 +52,5 @@ export default function Personalization() {
     </div>
   );
 }
+
+export default withAuth(Personalization); // Wrap Personalization with withAuth HOC
