@@ -1,5 +1,5 @@
 // utils/auth.js
-import { firebaseAdmin } from '../lib/firebaseAdmin';
+import { firebaseAdmin } from './firebaseAdmin';
 
 export const checkServerSideAuth = async (context) => {
   try {
