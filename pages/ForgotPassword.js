@@ -50,7 +50,7 @@ function ForgotPassword() {
         <button onClick={handleResetPassword} className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md mb-4 transition duration-300 ease-in-out">Send Reset Link</button>
 
         <div className="text-center text-sm text-gray-600">
-          Remembered your password? <a href="/SignIn" className="text-blue-500 hover:underline">Sign In</a>
+          Remembered your password? <a href="/Login" className="text-blue-500 hover:underline">Sign In</a>
         </div>
       </div>
     </div>
