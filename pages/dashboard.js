@@ -1,37 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { auth } from '../lib/firebase'; // Adjust the path
-import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
+import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import MailForm from '../components/dashboard/MailForm';
 import MailModal from '../components/dashboard/MailModal';
-import LoadingSpinner from '../components/LoadingSpinner'; // Import the spinner component
 import AutoLogout from '../utils/AutoLogout';
-import { useRouter } from 'next/router';
+import withAuth from '../hoc/withAuth'; // Adjust the import path as needed
 
-function Dashboard() {
-  const { user, loading } = useContext(UserContext);
+function Dashboard({ user }) { // user prop is now provided by the HOC
   const [website, setWebsite] = useState('');
   const [mailContent, setMailContent] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      // Redirect to login if not authenticated
-      router.push('/Login');
-    }
-  }, [user, loading, router]);
 
   const handleGenerateMail = () => {
     const generatedMail = `Generated mail for ${website}`;
     setMailContent(generatedMail);
     setShowModal(true);
   };
-
-  if (loading) {
-    return <LoadingSpinner />; // Display the spinner while loading
-  }
 
   return (
     <div className="flex min-h-screen bg-reachly-bg">
@@ -51,4 +35,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default withAuth(Dashboard); // Wrap Dashboard with withAuth HOC

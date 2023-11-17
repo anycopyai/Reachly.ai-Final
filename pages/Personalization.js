@@ -1,27 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import EmailTemplate from '../components/dashboard/EmailTemplate';
-import Link from 'next/link';
-
+import { useRouter } from 'next/router';
 
 export default function Personalization() {
+  const { user, loading } = useContext(UserContext);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const handleResize = () => {
-      const desktop = window.innerWidth > 768;
-      setIsDesktop(desktop);
-      // On mobile, always keep sidebar collapsed (icon only)
-      setSidebarCollapsed(!desktop);
-    };
+    if (!loading) {
+      if (!user) {
+        // Redirect to login if not authenticated
+        router.push('/Login');
+      } else {
+        // Handle resize logic only if user is authenticated
+        const handleResize = () => {
+          const desktop = window.innerWidth > 768;
+          setIsDesktop(desktop);
+          setSidebarCollapsed(!desktop);
+        };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
+        handleResize();
+        window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+        return () => window.removeEventListener('resize', handleResize);
+      }
+    }
+  }, [user, loading, router]);
 
   const toggleSidebar = () => {
     if (isDesktop) {
@@ -29,19 +38,31 @@ export default function Personalization() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        {/* Replace with your preferred spinner/loader component */}
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  // Render content only if not loading and user is authenticated
+  if (!user) return null;
+
+
+
   return (
     <div className="flex min-h-screen bg-reachly-bg">
       <aside className={`fixed top-0 left-0 h-full bg-white z-20 border-r transition-width duration-300 ease-in-out ${sidebarCollapsed ? 'w-16' : 'w-64'}`}>
         <Sidebar isCollapsed={sidebarCollapsed} />
       </aside>
       <main className={`flex-1 flex flex-col ${sidebarCollapsed ? 'md:ml-16' : 'md:ml-64'}`}>
-        {/* Sticky navigation bar */}
         <div className="sticky top-0 bg-white z-30 shadow-md">
           <div className="flex items-center justify-between px-4 py-2">
-            {/* Toggle button */}
             {isDesktop && (
               <button onClick={toggleSidebar} className="text-gray-600 hover:text-blue-600 focus:outline-none">
-                {/* Add your SVG icons for collapse/expand here */}
+                {/* SVG Icons for collapse/expand */}
               </button>
             )}
             <DaisyUIMenu />

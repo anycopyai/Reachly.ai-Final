@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MdDashboard, MdContacts, MdList, MdMenu, MdClose, MdAccountBalanceWallet, MdUpgrade } from 'react-icons/md'; // Added MdUpgrade
+import { MdDashboard,MdEject, MdContacts, MdList, MdMenu, MdClose, MdUpgrade } from 'react-icons/md';
 import Link from 'next/link';
 
 function Sidebar({ isCollapsed }) {
@@ -13,7 +13,7 @@ function Sidebar({ isCollapsed }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setDrawerOpen(true); // Changed to ensure icons are shown on mobile
+        setDrawerOpen(false);
       } else {
         setDrawerOpen(true);
       }
@@ -28,7 +28,6 @@ function Sidebar({ isCollapsed }) {
   }, []);
 
   const iconSize = isCollapsed ? 24 : 28;
-
   const sidebarClass = `fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} px-2 py-4 bg-white transform transition-transform duration-300 ease-in-out border-r ${drawerOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:sticky md:top-0 md:h-screen`;
 
   const renderMenuItem = (item) => (
@@ -49,11 +48,41 @@ function Sidebar({ isCollapsed }) {
       )}
 
       <div className={sidebarClass}>
-        <div className="flex items-center justify-start mb-8">
-          <div className="flex items-center space-x-4">
-            <div className="text-lg font-bold">{isCollapsed ? '>' : '<'}</div>
-            {!isCollapsed && <h1 className="text-lg font-bold" style={{ fontFamily: 'Courier New, monospace', color: '#4a5568' }}>Elixcent</h1>}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex justify-center items-center mb-8">
+            {!isCollapsed && (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ 
+                  backgroundColor: 'black', 
+                  borderRadius: '50%', 
+                  width: '40px', 
+                  height: '40px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center' 
+                }}>
+                  <span style={{ 
+                    color: 'blue', 
+                    fontSize: '24px', 
+                    fontWeight: 'bold', 
+                    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' 
+                  }}>
+                    E
+                  </span>
+                </div>
+                <h1 style={{ 
+                  marginLeft: '10px', 
+                  color: 'black', 
+                  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', 
+                  fontSize: '24px', 
+                  fontWeight: 'bold' 
+                }}>
+                  Elixcent
+                </h1>
+              </div>
+            )}
           </div>
+
           <button onClick={toggleDrawer} className="md:hidden p-2 rounded-md bg-red-500 text-white">
             {drawerOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
           </button>
@@ -68,23 +97,13 @@ function Sidebar({ isCollapsed }) {
           ].map(renderMenuItem)}
         </ul>
 
-        <div className={`flex ${isCollapsed ? 'justify-center' : 'flex-col items-start'} space-y-2 mb-4`}>
-          <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} bg-blue-100 p-3 rounded-md w-full`}>
-            <MdAccountBalanceWallet className="text-blue-600" size={iconSize} />
-            {!isCollapsed && (
-              <div className="text-gray-600">
-                <span className="font-semibold text-md">Credit Left: </span>
-                <span className="font-semibold text-md">{creditLeft}</span>
-              </div>
-            )}
-            {isCollapsed && (
-              <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-1">{creditLeft}</span>
-            )}
+        <div className="absolute bottom-4 w-full px-4">
+          <div className="bg-blue-100 p-2 rounded-md text-center mb-2">
+            <span className="text-gray-600 font-semibold">{creditLeft} Credits Left</span>
           </div>
 
           {!isCollapsed && (
-            <button className="flex items-center space-x-2 btn w-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 rounded-md px-4 py-2 transition duration-300">
-              <MdUpgrade size={24} />
+            <button className="flex items-center justify-center space-x-2 btn w-1/2 mx-auto text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 rounded-md px-4 py-2">
               <span>Upgrade</span>
             </button>
           )}

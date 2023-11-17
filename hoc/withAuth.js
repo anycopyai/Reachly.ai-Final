@@ -1,30 +1,32 @@
-    import React, { useEffect, useState } from 'react';
-    import { useRouter } from 'next/router';
-    import { auth } from '../lib/firebase'; // Import from your lib directory
+// withAuth.js
+import React, { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
 
-    const withAuth = (WrappedComponent) => {
-      return function WithAuthComponent(props) {
-        const router = useRouter();
-        const [isLoading, setLoading] = useState(true);
+const withAuth = (WrappedComponent) => {
+  return (props) => {
+    const { user, loading } = useContext(UserContext);
+    const router = useRouter();
 
-        useEffect(() => {
-          // Set an auth state observer and get user data
-          const unregisterAuthObserver = auth.onAuthStateChanged(user => {
-            if (!user) {
-              // Redirect to SignIn page if user is not authenticated
-              router.push('/SignIn');
-            } else {
-              setLoading(false);
-            }
-          });
+    useEffect(() => {
+      if (!loading && !user) {
+        router.push('/Login');
+      }
+    }, [user, loading, router]);
 
-          // Cleanup observer on unmount
-          return () => unregisterAuthObserver();
-        }, [router]);
-
-        // Only render the wrapped component if user is authenticated
-        return (!isLoading && <WrappedComponent {...props} />);
-      };
+    if (loading) {
+      return   <div className="flex justify-center items-center h-screen">
+          {/* Replace with your preferred spinner/loader component */}
+          <div className="loader"></div>
+        </div>; // Or your custom loading component
     }
 
-    export default withAuth;
+    if (!user) {
+      return null;
+    }
+
+    return <WrappedComponent {...props} user={user} />;
+  };
+};
+
+export default withAuth;
