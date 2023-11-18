@@ -11,6 +11,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const router = useRouter();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -74,7 +75,15 @@ export default function Login() {
                             <a className="text-sm text-indigo-600 hover:text-indigo-800 float-right mt-2">Forgot Password?</a>
                         </Link>
                     </div>
-                    <button type="submit" className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out mb-4">Login</button>
+                  <button 
+                      type="submit" 
+                      className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out mb-4 flex items-center justify-center"
+                      disabled={isLoggingIn}
+                  >
+                      {isLoggingIn ? <span className="animate-spin mr-2">🔄</span> : null}
+                      {isLoggingIn ? 'Logging in...' : 'Login'}
+                  </button>
+
                     <button 
                         type="button" 
                         onClick={handleGoogleSignIn}
