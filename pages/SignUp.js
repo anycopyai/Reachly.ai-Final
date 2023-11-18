@@ -8,8 +8,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Link from 'next/link';
+import redirectIfAuthenticated from '../hoc/redirectIfAuthenticated';
 
-export default function Signup() {
+
+function Signup() {
     const router = useRouter();
     const [userData, setUserData] = useState({
         name: '',
@@ -135,22 +137,22 @@ return (
                 >
                   {isSubmitting ? <><AiOutlineLoading3Quarters className="animate-spin mr-2" /> Creating Your Account</> : 'Create Account'}
                 </button>
-                <button 
-                    type="button" 
-                    onClick={handleGoogleSignup} 
-                    disabled={isSubmitting} 
-                    className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out mb-2 flex items-center justify-center"
-                >
-                    <FcGoogle className="text-xl mr-2" /> Sign Up with Google
-                </button>
-                <button 
-                    type="button" 
-                    onClick={handleMicrosoftSignup} 
-                    disabled={isSubmitting} 
-                    className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out flex items-center justify-center"
-                >
-                    <BsMicrosoft className="text-xl mr-2" /> Sign Up with Microsoft
-                </button>
+              <button 
+                  type="button" 
+                  onClick={handleGoogleSignup} 
+                  disabled={isSubmitting} 
+                  className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out mb-2 flex items-center justify-center"
+              >
+                  <FcGoogle className="text-xl mr-2" /> Sign Up with Google
+              </button>
+              <button 
+                  type="button" 
+                  onClick={handleMicrosoftSignup} 
+                  disabled={isSubmitting} 
+                  className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out flex items-center justify-center"
+              >
+                  <BsMicrosoft className="text-xl mr-2" /> Sign Up with Microsoft
+              </button>
             </form>
             <p className="mt-4 text-sm">
                 Already have an account? <a href="/Login" className="text-indigo-600 hover:text-indigo-500">Login here</a>
@@ -164,3 +166,5 @@ return (
     </div>
 );
 }
+
+export default redirectIfAuthenticated(Signup);

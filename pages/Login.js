@@ -5,8 +5,9 @@ import { auth } from '../lib/firebase'; // Adjust the path
 import { FcGoogle } from 'react-icons/fc'; // Ensure you have react-icons installed
 import { FaMicrosoft } from 'react-icons/fa'; // For Microsoft icon
 import Link from 'next/link';
+import redirectIfAuthenticated from '../hoc/redirectIfAuthenticated';
 
-export default function Login() {
+function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -112,3 +113,5 @@ export default function Login() {
         </div>
     );
 }
+
+export default redirectIfAuthenticated(Login);
