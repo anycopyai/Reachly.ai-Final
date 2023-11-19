@@ -1,41 +1,15 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
-import ContactRow from '../components/dashboard/ContactRow'; // Corrected here
-import ContactViewPopup from '../components/dashboard/ContactViewPopup';
-import Pagination from '../components/dashboard/Pagination';
-import AddContactPopup from '../components/dashboard/AddContactPopup';
+import ContactTable from '../components/Contacts/ContactTable'; // Import ContactTable
 import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
-
 
 function Contacts() {
     const [contacts, setContacts] = useState([]);
     const [selectedContacts, setSelectedContacts] = useState([]);
-    const [showPopup, setShowPopup] = useState(false);
-    const [viewingContact, setViewingContact] = useState(null);
     const [showAddPopup, setShowAddPopup] = useState(false);
 
-    const handleViewContact = (contact) => {
-        setViewingContact(contact);
-        setShowPopup(true);
-    };
-
-    const handleSelectContact = (contact) => {
-        setSelectedContacts([...selectedContacts, contact]);
-    };
-
-    const handleDeselectContact = (contactId) => {
-        setSelectedContacts(selectedContacts.filter(c => c.id !== contactId));
-    };
-
-    const handleDeleteContacts = () => {
-        // Logic to delete the selected contacts
-    };
-
-    const handleAddContact = (newContact) => {
-        setContacts([...contacts, newContact]);
-        setShowAddPopup(false);
-    };
+    // ... [rest of your existing event handlers]
 
     return (
         <div className="flex h-screen bg-reachly-bg">
@@ -54,7 +28,7 @@ function Contacts() {
                             </button>
                             {selectedContacts.length > 0 && (
                                 <button
-                                    onClick={handleDeleteContacts}
+                                    onClick={() => {} /* handleDeleteContacts logic */}
                                     className="btn btn-error"
                                 >
                                     Delete
@@ -62,32 +36,12 @@ function Contacts() {
                             )}
                         </div>
                     </div>
-                  <div className="divide-y divide-gray-200">
-                      {contacts.map(contact => (
-                          <ContactRow 
-                              key={contact.id} 
-                              contact={contact} 
-                              onView={handleViewContact}
-                              onSelect={handleSelectContact}
-                              onDeselect={handleDeselectContact}
-                          />
-                      ))}
-                  </div>
-                  <Pagination />
+                    <ContactTable contacts={contacts} />
+                    {/* Removed Pagination, ContactViewPopup, and AddContactPopup components */}
                 </div>
-                {showPopup && 
-                    <ContactViewPopup 
-                        contact={viewingContact} 
-                        onClose={() => setShowPopup(false)}
-                    />}
-                {showAddPopup && 
-                    <AddContactPopup 
-                        onAdd={handleAddContact} 
-                        onClose={() => setShowAddPopup(false)}
-                    />}
             </div>
         </div>
     );
 }
 
-export default withAuth(Contacts); // Wrap the component with withAuth HOC
+export default withAuth(Contacts);
