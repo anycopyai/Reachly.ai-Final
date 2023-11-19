@@ -94,8 +94,9 @@ return (
     <div className="flex flex-col md:flex-row min-h-screen">
         {/* Signup Form */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white px-6 py-10 md:p-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Start Your Free Trial</h2>
-            <p className="mb-4 text-gray-600">Join Elixcent today and explore new possibilities!</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">Start your 7 days free trial
+</h2>
+            <p className="mb-4 text-gray-600">Join Elixcent today and Elevate Your Outreach</p>
             {errors.form && <p className="text-red-500 mb-4">{errors.form}</p>}
             <form onSubmit={handleSignup} className="w-full max-w-md space-y-4">
                 {/* Form Fields */}

@@ -100,3 +100,47 @@ div#__next > main {
   z-index: 50;
 }
 
+/* Sidebar styles */
+.sidebar {
+  background-color: #00056a; /* Custom background color */
+}
+
+/* Sidebar menu item styles */
+.menu-item {
+  color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+}
+
+.menu-item:hover {
+  background-color: #0c0297; /* Lighter hover background for contrast */
+  color: #d9d9de; /* Color similar to the sidebar for text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+/* Icon styles */
+.icon-blue {
+  color: blue; /* Icon color */
+}
+/* Icon styles */
+.icon-blue:hover {
+  color: #f9f9fb; /* Icon color */
+}
+
+/* Logo styles */
+.logo-circle {
+  background-color: #0112f9; /* Logo circle background */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  color: #e1e1e5; /* Logo text color */
+  margin-left: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+

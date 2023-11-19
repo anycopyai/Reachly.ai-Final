@@ -1,6 +1,8 @@
 import React from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
+import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
+
 
 function Integration() {
     const integrations = [
@@ -60,4 +62,4 @@ function Integration() {
     );
 }
 
-export default Integration;
+export default withAuth(Integration); // Wrap the component with withAuth HOC

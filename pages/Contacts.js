@@ -5,6 +5,8 @@ import ContactRow from '../components/dashboard/ContactRow'; // Corrected here
 import ContactViewPopup from '../components/dashboard/ContactViewPopup';
 import Pagination from '../components/dashboard/Pagination';
 import AddContactPopup from '../components/dashboard/AddContactPopup';
+import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
+
 
 function Contacts() {
     const [contacts, setContacts] = useState([]);
@@ -88,4 +90,4 @@ function Contacts() {
     );
 }
 
-export default Contacts;
+export default withAuth(Contacts); // Wrap the component with withAuth HOC
