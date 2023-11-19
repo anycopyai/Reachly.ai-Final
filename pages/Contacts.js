@@ -12,24 +12,24 @@ function Contacts() {
     // ... [rest of your existing event handlers]
 
     return (
-        <div className="flex h-screen bg-reachly-bg">
+        <div className="flex h-screen bg-gray-100">
             <Sidebar />
             <div className="flex flex-col flex-1">
                 <DaisyUIMenu />
                 <div className="flex-1 p-10">
                     <div className="flex justify-between mb-5">
-                        <h1 className="text-2xl font-bold text-reachly-blue">Contacts</h1>
+                        <h1 className="text-2xl font-bold text-gray-800">Contacts</h1>
                         <div>
                             <button 
                                 onClick={() => setShowAddPopup(true)}
-                                className="btn btn-success mr-2"
+                                className="px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                             >
                                 Add Contact
                             </button>
                             {selectedContacts.length > 0 && (
                                 <button
                                     onClick={() => {} /* handleDeleteContacts logic */}
-                                    className="btn btn-error"
+                                    className="px-6 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out ml-2"
                                 >
                                     Delete
                                 </button>

@@ -87,10 +87,12 @@ function Sidebar({ isCollapsed }) {
           </button>
 
           {!isCollapsed && (
-            <button className="btn btn-outline btn-primary flex items-center justify-center space-x-2 mt-4 w-full">
-              <MdUpgrade />
-              <span>Upgrade</span>
-            </button>
+           <Link href="/upgrade">
+  <a className="btn btn-outline btn-primary flex items-center justify-center space-x-2 mt-4 w-full">
+    <MdUpgrade />
+    <span>Upgrade</span>
+  </a>
+</Link>
           )}
         </div>
       </div>

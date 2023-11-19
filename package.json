@@ -28,6 +28,7 @@
         "mobx": "^6.11.0",
         "mobx-react": "^9.1.0",
         "next": "^12.0.10",
+        "preline": "^2.0.0",
         "quill": "^1.3.7",
         "react": "^18.2.0",
         "react-country-flag": "^3.1.0",
