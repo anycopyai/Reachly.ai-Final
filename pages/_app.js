@@ -1,5 +1,5 @@
 // _app.tsx or _app.js
-'use client;'
+'use client';
 
 import { useEffect } from 'react';
 import '../styles/globals.css'; // Your global styles
@@ -13,9 +13,9 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <UserProvider>
-      <Component {...pageProps} />
-    </UserProvider>
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
   );
 }
 
