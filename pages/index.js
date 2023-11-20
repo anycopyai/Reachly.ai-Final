@@ -3,9 +3,8 @@ import Navbar from '../components/web/Navbar';
 import Hero from '../components/web/Hero';
 import Features from '../components/web/Features'; // This line imports the Features component
 import Footer from '../components/web/Footer'; // Make sure to import the Footer component
-import withAuth from '../hoc/withAuth'; // Adjust the import path as needed
 
-function Home() {
+export default function Home() {
   return (
     <div>
       <Navbar />
@@ -16,6 +15,3 @@ function Home() {
     </div>
   );
 }
-
-// Adjust the import path as needed
-export default withAuth(Home);
