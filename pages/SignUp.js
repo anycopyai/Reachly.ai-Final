@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
+import { getAuth,createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
 import { firebaseApp } from '../lib/firebase.js'; // Adjust the path to your firebase.js file
 
 import axios from 'axios';
@@ -8,7 +8,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Link from 'next/link';
-import redirectIfAuthenticated from '../hoc/redirectIfAuthenticated';
 
 
 function Signup() {
@@ -44,30 +43,34 @@ function Signup() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        if (!validateForm()) {
-            setIsSubmitting(false);
-            return;
-        }
-        try {
-            const response = await axios.post('https://api.elixcent.com/signup', {
-                name: userData.name,
-                email: userData.email,
-                password: userData.password
-            });
+        const handleSignup = async (e) => {
+            e.preventDefault();
+            setIsSubmitting(true);
+            if (!validateForm()) {
+                setIsSubmitting(false);
+                return;
+            }
 
-            // Store the token received from the server
-            localStorage.setItem('token', response.data.token);
+            try {
+                // Create user with Firebase Auth
+                const auth = getAuth(firebaseApp);
+                await createUserWithEmailAndPassword(auth, userData.email, userData.password);
 
-            router.push('/dashboard'); // Navigate to the dashboard
-        } catch (error) {
-            setIsSubmitting(false);
-            setErrors({ form: error.response.data.error || "An unexpected error occurred. Please try again." });
-        }
-    };
+                // Send additional data to Flask API
+                await axios.post('https://api.elixcent.com/signup', {
+                    name: userData.name,
+                    email: userData.email,
+                    // any other user data that needs to be sent to the API
+                });
 
+                // Redirect to dashboard or further steps after successful signup
+                router.push('/dashboard');
+            } catch (error) {
+                setIsSubmitting(false);
+                setErrors({ form: error.message || "An unexpected error occurred. Please try again." });
+            }
+        };
+  
 
   const handleGoogleSignup = async () => {
       try {
@@ -168,4 +171,4 @@ return (
 );
 }
 
-export default redirectIfAuthenticated(Signup);
+export default Signup;
