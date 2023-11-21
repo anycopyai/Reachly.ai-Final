@@ -30,7 +30,11 @@ const DaisyUIMenu = observer(() => {
         getDoc(docRef).then((docData) => {
           if (docData.exists()) {
             const data = docData.data();
-            setUserInfo({ name: data.name, role: data.role, credits: data.credits });
+            setUserInfo({ 
+              name: data.name, 
+              role: data.role, 
+              credits: data.credits // Fetching credits from Firestore
+            });
           } else {
             console.log('No such document!');
           }
@@ -42,6 +46,7 @@ const DaisyUIMenu = observer(() => {
 
     return () => unsubscribe();
   }, [auth]);
+
 
   const handleLogout = () => {
     auth
@@ -68,10 +73,11 @@ const DaisyUIMenu = observer(() => {
 
         <div className="flex-1 text-center">
           <div className="inline-block">
-            <span className="text-sm pr-2">
-              {userInfo.credits || '0'} Credits Left
-            </span>
-            <button className="btn btn-primary btn-sm">Upgrade</button>
+          <span className="text-sm pr-2">
+  {userInfo.credits || '0'} Credits Left
+</span>
+<button className="btn btn-primary btn-sm">Upgrade</button>
+
           </div>
         </div>
 

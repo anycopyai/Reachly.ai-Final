@@ -43,25 +43,26 @@ function Signup() {
         return Object.keys(newErrors).length === 0;
     };
 
-        const handleSignup = async (e) => {
-            e.preventDefault();
-            setIsSubmitting(true);
-            if (!validateForm()) {
-                setIsSubmitting(false);
-                return;
-            }
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        if (!validateForm()) {
+            setIsSubmitting(false);
+            return;
+        }
 
-            try {
-                // Create user with Firebase Auth
-                const auth = getAuth(firebaseApp);
-                await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+        try {
+            const auth = getAuth(firebaseApp);
+            const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+            const user = userCredential.user;
 
-                // Send additional data to Flask API
-                await axios.post('https://api.elixcent.com/signup', {
-                    name: userData.name,
-                    email: userData.email,
-                    // any other user data that needs to be sent to the API
-                });
+            // Send additional data along with UID to Flask API
+            await axios.post('https://api.elixcent.com/signup', {
+                uid: user.uid,  // Include UID
+                name: userData.name,
+                email: userData.email,
+                // any other user data
+            });
 
                 // Redirect to dashboard or further steps after successful signup
                 router.push('/dashboard');

@@ -100,7 +100,7 @@ function Login() {
                     </button>
                     <p className="text-center text-gray-600 mt-4">
                         Don't have an account? 
-                        <Link href="/signup">
+                        <Link href="/SignUp">
                             <a className="text-indigo-600 hover:text-indigo-800"> Create a New Account</a>
                         </Link>
                     </p>

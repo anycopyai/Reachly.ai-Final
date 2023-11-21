@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, updateEmail, updatePassword, sendEmailVerification } from 'firebase/auth';
-import { doc, getFirestore, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getFirestore, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import AccountSidebar from '../components/account/AccountSidebar';
 import withAuth from '../hoc/withAuth';
 
@@ -31,12 +31,21 @@ function Profile() {
             alert('Passwords do not match');
             return;
         }
-
-        await updateDoc(userRef, {
-            name: editableProfile.name,
-            phoneNumber: editableProfile.phoneNumber,
-            bio: editableProfile.bio
-        });
+        const docSnap = await getDoc(userRef);
+        if (!docSnap.exists()) {
+            console.log('Document does not exist, creating new one');
+            await setDoc(userRef, {
+                name: editableProfile.name,
+                phoneNumber: editableProfile.phoneNumber,
+                bio: editableProfile.bio
+            });
+        } else {
+            await updateDoc(userRef, {
+                name: editableProfile.name,
+                phoneNumber: editableProfile.phoneNumber,
+                bio: editableProfile.bio
+            });
+        }
 
         if (user.email !== editableProfile.email) {
             await updateEmail(user, editableProfile.email);
