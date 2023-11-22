@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { UserContext } from '../contexts/UserContext';
 
@@ -6,31 +6,16 @@ const withAuth = (WrappedComponent) => {
   return (props) => {
     const { user, loading } = useContext(UserContext);
     const router = useRouter();
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     useEffect(() => {
       if (!loading && !user) {
         router.push('/Login');
-      } else if (!loading) {
-        // Set a minimum display time for the loading circle
-        const timer = setTimeout(() => {
-          setIsInitialLoad(false);
-        }, 1000); // Adjust the time as needed (1000ms = 1 second)
-
-        return () => clearTimeout(timer);
       }
     }, [user, loading, router]);
 
-    if (loading || isInitialLoad) {
-      return (
-        <div className="flex justify-center items-center h-screen">
-          <div className="loader"></div>
-        </div>
-      );
-    }
-
+    // Removed the loading condition, directly rendering the WrappedComponent or null
     if (!user) {
-      return null;
+      return null; // If not authenticated and not loading, render nothing
     }
 
     return <WrappedComponent {...props} user={user} />;
