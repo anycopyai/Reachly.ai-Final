@@ -1,7 +1,7 @@
-// withAuth.js
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
+import { CircularProgress } from "@nextui-org/react"; // Importing CircularProgress
 
 const withAuth = (WrappedComponent) => {
   return (props) => {
@@ -15,10 +15,12 @@ const withAuth = (WrappedComponent) => {
     }, [user, loading, router]);
 
     if (loading) {
-      return   <div className="flex justify-center items-center h-screen">
-          {/* Replace with your preferred spinner/loader component */}
-          <div className="loader"></div>
-        </div>; // Or your custom loading component
+      return (
+        <div className="flex justify-center items-center h-screen">
+          {/* Using NextUI CircularProgress loader */}
+          <CircularProgress size="lg" aria-label="Loading..."/>
+        </div>
+      );
     }
 
     if (!user) {

@@ -1,5 +1,6 @@
 // _app.tsx or _app.js
 'use client';
+import {NextUIProvider} from '@nextui-org/react'
 
 import { useEffect } from 'react';
 import '../styles/globals.css'; // Your global styles
@@ -13,9 +14,13 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
+    <NextUIProvider>
+
       <UserProvider>
         <Component {...pageProps} />
       </UserProvider>
+      </NextUIProvider>
+
   );
 }
 
