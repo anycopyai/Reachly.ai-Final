@@ -70,10 +70,7 @@ function Sidebar({ isCollapsed }) {
         <ul className={`menu w-full ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
           {[
             { icon: <MdDashboard />, label: 'Dashboard', href: '/dashboard' },
-            { icon: <MdContacts />, label: 'Contacts', href: '/Contacts' },
-            { icon: <MdList />, label: 'Sequence', href: '/Sequence' },
-            { icon: <MdList />, label: 'Templates', href: '/Templates' },
-            { icon: <MdList />, label: 'Email Warmup', href: '/EmailWarmup', Beta: true },
+            { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },
       { icon: <MdList />, label: 'Integration', href: '/integration' },
 
           ].map(renderMenuItem)}
