@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
+import Link from 'next/link';
 
 
 function Integration() {

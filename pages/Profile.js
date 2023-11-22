@@ -3,6 +3,8 @@ import { getAuth, updateEmail, updatePassword, sendEmailVerification } from 'fir
 import { doc, getFirestore, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import AccountSidebar from '../components/account/AccountSidebar';
 import withAuth from '../hoc/withAuth';
+import Link from 'next/link';
+
 
 function Profile() {
     const auth = getAuth();
