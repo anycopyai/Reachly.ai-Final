@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import {Button} from "@nextui-org/react";
+
 import {
   FaThumbtack,
   FaPhone,
@@ -76,7 +78,9 @@ const DaisyUIMenu = observer(() => {
           <span className="text-sm pr-2">
   {userInfo.credits || '0'} Credits Left
 </span>
-<button className="btn btn-primary btn-sm">Upgrade</button>
+<Button color="primary" variant="solid">
+        Upgrade
+      </Button>
 
           </div>
         </div>
