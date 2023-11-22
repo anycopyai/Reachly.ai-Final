@@ -1,24 +1,32 @@
-// withAuth.js
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { UserContext } from '../contexts/UserContext'; // Adjust the import path as needed
+import { UserContext } from '../contexts/UserContext';
 
 const withAuth = (WrappedComponent) => {
   return (props) => {
     const { user, loading } = useContext(UserContext);
     const router = useRouter();
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     useEffect(() => {
       if (!loading && !user) {
         router.push('/Login');
+      } else if (!loading) {
+        // Set a minimum display time for the loading circle
+        const timer = setTimeout(() => {
+          setIsInitialLoad(false);
+        }, 1000); // Adjust the time as needed (1000ms = 1 second)
+
+        return () => clearTimeout(timer);
       }
     }, [user, loading, router]);
 
-    if (loading) {
-      return   <div className="flex justify-center items-center h-screen">
-          {/* Replace with your preferred spinner/loader component */}
+    if (loading || isInitialLoad) {
+      return (
+        <div className="flex justify-center items-center h-screen">
           <div className="loader"></div>
-        </div>; // Or your custom loading component
+        </div>
+      );
     }
 
     if (!user) {
