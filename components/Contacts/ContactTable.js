@@ -224,8 +224,7 @@ function ContactTable() {
               </DropdownMenu>
             </Dropdown>
             <Button color="primary" endContent={<PlusIcon />}>
-              Add New
-            </Button>
+Add Contacts            </Button>
           </div>
         </div>
         <div className="flex justify-between items-center">
