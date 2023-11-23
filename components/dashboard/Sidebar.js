@@ -52,7 +52,7 @@ function Sidebar({ isCollapsed }) {
 
   const menuItems = [
     { icon: <MdDashboard />, label: 'Dashboard', href: '/dashboard' },
-    { icon: <MdList />, label: 'Projects', href: '/projects' },
+    { icon: <MdList />, label: 'Projects', href: '/Projects' },
     { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },
     { icon: <MdList />, label: 'Integration', href: '/integration' },
     // Add other menu items here
