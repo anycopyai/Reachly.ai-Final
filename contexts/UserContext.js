@@ -6,28 +6,34 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Initially true, indicating loading
+  const [loading, setLoading] = useState(true); // Loading state
   const auth = getAuth(app);
 
   useEffect(() => {
-    setLoading(true); // Set loading to true when the component mounts or auth changes
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      setLoading(false); // Set loading to false once we get the user data
+      setLoading(false);
     }, (error) => {
       console.error('Auth state changed error:', error);
-      setLoading(false); // Also set loading to false in case of an error
+      setLoading(false);
     });
 
     return () => {
       unsubscribe();
-      setLoading(false); // Ensure loading is set to false when the component unmounts
+      setLoading(false);
     };
   }, [auth]);
 
   return (
     <UserContext.Provider value={{ user, loading }}>
-      {children}
+      {loading ? (
+        <div className="fixed inset-0 flex justify-center items-center">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      ) : (
+        children
+      )}
     </UserContext.Provider>
   );
 };

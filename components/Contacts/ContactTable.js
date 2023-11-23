@@ -92,6 +92,9 @@ function ContactTable() {
 
     switch (columnKey) {
       case "name":
+
+   
+
         return (
           <User
             avatarProps={{radius: "lg", src: user.avatar}}

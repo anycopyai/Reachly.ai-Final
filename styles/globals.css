@@ -144,3 +144,7 @@ div#__next > main {
   font-weight: bold;
 }
 
+/* Add this to your global stylesheet or within the component using TailwindCSS */
+.stat {
+  margin: 1rem; /* Adjust the margin as needed */
+}
