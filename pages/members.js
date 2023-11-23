@@ -5,6 +5,7 @@ import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import AlertBadge from '../components/dashboard/AlertBadge';
 import InviteMemberPopup from '../components/dashboard/InviteMemberPopup';
+import Link from 'next/link';
 
 function Members() {
     const [trialDays, setTrialDays] = useState(7);
