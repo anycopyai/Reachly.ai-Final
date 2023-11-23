@@ -1,16 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { MdDashboard, MdContacts, MdList, MdMenu, MdClose, MdUpgrade } from 'react-icons/md';
 import Link from 'next/link';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { db } from '../../lib/firebase'; // Adjust the path to your firebase.js file
+import { doc, getDoc } from 'firebase/firestore';
 
 function Sidebar({ isCollapsed }) {
-  const [creditLeft, setCreditLeft] = useState(100);
+  const [creditLeft, setCreditLeft] = useState(0);
+  const [creditsLoading, setCreditsLoading] = useState(true); // New loading state
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const auth = getAuth();
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
 
   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        getDoc(docRef).then((docData) => {
+          if (docData.exists()) {
+            const data = docData.data();
+            setCreditLeft(data.credits); // Set the credits from Firestore
+          } else {
+            console.log('No such document!');
+          }
+        });
+      }
+    });
+
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setDrawerOpen(false);
@@ -22,11 +41,22 @@ function Sidebar({ isCollapsed }) {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    return () => {
+      unsubscribe();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [auth]);
 
   const iconSize = isCollapsed ? 24 : 28;
   const sidebarClass = `fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} px-2 py-4 bg-[#00056a] transform transition-transform duration-300 ease-in-out border-r ${drawerOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:sticky md:top-0 md:h-screen`;
+
+  const menuItems = [
+    { icon: <MdDashboard />, label: 'Dashboard', href: '/dashboard' },
+    { icon: <MdList />, label: 'Projects', href: '/projects' },
+    { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },
+    { icon: <MdList />, label: 'Integration', href: '/integration' },
+    // Add other menu items here
+  ];
 
   const renderMenuItem = (item) => (
     <li key={item.label} className={`${isCollapsed ? 'mb-4' : 'mb-0'}`}>
@@ -68,13 +98,7 @@ function Sidebar({ isCollapsed }) {
         </div>
 
         <ul className={`menu w-full ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
-          {[
-            { icon: <MdDashboard />, label: 'Dashboard', href: '/dashboard' },
-            { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },
-      { icon: <MdList />, label: 'Integration', href: '/integration' },
-
-          ].map(renderMenuItem)}
-
+          {menuItems.map(renderMenuItem)}
         </ul>
 
         <div className="absolute bottom-4 w-full px-4">
