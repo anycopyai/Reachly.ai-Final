@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import AlertBadge from '../components/dashboard/AlertBadge'; 
 import CreateProjectPopup from '../components/dashboard/CreateProjectPopup';  // Import the new popup component
+import Link from 'next/link';
 
 function Projects() {
     const [trialDays, setTrialDays] = useState(7);
