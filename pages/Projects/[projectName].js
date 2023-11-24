@@ -11,6 +11,13 @@ const ProjectPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    const toggleDrawer = () => {
+      setIsDrawerOpen(!isDrawerOpen);
+    };
+
+
     useEffect(() => {
         if (projectName) {
             setIsLoading(true);

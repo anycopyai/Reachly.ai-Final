@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import {Button} from "@nextui-org/react";
+import NotificationDrawer from '../dashboard/Notifications'; // Import the NotificationDrawer
 
 import {
   FaThumbtack,
@@ -23,6 +24,16 @@ const DaisyUIMenu = observer(() => {
   const [userInfo, setUserInfo] = useState({ name: '', role: '', credits: 0 });
   const router = useRouter();
   const auth = getAuth();
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false); // State for NotificationDrawer visibility
+
+  // Function to toggle the NotificationDrawer
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
