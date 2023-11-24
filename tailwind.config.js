@@ -10,6 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        lightgray: '#F6F6F6',
+      },
+      fontFamily: {
+  
+        sans: ['Inter', 'sans-serif'],
+      },
       backgroundColor: {
         'reachly-blue': '#00184d',
         'reachly-bg': '#F3F6FC',
