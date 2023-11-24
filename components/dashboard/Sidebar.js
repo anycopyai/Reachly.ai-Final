@@ -16,6 +16,7 @@ function Sidebar({ isCollapsed }) {
   };
 
   useEffect(() => {
+    setCreditsLoading(true);  // Set loading to true before fetching data
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const docRef = doc(db, 'users', user.uid);
@@ -26,6 +27,10 @@ function Sidebar({ isCollapsed }) {
           } else {
             console.log('No such document!');
           }
+          setCreditsLoading(false);  // Set loading to false after fetching data
+        }).catch((error) => {
+          console.error("Error fetching document:", error);
+          setCreditsLoading(false);  // Set loading to false in case of error
         });
       }
     });

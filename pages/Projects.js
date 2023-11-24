@@ -1,34 +1,58 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
-import { useRouter } from 'next/router';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import AlertBadge from '../components/dashboard/AlertBadge'; 
-import CreateProjectPopup from '../components/dashboard/CreateProjectPopup';  // Import the new popup component
-import Link from 'next/link';
+import CreateProjectPopup from '../components/dashboard/CreateProjectPopup';
+import { useRouter } from 'next/router';
 
 function Projects() {
-    const [trialDays, setTrialDays] = useState(7);
     const [projects, setProjects] = useState([
         {
             id: 1,
             name: 'Default Project',
-            description: 'This is your default project.',
+            description: 'This is your default project.'
         },
     ]);
     const [showPopup, setShowPopup] = useState(false);
-
     const router = useRouter();
 
-    const navigateToProject = (projectId) => {
-        router.push(`/projects/${projectId}`);
+    // Function to format project name to be URL friendly
+    const formatProjectNameForUrl = (projectName) => {
+        return projectName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     };
 
-    const handleProjectCreated = (newProject) => {
-        // Here, I'm just adding the new project to the local state.
-        // In a real-world scenario, you'd probably send a request to your backend to create the project, 
-        // then refresh your projects list or add the new project to your local state.
-        setProjects([...projects, newProject]);
-        setShowPopup(false);
+    const navigateToProject = (projectName) => {
+        const formattedName = formatProjectNameForUrl(projectName);
+        router.push(`/Projects/${formattedName}`);
+    };
+
+    const handleProjectCreated = async (projectName) => {
+        try {
+            const response = await fetch('https://api2.elixcent.com/create-project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ projectName })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            const newProject = {
+                id: data.projectId, // Assuming your API returns the project ID
+                name: projectName,
+                description: 'New project created.'
+            };
+
+            setProjects([...projects, newProject]);
+            navigateToProject(newProject.name); // Navigate using project name
+            setShowPopup(false);
+        } catch (error) {
+            console.error('Error creating project:', error);
+        }
     };
 
     return (
@@ -36,7 +60,7 @@ function Projects() {
             <Sidebar />
             <div className="flex flex-col flex-1">
                 <DaisyUIMenu />
-                <AlertBadge trialDays={trialDays} />
+                <AlertBadge trialDays={7} />
 
                 <div className="flex-1 p-10">
                     <div className="flex justify-start mb-5">
@@ -54,12 +78,10 @@ function Projects() {
                             <div
                                 key={project.id}
                                 className="border p-5 rounded-lg shadow-sm bg-white cursor-pointer hover:bg-indigo-100 transition-colors"
-                                onClick={() => navigateToProject(project.id)}
+                                onClick={() => navigateToProject(project.name)}
                             >
-                                <div>
-                                    <h2 className="text-xl font-semibold">{project.name}</h2>
-                                    <p className="mt-2 text-gray-600">{project.description}</p>
-                                </div>
+                                <h2 className="text-xl font-semibold">{project.name}</h2>
+                                <p className="mt-2 text-gray-600">{project.description}</p>
                             </div>
                         ))}
                     </div>

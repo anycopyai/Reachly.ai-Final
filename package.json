@@ -22,7 +22,8 @@
         "@sentry/nextjs": "^7.77.0",
         "amazon-cognito-identity-js": "^6.3.6",
         "aws-sdk": "^2.1478.0",
-        "axios": "^1.6.0",
+        "axios": "^1.6.2",
+        "contentful": "^10.6.12",
         "firebase": "^10.5.0",
         "firebase-admin": "^11.11.0",
         "framer-motion": "^10.16.5",
@@ -43,6 +44,7 @@
         "react-dropzone": "^14.2.3",
         "react-icons": "^4.11.0",
         "react-loading-skeleton": "^3.3.1",
+        "react-query": "^3.39.3",
         "react-router-dom": "^6.17.0",
         "react-table": "^7.8.0",
         "react-toastify": "^9.1.3"
