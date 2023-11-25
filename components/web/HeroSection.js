@@ -1,3 +1,8 @@
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@nextui-org/react'; // Import Button from NextUI
+import { FaStar } from 'react-icons/fa'; // Using FaStar as a placeholder if FaTrustpilot is not available
+
 const HeroSection = () => {
   return (
     <div className="bg-white py-20 px-4">
@@ -8,20 +13,15 @@ const HeroSection = () => {
           <h1 className="text-6xl font-extrabold text-gray-900 mb-6">Get 10X Reply with AI</h1>
           <p className="text-xl text-gray-600 mb-8">Streamline your workflows with our cutting-edge web scraping technology.</p>
           <div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium py-3 px-12 rounded-md transition duration-300 ease-in-out">
-              Start for Free
-            </button>
+            <Link href="/SignUp" passHref>
+              <Button color="primary" variant="shadow" size="lg"> {/* Adjust size as needed */}
+                Start Your 7 Days Trial
+              </Button>
+            </Link>
             <p className="text-gray-500 text-sm mt-4">No credit card required</p>
           </div>
           <div className="flex justify-center md:justify-start items-center mt-8">
-            <span className="text-yellow-400">
-              {/* FontAwesome icons for stars */}
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-            </span>
+            <FaStar className="text-yellow-400 text-2xl"/> {/* Placeholder icon */}
             <p className="text-gray-600 text-sm ml-2">Rated 5 stars on Trustpilot</p>
           </div>
         </div>
