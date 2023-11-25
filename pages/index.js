@@ -3,6 +3,7 @@ import Navbar from '../components/web/NavigationBar'; // Updated to NavigationBa
 import Hero from '../components/web/HeroSection';     // Updated to HeroSection
 import Features from '../components/web/Features';   // Ensure this component exists
 import Footer from '../components/web/Footer';       // Ensure this component exists
+import Link from 'next/link';
 
 export default function Home() {
   return (
