@@ -39,7 +39,7 @@ const NavigationBar = () => {
             {/* ... */}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-700">Login</a>
+            <a href="/Login" className="block px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-700">Login</a>
           </div>
         </div>
       )}

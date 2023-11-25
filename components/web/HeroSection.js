@@ -28,7 +28,7 @@ const HeroSection = () => {
         
         {/* Image Column */}
         <div className="md:w-1/2 flex justify-center md:justify-end">
-          <img src="path-to-your-saas-preview-image.jpg" alt="SaaS Preview" className="max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl"/>
+          <img src="/images/heroimg.png" alt="SaaS Preview" className="max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl"/>
         </div>
 
       </div>
