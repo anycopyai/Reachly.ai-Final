@@ -56,11 +56,10 @@ function Sidebar({ isCollapsed }) {
   const sidebarClass = `fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} px-2 py-4 bg-[#00056a] transform transition-transform duration-300 ease-in-out border-r ${drawerOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:sticky md:top-0 md:h-screen`;
 
   const menuItems = [
-    { icon: <MdDashboard />, label: 'Dashboard', href: '/dashboard' },
-    { icon: <MdList />, label: 'Projects', href: '/Projects' },
-    { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },
-    { icon: <MdList />, label: 'Integration', href: '/integration' },
-    // Add other menu items here
+    { icon: <MdDashboard />, label: 'Icebreaker', href: '/icebreaker' },  // Updated
+    { icon: <MdContacts />, label: 'Contacts', href: '/Contacts' },       // Updated
+    { icon: <MdList />, label: 'Integration', href: '/integration' },     // Updated
+    // You can add more menu items here if needed
   ];
 
   const renderMenuItem = (item) => (
