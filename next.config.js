@@ -1,47 +1,28 @@
 const { withSentryConfig } = require("@sentry/nextjs");
 
+// Configuration for your Next.js application
 const moduleExports = {
   reactStrictMode: true,
-
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/Login',
-        permanent: true,
-      },
-    ];
-  },
+  // Other Next.js configurations can be added here if needed
 };
 
+// Sentry Webpack Plugin options
 const sentryWebpackPluginOptions = {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
-
-  // Suppresses source map uploading logs during build
+  // Options...
   silent: true,
   org: "rdmi",
   project: "javascript-nextjs",
 };
 
+// Sentry Next.js specific options
 const sentryNextJsOptions = {
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  // Options...
   widenClientFileUpload: true,
-
-  // Transpiles SDK to be compatible with IE11 (increases bundle size)
   transpileClientSDK: true,
-
-  // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
   tunnelRoute: "/monitoring",
-
-  // Hides source maps from generated client bundles
   hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
 };
 
+// Export the configuration with Sentry integration
 module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions, sentryNextJsOptions);

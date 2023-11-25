@@ -15,7 +15,7 @@ module.exports = {
       },
       fontFamily: {
   
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
       },
       backgroundColor: {
         'reachly-blue': '#00184d',
