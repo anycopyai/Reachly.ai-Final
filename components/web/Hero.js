@@ -1,48 +1,39 @@
-import Link from 'next/link';
-import { FaRegThumbsUp } from 'react-icons/fa';
-import { IoShieldCheckmarkOutline } from 'react-icons/io5';
-
-const Hero = () => {
+const HeroSection = () => {
   return (
-    <section className="bg-white text-gray-800">
-      <div className="container mx-auto px-4 py-16">
-        <div className="flex flex-wrap items-center">
-          <div className="w-full lg:w-1/2">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              <span className="text-blue-600">Elevate</span> Your <br />
-              <span className="text-blue-600">Email Outreach</span> with AI
-            </h1>
-            <p className="text-lg mb-10 font-light leading-relaxed">
-              Transform your email campaigns with AI-driven personalization. Achieve higher engagement, increase replies, and amplify your revenue. Start a new journey in email marketing.
-            </p>
-            <div className="flex items-center gap-6 mb-8">
-              <Link href="/SignUp">
-                <a className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md text-lg px-8 py-4">
-                  Start Your Free Trial
-                </a>
-              </Link>
-              <span className="text-sm italic">
-                No Credit Card Needed
-              </span>
-            </div>
-            <div className="flex items-center text-sm">
-              <IoShieldCheckmarkOutline className="text-blue-500 text-3xl mr-4" />
-              <span className="mr-8">GDPR Compliant</span>
-              <FaRegThumbsUp className="text-blue-500 text-3xl mr-4" />
-              <span>Highly Rated on Trustpilot</span>
-            </div>
+    <div className="bg-white py-20 px-4">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+        
+        {/* Text and Call-to-Action Column */}
+        <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+          <h1 className="text-6xl font-extrabold text-gray-900 mb-6">Get 10X Reply with AI</h1>
+          <p className="text-xl text-gray-600 mb-8">Streamline your workflows with our cutting-edge web scraping technology.</p>
+          <div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium py-3 px-12 rounded-md transition duration-300 ease-in-out">
+              Start for Free
+            </button>
+            <p className="text-gray-500 text-sm mt-4">No credit card required</p>
           </div>
-          <div className="w-full lg:w-1/2 flex justify-center mt-10 lg:mt-0">
-            <img
-              className="w-full max-w-lg"
-              src="https://via.placeholder.com/400"
-              alt="Illustration of engagement"
-            />
+          <div className="flex justify-center md:justify-start items-center mt-8">
+            <span className="text-yellow-400">
+              {/* FontAwesome icons for stars */}
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+            </span>
+            <p className="text-gray-600 text-sm ml-2">Rated 5 stars on Trustpilot</p>
           </div>
         </div>
+        
+        {/* Image Column */}
+        <div className="md:w-1/2 flex justify-center md:justify-end">
+          <img src="path-to-your-saas-preview-image.jpg" alt="SaaS Preview" className="max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl"/>
+        </div>
+
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Hero;
+export default HeroSection;

@@ -1,8 +1,8 @@
 // pages/index.js
-import Navbar from '../components/web/Navbar';
-import Hero from '../components/web/Hero';
-import Features from '../components/web/Features'; // This line imports the Features component
-import Footer from '../components/web/Footer'; // Make sure to import the Footer component
+import Navbar from '../components/web/NavigationBar'; // Updated to NavigationBar
+import Hero from '../components/web/HeroSection';     // Updated to HeroSection
+import Features from '../components/web/Features';   // Ensure this component exists
+import Footer from '../components/web/Footer';       // Ensure this component exists
 
 export default function Home() {
   return (
