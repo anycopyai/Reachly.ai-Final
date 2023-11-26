@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Button } from "@nextui-org/react"; // Import the NextUI Button component
 
 const NavigationBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,8 +33,11 @@ const NavigationBar = () => {
                 <a className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">{link.name}</a>
               </Link>
             ))}
-            <Link href="/Login">
-              <a className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">Login</a>
+            {/* NextUI Button for Login */}
+            <Link href="/Login" passHref>
+              <Button color="primary" auto>
+                Login
+              </Button>
             </Link>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
@@ -52,9 +56,15 @@ const NavigationBar = () => {
                 <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-100">{link.name}</a>
               </Link>
             ))}
-            <Link href="/Login">
-              <a className="block px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-700 hover:bg-gray-100">Login</a>
+            <Link href="/Login" passHref>
+              <Button color="primary" auto className="block w-full mt-3">
+                Login
+              </Button>
             </Link>
+            {/* Start For Free Button */}
+            <Button color="secondary" auto className="block w-full mt-3" onClick={() => alert('Start your free trial!')}>
+              Start For Free
+            </Button>
           </div>
         </div>
       )}
