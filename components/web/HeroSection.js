@@ -10,8 +10,8 @@ const HeroSection = () => {
         
         {/* Text and Call-to-Action Column */}
         <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-          <h1 className="text-6xl font-extrabold text-gray-900 mb-6">Get 10X Reply with AI</h1>
-          <p className="text-xl text-gray-600 mb-8">Streamline your workflows with our cutting-edge web scraping technology.</p>
+          <h1 className="text-6xl font-extrabold text-gray-900 mb-6">10X Your Email Replies with Elixcent AI </h1>
+          <p className="text-xl text-gray-600 mb-8">Skyrocket Your Sales with Elixcent! Our platform is your secret weapon to hitting quotas and boosting revenue. Expect up to 10X more replies from your email campaigns. Simple, effective, and designed for results.</p>
           <div>
             <Link href="/SignUp" passHref>
               <Button color="primary" variant="shadow" size="lg"> {/* Adjust size as needed */}
