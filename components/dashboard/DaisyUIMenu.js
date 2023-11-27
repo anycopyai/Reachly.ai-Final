@@ -138,19 +138,19 @@ return (
   </DropdownTrigger>
   <DropdownMenu aria-label="User options" variant="flat">
     <DropdownItem key="profile">
-      <a href="/profile">
+      <a href="/Profile">
         <img src="/images/profile.png" className="nav-icon" alt="Profile" style={{ marginRight: '8px' }} />
         Your Profile
       </a>
     </DropdownItem>
     <DropdownItem key="view-credits">
-      <a href="/credits">
+      <a href="/Credits">
         <img src="/images/credits.png" alt="Credits" className="nav-icon" style={{ marginRight: '8px' }} />
         View Credits Usage
       </a>
     </DropdownItem>
     <DropdownItem key="team">
-      <a href="/team">
+      <a href="/Team">
         <img src="\images\team.png" alt="Team" className="nav-icon" style={{ marginRight: '8px' }} />
         Your Team
       </a>
