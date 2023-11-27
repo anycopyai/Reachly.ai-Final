@@ -5,6 +5,8 @@ import '../styles/globals.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../utils/fontawesome';
 import { UserProvider } from '../contexts/UserContext'; 
+import SkeletonLoader from '../components/SkeletonLoader';
+
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

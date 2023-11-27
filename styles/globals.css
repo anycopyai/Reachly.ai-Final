@@ -29,22 +29,14 @@ div#__next > main {
 }
 
 
-.skeleton {
-  display: inline-block;
-  height: 1em;
-  width: 2em;
-  background: #ddd;
-  border-radius: 4px;
-  animation: shimmer 1.5s infinite linear;
-}
+
+
+
 .logo-text {
   margin-left: 30px; /* Adjust the margin-left value to reduce the spacing */
 }
 
-@keyframes shimmer {
-  0% { background-position: -100% }
-  100% { background-position: 200% }
-}
+
 
 
 /* Loader Styles */

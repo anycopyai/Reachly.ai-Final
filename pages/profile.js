@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MdPerson, MdSettings, MdSubscriptions, MdApi, MdVpnKey } from 'react-icons/md';
 import { Formik, Form, Field } from 'formik';
+import SkeletonLoader from '../components/SkeletonLoader';
+
 import { Button } from '@nextui-org/react';
 
 const ProfileSettings = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState('profile');
+  const [loading, setLoading] = useState(true); // Add a loading state
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,7 +17,16 @@ const ProfileSettings = () => {
     };
     window.addEventListener('resize', handleResize);
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+    
+    // Timer for skeleton loader
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Adjust the time as needed
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
+    };
   }, []);
 
   const handleTabClick = (tab) => {
@@ -28,6 +41,11 @@ const ProfileSettings = () => {
     },
     // ... add other integrations as needed
   ];
+
+ // If the page is loading, return the SkeletonLoader
+ if (loading) {
+  return <SkeletonLoader />;
+}
 
   const Sidebar = () => {
     const menuItems = [
