@@ -3,16 +3,17 @@
 @tailwind utilities;
 @import 'daisyui/dist/full.css';
 
-
 html,
 body,
 body > div:first-child,
 div#__next,
 div#__next > main {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Updated to Roboto */
+  font-size: 16px; /* Set the font size to 16px */
 
   height: 100%;
 }
+
 .skeleton {
   display: inline-block;
   height: 1em;

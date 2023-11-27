@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import {Button} from "@nextui-org/react";
+import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import NotificationDrawer from '../dashboard/Notifications'; // Import the NotificationDrawer
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
@@ -91,17 +92,16 @@ const DaisyUIMenu = observer(() => {
 
 return (
   <div className="relative w-full">
-    <div className="navbar bg-base-100" style={navbarStyle}>
-      <div className="flex-1"></div>
-      <div className="flex-1 text-center">
+      <div className="navbar bg-base-100" style={navbarStyle}>
+        <div className="flex-1"></div>
+        <div className="flex-1 text-center">
           <div className="inline-block">
-          <span className="text-sm pr-2">
-  {userInfo.credits || '0'} Credits Left
-</span>
-<Button color="primary" variant="solid">
-        Upgrade
-      </Button>
-
+            <span className="text-sm pr-2">
+              {userInfo.credits || '0'} Credits Left
+            </span>
+            <Button color="primary" variant="solid">
+              Upgrade
+            </Button>
           </div>
         </div>
       <div className="flex-none">
@@ -122,75 +122,55 @@ return (
           <button className="tooltip tooltip-bottom" data-tip="Settings">
             <FaCog className="text-gray-600" />
           </button>
+ {/* NextUI Dropdown for User Profile and Options */}
+ <Dropdown>
+  <DropdownTrigger>
+    <Button variant="bordered" className="capitalize">
+      {user && user.photoURL ? (
+        <img src={user.photoURL} alt="User" />
+      ) : (
+        <span className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-gray-200 text-gray-700 text-xl">
+          {userInfo.name ? userInfo.name[0] : 'U'}
+        </span>
+      )}
+    </Button>
+  </DropdownTrigger>
+  <DropdownMenu aria-label="User options" variant="flat">
+    <DropdownItem key="profile">
+      <img src="/path/to/your/profile/icon.png" alt="Profile" style={{ marginRight: '8px' }} />
+      Your Profile
+    </DropdownItem>
+    <DropdownItem key="view-credits">
+      <img src="/path/to/your/credits/icon.png" alt="Credits" style={{ marginRight: '8px' }} />
+      View Credits Usage
+    </DropdownItem>
+    <DropdownItem key="team">
+      <img src="/path/to/your/team/icon.png" alt="Team" style={{ marginRight: '8px' }} />
+      Your Team
+    </DropdownItem>
+    <DropdownItem key="upgrade">
+      <img src="/path/to/your/upgrade/icon.png" alt="Upgrade" style={{ marginRight: '8px' }} />
+      Upgrade Plan
+    </DropdownItem>
+    <DropdownItem key="integrations">
+      <img src="/path/to/your/integrations/icon.png" alt="Integrations" style={{ marginRight: '8px' }} />
+      Integrations
+    </DropdownItem>
+    <DropdownItem key="logout" onClick={handleLogout}>
+      <img src="/path/to/your/logout/icon.png" alt="Logout" style={{ marginRight: '8px' }} />
+      Logout
+    </DropdownItem>
+  </DropdownMenu>
+</Dropdown>
 
-          {/* Dropdown Menu */}
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-9 rounded-full">
-                {user && user.photoURL ? (
-                  <img src={user.photoURL} alt="User" />
-                ) : (
-                  <span className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-gray-200 text-gray-700 text-xl">
-                    {firstInitial}
-                  </span>
-                )}
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu p-2 shadow-lg bg-white rounded-md w-56 border border-gray-300"
-            >
-              <li className="menu-title">
-                <span>{userInfo.name || 'User'}</span>
-                <span className="badge badge-outline badge-sm ml-2">{userInfo.role || 'Role'}</span>
-              </li>
-              <li>
-                <a className="flex items-center">
-                  <FaUser className="text-blue-500 mr-2" />
-                  Your Profile
-                </a>
-              </li>
-              <li>
-                <a className="flex items-center">
-                  <FaCreditCard className="text-blue-500 mr-2" />
-                  View Credits Usage
-                </a>
-              </li>
-              <li>
-                <a className="flex items-center">
-                  <FaUsers className="text-blue-500 mr-2" />
-                  Your Team
-                </a>
-              </li>
-              <li>
-                <a className="flex items-center">
-                  <FaArrowUp className="text-blue-500 mr-2" />
-                  Upgrade Plan
-                </a>
-              </li>
-              <li>
-                <a className="flex items-center">
-                  <FaCog className="text-blue-500 mr-2" />
-                  Integrations
-                </a>
-              </li>
-              <li>
-                <a onClick={handleLogout} className="flex items-center">
-                  <FaSignOutAlt className="text-blue-500 mr-2" />
-                  Logout
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
+
+      {/* Notification Drawer */}
+      {isDrawerOpen && <NotificationDrawer toggleDrawer={toggleDrawer} />}
     </div>
-
-    {/* Notification Drawer */}
-    {isDrawerOpen && <NotificationDrawer toggleDrawer={toggleDrawer} />}
-  </div>
-);
-
+  );
 });
 
 export default DaisyUIMenu;
