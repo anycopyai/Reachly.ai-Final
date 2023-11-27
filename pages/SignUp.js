@@ -122,8 +122,12 @@ function Signup() {
         
 
 
+
+
+
 return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen bg-[#E1DFDD]"> {/* Replace with your desired background */}
+        
         {/* Signup Form */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white px-6 py-10 md:p-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Start your 7 days free trial
@@ -192,12 +196,25 @@ return (
             </p>
         </div>
 
-        {/* Full Height Image */}
-        <div className="w-full h-64 md:h-auto md:w-1/2 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: 'url("https://static.getprospect.com/img/help-center/outreach.jpg")' }}>
-            {/* Optional: Overlay or additional content here */}
+        {/* Benefits Checklist Section */}
+        <div className="flex-1 flex flex-col justify-center bg-indigo-100 px-6 py-10 md:p-16">
+            <div className="max-w-md mx-auto space-y-4">
+                <h3 className="text-2xl font-bold text-center text-gray-800">Benefits of Joining Elixcent</h3>
+                <ul className="list-none space-y-2">
+                    {/* Replace with your actual benefits */}
+                    {["Customizable Workflows", "Advanced Analytics", "User-Friendly Interface", "24/7 Customer Support", "Secure & Reliable"].map((benefit, index) => (
+                        <li key={index} className="flex items-center">
+                            <span className="flex-shrink-0 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center mr-3">✔</span>
+                            <span className="text-gray-700">{benefit}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
+
     </div>
 );
-}
 
+
+};
 export default Signup;
