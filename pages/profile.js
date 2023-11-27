@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { MdPerson, MdSettings, MdSubscriptions, MdApi, MdVpnKey } from 'react-icons/md';
 import { Formik, Form, Field } from 'formik';
 import SkeletonLoader from '../components/SkeletonLoader';
+import withAuth from '../hoc/withAuth';
+
+
+
 
 import { Button } from '@nextui-org/react';
 
@@ -164,4 +168,4 @@ const ProfileSettings = () => {
   
 };
 
-export default ProfileSettings;
+export default withAuth(ProfileSettings);
