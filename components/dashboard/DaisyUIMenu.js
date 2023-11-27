@@ -6,6 +6,7 @@ import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { Button, Avatar, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import NotificationDrawer from '../dashboard/Notifications'; // Import the NotificationDrawer
+import Link from 'next/link';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -108,15 +109,23 @@ return (
         <div className="flex items-center gap-3">
          
         
-<button className="tooltip tooltip-bottom" data-tip="Support">
-  <img src="/images/customer-support.svg" alt="Support" className="nav-icon" />
-</button>
-<button className="tooltip tooltip-bottom" data-tip="Support">
-  <img src="/images/integration.webp" alt="Support" className="nav-icon" />
-</button>
-<button className="tooltip tooltip-bottom" data-tip="Support">
-  <img src="/images/setting.png" alt="Support" className="nav-icon" />
-</button>
+        <Link href="/support" passHref>
+      <button className="tooltip tooltip-bottom" data-tip="Support">
+        <img src="/images/customer-support.svg" alt="Support" className="nav-icon" />
+      </button>
+    </Link>
+    
+    <Link href="/integrations" passHref>
+      <button className="tooltip tooltip-bottom" data-tip="Integrations">
+        <img src="/images/integration.webp" alt="Integrations" className="nav-icon" />
+      </button>
+    </Link>
+    
+    <Link href="/settings" passHref>
+      <button className="tooltip tooltip-bottom" data-tip="Settings">
+        <img src="/images/setting.png" alt="Settings" className="nav-icon" />
+      </button>
+    </Link>
  {/* NextUI Dropdown for User Profile and Options */}
  <Dropdown>
  <DropdownTrigger>

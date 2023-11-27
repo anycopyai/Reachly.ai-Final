@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import withAuth from '../hoc/withAuth';
-import { Button } from '@nextui-org/react'; // Import Button from NextUI
-import { AiOutlineFileExcel } from 'react-icons/ai'; // Import icon for illustration
+import { Button, Link } from '@nextui-org/react'; // Import Link from NextUI for styled links
+import { AiOutlineFileExcel, AiOutlineDownload } from 'react-icons/ai'; // Import icon for illustration
 import Papa from 'papaparse';
+
 
 function Contacts() {
     const [isCSVModalOpen, setIsCSVModalOpen] = useState(false);
@@ -62,6 +63,24 @@ function Contacts() {
                         className="hidden"
                         onChange={handleCSVUpload}
                     />
+                     <div className="pt-4"> {/* Added padding for spacing */}
+                     <img
+                            src="/images/chrome.png" // Replace with your icon image path
+                            alt="Chrome Web Store"
+                            className="mr-2" // Margin right for spacing
+                            style={{ width: '24px', height: '24px' }} // Adjust size as needed
+                        />
+                        <Link
+                            href="https://chrome.google.com/webstore/detail/your-extension-id" // Replace with your actual extension URL
+                            color="primary" // Styling to match your theme
+                            iconRight={<AiOutlineDownload />} // Optional icon
+                            block
+                        >
+                            <span className="text-sm" style={{ color: '#4F46E5' }}> {/* Small text with color matching background */}
+                                Download Our Chrome Extension for Lead Generation from LinkedIn
+                            </span>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
