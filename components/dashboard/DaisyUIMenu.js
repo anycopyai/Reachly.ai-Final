@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import { Button, Avatar, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import NotificationDrawer from '../dashboard/Notifications'; // Import the NotificationDrawer
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -106,58 +106,50 @@ return (
         </div>
       <div className="flex-none">
         <div className="flex items-center gap-3">
-          <button className="tooltip tooltip-bottom" data-tip="Pinned">
-            <FaThumbtack className="text-gray-600" />
-          </button>
-          <button className="tooltip tooltip-bottom" data-tip="Support">
-            <FaPhone className="text-gray-600" />
-          </button>
-          <button className="tooltip tooltip-bottom" data-tip="FAQ">
-            <FaQuestionCircle className="text-gray-600" />
-          </button>
-          <button className="tooltip tooltip-bottom" data-tip="Notifications" onClick={toggleDrawer}>
-            <FaBell className="text-gray-600" />
-            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500" />
-          </button>
-          <button className="tooltip tooltip-bottom" data-tip="Settings">
-            <FaCog className="text-gray-600" />
-          </button>
+         
+        
+<button className="tooltip tooltip-bottom" data-tip="Support">
+  <img src="/images/customer-support.svg" alt="Support" className="nav-icon" />
+</button>
+<button className="tooltip tooltip-bottom" data-tip="Support">
+  <img src="/images/integration.webp" alt="Support" className="nav-icon" />
+</button>
+<button className="tooltip tooltip-bottom" data-tip="Support">
+  <img src="/images/setting.png" alt="Support" className="nav-icon" />
+</button>
  {/* NextUI Dropdown for User Profile and Options */}
  <Dropdown>
-  <DropdownTrigger>
-    <Button variant="bordered" className="capitalize">
-      {user && user.photoURL ? (
-        <img src={user.photoURL} alt="User" />
-      ) : (
-        <span className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-gray-200 text-gray-700 text-xl">
-          {userInfo.name ? userInfo.name[0] : 'U'}
-        </span>
-      )}
-    </Button>
+ <DropdownTrigger>
+    <Avatar 
+          className="cursor-pointer" 
+      showFallback 
+      name={userInfo.name || 'Jane'} 
+      src={user && user.photoURL ? user.photoURL : 'https://images.unsplash.com/broken'} 
+    />
   </DropdownTrigger>
   <DropdownMenu aria-label="User options" variant="flat">
     <DropdownItem key="profile">
-      <img src="/path/to/your/profile/icon.png" alt="Profile" style={{ marginRight: '8px' }} />
+      <img src="/images/profile.png" className="nav-icon" alt="Profile" style={{ marginRight: '8px' }} />
       Your Profile
     </DropdownItem>
     <DropdownItem key="view-credits">
-      <img src="/path/to/your/credits/icon.png" alt="Credits" style={{ marginRight: '8px' }} />
+      <img src="/images/credits.png" alt="Credits" className="nav-icon" style={{ marginRight: '8px' }} />
       View Credits Usage
     </DropdownItem>
     <DropdownItem key="team">
-      <img src="/path/to/your/team/icon.png" alt="Team" style={{ marginRight: '8px' }} />
+      <img src="\images\team.png" alt="Team" className="nav-icon" style={{ marginRight: '8px' }} />
       Your Team
     </DropdownItem>
     <DropdownItem key="upgrade">
-      <img src="/path/to/your/upgrade/icon.png" alt="Upgrade" style={{ marginRight: '8px' }} />
+      <img src="/images/upgrade-13.png" alt="Upgrade" className="nav-icon" style={{ marginRight: '8px' }} />
       Upgrade Plan
     </DropdownItem>
     <DropdownItem key="integrations">
-      <img src="/path/to/your/integrations/icon.png" alt="Integrations" style={{ marginRight: '8px' }} />
+      <img src="/images/integration.webp" alt="Integrations"className="nav-icon" style={{ marginRight: '1px' }} />
       Integrations
     </DropdownItem>
     <DropdownItem key="logout" onClick={handleLogout}>
-      <img src="/path/to/your/logout/icon.png" alt="Logout" style={{ marginRight: '8px' }} />
+      <img src="/images/logout-8.png" alt="Logout" className="nav-icon" style={{ marginRight: '8px' }} />
       Logout
     </DropdownItem>
   </DropdownMenu>

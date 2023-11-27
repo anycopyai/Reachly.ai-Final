@@ -14,6 +14,21 @@ div#__next > main {
   height: 100%;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.icon-size {
+  width: 20px; /* or any size you prefer */
+  height: 20px;
+}
+
+.nav-icon {
+  width: 24px;  
+  height: 24px; 
+}
+
+
 .skeleton {
   display: inline-block;
   height: 1em;
