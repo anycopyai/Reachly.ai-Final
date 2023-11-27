@@ -3,6 +3,8 @@ import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
 import Link from 'next/link';
+import { Button } from '@nextui-org/react'; // Import NextUI Button component
+
 
 
 function Integration() {
@@ -37,23 +39,22 @@ function Integration() {
             <div className="flex-1 flex flex-col">  
                 {/* DaisyUI Top Navigation */}
                 <DaisyUIMenu />
-                
                 {/* Main content */}
                 <div className="flex-1 p-10">
-                    <h1 className="text-2xl font-bold mb-5 text-reachly-blue">Integrations</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <h1 className="text-3xl font-bold mb-8 text-reachly-blue">Integrate with Your Favorite Tools</h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
                         {integrations.map(integration => (
-                            <div key={integration.name} className="border p-5 rounded-lg shadow-sm bg-white">
+                            <div key={integration.name} className="border p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center">
                                         {integration.icon}
                                         <h2 className="ml-3 text-xl font-semibold">{integration.name}</h2>
                                     </div>
-                                    <button className="btn btn-primary" onClick={() => { /* Handle integration activation */ }}>
+                                    <Button color="primary" variant="flat" auto>
                                         Activate
-                                    </button>
+                                    </Button>
                                 </div>
-                                <p className="mt-4 text-gray-600">{integration.description}</p>
+                                <p className="mt-3 text-gray-600">{integration.description}</p>
                             </div>
                         ))}
                     </div>
@@ -63,4 +64,4 @@ function Integration() {
     );
 }
 
-export default withAuth(Integration); // Wrap the component with withAuth HOC
+export default withAuth(Integration);
