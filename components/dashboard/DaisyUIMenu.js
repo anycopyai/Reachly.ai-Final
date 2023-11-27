@@ -115,7 +115,7 @@ return (
       </button>
     </Link>
     
-    <Link href="/integrations" passHref>
+    <Link href="/integration" passHref>
       <button className="tooltip tooltip-bottom" data-tip="Integrations">
         <img src="/images/integration.webp" alt="Integrations" className="nav-icon" />
       </button>
@@ -128,9 +128,9 @@ return (
     </Link>
  {/* NextUI Dropdown for User Profile and Options */}
  <Dropdown>
- <DropdownTrigger>
+  <DropdownTrigger>
     <Avatar 
-          className="cursor-pointer" 
+      className="cursor-pointer" 
       showFallback 
       name={userInfo.name || 'Jane'} 
       src={user && user.photoURL ? user.photoURL : 'https://images.unsplash.com/broken'} 
@@ -138,24 +138,34 @@ return (
   </DropdownTrigger>
   <DropdownMenu aria-label="User options" variant="flat">
     <DropdownItem key="profile">
-      <img src="/images/profile.png" className="nav-icon" alt="Profile" style={{ marginRight: '8px' }} />
-      Your Profile
+      <a href="/profile">
+        <img src="/images/profile.png" className="nav-icon" alt="Profile" style={{ marginRight: '8px' }} />
+        Your Profile
+      </a>
     </DropdownItem>
     <DropdownItem key="view-credits">
-      <img src="/images/credits.png" alt="Credits" className="nav-icon" style={{ marginRight: '8px' }} />
-      View Credits Usage
+      <a href="/credits">
+        <img src="/images/credits.png" alt="Credits" className="nav-icon" style={{ marginRight: '8px' }} />
+        View Credits Usage
+      </a>
     </DropdownItem>
     <DropdownItem key="team">
-      <img src="\images\team.png" alt="Team" className="nav-icon" style={{ marginRight: '8px' }} />
-      Your Team
+      <a href="/team">
+        <img src="\images\team.png" alt="Team" className="nav-icon" style={{ marginRight: '8px' }} />
+        Your Team
+      </a>
     </DropdownItem>
     <DropdownItem key="upgrade">
-      <img src="/images/upgrade-13.png" alt="Upgrade" className="nav-icon" style={{ marginRight: '8px' }} />
-      Upgrade Plan
+      <a href="/upgrade">
+        <img src="/images/upgrade-13.png" alt="Upgrade" className="nav-icon" style={{ marginRight: '8px' }} />
+        Upgrade Plan
+      </a>
     </DropdownItem>
     <DropdownItem key="integrations">
-      <img src="/images/integration.webp" alt="Integrations"className="nav-icon" style={{ marginRight: '1px' }} />
-      Integrations
+      <a href="/integration">
+        <img src="/images/integration.webp" alt="Integrations"className="nav-icon" style={{ marginRight: '1px' }} />
+        Integrations
+      </a>
     </DropdownItem>
     <DropdownItem key="logout" onClick={handleLogout}>
       <img src="/images/logout-8.png" alt="Logout" className="nav-icon" style={{ marginRight: '8px' }} />
@@ -163,6 +173,7 @@ return (
     </DropdownItem>
   </DropdownMenu>
 </Dropdown>
+
 
           </div>
         </div>
