@@ -65,7 +65,7 @@ function Signup() {
             });
 
                 // Redirect to dashboard or further steps after successful signup
-                router.push('/dashboard');
+                router.push('/icebreaker');
             } catch (error) {
                 setIsSubmitting(false);
                 setErrors({ form: error.message || "An unexpected error occurred. Please try again." });

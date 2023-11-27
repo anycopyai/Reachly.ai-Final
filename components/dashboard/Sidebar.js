@@ -4,8 +4,12 @@ import Link from 'next/link';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../lib/firebase'; // Adjust the path to your firebase.js file
 import { doc, getDoc } from 'firebase/firestore';
+import { Button } from '@nextui-org/react';
+import { Chip } from "@nextui-org/react";
+import { useRouter } from 'next/router';
 
 function Sidebar({ isCollapsed }) {
+  const router = useRouter(); // Add this line
   const [creditLeft, setCreditLeft] = useState(0);
   const [creditsLoading, setCreditsLoading] = useState(true); // New loading state
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -53,11 +57,11 @@ function Sidebar({ isCollapsed }) {
   }, [auth]);
 
   const iconSize = isCollapsed ? 24 : 28;
-  const sidebarClass = `fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} px-2 py-4 bg-[#00056a] transform transition-transform duration-300 ease-in-out border-r ${drawerOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:sticky md:top-0 md:h-screen`;
+  const sidebarClass = `fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} px-2 py-4 bg-white text-gray-700 transform transition-transform duration-300 ease-in-out border-r ${drawerOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:sticky md:top-0 md:h-screen`;
 
   const menuItems = [
-    { icon: <MdDashboard />, label: 'Icebreaker', href: '/icebreaker' },  // Updated
-    { icon: <MdContacts />, label: 'Contacts', href: '/Contacts' },       // Updated
+    { icon: <MdDashboard />, label: 'AI Icebreaker', href: '/icebreaker' },  // Updated
+    { icon: <MdContacts />, label: 'Leads', href: '/Contacts' },       // Updated
     { icon: <MdList />, label: 'Integration', href: '/integration' },     // Updated
     // You can add more menu items here if needed
   ];
@@ -65,12 +69,9 @@ function Sidebar({ isCollapsed }) {
   const renderMenuItem = (item) => (
     <li key={item.label} className={`${isCollapsed ? 'mb-4' : 'mb-0'}`}>
       <Link href={item.href}>
-        <a className={`flex items-center space-x-4 p-3 rounded-md transition duration-200 menu-item`}>
+        <a className={`flex items-center space-x-4 p-3 rounded-md transition duration-200 menu-item ${router.pathname === item.href ? 'active' : ''}`}>
           {React.cloneElement(item.icon, { size: iconSize, className: 'icon-blue' })}
-          <span className={`${isCollapsed ? 'hidden' : 'block'}`} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{item.label}</span>
-          {item.Beta && !isCollapsed && (
-            <div className="badge badge-primary badge-outline ml-2">Beta</div>
-          )}
+          <span className={`${isCollapsed ? 'hidden' : 'block'} menu-item-label`}>{item.label}</span>
         </a>
       </Link>
     </li>
@@ -84,19 +85,16 @@ function Sidebar({ isCollapsed }) {
 
       <div className={sidebarClass}>
         <div className="flex items-center justify-between mb-8">
-          <div className="flex justify-center items-center mb-8">
-            {!isCollapsed && (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="logo-circle">
-                  <span className="logo-text" style={{ color: '#00056a' }}>E</span>
-                </div>
+        {!isCollapsed && (
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <img src="/images/logo.png" alt="Elixcent Logo" className="logo-image" style={{ width: '100px' }} />
+    <h1 className="logo-text" style={{ marginLeft: '0px' }}>Elixcent</h1>
+  </div>
+)}
 
-                <h1 className="logo-text">Elixcent</h1>
-              </div>
-            )}
-          </div>
 
-          <button onClick={toggleDrawer} className="md:hidden p-2 rounded-md bg-red-500 text-white">
+
+          <button onClick={toggleDrawer} className="md:hidden p-2 rounded-md bg-blue-600 text-white">
             {drawerOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
           </button>
         </div>
@@ -105,17 +103,17 @@ function Sidebar({ isCollapsed }) {
           {menuItems.map(renderMenuItem)}
         </ul>
 
-        <div className="absolute bottom-4 w-full px-4">
-          <button className="btn">
-            Credits
-            <div className="badge badge-secondary">{creditLeft}</div>
-          </button>
+        <div className="absolute bottom-4 w-full px-4 flex flex-col items-center">
+          {/* Credits Left Chip */}
+          <Chip color="primary" className="mb-4">
+            Credits: {creditLeft}
+          </Chip>
 
+          {/* Upgrade Button */}
           {!isCollapsed && (
-            <button className="btn btn-outline btn-primary flex items-center justify-center space-x-2 mt-4 w-full">
-              <MdUpgrade />
-              <span>Upgrade</span>
-            </button>
+            <Button color="primary" variant="bordered" size="large">
+              Upgrade
+            </Button>
           )}
         </div>
       </div>

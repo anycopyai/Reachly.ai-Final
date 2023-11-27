@@ -18,8 +18,8 @@ module.exports = {
         sans: ['Roboto', 'sans-serif'],
       },
       backgroundColor: {
-        'reachly-blue': '#00184d',
-        'reachly-bg': '#F3F6FC',
+        'reachly-blue': '#232634',
+        'reachly-bg': '#F6F6F6',
       },
       textColor: {
         'reachly-blue': '#061A6A',

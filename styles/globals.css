@@ -9,6 +9,8 @@ body,
 body > div:first-child,
 div#__next,
 div#__next > main {
+  font-family: 'Inter', sans-serif;
+
   height: 100%;
 }
 .skeleton {
@@ -18,6 +20,9 @@ div#__next > main {
   background: #ddd;
   border-radius: 4px;
   animation: shimmer 1.5s infinite linear;
+}
+.logo-text {
+  margin-left: 30px; /* Adjust the margin-left value to reduce the spacing */
 }
 
 @keyframes shimmer {
@@ -73,23 +78,40 @@ div#__next > main {
 
 /* Sidebar styles */
 .sidebar {
-  background-color: #00056a; /* Custom background color */
+  background-color: white; /* Change to white background */
+  color: #333;
 }
 
-/* Sidebar menu item styles */
-.menu-item {
-  color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+.menu-item-label {
+  color: #3B3B71; /* Or any other color you prefer */
 }
 
 .menu-item:hover {
-  background-color: #0c0297; /* Lighter hover background for contrast */
-  color: #d9d9de; /* Color similar to the sidebar for text */
+  background-color: #e0e0e0; /* Light grey background on hover */
+  color: #1a73e8; /* Darker text color on hover */
+  /* Add other hover styles as needed */
+}
+
+.menu-item:hover .icon-blue {
+  color: #1a73e8; /* Change icon color on hover, if desired */
+}
+
+
+
+/* Sidebar menu item styles */
+.menu-item {
+  color: rgba(14, 1, 1, 0.8); /* White color with 80% opacity */
+}
+
+.menu-item:hover {
+  background-color: #EBEEFF; /* Lighter hover background for contrast */
+  color: #0606fc; /* Color similar to the sidebar for text */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
 }
 
 /* Icon styles */
 .icon-blue {
-  color: blue; /* Icon color */
+  color: rgb(206, 206, 211); /* Icon color */
 }
 /* Icon styles */
 .icon-blue:hover {
@@ -107,8 +129,16 @@ div#__next > main {
   justify-content: center;
 }
 
+
+.menu-item.active {
+  background-color: #EBEEFF !important; /* Add !important to override any other styles */
+  color: #0112f9 !important; /* Add !important to override any other styles */
+}
+
+
+
 .logo-text {
-  color: #e1e1e5; /* Logo text color */
+  color: #2020f5; /* Logo text color */
   margin-left: 10px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 24px;

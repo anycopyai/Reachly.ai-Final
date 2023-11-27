@@ -17,7 +17,7 @@ function Login() {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            router.push('/dashboard'); // Redirect to dashboard
+            router.push('/icebreaker'); // Redirect to dashboard
         } catch (error) {
             setError(error.message);
         }
@@ -27,7 +27,7 @@ function Login() {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
-            router.push('/dashboard');
+            router.push('/icebreaker');
         } catch (error) {
             setError(error.message);
         }
