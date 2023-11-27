@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { FaPlay } from 'react-icons/fa'; // Import the play icon from react-icons
+import Papa from 'papaparse'; // Import PapaParse
+import { FaPlay } from 'react-icons/fa';
 import { Button } from '@nextui-org/react';
 
 const ContactManagement = ({ onUpload }) => {
   const [csvFile, setCsvFile] = useState(null);
   const fileInputRef = useRef(null);
-  
+
   const playDemoVideo = () => {
-    // Placeholder for video logic
     console.log('Play demo video logic will be implemented here.');
   };
 
@@ -16,14 +16,26 @@ const ContactManagement = ({ onUpload }) => {
     setCsvFile(file);
   };
 
-  const handleUpload = () => {
+  const handleCSVUpload = () => {
     if (csvFile) {
-      onUpload(csvFile);
+      Papa.parse(csvFile, {
+        complete: (result) => {
+          console.log('Parsed CSV Data:', result.data);
+          onUpload(result.data); // Call the onUpload prop with the parsed data
+        },
+        header: true, // If your CSV has headers
+        skipEmptyLines: true,
+      });
+
       setCsvFile(null);
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
     }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -40,9 +52,12 @@ const ContactManagement = ({ onUpload }) => {
             </label>
             <input id="file-upload" type="file" className="hidden" accept=".csv" onChange={handleFileChange} ref={fileInputRef} />
           </div>
-          <Button variant="primary" className="mb-4 text-lg px-8 py-3 shadow-md hover:shadow-lg">
-            Click to upload a .CSV
-          </Button>
+          <Button 
+  className="mb-4 text-lg px-8 py-3 bg-white text-gray-800 border border-gray-300 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+  onClick={triggerFileInput}>
+  Click to upload a .CSV
+</Button>
+
           <Button variant="outline" className="flex items-center text-lg text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out" onClick={playDemoVideo}>
             <FaPlay className="mr-2" /> Watch demo
           </Button>

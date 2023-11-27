@@ -73,25 +73,53 @@ function Signup() {
         };
   
 
-  const handleGoogleSignup = async () => {
-      try {
-          const provider = new GoogleAuthProvider();
-          const result = await signInWithPopup(auth, provider);
-          // Process the result and redirect or handle user data
-      } catch (error) {
-          // Handle errors here
-      }
-  };
+        const handleGoogleSignup = async () => {
+            try {
+                const auth = getAuth(firebaseApp);
+                const provider = new GoogleAuthProvider();
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+        
+                // Send user data to Firebase
+                await axios.post('https://api.elixcent.com/signup', {
+                    uid: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    // additional data if needed
+                });
+        
+                // Redirect after successful signup
+                router.push('/icebreaker');
+            } catch (error) {
+                // Handle errors here
+                console.error('Error during Google sign-up:', error);
+            }
+        };
+        
 
-  const handleMicrosoftSignup = async () => {
-      try {
-          const provider = new OAuthProvider('microsoft.com');
-          const result = await signInWithPopup(auth, provider);
-          // Process the result and redirect or handle user data
-      } catch (error) {
-          // Handle errors here
-      }
-  };
+        const handleMicrosoftSignup = async () => {
+            try {
+                const auth = getAuth(firebaseApp);
+                const provider = new OAuthProvider('microsoft.com');
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+        
+                // Send user data to Firebase
+                await axios.post('https://api.elixcent.com/signup', {
+                    uid: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    // additional data if needed
+                });
+        
+                // Redirect after successful signup
+                router.push('/icebreaker');
+            } catch (error) {
+                // Handle errors here
+                console.error('Error during Microsoft sign-up:', error);
+            }
+        };
+        
 
 
 return (

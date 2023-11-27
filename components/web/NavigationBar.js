@@ -23,8 +23,10 @@ const NavigationBar = () => {
     <nav className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <span className="font-semibold text-xl text-darkblue">Elixcent</span>
+          {/* Logo Section */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src="/images/logo.png" alt="Elixcent Logo" className="logo-image" style={{ width: '100px' }} />
+            <h1 className="logo-text" style={{ marginLeft: '10px' }}>Elixcent</h1>
           </div>
           <div className="hidden sm:flex sm:space-x-4">
             {/* Desktop Menu Items */}
