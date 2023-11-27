@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthP
 import { auth } from '../lib/firebase'; // Adjust the path
 import { FcGoogle } from 'react-icons/fc'; // Ensure you have react-icons installed
 import { FaMicrosoft } from 'react-icons/fa'; // For Microsoft icon
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'; // For loading icon
 import Link from 'next/link';
 
 function Login() {
@@ -11,35 +12,42 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const router = useRouter();
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setIsLoggingIn(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
             router.push('/icebreaker'); // Redirect to dashboard
         } catch (error) {
             setError(error.message);
+        } finally {
+            setIsLoggingIn(false);
         }
     };
 
     const handleGoogleSignIn = async () => {
-        const provider = new GoogleAuthProvider();
+        setIsLoggingIn(true);
         try {
-            await signInWithPopup(auth, provider);
+            await signInWithPopup(auth, new GoogleAuthProvider());
             router.push('/icebreaker');
         } catch (error) {
             setError(error.message);
+        } finally {
+            setIsLoggingIn(false);
         }
     };
 
     const handleMicrosoftSignIn = async () => {
-        const provider = new OAuthProvider('microsoft.com');
+        setIsLoggingIn(true);
         try {
-            await signInWithPopup(auth, provider);
-            router.push('/dashboard');
+            await signInWithPopup(auth, new OAuthProvider('microsoft.com'));
+            router.push('/icebreaker');
         } catch (error) {
             setError(error.message);
+        } finally {
+            setIsLoggingIn(false);
         }
     };
 
