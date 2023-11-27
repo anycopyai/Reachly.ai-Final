@@ -5,7 +5,6 @@ import withAuth from '../hoc/withAuth';
 import { Button, Link } from '@nextui-org/react'; // Import Link from NextUI for styled links
 import { AiOutlineFileExcel, AiOutlineDownload } from 'react-icons/ai'; // Import icon for illustration
 import Papa from 'papaparse';
-import Link from 'next/link';
 
 
 function Contacts() {
