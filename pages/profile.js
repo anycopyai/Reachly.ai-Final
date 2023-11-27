@@ -33,7 +33,10 @@ const ProfileSettings = () => {
     );
 
     return (
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 px-2 py-4 bg-white text-gray-700 border-r`}>
+      <div className={`fixed inset-y-0 left-0 z-40 ${isCollapsed ? 'w-16' : 'w-64'} bg-white text-gray-700 border-r transition-all duration-300`}>
+        <div className="flex items-center justify-center h-16 border-b">
+          <img src="/path-to-your-logo.png" alt="Logo" className={`${isCollapsed ? 'hidden' : 'block'}`} />
+        </div>
         <ul className="menu w-full">
           {menuItems.map(renderMenuItem)}
         </ul>
@@ -45,7 +48,7 @@ const ProfileSettings = () => {
   return (
     <div className="flex h-screen">
       <Sidebar isCollapsed={isSidebarCollapsed} />
-      <div className="flex-1 bg-gray-100 p-6">
+      <div className="flex-1 bg-gray-100 p-6 ml-64">
         <div>
           {activeTab === 'profile' && (
             <Formik initialValues={{ name: '' }} onSubmit={(values) => console.log(values)}>
