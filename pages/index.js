@@ -1,8 +1,9 @@
 // pages/index.js
 import Navbar from '../components/web/NavigationBar'; // NavigationBar component
-import Hero from '../components/web/HeroSection';     // HeroSection component
 import FeaturesSection from '../components/web/feature1'; // FeaturesSection component
 import Footer from '../components/web/Footer';       // Footer component
+import Testimonials from '../components/web/testimonials';
+import Hero from '../components/web/Hero';
 
 export default function Home() {
   return (
@@ -95,7 +96,7 @@ export default function Home() {
 </div>
         </div>
       </div>
-
+<Testimonials />
       <Footer />
     </div>
   );

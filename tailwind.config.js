@@ -32,7 +32,8 @@ module.exports = {
   darkMode: "class",
   plugins: [
     require('daisyui'), // Keep the DaisyUI plugin
-    require('preline/plugin'), // Keep the Preline plugin
+   require('@tailwindcss/forms'),
+   require('preline/plugin'),
     nextui(), // Add the NextUI plugin
   ],
 };
