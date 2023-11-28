@@ -7,8 +7,10 @@ import { AiOutlineFileExcel, AiOutlineDownload } from 'react-icons/ai'; // Impor
 import Papa from 'papaparse';
 
 
+
 function Contacts() {
     const [isCSVModalOpen, setIsCSVModalOpen] = useState(false);
+
 
     const openCSVModal = () => {
         setIsCSVModalOpen(true);
@@ -37,8 +39,9 @@ function Contacts() {
         });
     };
 
+
     return (
-        <div className="flex h-screen bg-[#EBEEFF]"> {/* Updated background color */}
+        <div className="flex h-screen bg-reachly-bg"> {/* Updated background color */}
             <Sidebar />
             <div className="flex flex-col flex-1">
                 <DaisyUIMenu />
