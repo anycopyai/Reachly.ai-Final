@@ -178,13 +178,57 @@ const Sidebar = () => {
             </div>
           )}
 
-            {/* Team tab */}
-            {activeTab === 'team' && (
-            <div>
-              <h2 className="text-2xl font-semibold mb-5">Team Settings</h2>
-              {/* Team settings content goes here */}
+{activeTab === 'team' && (
+  <div>
+    <h2 className="text-2xl font-semibold mb-8">Team Settings</h2>
+
+    {/* Add Team Member Section */}
+    <div className="mb-8">
+      <h3 className="text-lg font-semibold mb-4">Add Team Member</h3>
+      <div className="flex flex-wrap gap-4 mb-4">
+        <input type="text" placeholder="Member's Name" className="flex-1 px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <input type="email" placeholder="Member's Email" className="flex-1 px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <select className="flex-1 px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="">Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="editor">Editor</option>
+          <option value="viewer">Viewer</option>
+        </select>
+      </div>
+      <button className="px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600">Add Member</button>
+    </div>
+
+    {/* Team Members List */}
+    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+      <h3 className="text-lg font-semibold mb-4 pl-4 pt-4">Team Members</h3>
+      <ul className="divide-y divide-gray-200">
+        {/* Team Member Item */}
+        <li className="px-4 py-4 sm:px-6">
+          <div className="flex items-center justify-between">
+            <div className="text-sm font-medium text-gray-900">John Doe</div>
+            <div className="ml-2 flex-shrink-0 flex">
+              <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Admin</p>
             </div>
-          )}
+          </div>
+          <div className="mt-2 sm:flex sm:justify-between">
+            <div className="sm:flex">
+              <p className="flex items-center text-sm text-gray-500">
+                johndoe@example.com
+              </p>
+            </div>
+            <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+              {/* Action Buttons */}
+              <button className="mr-4 px-4 py-2 bg-red-500 text-white rounded shadow hover:bg-red-600">Remove</button>
+              <button className="px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600">Edit Role</button>
+            </div>
+          </div>
+        </li>
+        {/* Repeat for each team member */}
+      </ul>
+    </div>
+  </div>
+)}
+
 
           {/* Credits tab */}
           {activeTab === 'credits' && (
