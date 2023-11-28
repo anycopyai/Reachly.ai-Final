@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "/404.js"
-  status = 404
