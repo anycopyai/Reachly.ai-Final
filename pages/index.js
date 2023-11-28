@@ -9,11 +9,18 @@ import FeatureSection2 from '../components/web/FeatureSection2';
 import Help from '../components/web/Help';
 import Clients from '../components/web/Clients';
 import Link from 'next/link';
+import Head from 'next/head';
+
 
 
 
 export default function Home() {
   return (
+    <>
+    <Head>
+        <title>AI-Driven Email Personalization Platform - Boost Engagement & Sales</title>
+        <meta name="description" content="Experience the future of email marketing with our AI-powered personalization platform. Elevate your outreach with tailored content, increase engagement rates, and drive sales effectively. Perfect for businesses seeking to harness the power of AI for smarter email strategies." />
+      </Head>
     <div>
       {/* Top Bar */}
       <div className="bg-indigo-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -39,5 +46,6 @@ Join Webinar        </a>
 <Help />
       <Footer />
     </div>
+    </>
   );
 }
