@@ -39,10 +39,9 @@ const Modal = () => {
               </svg>
               <div className="grow ms-5">
                 <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-                  Ask our community
-                </h3>
+                  Phone Support                </h3>
                 <p className="text-sm text-gray-500">
-                  Get help from 40k+ Preline users
+                  Get help by Phone 24/7
                 </p>
               </div>
             </div>
@@ -74,10 +73,9 @@ const Modal = () => {
               </svg>
               <div className="grow ms-5">
                 <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-                  Get help in the app
-                </h3>
+Chat With Us               </h3>
                 <p className="text-sm text-gray-500">
-                  Just head to «Help» in the app
+                  Just head to «Help» in Chat
                 </p>
               </div>
             </div>
@@ -113,8 +111,7 @@ const Modal = () => {
                 <p className="text-sm text-gray-500">
                   Reach us at{" "}
                   <span className="text-blue-600 font-medium dark:text-blue-500">
-                    info@site.com
-                  </span>
+hello@elixcent.com                  </span>
                 </p>
               </div>
             </div>

@@ -33,7 +33,7 @@ Personize Cold Email At Scale      </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/Pricing"
           >
             Pricing
           </a>
@@ -41,9 +41,9 @@ Personize Cold Email At Scale      </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/Features"
           >
-            Changelog
+            Features
           </a>
         </p>
         <p>
@@ -51,17 +51,10 @@ Personize Cold Email At Scale      </p>
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
             href="#"
           >
-            Docs
+            Solutions
           </a>
         </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Download
-          </a>
-        </p>
+       
       </div>
     </div>
     {/* End Col */}
@@ -73,7 +66,7 @@ Personize Cold Email At Scale      </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/About"
           >
             About us
           </a>
@@ -81,7 +74,7 @@ Personize Cold Email At Scale      </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/blog"
           >
             Blog
           </a>
@@ -89,52 +82,29 @@ Personize Cold Email At Scale      </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/Case-Studies"
           >
-            Careers
-          </a>{" "}
-          <span className="inline text-blue-600 dark:text-blue-500">
-            — We're hiring
-          </span>
-        </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Customers
+            Case Studies
           </a>
         </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Newsroom
-          </a>
-        </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Sitemap
-          </a>
-        </p>
+      
+       
+      
       </div>
     </div>
     {/* End Col */}
     <div>
       <h4 className="text-xs font-semibold text-gray-900 uppercase dark:text-gray-100">
-        Resources
+        Comparison
       </h4>
       <div className="mt-3 grid space-y-3 text-sm">
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
+            href="/"
           >
-            Community
+            Elixcent Vs Smartwriter
+
           </a>
         </p>
         <p>
@@ -142,33 +112,18 @@ Personize Cold Email At Scale      </p>
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
             href="#"
           >
-            Help &amp; Support
-          </a>
+Elixcent vs Lyne          </a>
         </p>
         <p>
           <a
             className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
             href="#"
           >
-            eBook
+            Elixcent Vs Warmer
           </a>
         </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            What's New
-          </a>
-        </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Status
-          </a>
-        </p>
+       
+       
       </div>
     </div>
     {/* End Col */}
@@ -203,27 +158,7 @@ Personize Cold Email At Scale      </p>
           <span className="inline text-blue-600 dark:text-blue-500">— New</span>
         </p>
       </div>
-      <h4 className="mt-7 text-xs font-semibold text-gray-900 uppercase dark:text-gray-100">
-        Industries
-      </h4>
-      <div className="mt-3 grid space-y-3 text-sm">
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Financial Services
-          </a>
-        </p>
-        <p>
-          <a
-            className="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-          >
-            Education
-          </a>
-        </p>
-      </div>
+     
     </div>
     {/* End Col */}
   </div>
