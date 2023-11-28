@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, Button } from "@nextui-org/react";
+import Link from 'next/link';
+
 
 const UpgradePage = () => {
   const [isAnnualPlan, setIsAnnualPlan] = useState(false);

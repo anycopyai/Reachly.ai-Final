@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Link from 'next/link';
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -75,16 +75,16 @@ const Modal = () => {
             <div className="flex flex-col gap-x-0 mt-5 divide-y divide-dashed divide-gray-200 md:flex-row md:items-center md:justify-end md:gap-x-7 md:mt-0 md:ps-7 md:divide-y-0 md:divide-solid dark:divide-gray-700">
               <a
                 className="font-medium text-blue-600 py-3 md:py-6 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                href="#"
+                href="/Features"
                 aria-current="page"
               >
-                Landing
+                Features
               </a>
               <a
                 className="font-medium text-gray-800 hover:text-gray-600 py-3 md:py-6 dark:text-gray-200 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                href="#"
+                href="/Pricing"
               >
-                Company
+                Pricing
               </a>
               <div className="hs-dropdown [--strategy:static] md:[--strategy:absolute] [--adaptive:none] md:[--trigger:hover] py-3 md:py-6">
                 <button
@@ -117,7 +117,7 @@ const Modal = () => {
                           </span>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/Blog"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -135,12 +135,12 @@ const Modal = () => {
                               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                             </svg>
                             <div className="grow">
-                              <p>Support Docs</p>
+                              <p>Blogs</p>
                             </div>
                           </a>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="./blog/E-books"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -158,12 +158,12 @@ const Modal = () => {
                               <path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3" />
                             </svg>
                             <div className="grow">
-                              <p>Integrations</p>
+                              <p>E-Books</p>
                             </div>
                           </a>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="./blog/guides"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -189,7 +189,7 @@ const Modal = () => {
                           </a>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/webinar"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -215,31 +215,10 @@ const Modal = () => {
                               />
                             </svg>
                             <div className="grow">
-                              <p>API Reference</p>
+                              <p>Webinar</p>
                             </div>
                           </a>
-                          <a
-                            className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
-                          >
-                            <svg
-                              className="flex-shrink-0 w-4 h-4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={24}
-                              height={24}
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                            </svg>
-                            <div className="grow">
-                              <p>API Status</p>
-                            </div>
-                          </a>
+                          
                         </div>
                       </div>
                     </div>
@@ -251,7 +230,7 @@ const Modal = () => {
                           </span>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/support"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -275,7 +254,7 @@ const Modal = () => {
                           </a>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/Faqs"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -293,34 +272,10 @@ const Modal = () => {
                               <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
                             </svg>
                             <div className="grow">
-                              <p>Developer Hub</p>
+                              <p>FAQ</p>
                             </div>
                           </a>
-                          <a
-                            className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
-                          >
-                            <svg
-                              className="flex-shrink-0 w-4 h-4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={24}
-                              height={24}
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                              <circle cx={9} cy={7} r={4} />
-                              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                            <div className="grow">
-                              <p>Community Forum</p>
-                            </div>
-                          </a>
+                         
                         </div>
                         <div className="mt-7 space-y-4">
                           <span className="mb-2 text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">
@@ -328,7 +283,7 @@ const Modal = () => {
                           </span>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/Affiliate"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -348,12 +303,12 @@ const Modal = () => {
                               <path d="M7 16.5 8 22l-3-1-3 1 1-5.5" />
                             </svg>
                             <div className="grow">
-                              <p>Become a Partner</p>
+                              <p>Affiliate</p>
                             </div>
                           </a>
                           <a
                             className="flex gap-x-4 text-gray-800 hover:text-blue-600 dark:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="/Partner"
                           >
                             <svg
                               className="flex-shrink-0 w-4 h-4"
@@ -375,7 +330,7 @@ const Modal = () => {
                               <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
                             </svg>
                             <div className="grow">
-                              <p>Build on Preline</p>
+                              <p>Become A Partner</p>
                             </div>
                           </a>
                         </div>
@@ -384,11 +339,10 @@ const Modal = () => {
                     <div className="col-span-full md:col-span-4">
                       <div className="flex flex-col bg-gray-50 p-6 dark:bg-gray-700">
                         <span className="text-xs font-semibold uppercase text-gray-800 dark:text-gray-200">
-                          Customer stories
-                        </span>
+                        10 Ways AI Revolutionizes Email Personalization                        </span>
                         <a
                           className="mt-4 group dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
+                          href="/email-personalization-ai"
                         >
                           <div className="aspect-w-16 aspect-h-9">
                             <img
@@ -399,13 +353,10 @@ const Modal = () => {
                           </div>
                           <div className="mt-2">
                             <p className="text-gray-800 dark:text-gray-200">
-                              Preline Projects has proved to be most efficient
-                              cloud based project tracking and bug tracking
-                              tool.
+                            Discover the top 10 strategies for integrating AI into your email campaigns. This eBook offers a concise guide to enhancing personalization and engagement, leveraging the latest in AI technology.
                             </p>
                             <p className="mt-3 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-400 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-slate-600">
-                              Learn more
-                              <svg
+Download                              <svg
                                 className="flex-shrink-0 w-4 h-4 transition ease-in-out group-hover:translate-x-1"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width={24}
@@ -429,20 +380,17 @@ const Modal = () => {
               </div>
               <a
                 className="font-medium text-gray-800 hover:text-gray-600 py-3 md:py-6 dark:text-gray-200 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                href="#"
+                href="/Login"
               >
-                Join us{" "}
-                <span className="py-0.5 px-1.5 rounded-full text-xs font-medium bg-blue-50 border border-blue-200 text-blue-600">
-                  4
-                </span>
+                Login
+               
               </a>
               <div className="pt-3 md:pt-0">
                 <a
                   className="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="#"
+                  href="/SignUp"
                 >
-                  Request demo
-                </a>
+Start Your Free Trial                </a>
               </div>
             </div>
           </div>

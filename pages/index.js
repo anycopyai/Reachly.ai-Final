@@ -8,6 +8,7 @@ import FeatureSection1 from '../components/web/FeatureSection1';
 import FeatureSection2 from '../components/web/FeatureSection2';
 import Help from '../components/web/Help';
 import Clients from '../components/web/Clients';
+import Link from 'next/link';
 
 
 
@@ -17,16 +18,13 @@ export default function Home() {
       {/* Top Bar */}
       <div className="bg-indigo-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <p className="text-center font-medium sm:text-left">
-          Love Alpine JS?
-          <br className="sm:hidden" />
-          Check out this new deep dive course!
-        </p>
+        Join Our Webinar:          <br className="sm:hidden" />
+        Mastering Sales Personalization Strategies for 2024         </p>
         <a
           className="mt-4 block rounded-lg bg-white px-5 py-3 text-center text-sm font-medium text-indigo-600 transition hover:bg-white/90 focus:outline-none focus:ring active:text-indigo-500 sm:mt-0"
-          href="#"
+          href="/webinar"
         >
-          Learn More
-        </a>
+Join Webinar        </a>
       </div>
       <Navbar />
       <Hero />
