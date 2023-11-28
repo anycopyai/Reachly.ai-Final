@@ -35,7 +35,7 @@ export default function Home() {
         <p className="text-white">
         Join Our Webinar:   Mastering Sales Personalization Strategies for 2024           <a
             className="decoration-2 underline font-medium hover:text-white/[.8] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="../figma.html"
+            href="/webinar"
           >
             Join Webinar 
           </a>

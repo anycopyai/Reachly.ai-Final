@@ -18,13 +18,12 @@ const Modal = () => {
     >
       <div className="relative md:flex md:items-center md:justify-between">
         <div className="flex items-center justify-between">
-          <a
-            className="flex-none text-xl font-semibold dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="#"
-            aria-label="Brand"
-          >
-            Elixcent
-          </a>
+       
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <img src="/images/logo.png" alt="Elixcent Logo" className="logo-image" style={{ width: '100px' }} />
+    <h1 className="logo-text" style={{ marginLeft: '0px' }}>Elixcent</h1>
+  </div>
+
           <div className="md:hidden">
             <button
               type="button"

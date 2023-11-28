@@ -14,7 +14,7 @@ const Modal = () => {
       {/* Title */}
       <div className="w-2/3 sm:w-1/2 lg:w-1/3 mx-auto text-center mb-6">
         <h2 className="text-gray-600 dark:text-gray-400">
-          Trusted by Teams, enterprise, and more than 1,000 Sales professionals
+          Trusted by Teams, enterprise, and more than 100+ Sales professionals
         </h2>
       </div>
       {/* End Title */}
