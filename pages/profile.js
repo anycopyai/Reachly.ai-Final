@@ -1,16 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; // Add useContext here
 import { MdPerson, MdSettings, MdSubscriptions, MdApi, MdVpnKey, MdGroup, MdCreditCard } from 'react-icons/md';
 import SkeletonLoader from '../components/SkeletonLoader';
 import Sidebar from '../components/profile/Sidebar';
 import ProfileTab from '../components/profile/ProfileTab';
 import IntegrationTab from '../components/profile/IntegrationTab';
 import APISettingsTab from '../components/profile/APISettingsTab';
+import { UserContext } from '../contexts/UserContext'; // Adjust the path as needed
+
 import withAuth from '../hoc/withAuth';
 
 const Profile = () => {
+  const { user } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState('profile');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [loading, setLoading] = useState(true); // Add a loading state
+  const [userData, setUserData] = useState({ name: '', email: '', oldPassword: '', newPassword: '' });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (user) {
+        try {
+          const response = await fetch(`https://api.elixcent.com/userProfile?uid=${user.uid}`);
+          if (!response.ok) throw new Error('Failed to fetch user data');
+
+          const data = await response.json();
+          setUserData(data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchUserData();
+  }, [user]);
+
+  const handleSubmit = async (values) => {
+    if (user) {
+      try {
+        const response = await fetch('https://api.elixcent.com/updateProfile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uid: user.uid, data: values }),
+        });
+
+        if (!response.ok) throw new Error('Error updating profile');
+      } catch (error) {
+        console.error('Error updating user profile:', error);
+      }
+    }
+  };
 
   const [showApiKey, setShowApiKey] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
@@ -72,7 +111,12 @@ const Profile = () => {
   let TabContent;
   switch (activeTab) {
     case 'profile':
-      TabContent = <ProfileTab />;
+      TabContent = (
+        <ProfileTab 
+          initialValues={userData}
+          onSubmit={handleSubmit}
+        />
+      );
       break;
     case 'integration':
       TabContent = <IntegrationTab integrations={integrations} />;
