@@ -1,7 +1,4 @@
-// pages/index.js or any other page
-import BlogLayout from '../../components/BlogLayout';
-
-export default function HomePage() {
+  const [isOpen, setIsOpen] = useState(false);
     return (
         <div>
             <BlogLayout />
