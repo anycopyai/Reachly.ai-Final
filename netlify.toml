@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/"
-  to = "/login"
+  to = "/Login"
   status = 301
   force = true
