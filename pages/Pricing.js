@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Navbar from '../components/web/NavigationBar'; // NavigationBar component
+import Footer from '../components/web/Footer';       // Footer component
+import Testimonials from '../components/web/testimonials';
 
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +12,7 @@ const Modal = () => {
 
   return (
     <>
+    <Navbar />
     {/* Pricing */}
     <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
       {/* Title */}
@@ -87,7 +91,7 @@ const Modal = () => {
               >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
-              <span className="text-gray-800 dark:text-gray-400">1 user</span>
+              <span className="text-gray-800 dark:text-gray-400">10 Credits</span>
             </li>
             <li className="flex space-x-2">
               <svg
@@ -132,8 +136,7 @@ const Modal = () => {
             className="mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-blue-900 dark:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
             href="#"
           >
-            Sign up
-          </a>
+Start 7 Days Free Trial          </a>
         </div>
         {/* End Card */}
         {/* Card */}
@@ -3352,6 +3355,9 @@ const Modal = () => {
       {/* End Comparison table */}
     </div>
     {/* End Pricing */}
+    <Testimonials />
+    <Footer />
+
   </>
   
   );
