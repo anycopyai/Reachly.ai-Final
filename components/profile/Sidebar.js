@@ -23,6 +23,9 @@ const Sidebar = ({ activeTab, handleTabClick, isSidebarCollapsed }) => {
 
   return (
     <div className={`fixed inset-y-0 left-0 z-40 ${isSidebarCollapsed ? 'w-16' : 'w-64'} bg-white text-gray-700 border-r transition-all duration-300`}>
+      <div className="p-4">
+          <img src="/images/logo.png" alt="Logo" className="w-full h-auto" /> {/* Adjust the path to your logo */}
+        </div>
       <ul className="menu w-full">
         {menuItems.map(renderMenuItem)}
       </ul>
