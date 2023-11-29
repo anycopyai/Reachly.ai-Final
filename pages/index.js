@@ -1,6 +1,5 @@
 // Import necessary dependencies from 'next' and 'react'
 import Head from 'next/head';
-import styles from '../styles/globals.css';
 
 // This is the main component for your homepage
 export default function Home() {
