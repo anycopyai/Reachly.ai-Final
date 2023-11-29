@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'; // Add useContext here
 import { MdPerson, MdSettings, MdSubscriptions, MdApi, MdVpnKey, MdGroup, MdCreditCard } from 'react-icons/md';
 import SkeletonLoader from '../components/SkeletonLoader';
+import { getAuth, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import Sidebar from '../components/profile/Sidebar';
 import ProfileTab from '../components/profile/ProfileTab';
 import IntegrationTab from '../components/profile/IntegrationTab';
 import APISettingsTab from '../components/profile/APISettingsTab';
 import { UserContext } from '../contexts/UserContext'; // Adjust the path as needed
+import { toast, ToastContainer } from 'react-toastify'; // Import react-toastify components
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for react-toastify
+
+
+
 
 import withAuth from '../hoc/withAuth';
 
@@ -20,11 +26,17 @@ const Profile = () => {
     const fetchUserData = async () => {
       if (user) {
         try {
+          // Fetch additional user data from Firestore
           const response = await fetch(`https://api.elixcent.com/userProfile?uid=${user.uid}`);
           if (!response.ok) throw new Error('Failed to fetch user data');
 
-          const data = await response.json();
-          setUserData(data);
+          const firestoreData = await response.json();
+          setUserData({
+            ...firestoreData, // Data from Firestore
+            email: user.email, // Email from Firebase Authentication
+            oldPassword: '', 
+            newPassword: '' 
+          });
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -35,18 +47,44 @@ const Profile = () => {
     fetchUserData();
   }, [user]);
 
+  const updatePassword = async (newPassword, oldPassword) => {
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    const credential = EmailAuthProvider.credential(currentUser.email, oldPassword);
+
+    try {
+      await reauthenticateWithCredential(currentUser, credential);
+      await currentUser.updatePassword(newPassword);
+      toast.success("Password updated successfully!");
+    } catch (error) {
+      console.error('Error updating password:', error);
+      toast.error("Failed to update password.");
+    }
+  };
+
+
   const handleSubmit = async (values) => {
+    console.log("Form Submitted with values:", values);
+
     if (user) {
       try {
-        const response = await fetch('https://api.elixcent.com/updateProfile', {
+        const updateResponse = await fetch('https://api.elixcent.com/updateProfile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uid: user.uid, data: values }),
         });
 
-        if (!response.ok) throw new Error('Error updating profile');
+        if (!updateResponse.ok) throw new Error('Error updating profile');
+
+        // Update Password if newPassword is provided
+        if (values.newPassword && values.oldPassword) {
+          await updatePassword(values.newPassword, values.oldPassword);
+        }
+
+        toast.success("Profile updated successfully!");
       } catch (error) {
         console.error('Error updating user profile:', error);
+        toast.error("Failed to update profile.");
       }
     }
   };
@@ -141,6 +179,8 @@ break;
           {TabContent}
         </div>
       </div>
+      <ToastContainer /> {/* Add the ToastContainer */}
+
     </div>
   );
 };
