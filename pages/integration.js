@@ -1,62 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
-import withAuth from '../hoc/withAuth'; // Import the withAuth HOC
+import withAuth from '../hoc/withAuth';
 import Link from 'next/link';
-import { Button } from '@nextui-org/react'; // Import NextUI Button component
-
+import { Button } from '@nextui-org/react';
+import Image from 'next/image';
 
 
 function Integration() {
+    const [webhookUrl, setWebhookUrl] = useState('');
+
+
+
     const integrations = [
         {
-            name: 'HubSpot',
-            icon: <img src="/images/hubspot.png" alt="HubSpot" className="w-12 h-12" />,
-            description: 'Connect with your HubSpot account to manage leads more efficiently.'
-        },
-        {
-            name: 'Outreach',
-            icon: <img src="/images/outreach.png" alt="Outreach" className="w-12 h-12" />,
-            description: 'Sync your Outreach sales data and automate your sales workflow.'
-        },
-        {
             name: 'Google Sheet',
-            icon: <img src="/images/google-sheets.png" alt="Google Sheet" className="w-12 h-12" />,
+            icon: <Image src="/images/google-sheets.png" alt="Google Sheet" width={48} height={48} className="w-12 h-12" />,
             description: 'Import data from and export data to your Google Sheets.'
         },
         {
             name: 'Zapier',
-            icon: <img src="/images/zapier.png" alt="Zapier" className="w-12 h-12" />,
-            description: 'Automate workflows by connecting Reachly with thousands of apps on Zapier.'
+            icon: <Image src="/images/zapier.png" alt="Zapier" width={48} height={48} className="w-12 h-12" />,
+            description: 'Automate workflows by connecting with thousands of apps on Zapier.'
         },
+        {
+            name: 'Webhook',
+            icon: <Image src="/images/webhook.png" alt="Webhook" width={48} height={48} className="w-12 h-12" />, // Replace with actual Webhook icon
+            description: 'Integrate with custom Webhook for real-time data exchange.',
+            isWebhook: true
+        },
+
     ];
 
     return (
-        <div className="flex h-screen bg-reachly-bg">
+        <div className="flex h-screen" style={{ background: "#e0eaff" }}>
             {/* Sidebar */}
             <Sidebar />
 
-            <div className="flex-1 flex flex-col">  
+            <div className="flex-1 flex flex-col">
                 {/* DaisyUI Top Navigation */}
                 <DaisyUIMenu />
-                {/* Main content */}
-                <div className="flex-1 p-10">
-                    <h1 className="text-3xl font-bold mb-8 text-reachly-blue">Integrate with Your Favorite Tools</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
-                        {integrations.map(integration => (
-                            <div key={integration.name} className="border p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
+
+                <div className="w-11/12 max-w-4xl mx-auto my-10 bg-white rounded-xl shadow-lg overflow-hidden lg:max-w-6xl lg:w-full">
+                    <div className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900">Integrate with Your Favorite Tools</h3>
+                        <div className="mt-4 space-y-4">
+                            {integrations.map(integration => (
+                                <div key={integration.name} className="flex items-center justify-between p-4 bg-white border border-gray-300 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ease-in-out">
+                                    <div className="flex items-center space-x-4">
                                         {integration.icon}
-                                        <h2 className="ml-3 text-xl font-semibold">{integration.name}</h2>
+                                        <h2 className="text-sm font-semibold text-gray-900">{integration.name}</h2>
                                     </div>
-                                    <Button color="primary" variant="flat" auto>
+                                    {integration.isWebhook && (
+                                        <input
+                                            type="text"
+                                            value={webhookUrl}
+                                            onChange={(e) => setWebhookUrl(e.target.value)}
+                                            placeholder="Enter your webhook URL here"
+                                            className="px-3 py-2 mr-4 text-gray-700 bg-blue-50 border-2 border-blue-300 rounded-xl focus:ring focus:ring-blue-200 focus:border-blue-300 shadow-inner"
+                                        />
+                                    )}
+                                    <Button size="small" color="primary" variant="flat" auto>
                                         Activate
                                     </Button>
                                 </div>
-                                <p className="mt-3 text-gray-600">{integration.description}</p>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -121,7 +121,7 @@ return (
       </button>
     </Link>
     
-    <Link href="/settings" passHref>
+    <Link href="/Profile" passHref>
       <button className="tooltip tooltip-bottom" data-tip="Settings">
         <img src="/images/setting.png" alt="Settings" className="nav-icon" />
       </button>
