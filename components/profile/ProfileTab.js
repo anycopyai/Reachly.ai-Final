@@ -36,7 +36,7 @@ const ProfileTab = ({ initialValues, onSubmit }) => {
           </div>
 
           {/* Save Changes button */}
-          <Button type="submit" color="primary" size="lg" variant="flat">Save Changes</Button>
+          <Button type="submit" color="primary" size="lg" variant="solid">Save Changes</Button>
         </Form>
       </Formik>
     </div>
