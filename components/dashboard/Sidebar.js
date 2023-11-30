@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { MdDashboard, MdContacts, MdList, MdMenu, MdClose, MdUpgrade } from 'react-icons/md';
 import Link from 'next/link';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -7,6 +7,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { Button } from '@nextui-org/react';
 import { Chip } from "@nextui-org/react";
 import { useRouter } from 'next/router';
+import { UserContext } from '../../contexts/UserContext';
+
 
 function Sidebar({ isCollapsed }) {
   const router = useRouter(); // Add this line

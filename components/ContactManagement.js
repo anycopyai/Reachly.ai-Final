@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import Papa from 'papaparse'; // Import PapaParse
+import Papa from 'papaparse';
 import { FaPlay } from 'react-icons/fa';
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 
-
 const ContactManagement = ({ onUpload }) => {
   const [csvFile, setCsvFile] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
   const fileInputRef = useRef(null);
 
   const playDemoVideo = () => {
@@ -23,9 +23,9 @@ const ContactManagement = ({ onUpload }) => {
       Papa.parse(csvFile, {
         complete: (result) => {
           console.log('Parsed CSV Data:', result.data);
-          onUpload(result.data); // Call the onUpload prop with the parsed data
+          onUpload(result.data);
         },
-        header: true, // If your CSV has headers
+        header: true,
         skipEmptyLines: true,
       });
 
@@ -55,14 +55,32 @@ const ContactManagement = ({ onUpload }) => {
             <input id="file-upload" type="file" className="hidden" accept=".csv" onChange={handleFileChange} ref={fileInputRef} />
           </div>
           <Button 
-  className="mb-4 text-lg px-8 py-3 bg-white text-gray-800 border border-gray-300 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-  onClick={triggerFileInput}>
-  Click to upload a .CSV
-</Button>
+            className="mb-4 text-lg px-8 py-3 bg-white text-gray-800 border border-gray-300 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+            onClick={triggerFileInput}>
+            Click to upload a .CSV
+          </Button>
 
-          <Button variant="outline" className="flex items-center text-lg text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out" onClick={playDemoVideo}>
+          <Button 
+            variant="outline" 
+            className="flex items-center text-lg text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out" 
+            onClick={() => setModalOpen(true)}>
             <FaPlay className="mr-2" /> Watch demo
           </Button>
+
+          {isModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl w-full">
+                <div className="p-6">
+                  {/* Modal content here */}
+                  <h2>Demo Video</h2>
+                  {/* Close button */}
+                  <button onClick={() => setModalOpen(false)} className="text-black">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

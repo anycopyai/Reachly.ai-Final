@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'; // Add useContext here
+import React, { useState, useEffect, useContext } from 'react';
 import { MdPerson, MdSettings, MdSubscriptions, MdApi, MdVpnKey, MdGroup, MdCreditCard } from 'react-icons/md';
-import SkeletonLoader from '../components/SkeletonLoader';
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import Sidebar from '../components/profile/Sidebar';
 import ProfileTab from '../components/profile/ProfileTab';
 import IntegrationTab from '../components/profile/IntegrationTab';
 import APISettingsTab from '../components/profile/APISettingsTab';
-import { UserContext } from '../contexts/UserContext'; // Adjust the path as needed
-import { toast, ToastContainer } from 'react-toastify'; // Import react-toastify components
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for react-toastify
-
-
-
+import { UserContext } from '../contexts/UserContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import withAuth from '../hoc/withAuth';
 
@@ -19,23 +15,29 @@ const Profile = () => {
   const { user } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState('profile');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({ name: '', email: '', oldPassword: '', newPassword: '' });
+ 
+  
+  
+
+
+
+
 
   useEffect(() => {
     const fetchUserData = async () => {
       if (user) {
         try {
-          // Fetch additional user data from Firestore
           const response = await fetch(`https://api.elixcent.com/userProfile?uid=${user.uid}`);
           if (!response.ok) throw new Error('Failed to fetch user data');
 
           const firestoreData = await response.json();
           setUserData({
-            ...firestoreData, // Data from Firestore
-            email: user.email, // Email from Firebase Authentication
-            oldPassword: '', 
-            newPassword: '' 
+            ...firestoreData,
+            email: user.email,
+            oldPassword: '',
+            newPassword: ''
           });
         } catch (error) {
           console.error('Error fetching user data:', error);
@@ -47,9 +49,37 @@ const Profile = () => {
     fetchUserData();
   }, [user]);
 
+  const Loader = () => {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="gradient-spinner"></div>
+      </div>
+    );
+  };
+  
+  
+
+
+
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSidebarCollapsed(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const updatePassword = async (newPassword, oldPassword) => {
     const auth = getAuth();
     const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      console.error('No user logged in');
+      return;
+    }
+
     const credential = EmailAuthProvider.credential(currentUser.email, oldPassword);
 
     try {
@@ -61,7 +91,6 @@ const Profile = () => {
       toast.error("Failed to update password.");
     }
   };
-
 
   const handleSubmit = async (values) => {
     console.log("Form Submitted with values:", values);
@@ -76,7 +105,6 @@ const Profile = () => {
 
         if (!updateResponse.ok) throw new Error('Error updating profile');
 
-        // Update Password if newPassword is provided
         if (values.newPassword && values.oldPassword) {
           await updatePassword(values.newPassword, values.oldPassword);
         }
@@ -97,35 +125,14 @@ const Profile = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText('YourAPIKey123456789') // Replace with your actual API key
+    navigator.clipboard.writeText('YourAPIKey123456789')
       .then(() => {
         setCopySuccess('Copied!');
-        setTimeout(() => setCopySuccess(''), 2000); // Clear message after 2 seconds
+        setTimeout(() => setCopySuccess(''), 2000);
       }, () => {
         setCopySuccess('Failed to copy!');
       });
   };
-
-
-
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSidebarCollapsed(window.innerWidth <= 768);
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    // Timer for skeleton loader
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Adjust the time as needed
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timer);
-    };
-  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -140,12 +147,6 @@ const Profile = () => {
     // ... add other integrations as needed
   ];
 
-  // If the page is loading, return the SkeletonLoader
-  if (loading) {
-    return <SkeletonLoader />;
-  }
-
-  // Tab content based on activeTab
   let TabContent;
   switch (activeTab) {
     case 'profile':
@@ -160,15 +161,21 @@ const Profile = () => {
       TabContent = <IntegrationTab integrations={integrations} />;
       break;
     case 'api':
-       // Here you pass the required props to APISettingsTab
-    TabContent = <APISettingsTab 
-    showApiKey={showApiKey} 
-    handleApiKeyVisibility={handleApiKeyVisibility} 
-    copyToClipboard={copyToClipboard} 
-    copySuccess={copySuccess} 
-  />;
-break;
-  
+      TabContent = (
+        <APISettingsTab 
+          showApiKey={showApiKey} 
+          handleApiKeyVisibility={handleApiKeyVisibility} 
+          copyToClipboard={copyToClipboard} 
+          copySuccess={copySuccess} 
+        />
+      );
+      break;
+    default:
+      TabContent = null;
+  }
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

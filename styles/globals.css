@@ -157,3 +157,35 @@ div#__next > main {
 .stat {
   margin: 1rem; /* Adjust the margin as needed */
 }
+
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.gradient-spinner {
+  position: relative;
+  width: 64px; /* Adjust size as needed */
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(to right, blue, red); /* Gradient color */
+  animation: spin 1s linear infinite;
+}
+
+.gradient-spinner::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  border: 2px solid transparent; /* Thinner border */
+  background: white; /* Background of the spinner */
+  -webkit-mask: 
+    linear-gradient(black 30%, transparent 0) content-box,
+    linear-gradient(black, black) padding-box;
+}
