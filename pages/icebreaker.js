@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
 import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
-import ContactManagement from '../components/ContactManagement'; // Make sure the path is correct
-import SkeletonLoader from '../components/SkeletonLoader';
 import withAuth from '../hoc/withAuth';
+import PersonalizeOutreachModal from '../components/icebreakers/PersonalizeOutreachModal';
 
-import Link from 'next/link';
+import { Button } from '@nextui-org/react';
 
 const Icebreaker = () => {
-    const [loading, setLoading] = useState(true); // Add a loading state
+    const [loading, setLoading] = useState(true);
+    const [isModalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         // Timer for skeleton loader
@@ -17,26 +17,34 @@ const Icebreaker = () => {
         }, 1000); // Adjust the time as needed
 
         return () => clearTimeout(timer);
-    }, []);
+    }, []); // Add an empty dependency array
 
-    const handleUploadCsv = (file) => {
-        // Handle CSV upload logic here
-        console.log('Uploaded CSV file:', file);
+    const Loader = () => {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="gradient-spinner"></div>
+            </div>
+        );
     };
 
-    // If the page is loading, return the SkeletonLoader
     if (loading) {
-        return <SkeletonLoader />;
+        return <Loader />;
     }
 
     return (
-        <div className="flex h-screen bg-reachly-bg"> {/* Updated background color */}
+        <div className="flex h-screen bg-reachly-bg">
             <Sidebar />
             <div className="flex flex-col flex-grow overflow-auto">
                 <DaisyUIMenu />
-                <div className="p-10">
-                    <ContactManagement onUpload={handleUploadCsv} />
+                <div className="flex justify-between items-center p-10">
+                    {/* Your existing content */}
+                    {/* Button to open the modal */}
+                    <Button color="primary" variant="shadow"  auto ghost onClick={() => setModalVisible(true)}>
+                        Open Personalize Outreach
+                    </Button>
                 </div>
+                {/* Modal Component */}
+                <PersonalizeOutreachModal showModal={isModalVisible} setShowModal={setModalVisible} />
             </div>
         </div>
     );
