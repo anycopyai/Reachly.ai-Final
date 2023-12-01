@@ -14,6 +14,19 @@ div#__next > main {
   height: 100%;
 }
 
+
+.modalContainer {
+  max-height: 90vh; /* Adjust as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+
+.formContainer {
+  max-height: 600px; /* Or whatever height suits your design */
+  overflow-y: auto;
+}
+
+
 .cursor-pointer {
   cursor: pointer;
 }
