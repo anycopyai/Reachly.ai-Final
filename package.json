@@ -14,6 +14,7 @@
     "dependencies": {
         "@apollo/client": "^3.8.6",
         "@contentful/rich-text-react-renderer": "^15.19.0",
+        "@fontsource/roboto": "^5.0.8",
         "@fortawesome/fontawesome-free": "^6.4.2",
         "@fortawesome/fontawesome-svg-core": "^6.4.2",
         "@fortawesome/free-brands-svg-icons": "^6.4.2",
@@ -22,6 +23,7 @@
         "@nextui-org/react": "^2.2.9",
         "@sentry/nextjs": "^7.77.0",
         "amazon-cognito-identity-js": "^6.3.6",
+        "antd": "^5.12.1",
         "aws-sdk": "^2.1478.0",
         "axios": "^1.6.2",
         "contentful": "^10.6.12",

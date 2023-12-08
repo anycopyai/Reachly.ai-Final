@@ -1,21 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/dashboard/Sidebar';
-import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
 import PersonalizeOutreachModal from '../components/icebreakers/PersonalizeOutreachModal';
-import IndividualPersonalizationForm from '../components/icebreakers/IndividualPersonalizationForm';
 import withAuth from '../hoc/withAuth';
-import { Button } from '@nextui-org/react';
-import CsvUploadForm from '../components/icebreakers/CsvUploadForm'; // Make sure to provide the correct path to the component
+import CsvUploadForm from '../components/icebreakers/CsvUploadForm'; // Assuming correct path
 import Papa from 'papaparse';
-
 
 const Icebreaker = () => {
     const [loading, setLoading] = useState(true);
     const [isModalVisible, setModalVisible] = useState(false);
     const [activeForm, setActiveForm] = useState(null);
     const [csvData, setCsvData] = useState([]);
+    const [sidebarWidth, setSidebarWidth] = useState('250px'); // Example width for the sidebar
 
-   
     useEffect(() => {
         console.log("Current active form:", activeForm);
     }, [activeForm]);
@@ -27,19 +23,28 @@ const Icebreaker = () => {
         return () => clearTimeout(timer);
     }, []);
 
-
-
- 
+    const toggleSidebar = () => {
+        setSidebarWidth(sidebarWidth === '250px' ? '80px' : '250px');
+    };
 
     return (
         <div className="flex h-screen bg-reachly-bg">
-            <Sidebar />
+            <div style={{ width: sidebarWidth }}>
+                <Sidebar />
+            </div>
             <div className="flex flex-col flex-grow overflow-auto">
-                <DaisyUIMenu />
                 <div className="flex justify-between items-center p-10">
-                    <Button color="primary" variant="shadow" auto ghost onClick={() => setModalVisible(true)}>
+                    <button 
+                        className="btn btn-primary" 
+                        onClick={() => setModalVisible(true)}>
                         Open Personalize Outreach
-                    </Button>
+                    </button>
+                    {/* Optional: Button to toggle sidebar */}
+                    <button 
+                        className="btn btn-secondary" 
+                        onClick={toggleSidebar}>
+                        Toggle Sidebar
+                    </button>
                 </div>
                 <PersonalizeOutreachModal 
                     isModalVisible={isModalVisible} 
@@ -47,6 +52,7 @@ const Icebreaker = () => {
                     setActiveForm={setActiveForm} 
                     activeForm={activeForm} 
                 />
+                {/* Additional content can be added here */}
             </div>
         </div>
     );
