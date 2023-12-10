@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import sidebar from '../components/sidebar'; // Adjust the path to your Sidebar component
-import navigationtabs from '../components/navigationtabs';
+import Sidebar from '../components/sidebar'; // Adjust the path to your Sidebar component
+import NavigationTabs from '../components/navigationtabs';
 import personalinfo from '../components/personalinfo';
 import subscriptioninfo from '../components/subscriptioninfo';
 import projectinfo from '../components/projectinfo';
