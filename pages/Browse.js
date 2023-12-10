@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
-import Sidebar from '../components/Sidebar';
+import sidebar from '../components/sidebar';
 import TopBar from '../components/TopBar';
 import MainContent from '../components/MainContent';
 
