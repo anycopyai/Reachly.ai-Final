@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import sidebar from '../components/sidebar'; // Adjust the path to your Sidebar component
-import navigationtabs from '../components/writer/navigationtabs';
-import personalinfo from '../components/writer/personalinfo';
-import subscriptioninfo from '../components/writer/subscriptioninfo';
-import projectinfo from '../components/writer/projectinfo';
+import navigationtabs from '../components/navigationtabs';
+import personalinfo from '../components/personalinfo';
+import subscriptioninfo from '../components/subscriptioninfo';
+import projectinfo from '../components/projectinfo';
 import CreateProject from '../components/writer/CreateProject';
 import { FiSave, FiCopy, FiTrash2 } from 'react-icons/fi';
 

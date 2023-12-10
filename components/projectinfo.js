@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateProject from './CreateProject';
+import CreateProject from './writer/CreateProject';
 // Import other necessary components or utilities
 
 const projectinfo = () => {

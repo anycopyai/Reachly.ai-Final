@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SubscriptionStatus from './SubscriptionStatus';
-import CreditsPurchase from './CreditsPurchase';
-import PricingTable from './PricingTable';
+import SubscriptionStatus from './writer/SubscriptionStatus';
+import CreditsPurchase from './writer/CreditsPurchase';
+import PricingTable from './writer/PricingTable';
 
 
 const subscriptioninfo = () => {
