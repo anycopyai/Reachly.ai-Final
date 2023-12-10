@@ -19,7 +19,7 @@ function Login() {
         setIsLoggingIn(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            router.push('/icebreaker'); // Redirect to dashboard
+            router.push('/Browse'); // Redirect to dashboard
         } catch (error) {
             setError(error.message);
         } finally {
@@ -31,7 +31,7 @@ function Login() {
         setIsLoggingIn(true);
         try {
             await signInWithPopup(auth, new GoogleAuthProvider());
-            router.push('/icebreaker');
+            router.push('/Browse');
         } catch (error) {
             setError(error.message);
         } finally {
@@ -43,7 +43,7 @@ function Login() {
         setIsLoggingIn(true);
         try {
             await signInWithPopup(auth, new OAuthProvider('microsoft.com'));
-            router.push('/icebreaker');
+            router.push('/Browse');
         } catch (error) {
             setError(error.message);
         } finally {
