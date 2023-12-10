@@ -1,4 +1,3 @@
-// components/MainContent.js
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiFileText, FiFacebook, FiGlobe, FiStar } from 'react-icons/fi';
@@ -49,7 +48,7 @@ const MainContent = () => {
                 {initialCardData.map(({ id, title, description, Icon, link }) => (
                     <div key={id} className="relative">
                         <Link href={link} passHref>
-                            <a className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 ease-in-out cursor-pointer h-40 flex flex-col justify-between">
+                            <a className="bg-white p-6 rounded-lg shadow-sm transition-shadow duration-300 ease-in-out cursor-pointer h-40 flex flex-col justify-between border-2 border-transparent hover:border-blue-600">
                                 <div className="flex items-start space-x-4">
                                     <div className="flex-shrink-0 p-3 bg-blue-100 rounded-full">
                                         <Icon className="h-6 w-6 text-blue-600" />

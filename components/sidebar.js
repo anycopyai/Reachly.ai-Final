@@ -1,17 +1,23 @@
-// components/Sidebar.js
 import React from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { useRouter } from 'next/router';
 import { FiHome, FiClipboard, FiEdit3, FiHelpCircle, FiSettings, FiLogOut } from 'react-icons/fi';
 
 const navItems = [
-  { name: 'Workspace', IconComponent: FiHome, href: '#workspace' },
-  { name: 'Templates', IconComponent: FiClipboard, href: '#templates' },
-  { name: 'Writer', IconComponent: FiEdit3, href: '#writer' },
-  { name: 'Help', IconComponent: FiHelpCircle, href: '#help' },
+  { name: 'Projects', IconComponent: FiHome, href: '/projects' },
+  { name: 'Templates', IconComponent: FiClipboard, href: '/browse' },
+  { name: 'Writer', IconComponent: FiEdit3, href: '/writer' },
+  { name: 'Help', IconComponent: FiHelpCircle, href: '/help' },
 ];
 
 const Sidebar = () => {
+  const router = useRouter();
+
+  const handleNavigation = (href) => {
+    router.push(href);
+  };
+
   return (
     <div className="bg-white w-20 flex flex-col justify-between py-6 custom-shadow h-screen">
       <div className="flex flex-col items-center">
@@ -20,22 +26,22 @@ const Sidebar = () => {
         </div>
         {navItems.map(({ name, IconComponent, href }) => (
           <Tippy key={name} content={name} placement="right">
-            <a href={href} className="mb-12 block">
+            <div onClick={() => handleNavigation(href)} className="mb-12 block cursor-pointer">
               <IconComponent className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
-            </a>
+            </div>
           </Tippy>
         ))}
       </div>
       <div className="flex flex-col items-center space-y-12 mb-4">
         <Tippy content="Settings" placement="right">
-          <a href="#settings" className="block">
+          <div onClick={() => handleNavigation('/settings')} className="block cursor-pointer">
             <FiSettings className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
-          </a>
+          </div>
         </Tippy>
         <Tippy content="Logout" placement="right">
-          <a href="#logout" className="block">
+          <div onClick={() => handleNavigation('/logout')} className="block cursor-pointer">
             <FiLogOut className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
-          </a>
+          </div>
         </Tippy>
       </div>
     </div>
