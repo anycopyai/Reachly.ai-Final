@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '../components/writer/sidebar'; // Adjust the path to your Sidebar component
+import sidebar from '../components/sidebar'; // Adjust the path to your Sidebar component
 import navigationtabs from '../components/writer/navigationtabs';
 import personalinfo from '../components/writer/personalinfo';
 import subscriptioninfo from '../components/writer/subscriptioninfo';
