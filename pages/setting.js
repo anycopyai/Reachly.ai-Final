@@ -7,7 +7,7 @@ import ProjectInfo from '../components/writer/projectinfo';
 import CreateProject from '../components/writer/CreateProject';
 import { FiSave, FiCopy, FiTrash2 } from 'react-icons/fi';
 
-const SettingsPage = () => {
+const setting = () => {
   const [activeTab, setActiveTab] = useState('personal');
 
   const handleTabClick = (tab) => setActiveTab(tab);
@@ -41,4 +41,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default setting;
