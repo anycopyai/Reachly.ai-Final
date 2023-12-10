@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavigationTabs = ({ activeTab, handleTabClick }) => {
+const navigationtabs = ({ activeTab, handleTabClick }) => {
   return (
     <nav className="flex space-x-4" aria-label="Tabs">
       <TabButton
@@ -33,4 +33,4 @@ const TabButton = ({ label, isActive, onClick }) => (
   </button>
 );
 
-export default NavigationTabs;
+export default navigationtabs;
