@@ -59,8 +59,8 @@ const PersonalInfo = () => {
       <div className="border-t border-gray-200 pt-4 mt-4">
         <p className="text-sm font-medium text-gray-700">
           Questions? Email 
-          <a href="mailto:smartcopy-help@unbounce.com" className="text-blue-600 hover:text-blue-700 pl-1">
-            smartcopy-help@unbounce.com
+          <a href="mailto:support@elixcent.com" className="text-blue-600 hover:text-blue-700 pl-1">
+            support@elixcent.com
           </a>
         </p>
       </div>
