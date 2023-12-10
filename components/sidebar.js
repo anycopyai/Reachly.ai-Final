@@ -11,7 +11,7 @@ const navItems = [
   { name: 'Help', IconComponent: FiHelpCircle, href: '#help' },
 ];
 
-const sidebar = () => {
+const Sidebar = () => {
   return (
     <div className="bg-white w-20 flex flex-col justify-between py-6 custom-shadow h-screen">
       <div className="flex flex-col items-center">
@@ -42,4 +42,4 @@ const sidebar = () => {
   );
 };
 
-export default sidebar;
+export default Sidebar;
