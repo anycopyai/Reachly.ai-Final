@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { getAuth,createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
-import { firebaseApp } from '../lib/firebase.js'; // Adjust the path to your firebase.js file
-
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Link from 'next/link';
+
 
 
 function Signup() {
