@@ -13,6 +13,8 @@
     "license": "",
     "dependencies": {
         "@apollo/client": "^3.8.6",
+        "@ckeditor/ckeditor5-build-classic": "^40.1.0",
+        "@ckeditor/ckeditor5-react": "^6.2.0",
         "@contentful/rich-text-react-renderer": "^15.19.0",
         "@fontsource/roboto": "^5.0.8",
         "@fortawesome/fontawesome-free": "^6.4.2",
