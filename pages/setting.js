@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/sidebar'; // Adjust the path to your Sidebar component
 import NavigationTabs from '../components/navigationtabs';
-import personalinfo from '../components/personalinfo';
-import subscriptioninfo from '../components/subscriptioninfo';
-import projectinfo from '../components/projectinfo';
+import PersonalInfo from '../components/personalinfo';
+import SubscriptionInfo from '../components/subscriptioninfo';
+import ProjectInfo from '../components/projectinfo';
 import CreateProject from '../components/CreateProject';
 import { FiSave, FiCopy, FiTrash2 } from 'react-icons/fi';
 
-const setting = () => {
+const Setting = () => {
   const [activeTab, setActiveTab] = useState('personal');
 
   const handleTabClick = (tab) => setActiveTab(tab);
@@ -41,4 +41,4 @@ const setting = () => {
   );
 };
 
-export default setting;
+export default Setting;

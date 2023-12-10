@@ -2,7 +2,7 @@ import React from 'react';
 import CreateProject from './CreateProject';
 // Import other necessary components or utilities
 
-const projectinfo = () => {
+const ProjectInfo = () => {
   // Example function to handle project creation
   const handleProjectCreate = (newProject) => {
     console.log("Project created:", newProject);
@@ -38,4 +38,4 @@ const projectinfo = () => {
   );
 };
 
-export default projectinfo;
+export default ProjectInfo;

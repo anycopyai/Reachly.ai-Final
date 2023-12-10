@@ -4,7 +4,7 @@ import CreditsPurchase from './CreditsPurchase';
 import PricingTable from './PricingTable';
 
 
-const subscriptioninfo = () => {
+const SubscriptionInfo = () => {
   const [isActive, setIsActive] = useState(true); // Placeholder for subscription status
   const [billingCycle, setBillingCycle] = useState('monthly');
   
@@ -52,4 +52,4 @@ const subscriptioninfo = () => {
   );
 };
 
-export default subscriptioninfo;
+export default SubscriptionInfo;
