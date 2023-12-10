@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiFileText, FiFacebook, FiGlobe, FiStar } from 'react-icons/fi';
-import { db } from '../../lib/firebase';
+import { db } from '../lib/firebase';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 const initialCardData = [

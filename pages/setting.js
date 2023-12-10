@@ -4,7 +4,7 @@ import navigationtabs from '../components/navigationtabs';
 import personalinfo from '../components/personalinfo';
 import subscriptioninfo from '../components/subscriptioninfo';
 import projectinfo from '../components/projectinfo';
-import CreateProject from '../components/writer/CreateProject';
+import CreateProject from '../components/CreateProject';
 import { FiSave, FiCopy, FiTrash2 } from 'react-icons/fi';
 
 const setting = () => {

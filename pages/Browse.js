@@ -3,8 +3,8 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import Sidebar from '../components/Sidebar';
-import TopBar from '../components/Writer/TopBar';
-import MainContent from '../components/Writer/MainContent';
+import TopBar from '../components/TopBar';
+import MainContent from '../components/MainContent';
 
 const Browse = () => {
   return (
