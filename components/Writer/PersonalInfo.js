@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PersonalInfo = () => {
+const personalinfo = () => {
   const [email, setEmail] = useState('info@rdmi.in'); // should be fetched from user data
   const [password, setPassword] = useState('********'); // For display only, actual password should never be stored like this
 
@@ -68,4 +68,4 @@ const PersonalInfo = () => {
   );
 };
 
-export default PersonalInfo;
+export default personalinfo;
