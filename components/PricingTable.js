@@ -31,9 +31,7 @@ const BillingCycleToggle = ({ billingCycle, toggleBillingCycle }) => {
         </label>
       </div>
       <span className="text-sm font-medium text-gray-700">Yearly</span>
-      {billingCycle === 'yearly' && (
-        <span className="ml-2 bg-blue-600 text-white py-1 px-3 text-xs rounded-full">25% Off</span>
-      )}
+      <span className="ml-2 bg-blue-600 text-white py-1 px-3 text-xs rounded-full">25% Off</span>
     </div>
   );
 };
