@@ -1,7 +1,7 @@
 // pages/writer.js
 import React from 'react';
 import QuillEditor from '../components/QuillEditor';
-import Sidebar from '../components/Sidebar'; // Adjust the path as necessary
+import Sidebar from '../components/sidebar'; // Adjust the path as necessary
 
 const Writer = () => {
   return (
