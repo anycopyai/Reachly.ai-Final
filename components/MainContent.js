@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
-import WriterComponent from '../Pages/components/WriterComponent';
-import GoogleCopyComponent from '../Pages/components/GoogleCopyComponent';
-import FacebookCopyComponent from '../Pages/components/FacebookCopyComponent';
+import WriterComponent from './WriterComponent';
+import GoogleCopyComponent from './GoogleCopyComponent';
+import FacebookCopyComponent from './FacebookCopyComponent';
 
 const categories = {
   writer: WriterComponent,
