@@ -1,10 +1,8 @@
-// If you're using React hooks or other features, you should uncomment the import below
+// pages/Browse.js
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
-
 import Sidebar from '../components/sidebar';
 import TopBar from '../components/TopBar';
-import MainContent from '../components/MainContent';
+import MainContent from '../components/MainContent'; // Corrected import path
 
 const Browse = () => {
   return (

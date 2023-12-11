@@ -252,21 +252,20 @@ div#__next > main {
     linear-gradient(black, black) padding-box;
 }
 
+/* QuillEditor.module.css */
 
-/* styles/globals.css */
-
-/* Style for Quill editor container */
-.quill-editor-container {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  margin: 20px 0;
-}
-
-/* You can adjust the height of the editor as needed */
 .ql-container {
-  min-height: 300px;
+  border: none !important;
 }
 
-/* Additional styling can be added as per your design requirements */
+.ql-editor {
+  font-size: 16px; /* Default font size */
+}
+
+.ql-h1 {
+  font-size: 28px; /* Custom font size for H1 */
+}
+
+.ql-h2 {
+  font-size: 24px; /* Custom font size for H2 */
+}

@@ -1,95 +1,63 @@
-import React, { useState } from 'react';
-import Sidebar from '../components/dashboard/Sidebar';
-import DaisyUIMenu from '../components/dashboard/DaisyUIMenu';
-import AlertBadge from '../components/dashboard/AlertBadge'; 
-import CreateProjectPopup from '../components/dashboard/CreateProjectPopup';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
+import { FiPlus, FiTrash2 } from 'react-icons/fi';
+const ProjectPage = () => {
+    const [projects, setProjects] = useState([]);
+    const [newProjectName, setNewProjectName] = useState('');
 
-function Projects() {
-    const [projects, setProjects] = useState([
-        {
-            id: 1,
-            name: 'Default Project',
-            description: 'This is your default project.'
-        },
-    ]);
-    const [showPopup, setShowPopup] = useState(false);
-    const router = useRouter();
+    // Fetch projects from Firestore
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const querySnapshot = await getDocs(collection(db, "projects"));
+            const projectsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setProjects(projectsData);
+        };
 
-    // Function to format project name to be URL friendly
-    const formatProjectNameForUrl = (projectName) => {
-        return projectName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    };
+        fetchProjects();
+    }, []);
 
-    const navigateToProject = (projectName) => {
-        const formattedName = formatProjectNameForUrl(projectName);
-        router.push(`/Projects/${formattedName}`);
-    };
-
-    const handleProjectCreated = async (projectName) => {
-        try {
-            const response = await fetch('https://api2.elixcent.com/create-project', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ projectName })
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            const newProject = {
-                id: data.projectId, // Assuming your API returns the project ID
-                name: projectName,
-                description: 'New project created.'
-            };
-
-            setProjects([...projects, newProject]);
-            navigateToProject(newProject.name); // Navigate using project name
-            setShowPopup(false);
-        } catch (error) {
-            console.error('Error creating project:', error);
+    // Add a new project to Firestore
+    const addProject = async () => {
+        if (newProjectName.trim() !== '') {
+            const docRef = await addDoc(collection(db, "projects"), { name: newProjectName });
+            setProjects([...projects, { id: docRef.id, name: newProjectName }]);
+            setNewProjectName('');
         }
     };
 
-    return (
-        <div className="flex h-screen bg-reachly-bg">
-            <Sidebar />
-            <div className="flex flex-col flex-1">
-                <DaisyUIMenu />
-                <AlertBadge trialDays={7} />
+    // Delete a project from Firestore
+    const deleteProject = async (id) => {
+        await deleteDoc(doc(db, "projects", id));
+        setProjects(projects.filter(project => project.id !== id));
+    };
 
-                <div className="flex-1 p-10">
-                    <div className="flex justify-start mb-5">
-                        <button
-                            onClick={() => setShowPopup(true)}
-                            className="btn btn-primary"
-                        >
-                            New Project
+    return (
+        <div className="p-8">
+            <div className="mb-4">
+                <input
+                    type="text"
+                    placeholder="New Project Name"
+                    value={newProjectName}
+                    onChange={(e) => setNewProjectName(e.target.value)}
+                    className="p-2 border-2 border-gray-300 rounded-md mr-2"
+                />
+                <button onClick={addProject} className="p-2 bg-blue-500 text-white rounded-md">
+                    <FiPlus /> Add Project
+                </button>
+            </div>
+            <div>
+                {projects.map(project => (
+                    <div key={project.id} className="flex items-center justify-between p-3 border-b-2 border-gray-300">
+                        <span>{project.name}</span>
+                        <button onClick={() => deleteProject(project.id)} className="text-red-500">
+                            <FiTrash2 />
                         </button>
                     </div>
-
-                    <h1 className="text-2xl font-bold mb-5 text-reachly-blue">Projects</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {projects.map(project => (
-                            <div
-                                key={project.id}
-                                className="border p-5 rounded-lg shadow-sm bg-white cursor-pointer hover:bg-indigo-100 transition-colors"
-                                onClick={() => navigateToProject(project.name)}
-                            >
-                                <h2 className="text-xl font-semibold">{project.name}</h2>
-                                <p className="mt-2 text-gray-600">{project.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                ))}
             </div>
-            {showPopup && <CreateProjectPopup onClose={() => setShowPopup(false)} onProjectCreated={handleProjectCreated} />}
         </div>
     );
-}
+};
 
-export default Projects;
+export default ProjectPage;
