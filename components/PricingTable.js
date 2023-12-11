@@ -35,10 +35,11 @@ const BillingCycleToggle = ({ billingCycle, toggleBillingCycle }) => {
     </div>
   );
 };
+
 const PlanCard = ({ plan, billingCycle, isPopular }) => {
   const price = billingCycle === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice;
-  
-  // Fixed credits for each plan (adjust these numbers as per your plan details)
+
+  // Credits information
   const creditMap = {
     'Basic': '20 Credits Monthly',
     'Pro': '300 Credits Monthly',
@@ -60,7 +61,7 @@ const PlanCard = ({ plan, billingCycle, isPopular }) => {
       <ul className="space-y-3 mb-4">
         {plan.features.map((feature, index) => (
           <li key={index} className="text-gray-700 text-sm">
-            <span className="before:content-['✔︎'] before:mr-2 before:text-green-500">{feature}</span>
+            {feature}
           </li>
         ))}
       </ul>
@@ -70,7 +71,5 @@ const PlanCard = ({ plan, billingCycle, isPopular }) => {
     </div>
   );
 };
-
-
 
 export default PricingTable;
