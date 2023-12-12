@@ -8,8 +8,9 @@ const navItems = [
   { name: 'Projects', IconComponent: FiHome, href: '/projects' },
   { name: 'Templates', IconComponent: FiClipboard, href: '/browse' },
   { name: 'Writer', IconComponent: FiEdit3, href: '/writer' },
+  { name: 'Saved', IconComponent: FiSave, href: '/saved' }, // New Save nav item
+
   { name: 'Help', IconComponent: FiHelpCircle, href: '/help' },
-  { name: 'Save', IconComponent: FiSave, href: '/save' }, // New Save nav item
 ];
 
 const Sidebar = () => {
