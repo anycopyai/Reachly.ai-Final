@@ -2,6 +2,8 @@ import React from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import { FiHome, FiClipboard, FiEdit3, FiHelpCircle, FiSettings, FiLogOut, FiSave } from 'react-icons/fi';
 
 const navItems = [
@@ -23,9 +25,13 @@ const Sidebar = () => {
   return (
     <div className="fixed top-0 left-0 bg-white w-20 flex flex-col justify-between py-6 h-screen shadow-xl z-10"> {/* Updated classes for fixed positioning */}
       <div className="flex flex-col items-center">
-        <div className="h-12 w-12 mb-16 flex items-center justify-center bg-black rounded-lg">
-          <span className="text-xl font-bold text-white">E</span>
-        </div>
+        <Link href="/browse">
+          <a className="mb-16 cursor-pointer">
+            <div className="h-12 w-12 flex items-center justify-center bg-black rounded-lg">
+              <span className="text-xl font-bold text-white">E</span>
+            </div>
+          </a>
+        </Link>     
         {navItems.map(({ name, IconComponent, href }) => (
           <Tippy key={name} content={name} placement="right">
             <div onClick={() => handleNavigation(href)} className="mb-12 block cursor-pointer">
