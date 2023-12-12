@@ -12,7 +12,7 @@ const InterviewQuestion = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col lg:flex-row h-screen bg-gray-50 overflow-hidden scrollbar-thin">
+      <div className="flex flex-col lg:flex-row ml-20 h-screen bg-gray-50 overflow-hidden scrollbar-thin">
       <Sidebar />
 
         {/* Form Section */}

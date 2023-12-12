@@ -47,7 +47,7 @@ const MainContent = () => {
   const CategoryComponent = categories[currentCategory];
 
   return (
-    <main className="flex-1 overflow-y-auto p-10 bg-[#F3F6FC]">
+    <main className="flex-1 overflow-y-auto  p-10 bg-[#F3F6FC]">
       <div className="flex space-x-4 mb-6">
         {Object.keys(categories).map((category) => (
           <button
