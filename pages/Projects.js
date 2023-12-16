@@ -44,7 +44,7 @@ const ProjectPage = () => {
     };
 
     return (
-        <div className="flex h-screen">
+        <div className="flex flex-col lg:flex-row ml-20 h-screen  overflow-hidden scrollbar-thin">
             <Sidebar />
             <div className="flex-grow p-8">
                 <div className="mb-6">

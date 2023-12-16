@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
-import { auth } from '../lib/firebase'; // Adjust the path
+import { auth } from '../lib/firebase'; // Adjust the path if necessary
+import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc'; // Ensure you have react-icons installed
 import { FaMicrosoft } from 'react-icons/fa'; // For Microsoft icon
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'; // For loading icon
-import Link from 'next/link';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -52,72 +51,94 @@ function Login() {
     };
 
     return (
-        <div className="flex flex-col md:flex-row min-h-screen">
-            <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white px-4 py-8 md:p-12">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
-                <p className="mb-8 text-gray-600">Enter your details below to continue</p>
-                {error && <p className="text-red-500 mb-4">{error}</p>}
-                <form onSubmit={handleLogin} className="w-full max-w-sm">
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full h-12 px-4 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full h-12 px-4 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        />
-                        <Link href="/ForgotPassword">
-                            <a className="text-sm text-indigo-600 hover:text-indigo-800 float-right mt-2">Forgot Password?</a>
-                        </Link>
-                    </div>
-                  <button 
-                      type="submit" 
-                      className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out mb-4 flex items-center justify-center"
-                      disabled={isLoggingIn}
-                  >
-                      {isLoggingIn ? <span className="animate-spin mr-2">🔄</span> : null}
-                      {isLoggingIn ? 'Logging in...' : 'Login'}
-                  </button>
+        
+        <main className="w-full max-w-md mx-auto p-6 ">
+<div className="mt-7  border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
 
-                    <button 
-                        type="button" 
-                        onClick={handleGoogleSignIn}
-                        className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out mb-4 flex items-center justify-center"
-                    >
-                        <FcGoogle className="text-xl mr-2" /> Login with Google
-                    </button>
-                    <button 
-                        type="button" 
-                        onClick={handleMicrosoftSignIn}
-                        className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out mb-4 flex items-center justify-center"
-                    >
-                        <FaMicrosoft className="text-xl mr-2" /> Login with Microsoft
-                    </button>
-                    <p className="text-center text-gray-600 mt-4">
-                        Don't have an account? 
-                        <Link href="/SignUp">
-                            <a className="text-indigo-600 hover:text-indigo-800"> Create a New Account</a>
-                        </Link>
-                    </p>
-                </form>
+                <div className="p-4 sm:p-7">
+                    <div className="text-center">
+                        <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                            Don't have an account yet?
+                            <Link href="/SignUp">
+                                <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign up here</a>
+                            </Link>
+                        </p>
+                    </div>
+                    <div className="mt-5">
+                        {error && <p className="text-red-500 mb-4">{error}</p>}
+                        <button
+                            type="button"
+                            onClick={handleGoogleSignIn}
+                            className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                        >
+                            <FcGoogle className="w-4 h-auto" />
+                            Sign in with Google
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleMicrosoftSignIn}
+                            className="w-full mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                        >
+                            <FaMicrosoft className="w-4 h-auto" />
+                            Sign in with Microsoft
+                        </button>
+                        <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ms-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
+                            Or
+                        </div>
+                        <form onSubmit={handleLogin}>
+                            <div className="grid gap-y-4">
+                                <div>
+                                    <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email address</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required=""
+                                    />
+                                </div>
+                                <div>
+                                    <div className="flex justify-between items-center">
+                                        <label htmlFor="password" className="block text-sm mb-2 dark:text-white">Password</label>
+                                        <Link href="/ForgotPassword">
+                                            <a className="text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Forgot password?</a>
+                                        </Link>
+                                    </div>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required=""
+                                    />
+                                </div>
+                                <div className="flex items-center">
+                                    <input
+                                        id="remember-me"
+                                        name="remember-me"
+                                        type="checkbox"
+                                        className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                    />
+                                    <label htmlFor="remember-me" className="text-sm dark:text-white ms-3">Remember me</label>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                    disabled={isLoggingIn}
+                                >
+                                    {isLoggingIn ? 'Logging in...' : 'Sign in'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div className="w-full h-64 md:h-auto md:w-1/2 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: 'url("https://static.getprospect.com/img/help-center/outreach.jpg")' }}>
-                {/* Optional: Overlay or additional content here */}
-            </div>
-        </div>
+        </main>
     );
 }
 

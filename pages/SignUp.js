@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged, GoogleAuthProvider, OAuthProvider } from 'firebase/auth';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import { FcGoogle } from 'react-icons/fc';
-import { BsMicrosoft } from 'react-icons/bs';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import axios from 'axios';
 import Link from 'next/link';
-
-
 
 function Signup() {
     const router = useRouter();
@@ -51,169 +46,118 @@ function Signup() {
         }
 
         try {
-            const auth = getAuth(firebaseApp);
+            const auth = getAuth();
             const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
             const user = userCredential.user;
 
-            // Send additional data along with UID to Flask API
-            await axios.post('https://api.elixcent.com/signup', {
-                uid: user.uid,  // Include UID
+            // Send additional data along with UID to your API
+            await axios.post('https://api.yourservice.com/signup', {
+                uid: user.uid,
                 name: userData.name,
-                email: userData.email,
-                // any other user data
+                email: userData.email
             });
 
-                // Redirect to dashboard or further steps after successful signup
-                router.push('/icebreaker');
-            } catch (error) {
-                setIsSubmitting(false);
-                setErrors({ form: error.message || "An unexpected error occurred. Please try again." });
-            }
-        };
-  
+            router.push('/dashboard'); // Adjust the route as necessary
+        } catch (error) {
+            setIsSubmitting(false);
+            setErrors({ form: error.message || "An unexpected error occurred. Please try again." });
+        }
+    };
 
-        const handleGoogleSignup = async () => {
-            try {
-                const auth = getAuth(firebaseApp);
-                const provider = new GoogleAuthProvider();
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-        
-                // Send user data to Firebase
-                await axios.post('https://api.elixcent.com/signup', {
-                    uid: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    // additional data if needed
-                });
-        
-                // Redirect after successful signup
-                router.push('/icebreaker');
-            } catch (error) {
-                // Handle errors here
-                console.error('Error during Google sign-up:', error);
-            }
-        };
-        
-
-        const handleMicrosoftSignup = async () => {
-            try {
-                const auth = getAuth(firebaseApp);
-                const provider = new OAuthProvider('microsoft.com');
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-        
-                // Send user data to Firebase
-                await axios.post('https://api.elixcent.com/signup', {
-                    uid: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    // additional data if needed
-                });
-        
-                // Redirect after successful signup
-                router.push('/icebreaker');
-            } catch (error) {
-                // Handle errors here
-                console.error('Error during Microsoft sign-up:', error);
-            }
-        };
-        
-
-
-
-
-
-return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#E1DFDD]"> {/* Replace with your desired background */}
-        
-        {/* Signup Form */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white px-6 py-10 md:p-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Start your 7 days free trial
-</h2>
-            <p className="mb-4 text-gray-600">Join Elixcent today and Elevate Your Outreach</p>
-            {errors.form && <p className="text-red-500 mb-4">{errors.form}</p>}
-            <form onSubmit={handleSignup} className="w-full max-w-md space-y-4">
-                {/* Form Fields */}
-                {/* ... */}
-                {['name', 'email', 'password', 'confirmPassword'].map(field => (
-                    <div key={field}>
-                        <input
-                            type={field === 'confirmPassword' ? 'password' : (field.includes('password') ? 'password' : 'text')}
-                            id={field}
-                            name={field}
-                            placeholder={field.replace(/([A-Z])/g, ' $1').trim()}
-                            value={userData[field]}
-                            onChange={handleChange}
-                            disabled={isSubmitting}
-                            className={`w-full h-12 px-4 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${errors[field] ? 'ring-2 ring-red-500' : 'ring-1 ring-gray-300'}`}
-                        />
-                        {errors[field] && <p className="text-red-500 text-xs mt-1">{errors[field]}</p>}
+    return (
+        <main className="w-full max-w-md mx-auto p-6">
+            <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div className="p-4 sm:p-7">
+                    <div className="text-center">
+                        <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Sign up</h1>
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                            Already have an account?
+                            <Link href="/Login">
+                                <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign in here</a>
+                            </Link>
+                        </p>
                     </div>
-                ))}
-                <div className="flex items-center mt-4">
-                    <input
-                        type="checkbox"
-                        id="consent"
-                        name="consent"
-                        checked={userData.consent}
-                        onChange={handleChange}
-                        disabled={isSubmitting}
-                        className="checkbox checkbox-primary mr-2"
-                    />
-                    <label htmlFor="consent" className="text-sm text-gray-600">
-                        By signing up, I agree to Elixcent's Terms of Service and Privacy Policy.
-                    </label>
+                    <div className="mt-5">
+                        <form onSubmit={handleSignup}>
+                            <div className="grid gap-y-4">
+                                {errors.form && <p className="text-red-500 mb-4">{errors.form}</p>}
+                                <div>
+                                    <label htmlFor="name" className="block text-sm mb-2 dark:text-white">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={userData.name}
+                                        onChange={handleChange}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email address</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={userData.email}
+                                        onChange={handleChange}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password" className="block text-sm mb-2 dark:text-white">Password</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={userData.password}
+                                        onChange={handleChange}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="confirmPassword" className="block text-sm mb-2 dark:text-white">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        value={userData.confirmPassword}
+                                        onChange={handleChange}
+                                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                                        required
+                                    />
+                                    {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>}
+                                </div>
+                                <div className="flex items-center">
+                                    <input
+                                        id="consent"
+                                        name="consent"
+                                        type="checkbox"
+                                        checked={userData.consent}
+                                        onChange={handleChange}
+                                        className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                    />
+                                    <label htmlFor="consent" className="text-sm dark:text-white ml-3">
+                                        I accept the <a href="#" className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                                {errors.consent && <p className="text-red-500 text-xs mt-1">{errors.consent}</p>}
+                                <button
+                                    type="submit"
+                                    className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                    disabled={isSubmitting}
+                                >
+                                    Sign up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                {errors.consent && <p className="text-red-500 text-xs mt-1">{errors.consent}</p>}
-                <button 
-                    type="submit" 
-                    disabled={isSubmitting} 
-                    className="w-full mt-6 px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center"
-                >
-                  {isSubmitting ? <><AiOutlineLoading3Quarters className="animate-spin mr-2" /> Creating Your Account</> : 'Create Account'}
-                </button>
-              <button 
-                  type="button" 
-                  onClick={handleGoogleSignup} 
-                  disabled={isSubmitting} 
-                  className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out mb-2 flex items-center justify-center"
-              >
-                  <FcGoogle className="text-xl mr-2" /> Sign Up with Google
-              </button>
-              <button 
-                  type="button" 
-                  onClick={handleMicrosoftSignup} 
-                  disabled={isSubmitting} 
-                  className="w-full px-4 py-2 border rounded-md hover:bg-gray-50 transition duration-300 ease-in-out flex items-center justify-center"
-              >
-                  <BsMicrosoft className="text-xl mr-2" /> Sign Up with Microsoft
-              </button>
-            </form>
-            <p className="mt-4 text-sm">
-                Already have an account? <a href="/Login" className="text-indigo-600 hover:text-indigo-500">Login here</a>
-            </p>
-        </div>
-
-        {/* Benefits Checklist Section */}
-        <div className="flex-1 flex flex-col justify-center bg-indigo-100 px-6 py-10 md:p-16">
-            <div className="max-w-md mx-auto space-y-4">
-                <h3 className="text-2xl font-bold text-center text-gray-800">Benefits of Joining Elixcent</h3>
-                <ul className="list-none space-y-2">
-                    {/* Replace with your actual benefits */}
-                    {["Customizable Workflows", "Advanced Analytics", "User-Friendly Interface", "24/7 Customer Support", "Secure & Reliable"].map((benefit, index) => (
-                        <li key={index} className="flex items-center">
-                            <span className="flex-shrink-0 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center mr-3">✔</span>
-                            <span className="text-gray-700">{benefit}</span>
-                        </li>
-                    ))}
-                </ul>
             </div>
-        </div>
+        </main>
+    );
+}
 
-    </div>
-);
-
-
-};
 export default Signup;

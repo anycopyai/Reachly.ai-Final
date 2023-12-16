@@ -30,6 +30,7 @@
         "antd": "^5.12.1",
         "aws-sdk": "^2.1478.0",
         "axios": "^1.6.2",
+        "clsx": "^2.0.0",
         "contentful": "^10.6.12",
         "draft-js": "^0.11.7",
         "firebase": "^10.5.0",
@@ -64,6 +65,7 @@
         "slate": "^0.101.1",
         "slate-history": "^0.100.0",
         "slate-react": "^0.101.3",
+        "socket.io-client": "^4.7.2",
         "tippy.js": "^6.3.7"
     },
     "devDependencies": {
