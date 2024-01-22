@@ -10,8 +10,7 @@ const navItems = [
   { name: 'Projects', IconComponent: FiHome, href: '/projects' },
   { name: 'Templates', IconComponent: FiClipboard, href: '/browse' },
   { name: 'Writer', IconComponent: FiEdit3, href: '/writer' },
-  { name: 'Saved', IconComponent: FiSave, href: '/saved' }, // New Save nav item
-
+  { name: 'Saved', IconComponent: FiSave, href: '/saved' },
   { name: 'Help', IconComponent: FiHelpCircle, href: '/help' },
 ];
 
@@ -23,7 +22,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 bg-white w-20 flex flex-col justify-between py-6 h-screen shadow-xl z-10"> {/* Updated classes for fixed positioning */}
+    <div className="fixed top-0 left-0 bg-gray-50 w-20 flex flex-col justify-between py-6 h-screen z-10">
+      {/* Updated background color to #F9F8F7 (bg-gray-50) */}
       <div className="flex flex-col items-center">
         <Link href="/browse">
           <a className="mb-16 cursor-pointer">
@@ -31,7 +31,7 @@ const Sidebar = () => {
               <span className="text-xl font-bold text-white">E</span>
             </div>
           </a>
-        </Link>     
+        </Link>
         {navItems.map(({ name, IconComponent, href }) => (
           <Tippy key={name} content={name} placement="right">
             <div onClick={() => handleNavigation(href)} className="mb-12 block cursor-pointer">
