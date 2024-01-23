@@ -13,6 +13,7 @@
     "license": "",
     "dependencies": {
         "@apollo/client": "^3.8.6",
+        "@auth0/auth0-react": "^2.2.4",
         "@ckeditor/ckeditor5-build-classic": "^40.1.0",
         "@ckeditor/ckeditor5-react": "^6.2.0",
         "@contentful/rich-text-react-renderer": "^15.19.0",

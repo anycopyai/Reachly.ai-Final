@@ -4,9 +4,9 @@ import { UserContext } from '../contexts/UserContext';
 
 const withAuth = (WrappedComponent) => {
   return (props) => {
-    const { user, loading } = useContext(UserContext);
+    const { user, loading, isAuthenticated } = useContext(UserContext);
     const router = useRouter();
-
+console.log(isAuthenticated)
     useEffect(() => {
       if (!loading && !user) {
         router.push('/Login');
