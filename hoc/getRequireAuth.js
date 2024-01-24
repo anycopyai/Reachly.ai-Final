@@ -1,5 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import { Spin } from 'antd';
+import SplashScreen from "../components/SplashScreen";
 
 const getRequireAuth = (WrappedComponent) => {
   return (props) => {
@@ -54,7 +56,13 @@ const getRequireAuth = (WrappedComponent) => {
     }
 
     // You may choose to render a loading indicator or a login redirect message here
-    return <></>;
+    return <> 
+    <div style={{textAlign:'center', alignItems:'center'}}>
+     <SplashScreen size={'large'}/>
+     
+     </div>
+     
+     </>;
   };
 };
 
