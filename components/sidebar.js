@@ -25,17 +25,18 @@ const navItems = [
 
 const Sidebar = () => {
   const router = useRouter();
-  const { isAuthenticated, user, logout } = useAuth0();
+  const { logout, loginWithRedirect } = useAuth0();
   const handleNavigation = (href) => {
     router.push(href);
   };
-  const logoutWithRedirect = () =>
-  logout({
-      logoutParams: {
-        returnTo: window.location.origin,
-      }
-  });
-  console.log(isAuthenticated, user);
+
+  //logout the website and routeback to the login page
+  const logoutWithRedirect = () => {
+    localStorage.removeItem("accessToken");
+    // Redirect to the login page
+    router.push('/Login');
+  };
+
   return (
     <div className="fixed top-0 left-0 bg-gray-50 w-20 flex flex-col justify-between py-6 h-screen z-10">
       {/* Updated background color to #F9F8F7 (bg-gray-50) */}

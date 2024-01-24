@@ -15,14 +15,20 @@ function MyApp({ Component, pageProps }) {
     // ... any setup you need
   }, []);
 
+ const authConfig = {
+  domain:"dev-yt7nl1nw0qctdszp.us.auth0.com",
+  clientId:"OtG2A4ftdRYrcOe97G15NfGvNF0ebvSW",
+    redirectUri: typeof window !== 'undefined' && window.location.origin,
+    // audience: 'your-api-audience',
+    // scope: 'openid profile email',
+  };
   return (
     <>
     <Auth0Provider
-    domain="dev-yt7nl1nw0qctdszp.us.auth0.com"
-    clientId="OtG2A4ftdRYrcOe97G15NfGvNF0ebvSW"
-    authorizationParams={{
-      redirect_uri: typeof window !== 'undefined' ? window.location.origin : null
-    }}
+ 
+   
+
+    {...authConfig}
   >
       <NextUIProvider>
         <UserProvider>
