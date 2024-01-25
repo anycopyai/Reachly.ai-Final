@@ -8,6 +8,7 @@ import { UserProvider } from '../contexts/UserContext';
 import { SidebarProvider } from '../contexts/SidebarContext'; // Import SidebarProvider
 import SkeletonLoader from '../components/SkeletonLoader';
 import PrelineScript from '../components/PrelineScript';
+import Sidebar from '../components/sidebar';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -19,8 +20,10 @@ function MyApp({ Component, pageProps }) {
       <NextUIProvider>
         <UserProvider>
           <SidebarProvider> {/* Add SidebarProvider here */}
+       
             <PrelineScript />
             <Component {...pageProps} />
+      
           </SidebarProvider>
         </UserProvider>
       </NextUIProvider>
