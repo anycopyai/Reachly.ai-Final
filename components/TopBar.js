@@ -4,10 +4,28 @@ import { FiCreditCard, FiSearch } from 'react-icons/fi';
 
 const categories = [
   'All',
-  'Category 1',
-  'Category 2',
-  'Category 3',
-  // ... Add more categories as needed
+  'Favorites',
+  'Fresh Template',
+  'EveryDay Tools',
+  'Blog',
+  'AdCopy',
+  'E_commerce',
+  'Campaigns',
+  'Landing Pages',
+  'Website Copy',
+  'Salae Copy',
+  'Social Media',
+  'Emails',
+  'Video',
+  'Business',
+  'Branding',
+  'Education',
+  'Pr_Media',
+  'Reserach',
+  'Human Resources',
+  'Frame Works',
+  'Brain storming',
+  'Invistor Pitch',
 ];
 
 const CreditBadge = ({ credits }) => {
@@ -42,16 +60,20 @@ const CreditBadge = ({ credits }) => {
 const TopBar = () => {
   return (
     <div className="px-10 py-6 bg-white shadow flex justify-between items-center">
-      <div>
-        <div className="flex items-center w-full max-w-xl relative border border-gray-300 rounded-full">
-          <input 
+      <div className=' mt-5 max-w-[89%] mx-auto'>
+        <div className="flex  justify-between">
+         <div className='flex items-center w-full max-w-xl relative border border-gray-300 rounded-full'>
+         <input 
             type="search" 
             placeholder="I'm looking for..." 
             className="pl-4 pr-10 py-2 w-full border-none rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out" 
           />
           <FiSearch className="absolute right-4 text-lg text-blue-600 cursor-pointer" />
+          
+         </div>
+         <CreditBadge credits={100} className=' -translate-x-6' />
         </div>
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-4 mt-4">
           {categories.map((category) => (
             <button
               key={category}
@@ -62,7 +84,7 @@ const TopBar = () => {
           ))}
         </div>
       </div>
-      <CreditBadge credits={100} />
+      
     </div>
   );
 };
