@@ -41,7 +41,7 @@ const Sidebar = () => {
     <div className="fixed top-0 left-0 bg-gray-50 w-20 flex flex-col justify-between py-6 h-screen z-10">
       {/* Updated background color to #F9F8F7 (bg-gray-50) */}
       <div className="flex flex-col items-center">
-        <Link href="/browse">
+        <Link href="/">
           <a className="mb-16 cursor-pointer">
             <div className="h-12 w-12 flex items-center justify-center bg-black rounded-lg">
               <span className="text-xl font-bold text-white">E</span>
