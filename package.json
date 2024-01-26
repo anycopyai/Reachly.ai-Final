@@ -13,6 +13,7 @@
     "license": "",
     "dependencies": {
         "@apollo/client": "^3.8.6",
+        "@auth0/auth0-react": "^2.2.4",
         "@ckeditor/ckeditor5-build-classic": "^40.1.0",
         "@ckeditor/ckeditor5-react": "^6.2.0",
         "@contentful/rich-text-react-renderer": "^15.19.0",
@@ -28,7 +29,7 @@
         "@sentry/nextjs": "^7.77.0",
         "@tippyjs/react": "^4.2.6",
         "amazon-cognito-identity-js": "^6.3.6",
-        "antd": "^5.12.1",
+        "antd": "^5.13.2",
         "aws-sdk": "^2.1478.0",
         "axios": "^1.6.2",
         "clsx": "^2.0.0",

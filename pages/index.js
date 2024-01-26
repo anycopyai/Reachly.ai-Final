@@ -1,65 +1,36 @@
 // pages/index.js
 
-import Link from 'next/link';
-import Head from 'next/head';
+import Link from "next/link";
+import Head from "next/head";
+import Sidebar from "../components/sidebar";
+import TopBar from "../components/TopBar";
+import MainContent from "../components/MainContent";
+import getRequireAuth from "../hoc/getRequireAuth";
 
-export default function Home() {
+function Home() {
   return (
     <>
-    <Head>
-        <title>AI-Driven Email Personalization Platform - Boost Engagement & Sales</title>
-        <meta name="description" content="Experience the future of email marketing with our AI-powered personalization platform. Elevate your outreach with tailored content, increase engagement rates, and drive sales effectively. Perfect for businesses seeking to harness the power of AI for smarter email strategies." />
+      <Head>
+        <title>
+          AI-Driven Email Personalization Platform - Boost Engagement & Sales
+        </title>
+        <meta
+          name="description"
+          content="Experience the future of email marketing with our AI-powered personalization platform. Elevate your outreach with tailored content, increase engagement rates, and drive sales effectively. Perfect for businesses seeking to harness the power of AI for smarter email strategies."
+        />
       </Head>
-    <div>
-    
-      <>
-  {/* Announcement Banner */}
-  <div
-    id="ab-full-width-with-dismiss-button-on-blue-bg"
-    className="hs-removing:-translate-y-full bg-blue-600"
-  >
-    <div className="max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8 mx-auto">
-      <div className="flex">
-        <p className="text-white">
-        Join Our Webinar:   Mastering Sales Personalization Strategies for 2024           <a
-            className="decoration-2 underline font-medium hover:text-white/[.8] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="/webinar"
-          >
-            Join Webinar 
-          </a>
-        </p>
-        <div className="ps-3 ms-auto">
-          <button
-            type="button"
-            className="inline-flex rounded-lg p-1.5 text-white/[.8] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-600 focus:ring-white"
-            data-hs-remove-element="#ab-full-width-with-dismiss-button-on-blue-bg"
-          >
-            <span className="sr-only">Dismiss</span>
-            <svg
-              className="flex-shrink-0 h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-        </div>
+      <div>
+        <>
+          <div className="flex h-screen ml-20 overflow-hidden bg-gray-100">
+            <Sidebar />
+            <div className="flex-1 flex flex-col">
+              <TopBar />
+              <MainContent />
+            </div>
+          </div>
+        </>
       </div>
-    </div>
-  </div>
-  {/* End Announcement Banner */}
-</>
-
-    
-    </div>
     </>
   );
 }
+export default getRequireAuth(Home);
