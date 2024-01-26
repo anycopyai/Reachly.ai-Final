@@ -8,22 +8,40 @@ import { UserProvider } from '../contexts/UserContext';
 import { SidebarProvider } from '../contexts/SidebarContext'; // Import SidebarProvider
 import SkeletonLoader from '../components/SkeletonLoader';
 import PrelineScript from '../components/PrelineScript';
+import Sidebar from '../components/sidebar';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     // ... any setup you need
   }, []);
 
+ const authConfig = {
+  domain:"dev-yt7nl1nw0qctdszp.us.auth0.com",
+  clientId:"OtG2A4ftdRYrcOe97G15NfGvNF0ebvSW",
+    redirectUri: typeof window !== 'undefined' && window.location.origin,
+    // audience: 'your-api-audience',
+    // scope: 'openid profile email',
+  };
   return (
     <>
+    <Auth0Provider
+ 
+   
+
+    {...authConfig}
+  >
       <NextUIProvider>
         <UserProvider>
           <SidebarProvider> {/* Add SidebarProvider here */}
+       
             <PrelineScript />
             <Component {...pageProps} />
+      
           </SidebarProvider>
         </UserProvider>
       </NextUIProvider>
+      </Auth0Provider>
     </>
   );
 }
