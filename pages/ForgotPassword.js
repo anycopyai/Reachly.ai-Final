@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import firebase from 'firebase/app';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../lib/firebase'; // Adjust the path based on where your firebase.js file is located
+
+// Adjust the path based on where your firebase.js file is located
 import { useRouter } from 'next/router';  // <-- Import useRouter
 import Link from 'next/link';
 
@@ -18,12 +17,6 @@ function ForgotPassword() {
     setError(null); // Clear any existing errors
     setMessage(null); // Clear any existing messages
 
-    try {
-      await sendPasswordResetEmail(auth, email);
-    router.push('/PasswordResetSent');  // <-- Redirect to password-reset-sent page
-    } catch (error) {
-      setError(error.message);
-    }
   };
 
   return (

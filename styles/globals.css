@@ -370,7 +370,7 @@ div#__next > main {
     border-width: 1px;
     box-sizing: border-box;
     font-family: "Source Sans Pro";
-    font-size: 14px;
+    font-size: 12px;
     outline: 0px !important;
     width: 100%;
     height: 50%;
@@ -395,15 +395,16 @@ div#__next > main {
   border-width: 0px;
   border-style: solid;
   border-color: #e5e7eb;
+  font-size: 12px;
 }
 
 .btn { 
   background-color: #0033FF;
   color: white;
   font-size: 10px;
-    height: 25px;
-    padding: 3px 30px;
-    border-radius: 10px;
+    height: 5px;
+    padding: 1px 20px;
+    border-radius: 5px;
     box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     border: 0 solid #e5e7eb;
     box-sizing: border-box;
@@ -413,9 +414,9 @@ div#__next > main {
   background-color: #0033FF;
   color: white;
   font-size: 10px;
-    height: 25px;
-    padding: 3px 30px;
-    border-radius: 10px;
+    height: 5px;
+    padding: 1px 20px;
+    border-radius: 5px;
     box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     border: 0 solid #e5e7eb;
     box-sizing: border-box;
