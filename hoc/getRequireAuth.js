@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { Spin } from 'antd';
 import SplashScreen from "../components/SplashScreen";
 
 const getRequireAuth = (WrappedComponent) => {
@@ -41,7 +40,7 @@ const getRequireAuth = (WrappedComponent) => {
                   loginWithRedirect();
                 }
             }
-          },2000)
+          },5000)
         
         } catch (error) {
           console.error("Error checking access token:", error);

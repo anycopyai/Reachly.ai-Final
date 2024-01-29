@@ -1,5 +1,4 @@
 import { NextUIProvider } from "@nextui-org/react";
-import { useEffect } from "react";
 import "../styles/globals.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "../utils/fontawesome";
@@ -9,15 +8,18 @@ import PrelineScript from "../components/PrelineScript";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    // ... any setup you need
-  }, []);
+  const isProduction = process.env.NODE_ENV === "production";
 
   const authConfig = {
-    domain: "dev-yt7nl1nw0qctdszp.us.auth0.com",
-    clientId: "OtG2A4ftdRYrcOe97G15NfGvNF0ebvSW",
+    domain: isProduction
+      ? `dev-yt7nl1nw0qctdszp.us.auth0.com`
+      : `dev-yt7nl1nw0qctdszp.us.auth0.com`,
+    clientId: isProduction
+      ? `OtG2A4ftdRYrcOe97G15NfGvNF0ebvSW`
+      : `h8ebu0vL7FUwzKbsodEOvCYwuLVdYYpo`,
     redirectUri: typeof window !== "undefined" && window.location.origin,
   };
+
   return (
     <>
       <SnackbarProvider
