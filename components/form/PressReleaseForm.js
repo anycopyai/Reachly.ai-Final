@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { BsListStars } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSnackbar } from "notistack";
 
 const PressReleaseForm = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const tone =[
+    {id:1, value:'adventurous', label:'Adventurous'},
+    {id:2, value:'analytical', label:'Analytical'},
+    {id:3, value:'appreciative', label:'Appreciative'},
+    {id:4, value:'awestruck', label:'Awestruck'},
+    {id:5, value:'bold', label:'Bold'},
+    {id:6, value:'candid', label:'Candid'},
+    {id:7, value:'casual', label:'Casual'},
+    {id:8, value:'cautionary', label:'Cautionary'},
+    {id:9, value:'adventurous', label:'Adventurous'},
+    {id:10, value:'adventurous', label:'Adventurous'},
+   
+  ]
   const LandingSchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Language is required"),
@@ -46,19 +61,30 @@ const PressReleaseForm = () => {
   });
   console.log(errors);
 
-  // useEffect(() => {
-  //   if (errors?.email) {
-  //     enqueueSnackbar(`${errors?.email?.message}`, { variant: "error" });
-  //   } else if (errors?.password) {
-  //     enqueueSnackbar(`${errors?.password?.message}`, { variant: "error" });
-  //   }
-  // }, [errors]);
+  useEffect(() => {
+    if (errors?.news) {
+      enqueueSnackbar(`${errors?.news?.message}`, { variant: "error" });
+    } else if (errors?.facts) {
+      enqueueSnackbar(`${errors?.facts?.message}`, { variant: "error" });
+    }
+    else if (errors?.press) {
+      enqueueSnackbar(`${errors?.press?.message}`, { variant: "error" });
+    }
+    else if (errors?.company) {
+      enqueueSnackbar(`${errors?.company?.message}`, { variant: "error" });
+    }
+    else if (errors?.tone) {
+      enqueueSnackbar(`${errors?.tone?.message}`, { variant: "error" });
+    }
+  }, [errors]);
 
   const onSubmit = async (data) => {
     console.log(data);
     try {
       // enqueueSnackbar("Login sucessfull", { variant: "success" });
-    } catch (error) {}
+    } catch (error) {
+      
+    }
   };
 
   return (
@@ -175,10 +201,14 @@ const PressReleaseForm = () => {
               style={{ height: "55%" }}
             >
               <option disabled>Select Tone</option>
-              <option value="greetings">Greetings</option>
-              <option value="salutations">Salutations</option>
-              <option value="courteous">Courteous</option>
-              <option value="respectful">Respectful</option>
+              <option value="adventurous">Adventurous</option>
+              <option value="analytical">Analytical</option>
+              <option value="appreciative">Appreciative</option>
+              <option value="assertive">Assertive</option>
+              <option value="awestruck">Awestruck</option>
+              <option value="bold">Bold</option>
+              <option value="candid">Candid</option>
+              <option value="casual">Casual</option>
             </select>
             {errors?.tone?.message && (
               <label htmlFor="news" className="levelError">
