@@ -3,7 +3,7 @@ import React from 'react'
 const Card = ({icon1,icon2,heading,desc}) => {
    
   return (
-    <div className=' border  max-w-[25rem]  h-[16em] hover:border-10 hover:border-solid hover:border-[#e5e7eb]' style={{borderRadius:"10px"}}>
+    <div className=' border  max-w-[25rem]  h-[16em] hover:border-10 hover:border-solid hover:border-[#466ab1]' style={{borderRadius:"10px"}}>
         {/*icon*/}
         <div className=' flex  justify-between  w-10/12 mx-auto mt-6'>
              {/* Icon 1 */}
