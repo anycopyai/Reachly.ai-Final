@@ -12,6 +12,12 @@ import Blog from '../components/Template/Blog';
 import AdCopy from '../components/Template/AdCopy';
 import Ecommerce from '../components/Template/Ecommerce';
 import Campaigns from '../components/Template/Campaigns';
+import LandingPage from '../components/Template/LandingPage';
+import WebsiteCopy from '../components/Template/WebsiteCopy';
+import SalesCopy from '../components/Template/SalesCopy';
+import SocialMedia from '../components/Template/SocialMedia';
+
+
 const Browse = () => {
   return (
     <div className="flex  h-fit ml-20 overflow-hidden bg-gray-100">
@@ -26,6 +32,10 @@ const Browse = () => {
          <AdCopy />
          <Ecommerce />
          <Campaigns />
+         <LandingPage />
+         <WebsiteCopy />
+         <SalesCopy />
+         <SocialMedia />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { SidebarProvider } from "../contexts/SidebarContext"; // Import SidebarP
 import { SnackbarProvider } from "notistack";
 import PrelineScript from "../components/PrelineScript";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Sidebar from "../components/sidebar";
 
 function MyApp({ Component, pageProps }) {
   const isProduction = process.env.NODE_ENV === "production";
@@ -33,8 +34,10 @@ function MyApp({ Component, pageProps }) {
         <Auth0Provider {...authConfig}>
           <NextUIProvider>
             <SidebarProvider>
+          
               <PrelineScript />
               <Component {...pageProps} />
+         
             </SidebarProvider>
           </NextUIProvider>
         </Auth0Provider>
