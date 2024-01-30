@@ -23,7 +23,7 @@ const navItems = [
   { name: "Help", IconComponent: FiHelpCircle, href: "/help" },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
   const router = useRouter();
   const { logout, loginWithRedirect } = useAuth0();
   const handleNavigation = (href) => {
