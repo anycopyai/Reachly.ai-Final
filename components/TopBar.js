@@ -59,7 +59,7 @@ const CreditBadge = ({ credits }) => {
 
 const TopBar = () => {
   return (
-    <div className="px-10 py-6 bg-white shadow flex justify-between items-center">
+    <div className="  bg-white  flex justify-between items-center">
       <div className=' mt-5 max-w-[89%] mx-auto'>
         <div className="flex  justify-between">
          <div className='flex items-center w-full max-w-xl relative border border-gray-300 rounded-full'>
@@ -73,7 +73,7 @@ const TopBar = () => {
          </div>
          <CreditBadge credits={100} className=' -translate-x-6' />
         </div>
-        <div className="flex flex-wrap gap-4 mt-4">
+        <div className="flex flex-wrap gap-4 mt-8">
           {categories.map((category) => (
             <button
               key={category}
