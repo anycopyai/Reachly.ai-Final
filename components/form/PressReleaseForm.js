@@ -2,29 +2,29 @@ import React, { useEffect } from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { BsListStars } from "react-icons/bs";
-import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
+import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
+import { Form, Input, Select, Button } from "antd";
 
 const PressReleaseForm = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const tone =[
-    {id:1, value:'adventurous', label:'Adventurous'},
-    {id:2, value:'analytical', label:'Analytical'},
-    {id:3, value:'appreciative', label:'Appreciative'},
-    {id:4, value:'awestruck', label:'Awestruck'},
-    {id:5, value:'bold', label:'Bold'},
-    {id:6, value:'candid', label:'Candid'},
-    {id:7, value:'casual', label:'Casual'},
-    {id:8, value:'cautionary', label:'Cautionary'},
-    {id:9, value:'adventurous', label:'Adventurous'},
-    {id:10, value:'adventurous', label:'Adventurous'},
-   
-  ]
+  const tone = [
+    { id: 1, value: "adventurous", label: "Adventurous" },
+    { id: 2, value: "analytical", label: "Analytical" },
+    { id: 3, value: "appreciative", label: "Appreciative" },
+    { id: 4, value: "awestruck", label: "Awestruck" },
+    { id: 5, value: "bold", label: "Bold" },
+    { id: 6, value: "candid", label: "Candid" },
+    { id: 7, value: "casual", label: "Casual" },
+    { id: 8, value: "cautionary", label: "Cautionary" },
+    { id: 9, value: "adventurous", label: "Adventurous" },
+    { id: 10, value: "adventurous", label: "Adventurous" },
+  ];
   const LandingSchema = Yup.object({
     language: Yup.string().required("Language is required"),
-    project: Yup.string().required("Language is required"),
+    project: Yup.string().required("Project is required"),
     news: Yup.string().required(
       "The field What is the news story? is required."
     ),
@@ -41,222 +41,269 @@ const PressReleaseForm = () => {
   });
 
   const defaultValues = {
-    language: "",
+    language: "english",
     project: "",
     news: "",
     facts: "",
     press: "",
     company: "",
     tone: "",
+    guide: false,
   };
-  const {
-    register,
-    handleSubmit,
-    reset,
 
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     resolver: yupResolver(LandingSchema),
     defaultValues,
   });
-  console.log(errors);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = methods;
 
   useEffect(() => {
     if (errors?.news) {
       enqueueSnackbar(`${errors?.news?.message}`, { variant: "error" });
     } else if (errors?.facts) {
       enqueueSnackbar(`${errors?.facts?.message}`, { variant: "error" });
-    }
-    else if (errors?.press) {
+    } else if (errors?.press) {
       enqueueSnackbar(`${errors?.press?.message}`, { variant: "error" });
-    }
-    else if (errors?.company) {
+    } else if (errors?.company) {
       enqueueSnackbar(`${errors?.company?.message}`, { variant: "error" });
-    }
-    else if (errors?.tone) {
+    } else if (errors?.tone) {
       enqueueSnackbar(`${errors?.tone?.message}`, { variant: "error" });
     }
   }, [errors]);
+  const guideValue = useWatch({
+    control,
+    name: "guide",
+  });
 
   const onSubmit = async (data) => {
     console.log(data);
     try {
       // enqueueSnackbar("Login sucessfull", { variant: "success" });
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Row gutter={16}>
-          <Col span={12} style={{ marginTop: 5 }}>
-            <label htmlFor="language" className="labelContent">
-              Language
-            </label>
+      <div
+        style={{
+          height: "70vh",
+          overflowY: "auto",
+          overflowX: "hidden",
+          padding: 5,
+        }}
+      >
+        <FormProvider {...methods}>
+          <Form onFinish={handleSubmit(onSubmit)}>
+            <Row gutter={16}>
+              <Col span={12} style={{ marginTop: 5 }}>
+                <label htmlFor="language" className="labelContent">
+                  Language
+                </label>
+                <Form.Item
+                  validateStatus={errors?.language ? "error" : ""}
+                  help={errors?.language?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="language"
+                    render={({ field }) => (
+                      <Select {...field}>
+                        <Select.Option value="english">English</Select.Option>
+                        <Select.Option value="spanish">Spanish</Select.Option>
+                      </Select>
+                    )}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={12} style={{ marginTop: 5 }}>
+                <label htmlFor="project" className="labelContent">
+                  Writing for
+                </label>
+                <Form.Item
+                  validateStatus={errors?.project ? "error" : ""}
+                  help={errors?.project?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="project"
+                    render={({ field }) => (
+                      <Select {...field}>
+                        <Select.Option value="english">Job</Select.Option>
+                        <Select.Option value="spanish">Covid</Select.Option>
+                      </Select>
+                    )}
+                  />
+                </Form.Item>
+              </Col>
 
-            <select
-              {...register("language")}
-              className="inputBox"
-              style={{ height: "60%" }}
-              defaultValue={"english"}
-            >
-              <option disabled>Select Language</option>
-              <option value="english">English</option>
-              <option value="spanish">Spanish</option>
-              <option value="french">French</option>
-              <option value="hindi">Hindi</option>
-            </select>
-          </Col>
-          <Col span={12} style={{ marginTop: 5 }}>
-            <label htmlFor="project" className="labelContent">
-              Writing for
-            </label>
-            <select
-              {...register("project")}
-              className="inputBox"
-              style={{ height: "60%" }}
-            >
-              <option disabled>Select project</option>
-              <option value="covid">Covid</option>
-              <option value="job">Job</option>
-            </select>
-          </Col>
+              <Col span={24}>
+                <label htmlFor="news" className="labelContent">
+                  What is the news story?
+                </label>
 
-          <Col span={24} style={{ marginTop: 20 }}>
-            <label htmlFor="news" className="labelContent">
-              What is the news story?
-            </label>
+                <Form.Item
+                  validateStatus={errors?.news ? "error" : ""}
+                  help={errors?.news?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="news"
+                    render={({ field }) => (
+                      <Input.TextArea
+                        {...field}
+                        placeholder="What is the news story?"
+                        rows={3}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <label htmlFor="facts" className="labelContent">
+                  What are some key facts about the company?
+                </label>
 
-            <textarea
-              {...register("news")}
-              placeholder="What is the news story?"
-              className="inputBox"
-              rows="5"
-            ></textarea>
-            {errors?.news?.message && (
-              <label htmlFor="news" className="levelError">
-                {errors?.news?.message}
-              </label>
-            )}
-          </Col>
-          <Col span={24} style={{ marginTop: 20 }}>
-            <label htmlFor="facts" className="labelContent">
-              What are some key facts about the company?
-            </label>
+                <Form.Item
+                  validateStatus={errors?.facts ? "error" : ""}
+                  help={errors?.facts?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="facts"
+                    render={({ field }) => (
+                      <Input
+                        className="inputBox"
+                        placeholder=" What are some key facts about the company?"
+                        {...field}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <label htmlFor="press" className="labelContent">
+                  What is the theme of the press release?
+                </label>
 
-            <input
-              {...register("facts")}
-              placeholder="What are some key facts about the company?"
-              className="inputBox"
-            />
-            {errors?.facts?.message && (
-              <label htmlFor="news" className="levelError">
-                {errors?.facts?.message}
-              </label>
-            )}
-          </Col>
-          <Col span={24} style={{ marginTop: 20 }}>
-            <label htmlFor="press" className="labelContent">
-              What is the theme of the press release?
-            </label>
+                <Form.Item
+                  validateStatus={errors?.press ? "error" : ""}
+                  help={errors?.press?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="press"
+                    render={({ field }) => (
+                      <Input
+                        className="inputBox"
+                        placeholder=" What is the theme of the press release?"
+                        {...field}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <label htmlFor="company" className="labelContent">
+                  Who is leading the company? (Name and position)
+                </label>
+                <Form.Item
+                  validateStatus={errors?.company ? "error" : ""}
+                  help={errors?.company?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="company"
+                    render={({ field }) => (
+                      <Input
+                        className="inputBox"
+                        placeholder=" Who is leading the company? (Name and position)"
+                        {...field}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
 
-            <input
-              {...register("press")}
-              placeholder="What is the theme of the press release?"
-              className="inputBox"
-            />
-            {errors?.press?.message && (
-              <label htmlFor="news" className="levelError">
-                {errors?.press?.message}
-              </label>
-            )}
-          </Col>
-          <Col span={24} style={{ marginTop: 20 }}>
-            <label htmlFor="company" className="labelContent">
-              Who is leading the company? (Name and position)
-            </label>
+              <Col span={24}>
+                <label htmlFor="tone" className="labelContent">
+                  Tone
+                </label>
 
-            <input
-              {...register("company")}
-              placeholder="Who is leading the company? (Name and position)"
-              className="inputBox"
-            />
-            {errors?.company?.message && (
-              <label htmlFor="news" className="levelError">
-                {errors?.company?.message}
-              </label>
-            )}
-          </Col>
+                <Form.Item
+                  validateStatus={errors?.tone ? "error" : ""}
+                  help={errors?.tone?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="tone"
+                    render={({ field }) => (
+                      <Select {...field}>
+                        <Select.Option value="" disabled>
+                          Select Tone
+                        </Select.Option>
+                        {tone?.map((option) => (
+                          <Select.Option key={option.id} value={option.value}>
+                            {option.label}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                </Form.Item>
+              </Col>
 
-          <Col span={24} style={{ marginTop: 20 }}>
-            <label htmlFor="tone" className="labelContent">
-              Tone
-            </label>
+              <Col
+                span={24}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <label htmlFor="guide" className="labelContent">
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    <BsListStars style={{ marginRight: 20 }} size={20} />
+                    Inclusivity Guidelines
+                  </span>
+                </label>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <Form.Item style={{ display: "flex", alignItems: "center" }}>
+                    <Controller
+                      control={control}
+                      name="guide"
+                      render={({ field }) => (
+                        <Switch {...field} style={{ marginRight: 10 }} />
+                      )}
+                    />
+                    {guideValue ? `Enable` : `Disabled`}
+                  </Form.Item>
+                </span>
+              </Col>
 
-            <select
-              {...register("tone")}
-              className="inputBox"
-              style={{ height: "55%" }}
-            >
-              <option disabled>Select Tone</option>
-              <option value="adventurous">Adventurous</option>
-              <option value="analytical">Analytical</option>
-              <option value="appreciative">Appreciative</option>
-              <option value="assertive">Assertive</option>
-              <option value="awestruck">Awestruck</option>
-              <option value="bold">Bold</option>
-              <option value="candid">Candid</option>
-              <option value="casual">Casual</option>
-            </select>
-            {errors?.tone?.message && (
-              <label htmlFor="news" className="levelError">
-                {errors?.tone?.message}
-              </label>
-            )}
-          </Col>
-
-          <Col
-            span={24}
-            style={{
-              marginTop: 20,
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <label htmlFor="guide" className="labelContent">
-              <span style={{ display: "flex", alignItems: "center" }}>
-                <BsListStars style={{ marginRight: 20 }} size={20} />
-                Inclusivity Guidelines
-              </span>
-            </label>
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <Switch
-                id="guide"
-                defaultValue={false}
-                style={{ marginRight: 10 }}
-              />
-              Disabled
-            </span>
-          </Col>
-
-          <Col
-            span={24}
-            style={{
-              marginTop: 20,
-              marginBottom: 50,
-              display: "flex",
-              justifyContent: "left",
-              alignItems: "left",
-            }}
-          >
-            <button type="submit" className="btn">
-              Write for me
-            </button>
-          </Col>
-        </Row>
-      </form>
+              <Col
+                span={24}
+                style={{
+                  marginTop: 30,
+                  marginBottom: 70,
+                }}
+              >
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="btnTemplateSubmit"
+                  style={{ width: "100%" }}
+                >
+                  Write for me
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </FormProvider>
+      </div>
     </>
   );
 };
