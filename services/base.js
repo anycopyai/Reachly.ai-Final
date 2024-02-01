@@ -10,9 +10,8 @@ const apiService = axios.create({
 // Add a request interceptor to include the Bearer token before each request
 apiService.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("accessToken");
-    // Replace with your actual Bearer token
-    console.log(token)
+    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhZ2Fyd2Vic2VjQGdtYWlsLmNvbSIsImlhdCI6MTcwNTIzNjg0NH0.VFNuqajZFY9P1Ez-47zWscjJXbW71Pv2aJrOkygXDyk`;
+  
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

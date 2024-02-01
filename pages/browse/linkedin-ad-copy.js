@@ -3,15 +3,15 @@ import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
-import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import LinkedinAdCopyForm from "../../components/form/LinkedinadCopyForm";
 
 const items = [
   {
     key: "1",
     label: "Prompt",
-    children: <PressReleaseForm />,
+    children: <LinkedinAdCopyForm />,
   },
 ];
 const result = [
@@ -21,7 +21,7 @@ const result = [
     children: <PressReleaseResult />,
   },
 ];
-const PressRelease = () => {
+const LinkedinAd = () => {
   const onChange = (key) => {
     console.log(key);
   };
@@ -74,4 +74,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default LinkedinAd;

@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Row, Button } from "antd";
 import { FaStar } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import { IoAnalyticsOutline } from "react-icons/io5";
 
 function formatRouteName(routeName) {
   const parts = routeName.split("-");
@@ -59,7 +60,7 @@ const Headbar = () => {
             justifyContent: "flex-end",
             alignItems: "center",
             "@media (max-width: 576px)": {
-              justifyContent: "center",
+              justifyContent: "left",
             },
           }}
         >
@@ -73,9 +74,20 @@ const Headbar = () => {
               fontWeight: 400,
               lineHeight: "24px",
               borderRadius: 0,
+              paddingLeft: "50px",
+              paddingRight: "50px",
             }}
           >
-            Upgrade Now
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+              }}
+            >
+              <IoAnalyticsOutline /> 5 Credits Left{" "}
+            </span>
           </Button>
         </Col>
       </Row>

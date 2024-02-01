@@ -374,6 +374,7 @@ div#__next > main {
     outline: 0px !important;
     width: 100%;
     height: 50%;
+    margin-top: 3px;
 }
 
 .labelContent {
@@ -383,6 +384,11 @@ div#__next > main {
   font-style: normal;
   font-weight: 400;
   line-height: 22px; 
+ 
+ 
+}
+.selectBox{
+  margin-top: 3px;
 }
 
 .levelError {
@@ -466,7 +472,7 @@ justify-content: 'left';
 align-items: center;
 gap: 24px;
 }
-
+  
 .btnTemplateSubmit {
   border-radius: 2px;
 border: 1px solid var(--Primary-6, #1890FF);
@@ -474,6 +480,12 @@ background: var(--Primary-6, #1890FF);
 box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
 }
 
+.btnTemplateSubmit::after {
+  border-radius: 2px;
+  border: 1px solid var(--Primary-6, #1890FF);
+  background: var(--Primary-6, #1890FF);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+}
 .cardLayout {
   display: flex;
 padding: 32px 32px 24px 32px;
