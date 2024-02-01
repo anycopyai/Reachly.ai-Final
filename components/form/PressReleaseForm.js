@@ -89,12 +89,16 @@ const PressReleaseForm = () => {
 
   return (
     <>
-      <div
-        style={{
+    <div  style={{
           height: "70vh",
           overflowY: "auto",
           overflowX: "hidden",
-          padding: 5,
+         
+        }}>
+      <div
+        style={{
+        
+          marginRight: 30,
         }}
       >
         <FormProvider {...methods}>
@@ -303,6 +307,7 @@ const PressReleaseForm = () => {
             </Row>
           </Form>
         </FormProvider>
+      </div>
       </div>
     </>
   );
