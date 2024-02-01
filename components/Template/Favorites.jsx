@@ -4,8 +4,8 @@ import {FaSearchPlus,FaStar,FaFacebook} from "react-icons/fa"
 
 const Favorites = () => {
   return (
-    <div className=' ml-28 mt-14  mx-auto w-11/12'>
-        <h1 className=' text-xl translate-x-6 '>Favorites</h1>
+    <div className='  mt-14  mx-auto w-11/12'>
+        <h1 className=' text-xl '>Favorites</h1>
         {/*card*/}
         <div className=' flex  flex-wrap  gap-4 mt-4 w-11/13 mx-auto'>
             <Card  icon1={<FaSearchPlus />} icon2={<FaStar />} heading={"Inclusive Lens"} desc={"Obtain critique and suggested alternatives for user-written text, from an inclusive , anti-bias and anti-sterotype lens."}/>

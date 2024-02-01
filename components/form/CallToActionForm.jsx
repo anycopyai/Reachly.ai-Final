@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 
-const PressReleaseForm = () => {
+const CallToAction = () => {
   const { enqueueSnackbar } = useSnackbar();
   const tone = [
     { id: 1, value: "adventurous", label: "Adventurous" },
@@ -25,29 +25,13 @@ const PressReleaseForm = () => {
   const LandingSchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
-    news: Yup.string().required(
-      "The field What is the news story? is required."
-    ),
-    facts: Yup.string().required(
-      "The field What are some key facts about the company? is required."
-    ),
-    press: Yup.string().required(
-      "The field What is the theme of the press release? is required."
-    ),
-    company: Yup.string().required(
-      "The field Who is leading the company? (Name and position) is required."
-    ),
-    tone: Yup.string().required("Tone is required"),
+    product:Yup.string().required("Original Text is Required")
+   
   });
 
   const defaultValues = {
     language: "english",
-    project: "",
-    news: "",
-    facts: "",
-    press: "",
-    company: "",
-    tone: "",
+    product:"",
     guide: false,
   };
 
@@ -62,29 +46,42 @@ const PressReleaseForm = () => {
     formState: { errors },
   } = methods;
 
-  useEffect(() => {
-    if (errors?.news) {
-      enqueueSnackbar(`${errors?.news?.message}`, { variant: "error" });
-    } else if (errors?.facts) {
-      enqueueSnackbar(`${errors?.facts?.message}`, { variant: "error" });
-    } else if (errors?.press) {
-      enqueueSnackbar(`${errors?.press?.message}`, { variant: "error" });
-    } else if (errors?.company) {
-      enqueueSnackbar(`${errors?.company?.message}`, { variant: "error" });
-    } else if (errors?.tone) {
-      enqueueSnackbar(`${errors?.tone?.message}`, { variant: "error" });
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //   if (errors?.news) {
+  //     enqueueSnackbar(`${errors?.news?.message}`, { variant: "error" });
+  //   } else if (errors?.facts) {
+  //     enqueueSnackbar(`${errors?.facts?.message}`, { variant: "error" });
+  //   } else if (errors?.press) {
+  //     enqueueSnackbar(`${errors?.press?.message}`, { variant: "error" });
+  //   } else if (errors?.company) {
+  //     enqueueSnackbar(`${errors?.company?.message}`, { variant: "error" });
+  //   } else if (errors?.tone) {
+  //     enqueueSnackbar(`${errors?.tone?.message}`, { variant: "error" });
+  //   }
+  // }, [errors]);
   const guideValue = useWatch({
     control,
     name: "guide",
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log("data",data);
     try {
-      // enqueueSnackbar("Login sucessfull", { variant: "success" });
-    } catch (error) {}
+      const text=data.product
+      const response = await axios.post("https://copybackend.onrender.com/api/cta", {
+        text
+      }, {
+        headers: {
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhZ2Fyd2Vic2VjQGdtYWlsLmNvbSIsImlhdCI6MTcwNTIzNjg0NH0.VFNuqajZFY9P1Ez-47zWscjJXbW71Pv2aJrOkygXDyk'
+        }
+      });
+      console.log("res",response)
+    } catch (error) {
+       return res.status(400).json({
+        sucess:false,
+        error:error
+       })
+    }
   };
 
   return (
@@ -101,7 +98,7 @@ const PressReleaseForm = () => {
           <Form onFinish={handleSubmit(onSubmit)}>
             <Row gutter={16}>
               <Col span={12} style={{ marginTop: 5 }}>
-                <label htmlFor="language" className="labelContent">
+                <label htmlFor="language" className=" text-slate-600">
                   Language
                 </label>
                 <Form.Item
@@ -121,7 +118,7 @@ const PressReleaseForm = () => {
                 </Form.Item>
               </Col>
               <Col span={12} style={{ marginTop: 5 }}>
-                <label htmlFor="project" className="labelContent">
+                <label htmlFor="project" className=" text-slate-600">
                   Writing for
                 </label>
                 <Form.Item
@@ -142,121 +139,28 @@ const PressReleaseForm = () => {
               </Col>
 
               <Col span={24}>
-                <label htmlFor="news" className="labelContent">
-                  What is the news story?
+                <label htmlFor="product" className="  text-slate-600 text-md  mb-9">
+                Business/service/product description
                 </label>
-
+              
                 <Form.Item
-                  validateStatus={errors?.news ? "error" : ""}
-                  help={errors?.news?.message}
+                  validateStatus={errors?.product ? "error" : ""}
+                  help={errors?.product?.message}
                 >
                   <Controller
                     control={control}
-                    name="news"
+                    name="product"
                     render={({ field }) => (
                       <Input.TextArea
                         {...field}
-                        placeholder="What is the news story?"
+                        placeholder="We are the company that develop mobile app"
                         rows={3}
                       />
                     )}
                   />
                 </Form.Item>
               </Col>
-              <Col span={24}>
-                <label htmlFor="facts" className="labelContent">
-                  What are some key facts about the company?
-                </label>
-
-                <Form.Item
-                  validateStatus={errors?.facts ? "error" : ""}
-                  help={errors?.facts?.message}
-                >
-                  <Controller
-                    control={control}
-                    name="facts"
-                    render={({ field }) => (
-                      <Input
-                        className="inputBox"
-                        placeholder=" What are some key facts about the company?"
-                        {...field}
-                      />
-                    )}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <label htmlFor="press" className="labelContent">
-                  What is the theme of the press release?
-                </label>
-
-                <Form.Item
-                  validateStatus={errors?.press ? "error" : ""}
-                  help={errors?.press?.message}
-                >
-                  <Controller
-                    control={control}
-                    name="press"
-                    render={({ field }) => (
-                      <Input
-                        className="inputBox"
-                        placeholder=" What is the theme of the press release?"
-                        {...field}
-                      />
-                    )}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <label htmlFor="company" className="labelContent">
-                  Who is leading the company? (Name and position)
-                </label>
-                <Form.Item
-                  validateStatus={errors?.company ? "error" : ""}
-                  help={errors?.company?.message}
-                >
-                  <Controller
-                    control={control}
-                    name="company"
-                    render={({ field }) => (
-                      <Input
-                        className="inputBox"
-                        placeholder=" Who is leading the company? (Name and position)"
-                        {...field}
-                      />
-                    )}
-                  />
-                </Form.Item>
-              </Col>
-
-              <Col span={24}>
-                <label htmlFor="tone" className="labelContent">
-                  Tone
-                </label>
-
-                <Form.Item
-                  validateStatus={errors?.tone ? "error" : ""}
-                  help={errors?.tone?.message}
-                >
-                  <Controller
-                    control={control}
-                    name="tone"
-                    render={({ field }) => (
-                      <Select {...field}>
-                        <Select.Option value="" disabled>
-                          Select Tone
-                        </Select.Option>
-                        {tone?.map((option) => (
-                          <Select.Option key={option.id} value={option.value}>
-                            {option.label}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    )}
-                  />
-                </Form.Item>
-              </Col>
-
+             
               <Col
                 span={24}
                 style={{
@@ -264,7 +168,7 @@ const PressReleaseForm = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <label htmlFor="guide" className="labelContent">
+                <label htmlFor="guide" className=" text-slate-600">
                   <span style={{ display: "flex", alignItems: "center" }}>
                     <BsListStars style={{ marginRight: 20 }} size={20} />
                     Inclusivity Guidelines
@@ -295,7 +199,7 @@ const PressReleaseForm = () => {
                   type="primary"
                   htmlType="submit"
                   className="btnTemplateSubmit"
-                  style={{ width: "100%" }}
+                  style={{ width: "30%", backgroundColor: "#6366f1" }}
                 >
                   Write for me
                 </Button>
@@ -308,4 +212,4 @@ const PressReleaseForm = () => {
   );
 };
 
-export default PressReleaseForm;
+export default CallToAction;

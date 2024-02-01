@@ -6,12 +6,13 @@ import Headbar from "../../components/Headbar";
 import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import FreshForm from "../../components/form/CallToActionForm";
 
 const items = [
   {
     key: "1",
     label: "Prompt",
-    children: <PressReleaseForm />,
+    children: <FreshForm/>,
   },
 ];
 const result = [
@@ -21,14 +22,14 @@ const result = [
     children: <PressReleaseResult />,
   },
 ];
-const PressRelease = () => {
+const CallToAction = () => {
   const onChange = (key) => {
     console.log(key);
   };
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Press release</title>
+        <title>RDMI INDIA - Call To Action </title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -78,4 +79,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default CallToAction;
