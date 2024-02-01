@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { CiCircleInfo } from "react-icons/ci";
@@ -11,7 +11,7 @@ import apiService from '../../services/base';
 
 const GoogleAdsForm = () => {
   const { enqueueSnackbar } = useSnackbar();
-
+  const [loading, setLoading] = useState(false);
   const LinkedinAdCopySchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
@@ -58,15 +58,18 @@ const GoogleAdsForm = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
+      setLoading(true);
         apiService.post('/google-ads', {
             text: data?.topics
         })
         .then(response => {
           // Handle success
+          setLoading(false);
           console.log('Response:', response.data);
         })
         .catch(error => {
           // Handle error
+          setLoading(false);
           console.error('Error:', error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });
         });
@@ -276,6 +279,7 @@ const GoogleAdsForm = () => {
                     htmlType="submit"
                     className="btnTemplateSubmit"
                     style={{ width: "100%" }}
+                    loading={loading}
                   >
                     Generate Copy
                   </Button>

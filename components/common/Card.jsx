@@ -5,14 +5,14 @@ const Card = ({ icon1, icon2, heading, desc }) => {
     <div className="cardLayout min-h-[12em] hover:border-10 hover:border-solid hover:border-[#466ab1]">
       <div class="grid grid-cols-12 gap-4">
         <div
-          class="col-span-1"
-          style={{ height: "24px", width: "24px", color: "#1890ff" }}
+          class="col-span-2"
+          style={{  color: "#1890ff",fontSize:'25px', display:'flex', justifyContent:'right'  }}
         >
           {" "}
           {icon1}
         </div>
 
-        <div class="col-span-11">
+        <div class="col-span-10">
           <span
             style={{
               display: "flex",
