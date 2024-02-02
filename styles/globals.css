@@ -496,7 +496,7 @@ flex: 1 0 0;
 align-self: stretch;
 border-radius: 2px;
 border: 1px solid #E6E8EC;
-background: var(--Conditional-pop-over, #FFF);
+background: var(--Conditional-pop-over, #fff);
 }
 
 .cardDescription {
@@ -515,4 +515,8 @@ font-size: 16px;
 font-style: normal;
 font-weight: 500;
 line-height: 24px; /* 150% */
+}
+
+.hover-border:hover {
+  border: 1px solid #1890FF;
 }

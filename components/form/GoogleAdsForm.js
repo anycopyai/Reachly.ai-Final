@@ -8,10 +8,16 @@ import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 import apiService from '../../services/base';
+import { useRouter } from "next/router";
 
-const GoogleAdsForm = () => {
+const GoogleAdsForm = ({googleAdsData}) => {  
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const pathname = router.pathname;
+  const routeParts = pathname.split("/");
+  const lastRouteName = routeParts[routeParts.length - 1].toLowerCase();
+
   const LinkedinAdCopySchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
@@ -56,19 +62,18 @@ const GoogleAdsForm = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+  
     try {
       setLoading(true);
-        apiService.post('/google-ads', {
+        apiService.post(`${lastRouteName}`, {
             text: data?.topics
         })
         .then(response => {
-          // Handle success
+          console.log(response.data)
           setLoading(false);
-          console.log('Response:', response.data);
+          googleAdsData(response.data)
         })
         .catch(error => {
-          // Handle error
           setLoading(false);
           console.error('Error:', error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });

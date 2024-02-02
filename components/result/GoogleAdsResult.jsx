@@ -1,22 +1,35 @@
 import React from "react";
+import ResultCard from "../common/ResultCard";
+import { Col, Row } from "antd";
 
-const GoogleAdsResult = () => {
+const GoogleAdsResult = ({ googleAdsResultData }) => {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "70vh",
+        height: "72vh",
         overflowY: "auto",
         overflowX: "hidden",
-        backgroundColor:'#f9f8f7'
+        backgroundColor: "#f9f8f7",
       }}
     >
-      {" "}
-      <div 
-     
-      > Result Show </div>
+      <div style={{ backgroundColor: "#f9f8f7", padding: 15 }}>
+        <Row>
+          {googleAdsResultData?.content?.map((data, index) => {
+            return (
+              <Col
+                xs={24}
+                md={24}
+                lg={24}
+                key={index}
+                style={{ marginBottom: 15 }}
+               
+              >
+                <ResultCard result={data} />
+              </Col>
+            );
+          })}
+        </Row>
+      </div>
     </div>
   );
 };

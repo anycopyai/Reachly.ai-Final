@@ -8,7 +8,7 @@ import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 
 
-const GoogleAds = () => {
+const FacebookAds = () => {
   const[resultData, setResult]= useState()
   const receiveGoogleadsData = (data) => {
     setResult(data);
@@ -25,7 +25,8 @@ const GoogleAds = () => {
     {
       key: "1",
       label: "Result",
-      children: <GoogleAdsResult googleAdsResultData={resultData} />,
+      children: '',
+      // children: <GoogleAdsResult googleAdsResultData={resultData} />,
     },
   ];
   const onChange = (key) => {
@@ -74,4 +75,4 @@ const GoogleAds = () => {
   );
 };
 
-export default GoogleAds;
+export default FacebookAds;
