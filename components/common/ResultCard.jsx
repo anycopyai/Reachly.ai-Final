@@ -10,7 +10,10 @@ const ResultCard = ({ result }) => {
   const words = result.length;
   const cleanText = result.replace(/[^a-zA-Z]/g, "");
   const letterCount = cleanText.length;
+  const handleCopyClick = (text) => {
+    navigator.clipboard.writeText(text)
 
+  };
   return (
     <div
       class=" hover:border-10 hover:border-solid hover:border-[#466ab1]"
@@ -75,7 +78,7 @@ const ResultCard = ({ result }) => {
               }}
             >
               <Button icon={<IoShareSocialOutline />}>Share</Button>
-              <Button icon={<IoCopyOutline />} >
+              <Button icon={<IoCopyOutline />} onClick={() => handleCopyClick(result)}>
                 Copy
               </Button>
               <Button icon={<MdOutlineSaveAlt />}>Save</Button>
