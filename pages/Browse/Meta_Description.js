@@ -7,12 +7,13 @@ import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
 import FreshForm from "../../components/form/CallToActionForm";
+import Meta_form from "../../components/form/Meta_form";
 
 const items = [
   {
     key: "1",
     label: "Prompt",
-    children: <FreshForm/>,
+    children: <Meta_form/>,
   },
 ];
 const result = [
@@ -24,14 +25,14 @@ const result = [
 ];
 
 
-const CallToAction = () => {
+const Meta_Description = () => {
   const onChange = (key) => {
     console.log(key);
   };
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Call To Action </title>
+        <title>RDMI INDIA - Meta Description </title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -81,4 +82,4 @@ const CallToAction = () => {
   );
 };
 
-export default CallToAction;
+export default Meta_Description;

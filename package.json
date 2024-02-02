@@ -35,6 +35,7 @@
         "axios": "^1.6.7",
         "clsx": "^2.0.0",
         "contentful": "^10.6.12",
+        "dotenv": "^16.4.1",
         "draft-js": "^0.11.7",
         "firebase-admin": "^11.11.0",
         "formik": "^2.4.5",

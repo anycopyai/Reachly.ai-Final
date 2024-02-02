@@ -8,34 +8,21 @@ import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios"
-import dotenv from "dotenv"
-import apiService from "../../services/base";
-dotenv.config();
 
-const CallToAction = () => {
+
+const Meta_form = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const tone = [
-    { id: 1, value: "adventurous", label: "Adventurous" },
-    { id: 2, value: "analytical", label: "Analytical" },
-    { id: 3, value: "appreciative", label: "Appreciative" },
-    { id: 4, value: "awestruck", label: "Awestruck" },
-    { id: 5, value: "bold", label: "Bold" },
-    { id: 6, value: "candid", label: "Candid" },
-    { id: 7, value: "casual", label: "Casual" },
-    { id: 8, value: "cautionary", label: "Cautionary" },
-    { id: 9, value: "adventurous", label: "Adventurous" },
-    { id: 10, value: "adventurous", label: "Adventurous" },
-  ];
+ 
   const LandingSchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
-    product:Yup.string().required("Original Text is Required")
+    topic:Yup.string().required("Original Text is Required")
    
   });
 
   const defaultValues = {
     language: "english",
-    product:"",
+    topic:"",
     guide: false,
   };
 
@@ -70,20 +57,21 @@ const CallToAction = () => {
 
 
   const onSubmit = async (data) => {
-    console.log("data", data);
+ 
     try {
-      apiService.post('cta', {
-        text: data?.product
-    })
-    .then(response => {
-      // Handle success
-      console.log('Response:', response.data);
-    })
-    .catch(error => {
-      // Handle error
-      console.error('Error:', error);
-      enqueueSnackbar(`${error?.message}`, { variant: "error" });
-    });
+        apiService.post('meta-description', {
+            text: data?.product
+        })
+        .then(response => {
+          // Handle success
+          console.log('Response:', response.data);
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error:', error);
+          enqueueSnackbar(`${error?.message}`, { variant: "error" });
+        });
+     
     } catch (error) {
       console.log("error", error);
     }
@@ -104,7 +92,7 @@ const CallToAction = () => {
           <Form onFinish={handleSubmit(onSubmit)}>
             <Row gutter={16}>
               <Col span={12} style={{ marginTop: 5 }}>
-                <label htmlFor="language" className=" text-slate-600">
+                <label htmlFor="language" className=" text-slate-400">
                   Language
                 </label>
                 <Form.Item
@@ -114,6 +102,7 @@ const CallToAction = () => {
                   <Controller
                     control={control}
                     name="language"
+                    style={{ marginTop: 10 }}
                     render={({ field }) => (
                       <Select {...field}>
                         <Select.Option value="english">English</Select.Option>
@@ -144,20 +133,21 @@ const CallToAction = () => {
                 </Form.Item>
               </Col>
 
-              <Col span={24}>
-                <label htmlFor="product" className="  text-slate-600 text-md  mb-9">
-                Business/service/product description
+              <Col span={24} >
+                <label htmlFor="topic" className="  text-slate-600 text-md  mb-9">
+                     Page Topic
                 </label>
               
                 <Form.Item
-                  validateStatus={errors?.product ? "error" : ""}
-                  help={errors?.product?.message}
+                  validateStatus={errors?.topic ? "error" : ""}
+                  help={errors?.topic?.message}
                 >
                   <Controller
                     control={control}
-                    name="product"
+                    name="topic"
+                    
                     render={({ field }) => (
-                      <Input.TextArea
+                      <Input
                         {...field}
                         placeholder="We are the company that develop mobile app"
                         rows={3}
@@ -218,4 +208,4 @@ const CallToAction = () => {
   );
 };
 
-export default CallToAction;
+export default Meta_form;
