@@ -67,7 +67,10 @@ const CallToAction = () => {
     control,
     name: "guide",
   });
-
+  const modeValue = useWatch({
+    control,
+    name: "mode",
+  });
 
   const onSubmit = async (data) => {
     console.log("data", data);
@@ -143,7 +146,57 @@ const CallToAction = () => {
                   />
                 </Form.Item>
               </Col>
-
+              
+                <Col
+                  span={24}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: 20,
+                  }}
+                >
+                  <label htmlFor="mode" className="labelContent">
+                    <span>
+                      <p> Brainstorm Mode</p>
+                      <div style={{ fontSize: "10px" }}>
+                        {" "}
+                        Enable to write random ideas/inspiration based on
+                        selected project
+                      </div>
+                    </span>
+                  </label>
+                  <Row gutter={4}>
+                    <Col
+                      span={24}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <Form.Item>
+                        <Controller
+                          control={control}
+                          name="mode"
+                          render={({ field }) => (
+                            <Switch
+                              size="small"
+                              style={{
+                                backgroundColor: modeValue ? "#1890FF" : "gray",
+                              }}
+                              {...field}
+                            />
+                          )}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col
+                      span={24}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <div style={{ marginTop: "-20px", fontSize: "12px" }}>
+                        {" "}
+                        {modeValue ? `Enable` : `Disabled`}
+                      </div>
+                    </Col>
+                  </Row>
+                </Col>
               <Col span={24}>
                 <label htmlFor="product" className="  text-slate-600 text-md  mb-9">
                 Business/service/product description

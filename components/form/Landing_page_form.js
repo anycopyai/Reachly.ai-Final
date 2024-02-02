@@ -8,21 +8,25 @@ import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios"
+import dotenv from "dotenv"
+import apiService from "../../services/base";
 
-
-const Meta_form = () => {
+const Landing_page_form = () => {
   const { enqueueSnackbar } = useSnackbar();
- 
+
   const LandingSchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
-    topic:Yup.string().required("Original Text is Required")
-   
+    benefit:Yup.string().required("Benefit is Required"),
+    Feature:Yup.string().required("Feature is Required"),
+    Topic:Yup.string().required("Topic is Required"),
   });
 
   const defaultValues = {
     language: "english",
-    topic:"",
+    benefit:"",
+    Feature:"",
+    Topic:"",
     guide: false,
   };
 
@@ -59,23 +63,23 @@ const Meta_form = () => {
     control,
     name: "mode",
   });
-
   const onSubmit = async (data) => {
- 
+    console.log("data", data);
     try {
-        apiService.post('meta-description', {
-            text: data?.product
-        })
-        .then(response => {
-          // Handle success
-          console.log('Response:', response.data);
-        })
-        .catch(error => {
-          // Handle error
-          console.error('Error:', error);
-          enqueueSnackbar(`${error?.message}`, { variant: "error" });
-        });
-     
+      apiService.post('landing-page-copy-landing', {
+        topic: data?.Topic,
+        benefit:data?.benefit,
+        feature:data?.Feature
+    })
+    .then(response => {
+      // Handle success
+      console.log('Response:', response.data);
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error:', error);
+      enqueueSnackbar(`${error?.message}`, { variant: "error" });
+    });
     } catch (error) {
       console.log("error", error);
     }
@@ -96,7 +100,7 @@ const Meta_form = () => {
           <Form onFinish={handleSubmit(onSubmit)}>
             <Row gutter={16}>
               <Col span={12} style={{ marginTop: 5 }}>
-                <label htmlFor="language" className=" text-slate-400">
+                <label htmlFor="language" className=" text-slate-600">
                   Language
                 </label>
                 <Form.Item
@@ -106,7 +110,6 @@ const Meta_form = () => {
                   <Controller
                     control={control}
                     name="language"
-                    style={{ marginTop: 10 }}
                     render={({ field }) => (
                       <Select {...field}>
                         <Select.Option value="english">English</Select.Option>
@@ -136,7 +139,6 @@ const Meta_form = () => {
                   />
                 </Form.Item>
               </Col>
-                
               <Col
                   span={24}
                   style={{
@@ -187,30 +189,72 @@ const Meta_form = () => {
                     </Col>
                   </Row>
                 </Col>
-              <Col span={24} >
-                <label htmlFor="topic" className="  text-slate-600 text-md  mb-9">
-                     Page Topic
+              <Col span={24}>
+                <label htmlFor="benefit" className="  text-slate-600 text-md  mb-9">
+                Benefit
                 </label>
               
                 <Form.Item
-                  validateStatus={errors?.topic ? "error" : ""}
-                  help={errors?.topic?.message}
+                  validateStatus={errors?.product ? "error" : ""}
+                  help={errors?.benefit?.message}
                 >
                   <Controller
                     control={control}
-                    name="topic"
-                    
+                    name="benefit"
                     render={({ field }) => (
                       <Input
                         {...field}
-                        placeholder="We are the company that develop mobile app"
+                        placeholder="Save Your Money"
                         rows={3}
                       />
                     )}
                   />
                 </Form.Item>
               </Col>
-             
+              <Col span={24}>
+                <label htmlFor="Feature" className="  text-slate-600 text-md  mb-9">
+                Feature
+                </label>
+              
+                <Form.Item
+                  validateStatus={errors?.Feature ? "error" : ""}
+                  help={errors?.Feature?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="Feature"
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        placeholder="New Widget"
+                        rows={3}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <label htmlFor="Topic" className="  text-slate-600 text-md  mb-9">
+                Topic
+                </label>
+              
+                <Form.Item
+                  validateStatus={errors?.Topic ? "error" : ""}
+                  help={errors?.Topic?.message}
+                >
+                  <Controller
+                    control={control}
+                    name="Topic"
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        placeholder="New Widget Releases"
+                        rows={3}
+                      />
+                    )}
+                  />
+                </Form.Item>
+              </Col>
               <Col
                 span={24}
                 style={{
@@ -262,4 +306,4 @@ const Meta_form = () => {
   );
 };
 
-export default Meta_form;
+export default Landing_page_form;
