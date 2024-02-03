@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { BsListStars } from "react-icons/bs";
@@ -12,7 +12,7 @@ import dotenv from "dotenv"
 import apiService from "../../services/base";
 dotenv.config();
 
-const CallToAction = () => {
+const CallToAction = ({calltoAcsData}) => {
   const { enqueueSnackbar } = useSnackbar();
   const tone = [
     { id: 1, value: "adventurous", label: "Adventurous" },
@@ -79,8 +79,7 @@ const CallToAction = () => {
         text: data?.product
     })
     .then(response => {
-      // Handle success
-      console.log('Response:', response.data);
+      calltoAcsData(response?.data)
     })
     .catch(error => {
       // Handle error

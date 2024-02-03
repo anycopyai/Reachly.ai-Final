@@ -10,7 +10,7 @@ import { Form, Input, Select, Button } from "antd";
 import axios from "axios"
 
 
-const Meta_form = () => {
+const Meta_form = ({Meta_Data}) => {
   const { enqueueSnackbar } = useSnackbar();
  
   const LandingSchema = Yup.object({
@@ -68,7 +68,7 @@ const Meta_form = () => {
         })
         .then(response => {
           // Handle success
-          console.log('Response:', response.data);
+          Meta_Data(response?.data)
         })
         .catch(error => {
           // Handle error

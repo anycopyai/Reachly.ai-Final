@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState} from "react";
 import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
@@ -8,24 +8,32 @@ import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
 import FreshForm from "../../components/form/CallToActionForm";
 import Landing_page_form from "../../components/form/Landing_page_form";
+import LandingCopyResult from "../../components/result/LandingCopyResult";
 
+
+
+const Landing_Page_Copy = () => {
+
+  const[resultData, setResult]= useState()
+  const receivelandingcopy = (data) => {
+    setResult(data);
+  };
+  
+  
 const items = [
   {
     key: "1",
     label: "Prompt",
-    children: <Landing_page_form/>,
+    children: <Landing_page_form copy_landing_data={receivelandingcopy}/>,
   },
 ];
 const result = [
   {
     key: "1",
     label: "Result",
-    // children: <PressReleaseResult />,
+    children: <LandingCopyResult landing_data={resultData} />,
   },
 ];
-
-
-const Landing_Page_Copy = () => {
   const onChange = (key) => {
     console.log(key);
   };

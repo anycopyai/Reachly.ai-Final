@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Col, Row } from "antd";
+
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
@@ -7,24 +8,30 @@ import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
 import FreshForm from "../../components/form/CallToActionForm";
+import CallToResult from "../../components/result/CallToResult";
 
-const items = [
-  {
-    key: "1",
-    label: "Prompt",
-    children: <FreshForm/>,
-  },
-];
-const result = [
-  {
-    key: "1",
-    label: "Result",
-    // children: <PressReleaseResult />,
-  },
-];
 
 
 const CallToAction = () => {
+     const[resultData, setResult]= useState()
+    const receivecalltoAcsData = (data) => {
+      setResult(data);
+    };
+  
+    const items = [
+      {
+        key: "1",
+        label: "Prompt",
+        children: <FreshForm  calltoAcsData={receivecalltoAcsData} />,
+      },
+    ];
+    const result = [
+      {
+        key: "1",
+        label: "Result",
+        children: <CallToResult calltodata={resultData}/>,
+      },
+    ];
   const onChange = (key) => {
     console.log(key);
   };

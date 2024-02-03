@@ -11,7 +11,7 @@ import axios from "axios"
 import dotenv from "dotenv"
 import apiService from "../../services/base";
 
-const Landing_page_form = () => {
+const Landing_page_form = ({copy_landing_data}) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const LandingSchema = Yup.object({
@@ -73,7 +73,7 @@ const Landing_page_form = () => {
     })
     .then(response => {
       // Handle success
-      console.log('Response:', response.data);
+      copy_landing_data(response.data)
     })
     .catch(error => {
       // Handle error

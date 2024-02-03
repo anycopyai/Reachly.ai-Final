@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
@@ -8,24 +8,33 @@ import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
 import FreshForm from "../../components/form/CallToActionForm";
 import Meta_form from "../../components/form/Meta_form";
+import Meta_Result from "../../components/result/Meta_Result";
 
-const items = [
-  {
-    key: "1",
-    label: "Prompt",
-    children: <Meta_form/>,
-  },
-];
-const result = [
-  {
-    key: "1",
-    label: "Result",
-    // children: <PressReleaseResult />,
-  },
-];
+
 
 
 const Meta_Description = () => {
+   
+    const[resultData, setResult]= useState()
+    const RecieveMeta_Data = (data) => {
+      setResult(data);
+    };
+ 
+    const items = [
+      {
+        key: "1",
+        label: "Prompt",
+        children: <Meta_form Meta_Data={RecieveMeta_Data}/>,
+      },
+    ];
+    const result = [
+      {
+        key: "1",
+        label: "Result",
+        children: <Meta_Result  Metadata={resultData}/>
+      },
+    ];
+
   const onChange = (key) => {
     console.log(key);
   };
