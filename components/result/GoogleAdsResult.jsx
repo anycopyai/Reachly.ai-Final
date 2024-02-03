@@ -9,10 +9,10 @@ const GoogleAdsResult = ({ googleAdsResultData }) => {
         height: "72vh",
         overflowY: "auto",
         overflowX: "hidden",
-        backgroundColor: "#f9f8f7",
+        backgroundColor: "#F5F5F5",
       }}
     >
-      <div style={{ backgroundColor: "#f9f8f7", padding: 15 }}>
+      <div style={{ backgroundColor: "#F5F5F5", padding: 15 }}>
         <Row>
           {googleAdsResultData?.content?.map((data, index) => {
             return (

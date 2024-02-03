@@ -20,13 +20,17 @@ const ResultCard = ({ result }) => {
       style={{
         backgroundColor: "white",
         border: "1px solid white",
+        borderRadius:2
       }}
     >
       <div style={{ padding: 25 }}>
         <p
           style={{
-            fontSize: "11px",
-            boxSshadow: "0px 5px 10px rgba(0, 0, 0, 0.3)",
+            fontSize: 16,
+            fontFamily:'Inter',
+            fontWeight:400,
+            // lineHeight: 24,
+            color: 'rgba(0, 0, 0, 0.85)',
           }}
         >
           {result}
@@ -38,8 +42,11 @@ const ResultCard = ({ result }) => {
               justifyContent: "flex-end",
               alignItems: "center",
               marginTop: "10px",
-              fontSize: "9px",
-              fontWeight: 100,
+              fontSize: 14,
+              fontWeight: 400,
+              fontFamily:'Inter',
+              // lineHeight: 22,
+              color: 'rgba(0, 0, 0, 0.25)', 
             }}
           >
             <div>

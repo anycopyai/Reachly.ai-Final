@@ -10,7 +10,7 @@ import { Form, Input, Select, Button } from "antd";
 import apiService from '../../services/base';
 import { useRouter } from "next/router";
 
-const LinkedinAdsForm = ({googleAdsData}) => {  
+const AmazonAdsForm = ({googleAdsData}) => {  
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -65,7 +65,7 @@ const LinkedinAdsForm = ({googleAdsData}) => {
   
     try {
       setLoading(true);
-        apiService.post('linkedin', {
+        apiService.post('amazon-ads-ecommerce', {
             text: data?.topics
         })
         .then(response => {
@@ -298,4 +298,4 @@ const LinkedinAdsForm = ({googleAdsData}) => {
   );
 };
 
-export default LinkedinAdsForm;
+export default AmazonAdsForm;
