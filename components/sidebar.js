@@ -1,10 +1,12 @@
 import React from "react";
+import Image from "next/image"
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import image1 from "../pages/Assets/anycopy.png"
+import {PiCards} from "react-icons/pi"
 import {
   FiHome,
   FiClipboard,
@@ -16,13 +18,14 @@ import {
   FiDownload
 } from "react-icons/fi";
 import {IoIosHelpCircleOutline } from "react-icons/io"
-import {FaFlag} from "react-icons/fa"
+import {FaRegFlag } from "react-icons/fa"
 const navItems = [
   { name: "Projects", IconComponent: FiHome, href: "/projects" },
   { name: "Writer", IconComponent: FiEdit3, href: "/writer" },
   { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
   { name: "Download", IconComponent: FiDownload, href: "/download" },
-  { name: "Report", IconComponent: FaFlag, href: "/Report" },
+  { name: "Download", IconComponent: PiCards, href: "/download"},
+  { name: "Report", IconComponent: FaRegFlag, href: "/Report" },
   { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
 ];
 
@@ -33,31 +36,27 @@ const Sidebar = ({children}) => {
     router.push(href);
   };
 
-  //logout the website and routeback to the login page
+
   const logoutWithRedirect = () => {
     localStorage.removeItem("accessToken");
-    // Redirect to the login page
+  
     router.push('/Login');
   };
 
   return (
     <div className="fixed top-0 left-0 bg-gray-50 w-20 flex flex-col justify-between py-6 h-screen z-10">
-      {/* Updated background color to #F9F8F7 (bg-gray-50) */}
+   
       <div className="flex flex-col items-center">
         <Link href="/">
-          <a className="mb-16 cursor-pointer">
-            <div className="h-12 w-12 flex items-center justify-center bg-black rounded-lg">
-              <span className="text-xl font-bold text-white">E</span>
-            </div>
-          </a>
+               <Image src={image1} className=" -translate-y-6"/>
         </Link>
         {navItems.map(({ name, IconComponent, href }) => (
           <Tippy key={name} content={name} placement="right">
             <div
               onClick={() => handleNavigation(href)}
-              className="mb-12 block cursor-pointer"
+              className="mb-9  block cursor-pointer"
             >
-              <IconComponent className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
+              <IconComponent className="h-5 w-5  hover:text-blue-600 transition-colors duration-200" />
             </div>
           </Tippy>
         ))}
@@ -68,7 +67,7 @@ const Sidebar = ({children}) => {
             onClick={() => handleNavigation("/settings")}
             className="block cursor-pointer"
           >
-            <FiSettings className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
+            <FiSettings className="h-5 w-5  hover:text-blue-600 transition-colors duration-200" />
           </div>
         </Tippy>
         <Tippy content="Logout" placement="right">
@@ -76,7 +75,7 @@ const Sidebar = ({children}) => {
             onClick={() => logoutWithRedirect()}
             className="block cursor-pointer"
           >
-            <FiLogOut className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
+            <FiLogOut className="h-5 w-5  hover:text-blue-600 transition-colors duration-200" />
           </div>
         </Tippy>
       </div>
