@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { CiCircleInfo } from "react-icons/ci";
@@ -7,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
-import apiService from '../../services/base';
+import apiService from "../../services/base";
 import { useRouter } from "next/router";
 
-const GoogleAdsForm = ({googleAdsData}) => {  
+const GoogleAdsForm = ({ googleAdsData }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -62,20 +62,20 @@ const GoogleAdsForm = ({googleAdsData}) => {
   });
 
   const onSubmit = async (data) => {
-  
     try {
       setLoading(true);
-        apiService.post(`${lastRouteName}`, {
-            text: data?.topics
+      apiService
+        .post(`${lastRouteName}`, {
+          text: data?.topics,
         })
-        .then(response => {
-          console.log(response.data)
+        .then((response) => {
+          console.log(response.data);
           setLoading(false);
-          googleAdsData(response.data)
+          googleAdsData(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           setLoading(false);
-          console.error('Error:', error);
+          console.error("Error:", error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });
         });
     } catch (error) {}
@@ -145,8 +145,13 @@ const GoogleAdsForm = ({googleAdsData}) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>View and modify your project here</p>
-                    <div style={{ color: "#1890FF" }}> My Projects</div>
+                    <p className="labelContent">
+                      View and modify your project here
+                    </p>
+                    <div style={{ color: "#0033ff" }} className="labelContent">
+                      {" "}
+                      My Projects
+                    </div>
                   </span>
                 </Col>
 
@@ -160,8 +165,8 @@ const GoogleAdsForm = ({googleAdsData}) => {
                 >
                   <label htmlFor="mode" className="labelContent">
                     <span>
-                      <p> Brainstorm Mode</p>
-                      <div style={{ fontSize: "10px" }}>
+                      <p className="labelContent"> Brainstorm Mode</p>
+                      <div className="brainMode" style={{ marginTop: 5 }}>
                         {" "}
                         Enable to write random ideas/inspiration based on
                         selected project
@@ -193,7 +198,7 @@ const GoogleAdsForm = ({googleAdsData}) => {
                       span={24}
                       style={{ display: "flex", justifyContent: "center" }}
                     >
-                      <div style={{ marginTop: "-20px", fontSize: "12px" }}>
+                      <div style={{ marginTop: "-25px" }} className="brainMode">
                         {" "}
                         {modeValue ? `Enable` : `Disabled`}
                       </div>
@@ -201,9 +206,9 @@ const GoogleAdsForm = ({googleAdsData}) => {
                   </Row>
                 </Col>
 
-                <Col span={24}>
+                <Col span={24} style={{ marginTop: 5 }}>
                   <label htmlFor="topics" className="labelContent">
-                   Topics
+                    Topics
                   </label>
 
                   <Form.Item
@@ -233,7 +238,9 @@ const GoogleAdsForm = ({googleAdsData}) => {
                 >
                   <label htmlFor="guide" className="labelContent">
                     <span style={{ display: "flex", alignItems: "center" }}>
-                      Safety Guidelines
+                      <p className="labelContent" style={{ marginRight: 3 }}>
+                        Safety Guidelines
+                      </p>
                       <CiCircleInfo />
                     </span>
                   </label>
@@ -264,7 +271,7 @@ const GoogleAdsForm = ({googleAdsData}) => {
                       span={24}
                       style={{ display: "flex", justifyContent: "center" }}
                     >
-                      <div style={{ marginTop: "-20px", fontSize: "12px" }}>
+                      <div style={{ marginTop: "-25px" }} className="brainMode">
                         {" "}
                         {guideValue ? `Enable` : `Disabled`}
                       </div>
@@ -283,8 +290,9 @@ const GoogleAdsForm = ({googleAdsData}) => {
                     type="primary"
                     htmlType="submit"
                     className="btnTemplateSubmit"
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", }}
                     loading={loading}
+                   
                   >
                     Generate Copy
                   </Button>

@@ -48,7 +48,7 @@ const Headbar = () => {
                 fill-opacity="0.85"
               />
             </svg>
-               <p >  {formattedRouteName}</p>
+               <p style={{color: '#262626', fontSize: 20, fontFamily: 'Inter', fontWeight: 600, lineHeight: "28px", wordWrap: 'break-word'}}>  {formattedRouteName}</p>
           
             <FaStar color="#ffa500" style={{ hight: "22px", width: "22px" }} />
           </span>
@@ -86,6 +86,8 @@ const Headbar = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "8px",
+                fontWeight: 400,
+                fontFamily:'Inter'
               }}
             >
               <IoAnalyticsOutline /> 5 Credits Left{" "}

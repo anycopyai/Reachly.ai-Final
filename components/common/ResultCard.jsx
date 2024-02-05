@@ -26,11 +26,14 @@ const ResultCard = ({ result }) => {
       <div style={{ padding: 25 }}>
         <p
           style={{
-            fontSize: 16,
+            fontSize: 15,
             fontFamily:'Inter',
             fontWeight:400,
-            // lineHeight: 24,
+            lineHeight: "24px",
             color: 'rgba(0, 0, 0, 0.85)',
+            boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.05)', 
+            borderRadius: 1,
+            padding:12
           }}
         >
           {result}
@@ -42,10 +45,9 @@ const ResultCard = ({ result }) => {
               justifyContent: "flex-end",
               alignItems: "center",
               marginTop: "10px",
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: 400,
               fontFamily:'Inter',
-              // lineHeight: 22,
               color: 'rgba(0, 0, 0, 0.25)', 
             }}
           >
@@ -69,10 +71,10 @@ const ResultCard = ({ result }) => {
                 gap: "12px",
               }}
             >
-              <Button>
+              <Button style={{borderRadius:0}}>
                 <AiOutlineDislike />
               </Button>
-              <Button>
+              <Button style={{borderRadius:0}}>
                 <AiOutlineLike />
               </Button>
             </span>
@@ -84,11 +86,11 @@ const ResultCard = ({ result }) => {
                 gap: "12px",
               }}
             >
-              <Button icon={<IoShareSocialOutline />}>Share</Button>
-              <Button icon={<IoCopyOutline />} onClick={() => handleCopyClick(result)}>
+              <Button style={{borderRadius:0}} icon={<IoShareSocialOutline />} >Share</Button>
+              <Button style={{borderRadius:0}} icon={<IoCopyOutline />} onClick={() => handleCopyClick(result)}>
                 Copy
               </Button>
-              <Button icon={<MdOutlineSaveAlt />}>Save</Button>
+              <Button style={{borderRadius:0}} icon={<MdOutlineSaveAlt />}>Save</Button>
             </span>
           </span>
         </div>
