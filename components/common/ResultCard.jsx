@@ -7,9 +7,10 @@ import { IoCopyOutline } from "react-icons/io5";
 import { MdOutlineSaveAlt } from "react-icons/md";
 
 const ResultCard = ({ result }) => {
-  const words = result.length;
-  const cleanText = result.replace(/[^a-zA-Z]/g, "");
-  const letterCount = cleanText.length;
+  console.log("result",result)
+  const words = result?.length;
+  const cleanText = result?.replace(/[^a-zA-Z]/g, "");
+  const letterCount = cleanText?.length;
   const handleCopyClick = (text) => {
     navigator.clipboard.writeText(text)
 
