@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
-import PressReleaseForm from "../../components/form/PressReleaseForm";
-import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import GoogleAdsForm from "../../components/form/GoogleAdsForm";
+import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 
-const items = [
-  {
-    key: "1",
-    label: "Prompt",
-    children: <PressReleaseForm />,
-  },
-];
-const result = [
-  {
-    key: "1",
-    label: "Result",
-    children: <PressReleaseResult />,
-  },
-];
-const PressRelease = () => {
+
+const GoogleAds = () => {
+  const[resultData, setResult]= useState()
+  const receiveGoogleadsData = (data) => {
+    setResult(data);
+  };
+ 
+  const items = [
+    {
+      key: "1",
+      label: "Prompt",
+      children: <GoogleAdsForm  googleAdsData={receiveGoogleadsData}/>,
+    },
+  ];
+  const result = [
+    {
+      key: "1",
+      label: "Result",
+      children: <GoogleAdsResult googleAdsResultData={resultData} />,
+    },
+  ];
   const onChange = (key) => {
     console.log(key);
   };
@@ -39,6 +45,7 @@ const PressRelease = () => {
           <Row style={{ marginLeft: 20, marginTop: 15, padding: 10 }}>
             <Col xs={24} md={10} lg={10}>
             <Tabs
+            style={{color:'#0033ff'}}
                     defaultActiveKey="1"
                     items={items}
                     onChange={onChange}
@@ -51,14 +58,9 @@ const PressRelease = () => {
               xs={24}
               md={14}
               lg={14}
-              style={{
-                height: "70vh",
-                overflowY: "auto",
-                overflowX: "hidden",
-               
-              }}
             >
               <Tabs
+              style={{color:'#0033ff'}}
                 defaultActiveKey="1"
                 items={result}
                 onChange={onChange}
@@ -74,4 +76,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default GoogleAds;

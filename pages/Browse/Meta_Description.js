@@ -6,29 +6,33 @@ import Headbar from "../../components/Headbar";
 import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import FreshForm from "../../components/form/CallToActionForm";
+import Meta_form from "../../components/form/Meta_form";
 
 const items = [
   {
     key: "1",
     label: "Prompt",
-    children: <PressReleaseForm />,
+    children: <Meta_form/>,
   },
 ];
 const result = [
   {
     key: "1",
     label: "Result",
-    children: <PressReleaseResult />,
+    // children: <PressReleaseResult />,
   },
 ];
-const PressRelease = () => {
+
+
+const Meta_Description = () => {
   const onChange = (key) => {
     console.log(key);
   };
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Press release</title>
+        <title>RDMI INDIA - Meta Description </title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -38,7 +42,9 @@ const PressRelease = () => {
           <Headbar />
           <Row style={{ marginLeft: 20, marginTop: 15, padding: 10 }}>
             <Col xs={24} md={10} lg={10}>
-            <Tabs
+              <Row>
+                <Col xs={24} md={24} lg={24}>
+                  <Tabs
                     defaultActiveKey="1"
                     items={items}
                     onChange={onChange}
@@ -46,6 +52,8 @@ const PressRelease = () => {
                       size: (origin) => origin - 0,
                     }}
                   />
+                </Col>
+              </Row>
             </Col>
             <Col
               xs={24}
@@ -55,7 +63,7 @@ const PressRelease = () => {
                 height: "70vh",
                 overflowY: "auto",
                 overflowX: "hidden",
-               
+                padding: 5,
               }}
             >
               <Tabs
@@ -74,4 +82,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default Meta_Description;

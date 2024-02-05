@@ -1,34 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
-import PressReleaseForm from "../../components/form/PressReleaseForm";
-import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import GoogleAdsResult from "../../components/result/GoogleAdsResult";
+import AmazonAdsForm from "../../components/form/AmazonAdsForm";
 
-const items = [
-  {
-    key: "1",
-    label: "Prompt",
-    children: <PressReleaseForm />,
-  },
-];
-const result = [
-  {
-    key: "1",
-    label: "Result",
-    children: <PressReleaseResult />,
-  },
-];
-const PressRelease = () => {
+
+const AmazonAds = () => {
+  const[resultData, setResult]= useState()
+  const receiveGoogleadsData = (data) => {
+    setResult(data);
+  };
+ 
+  const items = [
+    {
+      key: "1",
+      label: "Prompt",
+      children: <AmazonAdsForm  googleAdsData={receiveGoogleadsData}/>,
+    },
+  ];
+  const result = [
+    {
+      key: "1",
+      label: "Result",
+      children: <GoogleAdsResult googleAdsResultData={resultData} />,
+    },
+  ];
   const onChange = (key) => {
     console.log(key);
   };
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Press release</title>
+        <title>RDMI INDIA - Linkedin Text Ads</title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -51,12 +57,6 @@ const PressRelease = () => {
               xs={24}
               md={14}
               lg={14}
-              style={{
-                height: "70vh",
-                overflowY: "auto",
-                overflowX: "hidden",
-               
-              }}
             >
               <Tabs
                 defaultActiveKey="1"
@@ -74,4 +74,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default AmazonAds;

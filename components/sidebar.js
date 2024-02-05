@@ -13,14 +13,17 @@ import {
   FiSettings,
   FiLogOut,
   FiSave,
+  FiDownload
 } from "react-icons/fi";
-
+import {IoIosHelpCircleOutline } from "react-icons/io"
+import {FaFlag} from "react-icons/fa"
 const navItems = [
   { name: "Projects", IconComponent: FiHome, href: "/projects" },
-  { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
   { name: "Writer", IconComponent: FiEdit3, href: "/writer" },
-  { name: "Saved", IconComponent: FiSave, href: "/saved" },
-  { name: "Help", IconComponent: FiHelpCircle, href: "/help" },
+  { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
+  { name: "Download", IconComponent: FiDownload, href: "/download" },
+  { name: "Report", IconComponent: FaFlag, href: "/Report" },
+  { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
 ];
 
 const Sidebar = ({children}) => {
@@ -59,7 +62,7 @@ const Sidebar = ({children}) => {
           </Tippy>
         ))}
       </div>
-      <div className="flex flex-col items-center space-y-12 mb-4">
+      <div className="flex flex-col items-center space-y-9 mb-2">
         <Tippy content="Settings" placement="right">
           <div
             onClick={() => handleNavigation("/settings")}
