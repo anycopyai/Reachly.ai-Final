@@ -21,13 +21,13 @@ const AmazonAdsForm = ({googleAdsData}) => {
   const LinkedinAdCopySchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
-    topics: Yup.string().required("Product is required."),
+    product: Yup.string().required("Product is required."),
   });
 
   const defaultValues = {
     language: "english",
     project: "",
-    topics: "",
+    product: "",
     mode: false,
     guide: false,
   };
@@ -48,8 +48,8 @@ const AmazonAdsForm = ({googleAdsData}) => {
       enqueueSnackbar(`${errors?.language?.message}`, { variant: "error" });
     } else if (errors?.project) {
       enqueueSnackbar(`${errors?.project?.message}`, { variant: "error" });
-    } else if (errors?.topics) {
-      enqueueSnackbar(`${errors?.topics?.message}`, { variant: "error" });
+    } else if (errors?.product) {
+      enqueueSnackbar(`${errors?.product?.message}`, { variant: "error" });
     }
   }, [errors]);
   const guideValue = useWatch({
@@ -145,8 +145,13 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>View and modify your project here</p>
-                    <div style={{ color: "#1890FF" }}> My Projects</div>
+                    <p className="labelContent">
+                      View and modify your project here
+                    </p>
+                    <div style={{ color: "#0033ff" }} className="labelContent">
+                      {" "}
+                      My Projects
+                    </div>
                   </span>
                 </Col>
 
@@ -160,8 +165,8 @@ const AmazonAdsForm = ({googleAdsData}) => {
                 >
                   <label htmlFor="mode" className="labelContent">
                     <span>
-                      <p> Brainstorm Mode</p>
-                      <div style={{ fontSize: "10px" }}>
+                      <p className="labelContent"> Brainstorm Mode</p>
+                      <div className="brainMode" style={{ marginTop: 5 }}>
                         {" "}
                         Enable to write random ideas/inspiration based on
                         selected project
@@ -181,7 +186,7 @@ const AmazonAdsForm = ({googleAdsData}) => {
                             <Switch
                               size="small"
                               style={{
-                                backgroundColor: modeValue ? "#1890FF" : "gray",
+                                backgroundColor: modeValue ? "#0033ff" : "gray",
                               }}
                               {...field}
                             />
@@ -193,7 +198,7 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       span={24}
                       style={{ display: "flex", justifyContent: "center" }}
                     >
-                      <div style={{ marginTop: "-20px", fontSize: "12px" }}>
+                      <div style={{ marginTop: "-25px" }} className="brainMode">
                         {" "}
                         {modeValue ? `Enable` : `Disabled`}
                       </div>
@@ -201,18 +206,18 @@ const AmazonAdsForm = ({googleAdsData}) => {
                   </Row>
                 </Col>
 
-                <Col span={24}>
-                  <label htmlFor="topics" className="labelContent">
-                 Product
+                <Col span={24} style={{ marginTop: 5 }}>
+                  <label htmlFor="product" className="labelContent">
+                  Product
                   </label>
 
                   <Form.Item
-                    validateStatus={errors?.topics ? "error" : ""}
-                    help={errors?.topics?.message}
+                    validateStatus={errors?.product ? "error" : ""}
+                    help={errors?.product?.message}
                   >
                     <Controller
                       control={control}
-                      name="topics"
+                      name="product"
                       render={({ field }) => (
                         <Input
                           className="inputBox"
@@ -233,7 +238,9 @@ const AmazonAdsForm = ({googleAdsData}) => {
                 >
                   <label htmlFor="guide" className="labelContent">
                     <span style={{ display: "flex", alignItems: "center" }}>
-                      Safety Guidelines
+                      <p className="labelContent" style={{ marginRight: 3 }}>
+                        Safety Guidelines
+                      </p>
                       <CiCircleInfo />
                     </span>
                   </label>
@@ -251,7 +258,7 @@ const AmazonAdsForm = ({googleAdsData}) => {
                               size="small"
                               style={{
                                 backgroundColor: guideValue
-                                  ? "#1890FF"
+                                  ? "#0033ff"
                                   : "gray",
                               }}
                               {...field}
@@ -264,7 +271,7 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       span={24}
                       style={{ display: "flex", justifyContent: "center" }}
                     >
-                      <div style={{ marginTop: "-20px", fontSize: "12px" }}>
+                      <div style={{ marginTop: "-25px" }} className="brainMode">
                         {" "}
                         {guideValue ? `Enable` : `Disabled`}
                       </div>

@@ -45,6 +45,7 @@ const AmazonAds = () => {
           <Row style={{ marginLeft: 20, marginTop: 15, padding: 10 }}>
             <Col xs={24} md={10} lg={10}>
             <Tabs
+               style={{color:'#0033ff'}}
                     defaultActiveKey="1"
                     items={items}
                     onChange={onChange}
@@ -59,6 +60,7 @@ const AmazonAds = () => {
               lg={14}
             >
               <Tabs
+                 style={{color:'#0033ff'}}
                 defaultActiveKey="1"
                 items={result}
                 onChange={onChange}

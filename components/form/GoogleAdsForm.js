@@ -186,7 +186,7 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                             <Switch
                               size="small"
                               style={{
-                                backgroundColor: modeValue ? "#1890FF" : "gray",
+                                backgroundColor: modeValue ? "#0033ff" : "gray",
                               }}
                               {...field}
                             />
@@ -258,7 +258,7 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                               size="small"
                               style={{
                                 backgroundColor: guideValue
-                                  ? "#1890FF"
+                                  ? "#0033ff"
                                   : "gray",
                               }}
                               {...field}
@@ -290,9 +290,8 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                     type="primary"
                     htmlType="submit"
                     className="btnTemplateSubmit"
-                    style={{ width: "100%", }}
+                    style={{ width: "100%" }}
                     loading={loading}
-                   
                   >
                     Generate Copy
                   </Button>
