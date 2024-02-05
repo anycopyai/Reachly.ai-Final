@@ -1,10 +1,11 @@
 import { Button } from "antd";
-import React from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { IoCopyOutline } from "react-icons/io5";
 import { MdOutlineSaveAlt } from "react-icons/md";
+import React, { useState } from 'react';
+import {  Modal } from 'antd';
 
 const ResultCard = ({ result }) => {
   const words = result.length;
@@ -14,9 +15,10 @@ const ResultCard = ({ result }) => {
     navigator.clipboard.writeText(text)
 
   };
+  const [modalOpen, setModalOpen] = useState(false);
   return (
+    <>
     <div
-      class=" hover:border-10 hover:border-solid hover:border-[#466ab1]"
       style={{
         backgroundColor: "white",
         border: "1px solid white",
@@ -86,7 +88,7 @@ const ResultCard = ({ result }) => {
                 gap: "12px",
               }}
             >
-              <Button style={{borderRadius:0}} icon={<IoShareSocialOutline />} >Share</Button>
+              <Button style={{borderRadius:0}} icon={<IoShareSocialOutline />} onClick={() => setModalOpen(true)}>Share</Button>
               <Button style={{borderRadius:0}} icon={<IoCopyOutline />} onClick={() => handleCopyClick(result)}>
                 Copy
               </Button>
@@ -96,6 +98,29 @@ const ResultCard = ({ result }) => {
         </div>
       </div>
     </div>
+    {/* <Modal title="Basic Modal" open={modalOpen}  onCancel={() => setModalOpen(false)}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal> */}
+
+<Modal
+        open={modalOpen}
+        title="Title"
+        onCancel={() => setModalOpen(false)}
+        footer={(_, { OkBtn, CancelBtn }) => (
+          <>
+           
+          </>
+        )}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </>
   );
 };
 
