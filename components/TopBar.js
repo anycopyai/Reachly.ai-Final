@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiCreditCard, FiSearch } from 'react-icons/fi';
+import Index from './Template/Index';
 
 const categories = [
   'All',
@@ -30,7 +31,7 @@ const categories = [
 
 const CreditBadge = ({ credits }) => {
   const [showCredits, setShowCredits] = useState(true);
-
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCredits((prevState) => !prevState);
@@ -58,6 +59,7 @@ const CreditBadge = ({ credits }) => {
 };
 
 const TopBar = () => {
+  const[clicked,setClicked]=useState('All')
   return (
     <div className="  bg-white  flex justify-between items-center">
       <div className=' mt-5 max-w-[89%] mx-auto'>
@@ -76,6 +78,9 @@ const TopBar = () => {
         <div className="flex flex-wrap gap-4 mt-8">
           {categories.map((category) => (
             <button
+            onClick={()=>{
+               setClicked({category})
+            }}
               key={category}
               className="text-sm bg-gray-100 hover:bg-blue-100 text-gray-800 hover:text-blue-800 px-4 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition  duration-300 ease-in-out hover:bg-blue-600 hover:text-white"
             >
@@ -83,6 +88,7 @@ const TopBar = () => {
             </button>
           ))}
         </div>
+        <Index clicke={clicked}/>
       </div>
       
     </div>
