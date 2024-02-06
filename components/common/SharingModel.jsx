@@ -19,6 +19,7 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
   return (
     <>
       <Modal
+        centered
         open={modalOpen}
         onCancel={handleShareModelClose}
         footer={(_, { OkBtn, CancelBtn }) => <></>}
