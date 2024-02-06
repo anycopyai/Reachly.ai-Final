@@ -3,7 +3,8 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useAuth0 } from "@auth0/auth0-react";
+import {  signOut } from "firebase/auth";
+import {auth} from '../utils/firebase'
 
 import {
   FiHome,
@@ -28,16 +29,19 @@ const navItems = [
 
 const Sidebar = ({children}) => {
   const router = useRouter();
-  const { logout, loginWithRedirect } = useAuth0();
   const handleNavigation = (href) => {
     router.push(href);
   };
 
   //logout the website and routeback to the login page
   const logoutWithRedirect = () => {
-    localStorage.removeItem("accessToken");
-    // Redirect to the login page
-    router.push('/Login');
+    signOut(auth).then(() => {
+      localStorage.removeItem("accessToken");
+      router.push('/login');
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   };
 
   return (
@@ -63,14 +67,14 @@ const Sidebar = ({children}) => {
         ))}
       </div>
       <div className="flex flex-col items-center space-y-9 mb-2">
-        <Tippy content="Settings" placement="right">
+        {/* <Tippy content="Settings" placement="right">
           <div
             onClick={() => handleNavigation("/settings")}
             className="block cursor-pointer"
           >
             <FiSettings className="h-6 w-6 text-gray-400 hover:text-blue-600 transition-colors duration-200" />
           </div>
-        </Tippy>
+        </Tippy> */}
         <Tippy content="Logout" placement="right">
           <div
             onClick={() => logoutWithRedirect()}

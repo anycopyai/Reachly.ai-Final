@@ -2,28 +2,30 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import SplashScreen from "../components/SplashScreen";
 
+
 const getRequireAuth = (WrappedComponent) => {
+ 
   return (props) => {
-    const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } =
-      useAuth0();
+    // const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } =
+    //   useAuth0();
     const [token, setToken] = useState(null);
 
-    useEffect(() => {
-      const accessToken = async () => {
-        try {
-          if (isAuthenticated) {
-            const accessTokens = await getAccessTokenSilently();
-            if (accessTokens) {
-              localStorage.setItem("accessToken", accessTokens);
-              setToken(accessTokens);
-            }
-          }
-        } catch (error) {
-          console.error("Error fetching access token:", error);
-        }
-      };
-      accessToken();
-    }, [isAuthenticated, getAccessTokenSilently]);
+    // useEffect(() => {
+    //   const accessToken = async () => {
+    //     try {
+    //       if (isAuthenticated) {
+    //         const accessTokens = await getAccessTokenSilently();
+    //         if (accessTokens) {
+    //           localStorage.setItem("accessToken", accessTokens);
+    //           setToken(accessTokens);
+    //         }
+    //       }
+    //     } catch (error) {
+    //       console.error("Error fetching access token:", error);
+    //     }
+    //   };
+    //   accessToken();
+    // }, [isAuthenticated, getAccessTokenSilently]);
 
     useEffect(() => {
       const checkAccessToken = async () => {
@@ -32,12 +34,13 @@ const getRequireAuth = (WrappedComponent) => {
             if (typeof window !== "undefined") {
               const storedAccessToken = localStorage.getItem("accessToken");
               setToken(storedAccessToken);
-                if (storedAccessToken || token) {
+                if (storedAccessToken ) {
                   setToken(storedAccessToken);
                 } else {
                   console.log("login again");
                   // Redirect to login page if no access token is present
-                  loginWithRedirect();
+                  router.push("/login");
+
                 }
             }
           },5000)

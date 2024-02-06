@@ -6,6 +6,7 @@ import Headbar from "../../components/Headbar";
 import { Tabs } from "antd";
 import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
+import withAuth from "../../hoc/withAuth";
 
 
 const GoogleAds = () => {
@@ -76,4 +77,4 @@ const GoogleAds = () => {
   );
 };
 
-export default GoogleAds;
+export default withAuth(GoogleAds);
