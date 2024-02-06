@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect , useState} from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { CiCircleInfo } from "react-icons/ci";
@@ -7,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
-import apiService from "../../services/base";
+import apiService from '../../services/base';
 import { useRouter } from "next/router";
 
-const GoogleAdsForm = ({ googleAdsData }) => {
+const AmazonAdsForm = ({googleAdsData}) => {  
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -21,13 +21,13 @@ const GoogleAdsForm = ({ googleAdsData }) => {
   const LinkedinAdCopySchema = Yup.object({
     language: Yup.string().required("Language is required"),
     project: Yup.string().required("Project is required"),
-    topics: Yup.string().required("Topics is required."),
+    product: Yup.string().required("Product is required."),
   });
 
   const defaultValues = {
     language: "english",
     project: "",
-    topics: "",
+    product: "",
     mode: false,
     guide: false,
   };
@@ -48,8 +48,8 @@ const GoogleAdsForm = ({ googleAdsData }) => {
       enqueueSnackbar(`${errors?.language?.message}`, { variant: "error" });
     } else if (errors?.project) {
       enqueueSnackbar(`${errors?.project?.message}`, { variant: "error" });
-    } else if (errors?.topics) {
-      enqueueSnackbar(`${errors?.topics?.message}`, { variant: "error" });
+    } else if (errors?.product) {
+      enqueueSnackbar(`${errors?.product?.message}`, { variant: "error" });
     }
   }, [errors]);
   const guideValue = useWatch({
@@ -62,20 +62,20 @@ const GoogleAdsForm = ({ googleAdsData }) => {
   });
 
   const onSubmit = async (data) => {
+  
     try {
       setLoading(true);
-      apiService
-        .post(`${lastRouteName}`, {
-          text: data?.topics,
+        apiService.post('amazon-ads-ecommerce', {
+            text: data?.topics
         })
-        .then((response) => {
-          console.log(response.data);
+        .then(response => {
+          console.log(response.data)
           setLoading(false);
-          googleAdsData(response.data);
+          googleAdsData(response.data)
         })
-        .catch((error) => {
+        .catch(error => {
           setLoading(false);
-          console.error("Error:", error);
+          console.error('Error:', error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });
         });
     } catch (error) {}
@@ -207,21 +207,21 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                 </Col>
 
                 <Col span={24} style={{ marginTop: 5 }}>
-                  <label htmlFor="topics" className="labelContent">
-                    Topics
+                  <label htmlFor="product" className="labelContent">
+                  Product
                   </label>
 
                   <Form.Item
-                    validateStatus={errors?.topics ? "error" : ""}
-                    help={errors?.topics?.message}
+                    validateStatus={errors?.product ? "error" : ""}
+                    help={errors?.product?.message}
                   >
                     <Controller
                       control={control}
-                      name="topics"
+                      name="product"
                       render={({ field }) => (
                         <Input
                           className="inputBox"
-                          placeholder="+ Add Topics..."
+                          placeholder="Widget"
                           {...field}
                         />
                       )}
@@ -305,4 +305,4 @@ const GoogleAdsForm = ({ googleAdsData }) => {
   );
 };
 
-export default GoogleAdsForm;
+export default AmazonAdsForm;

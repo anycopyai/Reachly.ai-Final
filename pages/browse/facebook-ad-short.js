@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
-import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
-import LinkedinAdCopyForm from "../../components/form/LinkedinadCopyForm";
+import GoogleAdsForm from "../../components/form/GoogleAdsForm";
+import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 
-const items = [
-  {
-    key: "1",
-    label: "Prompt",
-    children: <LinkedinAdCopyForm />,
-  },
-];
-const result = [
-  {
-    key: "1",
-    label: "Result",
-    children: <PressReleaseResult />,
-  },
-];
-const LinkedinAd = () => {
+
+const FacebookAdShort = () => {
+  const[resultData, setResult]= useState()
+  const receiveGoogleadsData = (data) => {
+    setResult(data);
+  };
+ 
+  const items = [
+    {
+      key: "1",
+      label: "Prompt",
+      children: <GoogleAdsForm  googleAdsData={receiveGoogleadsData}/>,
+    },
+  ];
+  const result = [
+    {
+      key: "1",
+      label: "Result",
+      children: <GoogleAdsResult googleAdsResultData={resultData} />,
+    },
+  ];
   const onChange = (key) => {
     console.log(key);
   };
@@ -39,6 +45,7 @@ const LinkedinAd = () => {
           <Row style={{ marginLeft: 20, marginTop: 15, padding: 10 }}>
             <Col xs={24} md={10} lg={10}>
             <Tabs
+               style={{color:'#0033ff'}}
                     defaultActiveKey="1"
                     items={items}
                     onChange={onChange}
@@ -51,14 +58,9 @@ const LinkedinAd = () => {
               xs={24}
               md={14}
               lg={14}
-              style={{
-                height: "70vh",
-                overflowY: "auto",
-                overflowX: "hidden",
-               
-              }}
             >
               <Tabs
+                 style={{color:'#0033ff'}}
                 defaultActiveKey="1"
                 items={result}
                 onChange={onChange}
@@ -74,4 +76,4 @@ const LinkedinAd = () => {
   );
 };
 
-export default LinkedinAd;
+export default FacebookAdShort;

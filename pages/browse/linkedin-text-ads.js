@@ -6,10 +6,10 @@ import Headbar from "../../components/Headbar";
 import { Tabs } from "antd";
 import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
-import withAuth from "../../hoc/withAuth";
+import LinkedinAdsForm from "../../components/form/LinkedinadCopyForm";
 
 
-const GoogleAds = () => {
+const LinkedinAds = () => {
   const[resultData, setResult]= useState()
   const receiveGoogleadsData = (data) => {
     setResult(data);
@@ -19,7 +19,7 @@ const GoogleAds = () => {
     {
       key: "1",
       label: "Prompt",
-      children: <GoogleAdsForm  googleAdsData={receiveGoogleadsData}/>,
+      children: <LinkedinAdsForm  googleAdsData={receiveGoogleadsData}/>,
     },
   ];
   const result = [
@@ -35,7 +35,7 @@ const GoogleAds = () => {
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Press release</title>
+        <title>RDMI INDIA - Linkedin Text Ads</title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -46,7 +46,7 @@ const GoogleAds = () => {
           <Row style={{ marginLeft: 20, marginTop: 15, padding: 10 }}>
             <Col xs={24} md={10} lg={10}>
             <Tabs
-            style={{color:'#0033ff'}}
+               style={{color:'#0033ff'}}
                     defaultActiveKey="1"
                     items={items}
                     onChange={onChange}
@@ -61,7 +61,7 @@ const GoogleAds = () => {
               lg={14}
             >
               <Tabs
-              style={{color:'#0033ff'}}
+                 style={{color:'#0033ff'}}
                 defaultActiveKey="1"
                 items={result}
                 onChange={onChange}
@@ -77,4 +77,4 @@ const GoogleAds = () => {
   );
 };
 
-export default withAuth(GoogleAds);
+export default LinkedinAds;

@@ -12,7 +12,6 @@ import Blog from '../components/Template/Blog';
 import AdCopy from '../components/Template/AdCopy';
 import Ecommerce from '../components/Template/Ecommerce';
 import Campaigns from '../components/Template/Campaigns';
-import Index from '../components/Template/Index';
 const Browse = () => {
   const postData = {
     newsStory: "covid",
@@ -21,24 +20,28 @@ const Browse = () => {
     name: "amit",
     position: "developer",
   };
- 
+  // useEffect(() => {
+  //   console.log("bhjbjhbh");
+  //   apiService
+  //     .post("/press-release", postData)
+  //     .then((response) => {
+  //       console.log("POST Request Successful:", response.data);
+  //       // Handle the response data here
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error in POST Request:", error);
+  //       // Handle the error here
+  //     });
+  // }, []);
   return (
     <div className="flex  h-fit ml-20 overflow-hidden bg-gray-100">
       <Sidebar />
       <div className=" flex   flex-col h-fit " style={{backgroundColor:'#ffffff'}}>
         <TopBar />
-         {/*templates*/}
-         {/* <Favorites/>
-         <FreshTemplate/>
-         <EveryDayTools />
-         <Blog />
-         <AdCopy />
-         <Ecommerce />
-         <Campaigns /> */}
-         <Index/>
+        
       </div>
     </div>
   );
 };
 
-export default Browse;
+export default withAuth(Browse);
