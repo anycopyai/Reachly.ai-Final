@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import {  signOut } from "firebase/auth";
 import {auth} from '../utils/firebase'
-
+import { useSnackbar } from "notistack";
 import {
   FiHome,
   FiClipboard,
@@ -28,6 +28,7 @@ const navItems = [
 ];
 
 const Sidebar = ({children}) => {
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const handleNavigation = (href) => {
     router.push(href);
@@ -36,9 +37,13 @@ const Sidebar = ({children}) => {
   //logout the website and routeback to the login page
   const logoutWithRedirect = () => {
     signOut(auth).then(() => {
-      localStorage.removeItem("accessToken");
+      localStorage.removeItem("accessToken"); 
+      enqueueSnackbar(`Logout successfully !`, {
+        variant: "success",
+      });
       router.push('/login');
       // Sign-out successful.
+     
     }).catch((error) => {
       // An error happened.
     });

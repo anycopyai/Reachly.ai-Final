@@ -6,7 +6,7 @@ import Headbar from "../../components/Headbar";
 import { Tabs } from "antd";
 import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
-
+import withAuth from "../../hoc/withAuth";
 
 const FacebookAds = () => {
   const[resultData, setResult]= useState()
@@ -77,4 +77,4 @@ const FacebookAds = () => {
   );
 };
 
-export default FacebookAds;
+export default withAuth(FacebookAds);

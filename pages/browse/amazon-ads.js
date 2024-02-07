@@ -6,7 +6,7 @@ import Headbar from "../../components/Headbar";
 import { Tabs } from "antd";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 import AmazonAdsForm from "../../components/form/AmazonAdsForm";
-
+import withAuth from "../../hoc/withAuth";
 
 const AmazonAds = () => {
   const[resultData, setResult]= useState()
@@ -76,4 +76,4 @@ const AmazonAds = () => {
   );
 };
 
-export default AmazonAds;
+export default withAuth(AmazonAds);

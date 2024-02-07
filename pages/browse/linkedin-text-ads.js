@@ -7,7 +7,7 @@ import { Tabs } from "antd";
 import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 import LinkedinAdsForm from "../../components/form/LinkedinadCopyForm";
-
+import withAuth from "../../hoc/withAuth";
 
 const LinkedinAds = () => {
   const[resultData, setResult]= useState()
@@ -77,4 +77,4 @@ const LinkedinAds = () => {
   );
 };
 
-export default LinkedinAds;
+export default withAuth(LinkedinAds);

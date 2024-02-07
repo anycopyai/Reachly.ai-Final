@@ -6,6 +6,7 @@ import Headbar from "../../components/Headbar";
 import PressReleaseForm from "../../components/form/PressReleaseForm";
 import PressReleaseResult from "../../components/result/PressReleaseResult";
 import { Tabs } from "antd";
+import withAuth from "../../hoc/withAuth";
 
 const items = [
   {
@@ -74,4 +75,4 @@ const PressRelease = () => {
   );
 };
 
-export default PressRelease;
+export default withAuth(PressRelease);

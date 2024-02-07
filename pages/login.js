@@ -4,7 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import Link from "next/link";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
 
@@ -72,6 +76,27 @@ function Login() {
     }
   };
 
+  const signinWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          localStorage.setItem("accessToken", token);
+          router.push("/Browse");
+          enqueueSnackbar(`Login successfully !`, {
+            variant: "success",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error?.code) {
+            enqueueSnackbar(`${error?.code}`, { variant: "error" });
+          }
+        });
+    } catch (error) {}
+  };
   return (
     <>
       <main class="w-full max-w-md mx-auto p-6">
@@ -94,6 +119,7 @@ function Login() {
 
             <div class="mt-5">
               <button
+                onClick={signinWithGoogle}
                 type="button"
                 class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
               >
@@ -216,7 +242,7 @@ function Login() {
                   <div class="flex items-center">
                     <div class="flex">
                       <input
-                      required
+                        required
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
