@@ -4,12 +4,12 @@ import Sidebar from "../../components/sidebar";
 import Head from "next/head";
 import Headbar from "../../components/Headbar";
 import { Tabs } from "antd";
-import GoogleAdsForm from "../../components/form/GoogleAdsForm";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 import withAuth from "../../hoc/withAuth";
+import LandingPageCopyForm from "../../components/form/LandingPageCopyForm";
 
 
-const GoogleAds = () => {
+const LandingPageCopy = () => {
   const[resultData, setResult]= useState()
   const receiveGoogleadsData = (data) => {
     setResult(data);
@@ -19,7 +19,7 @@ const GoogleAds = () => {
     {
       key: "1",
       label: "Prompt",
-      children: <GoogleAdsForm  googleAdsData={receiveGoogleadsData}/>,
+      children: <LandingPageCopyForm  googleAdsData={receiveGoogleadsData}/>,
     },
   ];
   const result = [
@@ -35,7 +35,7 @@ const GoogleAds = () => {
   return (
     <>
       <Head>
-        <title>RDMI INDIA - Press release</title>
+        <title>RDMI INDIA - Landing Page Copy</title>
         <meta name="description" content="RDMI INDIA" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -78,4 +78,4 @@ const GoogleAds = () => {
   );
 };
 
-export default withAuth(GoogleAds);
+export default withAuth(LandingPageCopy);
