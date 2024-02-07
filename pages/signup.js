@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import Link from "next/link";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword , signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
 
 function Signup() {
+
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const registerSchema = Yup.object().shape({
@@ -72,6 +73,36 @@ function Signup() {
     }
   };
 
+  // const signinWithGoogle = async()=>{
+  //   console.log('function cll')
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+
+  //     signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       console.log(user)
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //     }).catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  //   } catch (error) {
+      
+  //   }
+  
+  // }
   return (
     <>
       <main class="w-full max-w-md mx-auto p-6">
@@ -94,6 +125,7 @@ function Signup() {
 
             <div class="mt-5">
               <button
+              // onClick={signinWithGoogle}
                 type="button"
                 class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
               >
@@ -247,7 +279,8 @@ function Signup() {
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
-                        class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                        required
+                        // class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                       />
                     </div>
                     <div class="ms-3">
