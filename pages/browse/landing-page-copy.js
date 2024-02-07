@@ -7,6 +7,7 @@ import { Tabs } from "antd";
 import GoogleAdsResult from "../../components/result/GoogleAdsResult";
 import withAuth from "../../hoc/withAuth";
 import LandingPageCopyForm from "../../components/form/LandingPageCopyForm";
+import LandingPageCopyResult from "../../components/result/LandingPageCopyResult";
 
 
 const LandingPageCopy = () => {
@@ -26,7 +27,7 @@ const LandingPageCopy = () => {
     {
       key: "1",
       label: "Result",
-      children: <GoogleAdsResult googleAdsResultData={resultData} />,
+      children: <LandingPageCopyResult googleAdsResultData={resultData} />,
     },
   ];
   const onChange = (key) => {
@@ -49,6 +50,7 @@ const LandingPageCopy = () => {
             style={{color:'#0033ff'}}
                     defaultActiveKey="1"
                     items={items}
+                    
                     onChange={onChange}
                     indicator={{
                       size: (origin) => origin - 0,
@@ -66,6 +68,7 @@ const LandingPageCopy = () => {
                 defaultActiveKey="1"
                 items={result}
                 onChange={onChange}
+                responsive
                 indicator={{
                   size: (origin) => origin - 0,
                 }}
