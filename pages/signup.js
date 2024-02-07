@@ -99,8 +99,17 @@ function Signup() {
   };
   return (
     <>
-      <main class="w-full max-w-md mx-auto p-6">
-        <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+     <div class=" dark:bg-slate-900 bg-gray-100 flex h-full py-10 ">
+      <main class="w-full max-w-md mx-auto">
+      <div class="text-center">
+            <img
+              src="../images/resources_logo.png"
+              style={{ maxHeight: 120, maxWidth: 120 }}
+              class="mx-auto"
+              alt="Logo"
+            ></img>
+          </div>
+        <div class="mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div class="p-4 sm:p-7">
             <div class="text-center">
               <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">
@@ -108,16 +117,15 @@ function Signup() {
               </h1>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                 Already have an account?
-                <Link
-                  class="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/login"
-                >
-                  Sign in here
+                <Link href="/login" passHref>
+                  <a class="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    Sign in here
+                  </a>
                 </Link>
               </p>
             </div>
 
-            <div class="mt-5">
+            <div class="mt-1">
               <button
                 onClick={signinWithGoogle}
                 type="button"
@@ -302,6 +310,7 @@ function Signup() {
           </div>
         </div>
       </main>
+      </div>
     </>
   );
 }
