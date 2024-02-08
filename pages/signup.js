@@ -103,8 +103,8 @@ function Signup() {
       <main class="w-full max-w-md mx-auto">
       <div class="text-center">
             <img
-              src="../images/resources_logo.png"
-              style={{ maxHeight: 120, maxWidth: 120 }}
+              src="../images/logo.png"
+              style={{ maxHeight: 70, maxWidth: 70 }}
               class="mx-auto"
               alt="Logo"
             ></img>
