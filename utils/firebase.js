@@ -6,7 +6,7 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAIkDuqKxXI8xAudiygWmWXmEhnVvleJys",
-    authDomain: "app.anycopy.co",
+    authDomain: "elixcent-849aa.firebaseapp.com",
     databaseURL: "https://elixcent-849aa-default-rtdb.firebaseio.com",
     projectId: "elixcent-849aa",
     storageBucket: "elixcent-849aa.appspot.com",
