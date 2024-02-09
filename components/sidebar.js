@@ -90,6 +90,62 @@ const Sidebar = ({children}) => {
         </Tippy>
       </div>
     </div>
+
+
+  //   <div className="left-nav2">
+  //   <div className="header2">
+  //     <img className="image-2-icon2" alt="" src="/image-2@2x.png" />
+  //   </div>
+  //   <div className="menu2">
+  //     <div className="menu-item14" >
+  //       <img className="url-to-ad" alt="" src="/content-paste.svg" />
+  //     </div>
+  //     <div className="menu-item15" >
+  //       <img className="url-to-ad" alt="" src="/create.svg" />
+  //     </div>
+  //     <div className="menu-item16">
+  //       <div className="url-to-ad">
+  //         <img className="vector-icon" alt="" />
+  //         <img className="vector-icon1" alt="" src="/vector.svg" />
+  //         <div className="ad">Ad</div>
+  //       </div>
+  //     </div>
+  //     <div className="menu-item15" >
+  //       <img className="url-to-ad" alt="" src="/topic.svg" />
+  //     </div>
+  //     <div className="menu-item15" >
+  //       <img className="url-to-ad" alt="" src="/save-alt.svg" />
+  //     </div>
+  //     <div className="menu-item16">
+  //       <img
+  //         className="outlined-flag-icon2"
+  //         alt=""
+  //         src="/outlined-flag.svg"
+  //       />
+  //     </div>
+  //     <div className="menu-item16">
+  //       <img
+  //         className="outlined-flag-icon2"
+  //         alt=""
+  //         src="/help-outline.svg"
+  //       />
+  //     </div>
+  //   </div>
+  //   <div
+  //     className="inline-menu-itemtop-levelleg2"
+ 
+  //   >
+  //     <img className="url-to-ad" alt="" src="/settings.svg" />
+  //   </div>
+  //   <div className="sider-trigger2">
+  //     <img className="url-to-ad" alt="" src="/login.svg" />
+  //   </div>
+  //   <img
+  //     className="sidemenu-fixed-switcher-icon2"
+  //     alt=""
+  //     src="/sidemenufixedswitcher.svg"
+  //   />
+  // </div>
   );
 };
 
