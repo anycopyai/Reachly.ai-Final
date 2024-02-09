@@ -21,8 +21,8 @@ const Browse = () => {
       <div className=" flex   flex-col h-fit " style={{backgroundColor:'#ffffff'}}>
         <TopBar />
      
-         <Favorites/>
-         <FreshTemplate/>
+         {/* <Favorites/>
+         <FreshTemplate/> */}
          <EveryDayTools />
          <Blog />
          <AdCopy />

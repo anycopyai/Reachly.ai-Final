@@ -58,11 +58,12 @@ function Signup() {
     try {
       createUserWithEmailAndPassword(auth, data?.email, data?.password)
         .then((userCredential) => {
-          reset();
+         reset();
+          localStorage.setItem("accessToken", userCredential?.user?.accessToken);
+          router.push("/Browse");
           enqueueSnackbar(`User registered successfully !`, {
             variant: "success",
           });
-          router.push("/login");
         })
         .catch((error) => {
           console.log(error);
