@@ -93,7 +93,7 @@ const QuillEditor = () => {
         value={editorContent}
         onChange={setEditorContent}
       />
-      <button onClick={handleWriteForMe}>Write For Me</button>
+      {/* <button onClick={handleWriteForMe}>Write For Me</button> */}
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
