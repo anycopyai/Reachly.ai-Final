@@ -20,7 +20,7 @@ import { MdOutlineEdit } from "react-icons/md";
 
 const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/projects" },
-  { name: "Writer", IconComponent: MdOutlineEdit, href: "/writer" },
+  { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
   { name: "Copy", IconComponent: GoCopy, href: "/copy" },
   { name: "Download", IconComponent: FiDownload, href: "/download" },
