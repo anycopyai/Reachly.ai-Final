@@ -13,7 +13,7 @@ const Writer = () => {
   const router = useRouter();
 
   const handleNavigation = () => {
-    router.push('/writernext');
+    router.push('/Writerlanding');
   }
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">

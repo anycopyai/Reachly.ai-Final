@@ -13,10 +13,10 @@ import { MdShowChart } from "react-icons/md";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 
-const WriterNext = () => {
+const Writerlanding = () => {
 
     return (
-        <div className="flex flex-col lg:flex-row ml-20 h-screen" style={{ display: 'flex' }}>
+        <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
             <Sidebar />
             <div className="flex-grow m-5">
                 <div className='flex flex-grow items-center gap-5'>
@@ -30,26 +30,29 @@ const WriterNext = () => {
 
                 </div>
                 {/* <p className='text-sm md:text-2xl'>Writer</p> */}
-                <p className='text-sm md:test-xl text-justify mt-10'>Project name - 01/02/2024 - 10.00 am</p>
+                <p className='text-sm md:text-xl text-justify mt-10'>Project name - 01/02/2024 - 10.00 am</p>
 
-                <div className="flex mt-10">
+                <div className="flex md:mt-10">
                     <div className="grid grid-cols-12 min-w-full">
-
-
-                        <div className="col-span-5 overflow-y-scroll scrollbar-thin">
+                        <div className="col-span-12 overflow-hidden md:col-span-5 lg:col-span-5 md:overflow-y-scroll md:scrollbar-thin">
                             <div className='w-11/12'>
                                 <div className="text-sm font-medium text-center text-black-600 border-b border-gray-200">
-                                    <ul className="flex flex-wrap gap-1 -mb-px">
+                                    <ul className="flex flex-row md:text-sm items-center gap-2 -mb-px">
                                         <li className="me-2">
-                                        <a href="#" class="inline-flex gap-1 p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page"><IoIosArrowRoundBack className='text-2xl'/> Template</a>
+                                        <a href="#" class="flex flex-row items-center gap-2 p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page"><IoIosArrowRoundBack className='text-2xl'/> Template</a>
                                         </li>
-                                        <li className="me-2">
+
+                                        <li className="me-2 md:hidden">
+                                            <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Results</a>
+                                        </li>
+
+                                        <li className="hidden me-2 md:block">
                                             <a href="#" className="inline-block p-4 text-black-600">Expand</a>
                                         </li>
-                                        <li className="me-2">
+                                        <li className="hidden me-2 md:block">
                                             <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Remix</a>
                                         </li>
-                                        <li className="me-2">
+                                        <li className="hidden me-2 md:block">
                                             <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"> Next Sentence</a>
                                         </li>
                                         
@@ -126,8 +129,8 @@ const WriterNext = () => {
                                 </form>
                             </div>
                         </div>
-                        <div class="col-span-7">
-                            <h1 className='text-sm text-blue-700 border-b-2 border-blue-700	inline-block ml-4 mt-4'>Results</h1>
+                        <div class="grid hidden md:col-span-7 md:block">
+                            <h1 className='text-sm text-blue-700 border-b-2 border-blue-700 inline-block ml-4'>Results</h1>
                             <QuillEditor />
                         </div>
                     </div>
@@ -140,4 +143,4 @@ const WriterNext = () => {
         </div>)
 }
 
-export default WriterNext;
+export default Writerlanding;
