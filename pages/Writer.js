@@ -6,9 +6,11 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { MdShowChart } from "react-icons/md";
+
 
 const Writer = () => {
-  const [isgenerate, setGenerate] = useState(true);
+  const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
   const router = useRouter();
 
@@ -22,10 +24,16 @@ const Writer = () => {
         <div className='flex flex-grow items-center gap-5'>
           <FaBars className="text-sm md:text-2xl md:hidden" />
           <p className='text-sm md:text-2xl'>Writer</p>
-          <div className='flex ml-auto'>
+          {/* <div className='flex ml-auto'>
             <button className="text-sm text-black border-1 border-gray-300 bg-white-100 md:hidden p-2 flex items-center gap-2"><FiPlus /> <span> New Document </span></button>
 
+          </div> */}
+
+          <div className='flex flex-row items-center ml-auto gap-2'>
+              <button className="hidden text-sm text-black border-1 border-gray-300 bg-white-100 p-3 flex flex-row items-center gap-2 md:flex"><MdShowChart /> <span>5 Credits Limit </span></button>
+              <button className="text-sm text-black border-1 border-gray-300 bg-white-100 p-3 md:border-blue-700 md:bg-blue-700 md:text-white flex flex-row md:hidden items-center gap-2"><FiPlus className='text-center' /> <span className='text-center'> New Document </span></button>
           </div>
+
         </div>
 
         <div className='flex gap-5 border-b-2 w-full mt-10 md:hidden'>
@@ -39,9 +47,9 @@ const Writer = () => {
               <h1 className='hidden md:inline-block text-sm text-navblue font-medium border-b-2 border-navblue'>Intro</h1>
               <form method='POST' className="w-11/12 mt-10">
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
-                  <div>
+                  <div className='focus:outline-none'>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Language</label>
-                    <select id="language" className="border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="language" className="border border-gray-300 text-gray-900 text-sm focus:outline-none w-full p-2.5">
 
                       <option>English</option>
                     </select>
@@ -49,7 +57,7 @@ const Writer = () => {
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project</label>
                     {/* Dynamic the project form settings */}
-                    <select id="project" className="border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="project" className="border border-gray-300 text-gray-900 focus:outline-none text-sm block w-full p-2.5">
                       <option>Console</option>
                     </select>
                   </div>
@@ -153,19 +161,19 @@ const Writer = () => {
                   </div>
 
                   <div className='grid bg-white m-4'>
-                    <p className='text-sm text-black-700 p-4 border-1 hover:border-blue-500'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, quas, deserunt consequatur pariatur tempora possimus atque laboriosam nisi, soluta repudiandae ut. Aspernatur at fugiat cum ut id et consequatur aperiam tempore. Iste consectetur odit temporibus nam omnis dolor tenetur sequi aut, quia ad nemo velit inventore esse dolores officiis mollitia dignissimos. Fugiat exercitationem praesentium eius, soluta provident ea possimus dignissimos impedit eaque illum nesciunt, vel, suscipit odio excepturi esse eligendi minus modi repudiandae magni officia ipsum blanditiis velit saepe. Quasi libero assumenda iusto alias similique minima officiis molestiae, aperiam id illum dignissimos excepturi magni enim perspiciatis delectus obcaecati fuga debitis.</p>
+                    <p className='text-sm text-black-700 p-4 border-1 border-white shadow hover:border-blue-500'>In the age of interconnectedness, T-shirts paying homage to niche interests and pop culture references have experienced a meteoric rise in popularity. Whether adorned with iconic movie quotes, references to beloved TV shows, or symbols from video games, these T-shirts serve as a wearable canvas for enthusiasts to showcase their passions. The allure lies in the sense of community fostered by these designs, creating a connection among individuals who share common interests. As social media continues to play a pivotal role in shaping pop culture, T-shirts that tap into these phenomena have become not just fashion statements but cultural badges proudly worn by the masses.</p>
                   </div>
 
                   <div className='grid bg-white m-4'>
-                    <p className='text-sm text-black-700 p-4 border-1 hover:border-blue-500'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, quas, deserunt consequatur pariatur tempora possimus atque laboriosam nisi, soluta repudiandae ut. Aspernatur at fugiat cum ut id et consequatur aperiam tempore. Iste consectetur odit temporibus nam omnis dolor tenetur sequi aut, quia ad nemo velit inventore esse dolores officiis mollitia dignissimos. Fugiat exercitationem praesentium eius, soluta provident ea possimus dignissimos impedit eaque illum nesciunt, vel, suscipit odio excepturi esse eligendi minus modi repudiandae magni officia ipsum blanditiis velit saepe. Quasi libero assumenda iusto alias similique minima officiis molestiae, aperiam id illum dignissimos excepturi magni enim perspiciatis delectus obcaecati fuga debitis.</p>
+                    <p className='text-sm text-black-700 p-4 border-1 border-white shadow hover:border-blue-500'>The allure of artistic minimalism has ushered in a revolution in T-shirt design. Clean lines, subtle details, and carefully curated visuals come together to form designs that are both sophisticated and visually striking. Abstract art, geometric patterns, and artistic symbolism take center stage, appealing to those with a penchant for understated elegance. As consumers increasingly gravitate towards simplicity and timeless aesthetics, T-shirts featuring artistic minimalism have secured their spot as a top choice for those who appreciate the marriage of art and fashion.</p>
                   </div>
 
                   <div className='grid bg-white m-4'>
-                    <p className='text-sm text-black-700 p-4 border-1 hover:border-blue-500'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, quas, deserunt consequatur pariatur tempora possimus atque laboriosam nisi, soluta repudiandae ut. Aspernatur at fugiat cum ut id et consequatur aperiam tempore. Iste consectetur odit temporibus nam omnis dolor tenetur sequi aut, quia ad nemo velit inventore esse dolores officiis mollitia dignissimos. Fugiat exercitationem praesentium eius, soluta provident ea possimus dignissimos impedit eaque illum nesciunt, vel, suscipit odio excepturi esse eligendi minus modi repudiandae magni officia ipsum blanditiis velit saepe. Quasi libero assumenda iusto alias similique minima officiis molestiae, aperiam id illum dignissimos excepturi magni enim perspiciatis delectus obcaecati fuga debitis.</p>
+                    <p className='text-sm text-black-700 p-4 border-1 border-white shadow hover:border-blue-500'>In the realm of T-shirt designs, dynamic typography reigns supreme. From empowering quotes to witty expressions, T-shirts adorned with captivating text have become the go-to choice for those seeking garments that make a statement. Bold fonts, creative lettering, and strategically placed phrases contribute to the allure of these designs, allowing individuals to express their personality and beliefs without uttering a word. The fusion of impactful messages with visually appealing typography creates a symbiotic relationship that resonates with a diverse audience, making dynamic typography T-shirts a hot commodity in the fashion sphere.</p>
                   </div>
 
                   <div className='flex flex-row m-4 gap-5 justify-between md:float-right'>
-                  <button className='text-black border-2 bg-white-100 hover:bg-gray-100 focus:outline-none font-medium text-sm px-5 py-2.5 text-center'>Rewrite Intro</button>
+                  <button className='text-black border-2 bg-white-100 hover:bg-gray-100 focus:outline-none font-medium text-sm px-5 py-2.5 text-center' onClick={() => setGenerate(false)}>Rewrite Intro</button>
                   <button className='text-gray bg-gray-100 hover:bg-blue-700 hover:text-white focus:outline-none font-medium text-sm px-5 py-2.5 text-center' onClick={() => handleNavigation()}>Continue to writer</button>
                   </div>
 

@@ -2225,3 +2225,12 @@ div#__next > main {
   color: #323232;
   font-family: Inter;
 }
+
+.ant-switch.ant-switch-small {
+ 
+  background: #A9A9A9 !important;
+}
+
+.ant-switch.ant-switch-checked{
+  background: #4096ff  !important;
+}
