@@ -124,25 +124,25 @@ const Writerlanding = () => {
                                 <div className="text-sm font-medium text-center text-black-600 border-b border-gray-200">
                                     <ul className="flex flex-row md:text-sm items-center gap-2 -mb-px">
                                         <li className="hidden me-2 md:block">
-                                            <a href="javascript:void(0)" onClick={() => processDiv("initial")} className={`hidden flex flex-row items-center gap-2 p-4 md:flex ${showintial || showtemp ? `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500` : ``}`}><IoIosArrowRoundBack className='text-2xl' onClick={() => processDiv("intial")} /> Template</a>
+                                            <p onClick={() => processDiv("initial")} className={`hidden flex flex-row items-center gap-2 p-4 md:flex ${showintial || showtemp ? `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500` : ``}`}><IoIosArrowRoundBack className='text-2xl' onClick={() => processDiv("intial")} /> Template</p>
                                         </li>
 
                                         <li className="me-2 md:hidden">
-                                            <a href="javascript:void(0)" onClick={() => setshowresult(false)} className={`flex flex-row items-center gap-2 p-4 ${!showresult && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`} `}><IoIosArrowRoundBack className='text-2xl' /> Template</a>
+                                            <p onClick={() => setshowresult(false)} className={`flex flex-row items-center gap-2 p-4 ${!showresult && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`} `}><IoIosArrowRoundBack className='text-2xl' /> Template</p>
                                         </li>
 
                                         <li className="me-2 md:hidden">
-                                            <a href="javascript:void(0)" onClick={() => setshowresult(true)} className={`inline-block p-4 ${showresult && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Results</a>
+                                            <p onClick={() => setshowresult(true)} className={`inline-block p-4 ${showresult && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Results</p>
                                         </li>
 
                                         <li className="hidden me-2 md:block">
-                                            <a href="javascript:void(0)" onClick={() => processDiv("expand")} className={`inline-block p-4 text-black-600 ${showexpand && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Expand</a>
+                                            <p onClick={() => processDiv("expand")} className={`inline-block p-4 text-black-600 ${showexpand && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Expand</p>
                                         </li>
                                         <li className="hidden me-2 md:block">
-                                            <a href="javascript:void(0)" onClick={() => processDiv("remix")} className={`inline-block p-4 text-black-600 ${showremix && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Remix</a>
+                                            <p onClick={() => processDiv("remix")} className={`inline-block p-4 text-black-600 ${showremix && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}>Remix</p>
                                         </li>
                                         <li className="hidden me-2 md:block">
-                                            <a href="javascript:void(0)" onClick={() => processDiv("next")} className={`inline-block p-4 text-black-600 ${shownext && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}> Next sentence</a>
+                                            <p onClick={() => processDiv("next")} className={`inline-block p-4 text-black-600 ${shownext && `text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`}`}> Next sentence</p>
                                         </li>
 
                                     </ul>
@@ -248,7 +248,7 @@ const Writerlanding = () => {
 
                         </div>
 
-                        <div class={`grid col-span-12 ${!fulleditor ? `md:col-span-7` : `md:col-span-12`} md:block`}>
+                        <div className={`grid col-span-12 ${!fulleditor ? `md:col-span-7` : `md:col-span-12`} md:block`}>
                             <div className='hidden flex flex-row items-center justify-between md:flex'>
                                 <div>
                                     <p className='text-sm text-blue-700 border-b-2 border-blue-700 inline ml-4'>Results</p>

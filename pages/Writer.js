@@ -142,9 +142,9 @@ const Writer = () => {
                   </select>
 
                 </div>
-                <button className="text-gray bg-white-100 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2">Skip Intro</button>
+                <button className="text-gray bg-white-100 hover:bg-gray-100 focus:outline-none text-sm sm:w-auto px-5 py-2.5 text-center mb-2">Skip Intro</button>
 
-                <button type="button" className="text-gray bg-gray-100 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2 float-right" onClick={() => setGenerate(true)}>Generate Intro</button>
+                <button type="button" className="text-gray bg-gray-100 hover:bg-blue-700 hover:text-white  focus:outline-none font-medium text-sm sm:w-auto px-5 py-2.5 text-center mb-2 float-right" onClick={() => setGenerate(true)}>Generate Intro</button>
               </form>
             </div>
             <div className={` ${!showresult ? `hidden col-span-12 md:col-span-7 md:block` : `col-span-12 md:col-span-7 md:block`}`}  id="results">
