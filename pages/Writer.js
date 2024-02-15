@@ -37,8 +37,8 @@ const Writer = () => {
         </div>
 
         <div className='flex gap-5 border-b-2 w-full mt-10 md:hidden'>
-          <a  href="javascript:void(0)" onClick={() => setshowresult(false)}><h1 className={`text-sm text-black font-medium p-2 ${!showresult ? `text-navblue border-b-2 border-navblue inline-block`:``}`}>Intro</h1></a>
-          <a href="javascript:void(0)" onClick={() => setshowresult(true)}><h1 className={`text-sm text-black font-medium p-2 ${showresult ? `text-navblue border-b-2 border-navblue inline-block`:``}`}>Results</h1></a>
+          <h1 onClick={() => setshowresult(false)} className={`text-sm text-black font-medium p-2 ${!showresult ? `text-navblue border-b-2 border-navblue inline-block`:``}`}>Intro</h1>
+          <h1 onClick={() => setshowresult(true)} className={`text-sm text-black font-medium p-2 ${showresult ? `text-navblue border-b-2 border-navblue inline-block`:``}`}>Results</h1>
         </div>
 
         <div className="flex md:mt-10">
