@@ -9,12 +9,8 @@ import { useSnackbar } from "notistack";
 import { FaRegFlag } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { GoCopy } from "react-icons/go";
-import {
-  FiClipboard,
-  FiSettings,
-  FiLogOut,
-  FiDownload,
-} from "react-icons/fi";
+import { RiAdvertisementLine } from "react-icons/ri";
+import { FiClipboard, FiSettings, FiLogOut, FiDownload } from "react-icons/fi";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 
@@ -22,6 +18,7 @@ const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/projects" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/writer" },
   { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
+  { name: "URL to Ad", IconComponent: RiAdvertisementLine, href: "/url-to-ad" },
   { name: "Copy", IconComponent: GoCopy, href: "/copy" },
   { name: "Download", IconComponent: FiDownload, href: "/download" },
   { name: "Report", IconComponent: FaRegFlag, href: "/Report" },
