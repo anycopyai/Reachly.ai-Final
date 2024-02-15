@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       colors: {
         lightgray: '#F6F6F6',
+        navblue: '#0033FF',
       },
       fontFamily: {
   

@@ -20,7 +20,7 @@ import { MdOutlineEdit } from "react-icons/md";
 
 const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/projects" },
-  { name: "Writer", IconComponent: MdOutlineEdit, href: "/writer" },
+  { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
   { name: "Copy", IconComponent: GoCopy, href: "/copy" },
   { name: "Download", IconComponent: FiDownload, href: "/download" },
@@ -53,7 +53,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div
-      className="fixed top-0 left-0 bg-white w-20 flex flex-col justify-between py-6 h-screen z-10"
+      className="fixed top-0 left-0 bg-white w-20 flex flex-col justify-between py-6 h-screen z-10 hidden md:flex"
       style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
     >
       {/* Updated background color to #F9F8F7 (bg-gray-50) */}

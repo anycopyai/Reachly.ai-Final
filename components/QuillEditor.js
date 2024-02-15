@@ -8,9 +8,11 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
 });
 
 const editorStyles = {
-  padding: '20px',
+  // padding: '20px',
+  // margin : '2px',
   backgroundColor: '#fff',
-  minHeight: '300px',
+  // minHeight: '300px',
+  minHeight:'auto'
 };
 
 const quillContainerStyle = `
@@ -29,6 +31,12 @@ const quillContainerStyle = `
   .ql-h2 {
     font-size: 24px; /* Custom font size for H2 */
   }
+
+  .ql-toolbar{
+    padding: 2px !important;
+    border:1px solid #CBD5E1 !important
+  }
+
 `;
 
 const QuillEditor = () => {
@@ -84,7 +92,7 @@ const QuillEditor = () => {
     }
   };
   return (
-    <div style={editorStyles}>
+    <div style={editorStyles} className='m-4 shadow h-auto'>
       <style>{quillContainerStyle}</style>
       <QuillNoSSRWrapper
         placeholder="Start typing here..."
@@ -93,7 +101,7 @@ const QuillEditor = () => {
         value={editorContent}
         onChange={setEditorContent}
       />
-      <button onClick={handleWriteForMe}>Write For Me</button>
+      {/* <button onClick={handleWriteForMe}>Write For Me</button> */}
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
