@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function DemoSelect({ label, defaultValue }) {
   return (
@@ -10,7 +10,7 @@ export default function DemoSelect({ label, defaultValue }) {
           defaultValue={defaultValue}
           className="w-full !border-none !focus:border-transparent !focus:border-none outline-none !h-[20px] !p-0 leading-none text-base"
         />
-        <img src="svg/icons/Down.svg" alt="" />
+        <img src="icons/svg/Down.svg" alt="" />
       </div>
     </div>
   );

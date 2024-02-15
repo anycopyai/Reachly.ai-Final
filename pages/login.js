@@ -118,17 +118,10 @@ function Login() {
                 </h1>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Don't have an account yet?
-                  <Link
-                   href="/signup"
-                   passHref
-                  >
-                  <a
-                 
-                    className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  
-                  >
-                    Sign up here
-                  </a>
+                  <Link href="/signup" passHref>
+                    <div className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                      Sign up here
+                    </div>
                   </Link>
                 </p>
               </div>
@@ -219,9 +212,9 @@ function Login() {
                           Password
                         </label>
                         <Link href="/forgot" passHref>
-                          <a className="text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                          <div className="text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                             Forgot password?
-                          </a>
+                          </div>
                         </Link>
                       </div>
                       <div class="relative">

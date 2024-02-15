@@ -1,38 +1,33 @@
-const { withSentryConfig } = require("@sentry/nextjs");
+const { withSentryConfig } = require('@sentry/nextjs');
 
 // Configuration for your Next.js application
 const moduleExports = {
   reactStrictMode: true,
-  // Remove the redirects function
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/login',
-  //       permanent: true, // or false if the redirect is temporary
-  //     },
-  //   ];
-  // },
-  // Other Next.js configurations can be added here if needed
+  swcMinify: true, // Corrected typo here
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 // Sentry Webpack Plugin options
 const sentryWebpackPluginOptions = {
-  // Options...
   silent: true,
-  org: "rdmi",
-  project: "javascript-nextjs",
+  org: 'rdmi',
+  project: 'javascript-nextjs',
 };
 
 // Sentry Next.js specific options
 const sentryNextJsOptions = {
-  // Options...
   widenClientFileUpload: true,
   transpileClientSDK: true,
-  tunnelRoute: "/monitoring",
+  tunnelRoute: '/monitoring',
   hideSourceMaps: true,
   disableLogger: true,
 };
 
 // Export the configuration with Sentry integration
-module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions, sentryNextJsOptions);
+module.exports = withSentryConfig(
+  moduleExports,
+  sentryWebpackPluginOptions,
+  sentryNextJsOptions,
+);

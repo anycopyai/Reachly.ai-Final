@@ -6,16 +6,15 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     'node_modules/preline/dist/*.js', // Keep this line for Preline UI
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", // Add this line for NextUI
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}', // Add this line for NextUI
   ],
   theme: {
     extend: {
       colors: {
         lightgray: '#F6F6F6',
+        primary: '#0033FF',
       },
-      fontFamily: {
-  
-      },
+      fontFamily: {},
       backgroundColor: {
         'reachly-blue': '#232634',
         'reachly-bg': '#F6F6F6',
@@ -28,11 +27,11 @@ module.exports = {
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [
     require('daisyui'), // Keep the DaisyUI plugin
-   require('@tailwindcss/forms'),
-   require('preline/plugin'),
+    require('@tailwindcss/forms'),
+    require('preline/plugin'),
     nextui(), // Add the NextUI plugin
   ],
 };
