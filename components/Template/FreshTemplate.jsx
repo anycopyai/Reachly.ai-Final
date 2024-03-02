@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../common/Card'
 import { FaStar } from "react-icons/fa"
-const FreshTemplate = () => {
+const FreshTemplate = ({search}) => {
 
   const FreshTemplate = [
     {
@@ -9,35 +9,37 @@ const FreshTemplate = () => {
       icon2: <FaStar />,
       heading: `Facebook Ad (Short)`,
       desc: `Step into a world of diverse perspectives and foster inclusivity with our Inclusive Lens Generation Card.`,
-      badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>
+      badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
+      url:'facebook-ad'
     },
     {
-      icon1: "/images/icon-amazon.svg"
-      ,
+      icon1: "/images/icon-amazon.svg",
       icon2: <FaStar />,
       heading: `Amazon Ads`,
       desc: `Experience the ultimate convenience in crafting compelling paragraphs with our innovative Paragraph Generator.`,
-      badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>
+      badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
+      url:'amazon-ads'
     },
     {
       icon1: "/images/icon-meta.svg",
       icon2: <FaStar />,
       heading: `Meta Description`,
       desc: `Short description about the title contents can be displayed here to give a glimpse for selection`,
-      badge:<span className="px-2 py-1.5 bg-[#f0c103d9] text-xs text-white rounded-sm ml-2">Paid</span>
+      badge:<span className="px-2 py-1.5 bg-[#f0c103d9] text-xs text-white rounded-sm ml-2">Paid</span>,
+      url:'meta-description'
     }
 
   ];
   return (
 
-    <div className="mt-5 p-8">
-      <h1 className="section-title font-bold text-[#262626]">
+    <div className="mt-5 p-0 md:p-8">
+    {FreshTemplate?.filter((el)=>el.heading.toLowerCase().includes(search.toLowerCase())).length > 0 && <h1 className="section-title font-bold text-[#262626]">
         Fresh Template
-      </h1>
+      </h1>}
       {/*card*/}
       <div className="container mx-auto mt-4 md:mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5">
-          {FreshTemplate?.map((data, index) => (
+          {FreshTemplate?.filter((el)=>el.heading.toLowerCase().includes(search.toLowerCase()))?.map((data, index) => (
             <div key={index}>
               <Card
                 icon1={data?.icon1}
@@ -45,6 +47,7 @@ const FreshTemplate = () => {
                 heading={data?.heading}
                 desc={data?.desc}
                 badge={data?.badge}
+                url={data?.url}
               />
             </div>
           ))}
