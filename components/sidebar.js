@@ -9,17 +9,12 @@ import { useSnackbar } from "notistack";
 import { FaRegFlag } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { GoCopy } from "react-icons/go";
-import {
-  FiClipboard,
-  FiSettings,
-  FiLogOut,
-  FiDownload,
-} from "react-icons/fi";
+import { FiClipboard, FiSettings, FiLogOut, FiDownload } from "react-icons/fi";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 
 const navItems = [
-  { name: "Projects", IconComponent: GoHome, href: "/projects" },
+  { name: "Projects", IconComponent: GoHome, href: "/Projects" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
   { name: "Copy", IconComponent: GoCopy, href: "/copy" },
