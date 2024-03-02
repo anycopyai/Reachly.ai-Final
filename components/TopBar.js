@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiCreditCard, FiSearch } from 'react-icons/fi';
+import { AiOutlineSearch } from "react-icons/ai";
+import { Button } from 'antd';
 
 const categories = [
   'All',
   'Favorites',
   'Fresh Template',
-  'EveryDay Tools',
-  'Blog',
-  'AdCopy',
-  'E_commerce',
-  'Campaigns',
-  'Landing Pages',
-  'Website Copy',
-  'Salae Copy',
-  'Social Media',
-  'Emails',
-  'Video',
-  'Business',
-  'Branding',
-  'Education',
-  'Pr_Media',
-  'Reserach',
-  'Human Resources',
-  'Frame Works',
-  'Brain storming',
-  'Invistor Pitch',
+  // 'EveryDay Tools',
+  // 'Blog',
+  // 'AdCopy',
+  // 'E_commerce',
+  // 'Campaigns',
+  // 'Landing Pages',
+  // 'Website Copy',
+  // 'Salae Copy',
+  // 'Social Media',
+  // 'Emails',
+  // 'Video',
+  // 'Business',
+  // 'Branding',
+  // 'Education',
+  // 'Pr_Media',
+  // 'Reserach',
+  // 'Human Resources',
+  // 'Frame Works',
+  // 'Brain storming',
+  // 'Invistor Pitch',
 ];
 
 const CreditBadge = ({ credits }) => {
@@ -41,7 +42,7 @@ const CreditBadge = ({ credits }) => {
 
   return (
     <Link href="/upgrade">
-      <a className="flex items-center text-white font-medium rounded-full text-sm px-5 py-2.5 transition duration-300 ease-in-out hover:bg-blue-600 hover:text-white" style={{ backgroundColor: '#C7DAFD', color: 'blue', cursor: 'pointer' }}>
+      {/* <a className="flex items-center text-white font-medium rounded-full text-sm px-5 py-2.5 transition duration-300 ease-in-out hover:bg-blue-600 hover:text-white" style={{ backgroundColor: '#C7DAFD', color: 'blue', cursor: 'pointer' }}>
         <FiCreditCard className="mr-2" />
         {showCredits ? (
           <>
@@ -52,39 +53,62 @@ const CreditBadge = ({ credits }) => {
             <span>Upgrade now for Unlimited</span>
           </>
         )}
-      </a>
+      </a> */}
+      <Button type="primary" className="bg-white md:bg-[#0033FF] border border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2">
+        <img src="/images/icon-upgrade.svg" className="hidden md:block" />
+        <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
+        Upgrade Now
+      </Button>
     </Link>
   );
 };
 
-const TopBar = () => {
+const TopBar = ({setFilter, handleSearch, search}) => {
   return (
-    <div className="  bg-white  flex justify-between items-center">
-      <div className=' mt-5 max-w-[89%] mx-auto'>
-        <div className="flex  justify-between">
-         <div className='flex items-center w-full max-w-xl relative border border-gray-300 rounded-full'>
-         <input 
-            type="search" 
-            placeholder="I'm looking for..." 
-            className="pl-4 pr-10 py-2 w-full border-none rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out" 
-          />
-          <FiSearch className="absolute right-4 text-lg text-blue-600 cursor-pointer" />
-          
-         </div>
-         <CreditBadge credits={100} className=' -translate-x-6' />
+    <div className="bg-white flex justify-between items-center">
+      <div className="w-full">
+        <div className="flex justify-between flex-col-reverse md:flex-row gap-4">
+          <div className='flex items-center w-full max-w-xl relative rounded-full'>
+            <input
+              type="search"
+              value={search}
+              onChange={(e)=>handleSearch(e)}
+              placeholder="Search your copy"
+              className="pl-4 pr-10 py-2 w-full border-none rounded-full focus:outline-none focus:ring-0 focus:ring-blue-600 transition duration-300 ease-in-out text-base bg-[#f3f3f3] text-[#49454F]"
+            />
+            <AiOutlineSearch className="absolute right-4 text-lg text-[#49454F] cursor-pointer" />
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="md:hidden flex gap-4 pl-6">
+              <p className="text-sm	font-medium text-black">Templates</p>
+            </div>
+            <CreditBadge credits={100} className=' -translate-x-6' />
+          </div>
         </div>
-        <div className="flex flex-wrap gap-4 mt-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className="text-sm bg-gray-100 hover:bg-blue-100 text-gray-800 hover:text-blue-800 px-4 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition  duration-300 ease-in-out hover:bg-blue-600 hover:text-white"
-            >
-              {category}
-            </button>
-          ))}
+
+
+        {/* Sidebar responsive */}
+        <div className="fixed w-full bg-white block md:hidden">
+          
+        </div>
+
+
+
+        <div className="w-full">
+          <div className="flex flex-nowrap md:flex-wrap whitespace-nowrap md:whitespace-normal overflow-x-auto scrollbar-hide gap-4 mt-4 md:mt-8">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className="text-base bg-white border border-[#D9D9D9] text-gray-800 px-4 py-1.5 rounded-full focus:bg-blue-600 focus:text-white focus:border-blue-600 transition  duration-300 ease-in-out hover:bg-blue-600 hover-border-blue-600 hover:text-white"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-      
+
     </div>
   );
 };
