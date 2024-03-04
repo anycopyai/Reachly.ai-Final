@@ -48,7 +48,13 @@ const Card = ({ icon1, icon2, heading, desc, badge, url }) => {
     //   </div>
     // </div>
 
-    <div className="modalinfo" onClick={()=>router.push(`/${url}`)}>
+    // <div className="modalinfo" onClick={()=>router.push(`/${url}`)}>
+    <div className="modalinfo" onClick={()=>router.push({
+      pathname: `/${url}`,
+      query: {
+        heading: heading
+      }
+    })}>
       <div className="content">
         <div className="url-to-ad" style={{ color: "#03f" }}>
           <img src={icon1} alt="icon" />
