@@ -2242,3 +2242,11 @@ div#__next > main {
 .section-title {
   font-size: 1rem;
 }
+
+/* Form styles */
+.ant-select .ant-select-selector {
+  border-radius: 2px;
+}
+textarea.resize-none {
+  resize: none !important;
+}
