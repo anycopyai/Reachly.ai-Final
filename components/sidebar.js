@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { useRouter } from "next/router";
@@ -6,21 +6,16 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSnackbar } from "notistack";
-import { FaRegFlag } from "react-icons/fa6";
+import { GoHome } from "react-icons/go";
 import { LiaAdSolid, LiaNotesMedicalSolid } from "react-icons/lia";
-import {
-  FiClipboard,
-  FiSettings,
-  FiLogOut,
-  FiDownload,
-} from "react-icons/fi";
-import { IoIosHelpCircleOutline } from "react-icons/io";
+import { FiSettings, FiLogOut, FiDownload } from "react-icons/fi";
 import { MdOutlineEdit, MdOutlineMenu } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaRegFileAlt } from "react-icons/fa";
 import { BsCardChecklist } from "react-icons/bs";
 
 const navItems = [
+  { name: "Projects", IconComponent: GoHome, href: "/Projects" },
   { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   { name: "URL to Ads", IconComponent: LiaAdSolid, href: "/browse" },
@@ -31,7 +26,7 @@ const navItems = [
 ];
 
 const Sidebar = ({ children }) => {
-  const [isOpen , setisOpen] = useState(false);
+  const [isOpen, setisOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const handleNavigation = (href) => {
@@ -57,12 +52,16 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px]">
-       {router.pathname !== '/[prompts]'&& <button onClick={() => setisOpen(true)}>
-          <MdOutlineMenu />
-        </button>}
+        {router.pathname !== "/[prompts]" && (
+          <button onClick={() => setisOpen(true)}>
+            <MdOutlineMenu />
+          </button>
+        )}
       </div>
       <div
-        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-10 flex ${isOpen ? "left-0" : "-left-full"}`}
+        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-10 flex ${
+          isOpen ? "left-0" : "-left-full"
+        }`}
         style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
       >
         {/* Updated background color to #F9F8F7 (bg-gray-50) */}
@@ -81,7 +80,10 @@ const Sidebar = ({ children }) => {
                 </p>
               </a>
             </Link>
-            <button className="block md:hidden" onClick={() => setisOpen(false)}>
+            <button
+              className="block md:hidden"
+              onClick={() => setisOpen(false)}
+            >
               <IoCloseSharp className="text-[#323232] opacity-50" />
             </button>
           </div>
@@ -92,7 +94,9 @@ const Sidebar = ({ children }) => {
                 className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-[#0033FF]"
               >
                 <IconComponent className="h-6 w-6 text-black-400 hover:text-[#0033FF] transition-colors duration-200" />
-                <p className="text-[#323232] hover:text-[#0033FF] text-sm block md:hidden">{name}</p>
+                <p className="text-[#323232] hover:text-[#0033FF] text-sm block md:hidden">
+                  {name}
+                </p>
               </div>
             </Tippy>
           ))}
