@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import React from "react";
 
-const Card = ({ icon1, icon2, heading, desc }) => {
+const Card = ({ icon1, icon2, heading, desc, badge, url }) => {
+  const router = useRouter();
   return (
     // <div className="cardLayout min-h-[12em] hover:border-10 hover:border-solid hover:border-[#466ab1]">
     //   <div class="grid grid-cols-12 gap-4">
@@ -46,15 +48,21 @@ const Card = ({ icon1, icon2, heading, desc }) => {
     //   </div>
     // </div>
 
-    <div className="modalinfo">
+    // <div className="modalinfo" onClick={()=>router.push(`/${url}`)}>
+    <div className="modalinfo" onClick={()=>router.push({
+      pathname: `/${url}`,
+      query: {
+        heading: heading
+      }
+    })}>
       <div className="content">
         <div className="url-to-ad" style={{ color: "#03f" }}>
-          {icon1}
+          <img src={icon1} alt="icon" />
         </div>
         <div className="right">
           <div className="frame-parent6">
             <div className="title-parent7">
-              <div className="title41">{heading}</div>
+              <div className="title41">{heading} {badge}</div>
               {/* <div className="tagcheckabletag">
           <div className="default">New</div>
         </div> */}

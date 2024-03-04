@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { useRouter } from "next/router";
@@ -6,24 +6,27 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSnackbar } from "notistack";
-import { FaRegFlag } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
-import { GoCopy } from "react-icons/go";
-import { FiClipboard, FiSettings, FiLogOut, FiDownload } from "react-icons/fi";
-import { IoIosHelpCircleOutline } from "react-icons/io";
-import { MdOutlineEdit } from "react-icons/md";
+import { LiaAdSolid, LiaNotesMedicalSolid } from "react-icons/lia";
+import { FiSettings, FiLogOut, FiDownload } from "react-icons/fi";
+import { MdOutlineEdit, MdOutlineMenu } from "react-icons/md";
+import { IoCloseSharp } from "react-icons/io5";
+import { FaRegFileAlt } from "react-icons/fa";
+import { BsCardChecklist } from "react-icons/bs";
 
 const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/Projects" },
+  { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
-  { name: "Templates", IconComponent: FiClipboard, href: "/browse" },
-  { name: "Copy", IconComponent: GoCopy, href: "/copy" },
-  { name: "Download", IconComponent: FiDownload, href: "/download" },
-  { name: "Report", IconComponent: FaRegFlag, href: "/Report" },
-  { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
+  { name: "URL to Ads", IconComponent: LiaAdSolid, href: "/browse" },
+  { name: "Projects", IconComponent: FaRegFileAlt, href: "/copy" },
+  { name: "Saved", IconComponent: FiDownload, href: "/download" },
+  { name: "Workflow", IconComponent: BsCardChecklist, href: "/Report" },
+  // { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
 ];
 
 const Sidebar = ({ children }) => {
+  const [isOpen, setisOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const handleNavigation = (href) => {
@@ -47,52 +50,79 @@ const Sidebar = ({ children }) => {
   };
 
   return (
-    <div
-      className="fixed top-0 left-0 bg-white w-20 flex flex-col justify-between py-6 h-screen z-10 hidden md:flex"
-      style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
-    >
-      {/* Updated background color to #F9F8F7 (bg-gray-50) */}
-      <div className="flex flex-col items-center">
-        <Link href="/">
-          <a className="mb-8 cursor-pointer">
-            <img
-              className="h-6 w-6 image-2-icon2"
-              alt=""
-              src="../images/logo.png"
-              style={{ height: 25, width: 25 }}
-            />
-          </a>
-        </Link>
-        {navItems.map(({ name, IconComponent, href }) => (
-          <Tippy key={name} content={name} placement="right">
-            <div
-              onClick={() => handleNavigation(href)}
-              className="mb-8 block cursor-pointer"
+    <>
+      <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px]">
+        {router.pathname !== "/[prompts]" && (
+          <button onClick={() => setisOpen(true)}>
+            <MdOutlineMenu />
+          </button>
+        )}
+      </div>
+      <div
+        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-10 flex ${
+          isOpen ? "left-0" : "-left-full"
+        }`}
+        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
+      >
+        {/* Updated background color to #F9F8F7 (bg-gray-50) */}
+        <div className="flex flex-col item-start md:items-center">
+          <div className="mb-8 px-8 md:px-0 flex justify-between items-center pb-2.5 md:pb-0 border-b-1 border-[rgba(0,0,0,0.1)] md:border-none">
+            <Link href="/">
+              <a className="cursor-pointer flex items-center gap-3">
+                <img
+                  className="h-6 w-6 image-2-icon2"
+                  alt=""
+                  src="../images/logo.png"
+                  style={{ height: 25, width: 25 }}
+                />
+                <p className="text-[#323232] font-medium text-2xl block md:hidden">
+                  Anycopy.ai
+                </p>
+              </a>
+            </Link>
+            <button
+              className="block md:hidden"
+              onClick={() => setisOpen(false)}
             >
-              <IconComponent className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
+              <IoCloseSharp className="text-[#323232] opacity-50" />
+            </button>
+          </div>
+          {navItems.map(({ name, IconComponent, href }) => (
+            <Tippy key={name} content={name} placement="left">
+              <div
+                onClick={() => handleNavigation(href)}
+                className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-[#0033FF]"
+              >
+                <IconComponent className="h-6 w-6 text-black-400 hover:text-[#0033FF] transition-colors duration-200" />
+                <p className="text-[#323232] hover:text-[#0033FF] text-sm block md:hidden">
+                  {name}
+                </p>
+              </div>
+            </Tippy>
+          ))}
+        </div>
+        <div className="flex flex-col items-start md:items-center space-y-9 mb-2 px-8 md:px-0">
+          <Tippy content="Settings" placement="right">
+            <div
+              onClick={() => handleNavigation("/settings")}
+              className="cursor-pointer flex items-center gap-3"
+            >
+              <FiSettings className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
+              <p className="text-[#323232] text-sm block md:hidden">Settings</p>
             </div>
           </Tippy>
-        ))}
+          <Tippy content="Logout" placement="right">
+            <div
+              onClick={() => logoutWithRedirect()}
+              className="flex items-center gap-3 cursor-pointer"
+            >
+              <FiLogOut className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
+              <p className="text-[#323232] text-sm block md:hidden">Logout</p>
+            </div>
+          </Tippy>
+        </div>
       </div>
-      <div className="flex flex-col items-center space-y-9 mb-2">
-        <Tippy content="Settings" placement="right">
-          <div
-            onClick={() => handleNavigation("/settings")}
-            className="block cursor-pointer"
-          >
-            <FiSettings className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
-          </div>
-        </Tippy>
-        <Tippy content="Logout" placement="right">
-          <div
-            onClick={() => logoutWithRedirect()}
-            className="block cursor-pointer"
-          >
-            <FiLogOut className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
-          </div>
-        </Tippy>
-      </div>
-    </div>
+    </>
   );
 };
 

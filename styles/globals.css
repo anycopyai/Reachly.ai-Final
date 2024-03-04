@@ -2009,6 +2009,9 @@ div#__next > main {
   padding: 32px 32px 24px;
   gap: 24px;
   cursor: pointer;
+  padding: 30px 30px 24px;
+  border: 1px solid #E6E8EC;
+  height: 100%;
 }
 .modalinfo:hover {
   border: 1px solid #03f;
@@ -2133,6 +2136,7 @@ div#__next > main {
 .title41 {
   line-height: 24px;
   font-weight: 500;
+  font-size: 16px;
 }
 .default,
 .title41 {
@@ -2235,3 +2239,14 @@ div#__next > main {
   background: #4096ff  !important;
 }
 
+.section-title {
+  font-size: 1rem;
+}
+
+/* Form styles */
+.ant-select .ant-select-selector {
+  border-radius: 2px;
+}
+textarea.resize-none {
+  resize: none !important;
+}

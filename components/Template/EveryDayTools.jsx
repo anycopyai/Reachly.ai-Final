@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../common/Card";
-import { FaSearchPlus, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { LuRefreshCcw } from "react-icons/lu";
 import { FiSave } from "react-icons/fi";
 import { BsArrowsAngleExpand } from "react-icons/bs";
@@ -42,7 +42,7 @@ const EveryDayTools = () => {
   ];
   return (
     <div className=" mt-8  mx-auto w-11/12">
-      <h1 className=" text-xl" style={{ marginBottom: 30 }}>
+      <h1 className="section-title font-bold text-[#262626]">
         Eveyday Tools
       </h1>
       {/*card*/}
