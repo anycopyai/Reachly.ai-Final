@@ -1,6 +1,7 @@
 import { Checkbox, Input, Select, Switch } from "antd";
 import React from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import SelectPicker from "./SelectPicker";
 
 const { TextArea } = Input;
 
@@ -116,6 +117,8 @@ const PromptForm = ({ setGenerate }) => {
           </p>
         </div>
       </div>
+{/* 
+      <SelectPicker/> */}
 
       {/* <button className="text-gray bg-white-100 hover:bg-gray-100 focus:outline-none text-sm sm:w-auto px-5 py-2.5 text-center mb-2">
                   Skip Intro

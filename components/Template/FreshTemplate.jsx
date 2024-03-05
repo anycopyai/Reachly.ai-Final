@@ -10,7 +10,17 @@ const FreshTemplate = ({search}) => {
       heading: `Facebook Ad (Short)`,
       desc: `Step into a world of diverse perspectives and foster inclusivity with our Inclusive Lens Generation Card.`,
       badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
-      url:'facebook-ad'
+      url:'facebook-ad-short',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
     },
     {
       icon1: "/images/icon-amazon.svg",
@@ -18,16 +28,36 @@ const FreshTemplate = ({search}) => {
       heading: `Amazon Ads`,
       desc: `Experience the ultimate convenience in crafting compelling paragraphs with our innovative Paragraph Generator.`,
       badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
-      url:'amazon-ads'
+      url:'amazon-ads',
+      favorites: false,
+      Extrafields:[
+        {
+          label: 'Product',
+          type:'textArea',
+          placeholder: 'product you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
     },
     {
-      icon1: "/images/icon-meta.svg",
+      icon1: "/images/icon-social-media.svg",
       icon2: <FaStar />,
-      heading: `Meta Description`,
-      desc: `Short description about the title contents can be displayed here to give a glimpse for selection`,
+      heading: `URL to Ads`,
+      desc: `Unleash the power of connectivity with the URL to Ads card designed for the tech-savvy and socially inclined`,
       badge:<span className="px-2 py-1.5 bg-[#f0c103d9] text-xs text-white rounded-sm ml-2">Paid</span>,
-      url:'meta-description'
-    }
+      url:'url-to-ads',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Website/Landing page URL',
+          type:'textArea',
+          placeholder: 'Anycopy.com',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
 
   ];
   return (

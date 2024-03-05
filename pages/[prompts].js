@@ -18,6 +18,7 @@ import PromptForm from "../components/common/PromptForm";
 import GoogleAds from "../components/Template/GoogleAds";
 import FacebookAds from "../components/Template/FacebookAds";
 import LinkedInAds from "../components/Template/LinkedInAds";
+import UrlToAds from "../components/Template/UrlToAds";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
@@ -33,7 +34,7 @@ const Prompt = () => {
       <div className="flex-grow m-5">
         <div className="flex flex-grow items-center gap-5">
           <div className="flex items-center gap-6">
-            <span onClick={() => router.push("/Browse")} className="text-3xl">
+            <span onClick={() => router.push("/Browse")} className="text-3xl cursor-pointer">
               <FiArrowLeft />
             </span>
             <p className="text-sm md:text-3xl font-medium">{router?.query?.heading}</p>
@@ -116,8 +117,16 @@ const Prompt = () => {
               ) : (<>
                 {router.query.prompts === "landing-page" && <LandingPage />}
                 {router.query.prompts  === "google-ads" && <GoogleAds />}
-                {/* {router.query.prompts  === "facebook-ads" && <FacebookAds />}
-                {router.query.prompts  === "linkedin-ads" && <LinkedInAds />} */}
+                {router.query.prompts  === "facebook-ads" && <FacebookAds />}
+                {router.query.prompts  === "linkedin-ads" && <LinkedInAds />}
+                {router.query.prompts  === "keyword-generator" && <LinkedInAds />}
+                {router.query.prompts  === "facebook-ad-short" && <LinkedInAds />}
+                {router.query.prompts  === "amazon-ads" && <LinkedInAds />}
+                {router.query.prompts  === "meta-description" && <LinkedInAds />}
+                {router.query.prompts  === "url-to-ads" && <UrlToAds />}
+                
+                
+                
                 </>)}
             </div>
           </div>
