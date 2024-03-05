@@ -21,6 +21,7 @@ const SelectPicker = () => {
 
   return (
     <div>
+      Topics
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

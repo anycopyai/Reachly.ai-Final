@@ -50,6 +50,20 @@ const Favorites = ({search}) => {
           maxLength: 75,
           value:''
         },
+        {
+          label: 'Add testimonials',
+          type:'checkbox',
+          placeholder: '',
+          maxLength: '',
+          value: false
+        },
+        {
+          label: 'Add FAQs',
+          type:'checkbox',
+          placeholder: '',
+          maxLength: '',
+          value: false
+        },
       ]
     },
     {
@@ -59,15 +73,15 @@ const Favorites = ({search}) => {
       desc: `Short description about the title contents can be displayed here to give a glimpse for selection`,
       url:'facebook-ads',
       favorites: true,
-      Extrafields:[
-        {
-          label: 'Subject',
-          type:'textArea',
-          placeholder: 'subject you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
+      // Extrafields:[
+      //   {
+      //     label: 'Subject',
+      //     type:'textArea',
+      //     placeholder: 'subject you provide',
+      //     maxLength: 75,
+      //     value:''
+      //   }
+      // ] 
     },
     {
       icon1: "/images/icon-facebook.svg",
@@ -76,37 +90,38 @@ const Favorites = ({search}) => {
       desc: `Unleash the power of connectivity with the Social media card designed for the tech-savvy and socially inclined`,
       url: 'social-media-post',
       favorites: true,
-      Extrafields:[
-        {
-          label: 'Social Post Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 250,
-          value:''
-        },
-        {
-          label: 'Tone',
-          type:'select',
-          placeholder: 'Topic you provide',
-          maxLength: 250,
-          value:'',
-          selectOptions:[
-            {
-              value: "adventure",
-              label: "Adventure",
-            },
-            {
-              value: "joy",
-              label: "Joy",
-            },
-            {
-              value: "bold",
-              label: "Bold",
-            }
-          ]
-        },
+      // Extrafields:[
+      //   {
+      //     label: 'Social Post Topic',
+      //     type:'textArea',
+      //     placeholder: 'Post you provide',
+      //     maxLength: 250,
+      //     rows:4,
+      //     value:''
+      //   },
+      //   {
+      //     label: 'Tone',
+      //     type:'select',
+      //     placeholder: 'Tone',
+      //     maxLength: 250,
+      //     value:'',
+      //     selectOptions:[
+      //       {
+      //         value: "adventure",
+      //         label: "Adventure",
+      //       },
+      //       {
+      //         value: "joy",
+      //         label: "Joy",
+      //       },
+      //       {
+      //         value: "bold",
+      //         label: "Bold",
+      //       }
+      //     ]
+      //   },
         
-      ] 
+      // ] 
     },
     {
       icon1: "/images/icon-linkedin.svg",
@@ -133,15 +148,15 @@ const Favorites = ({search}) => {
       desc: `Short description about the title contents can be displayed here to give a glimpse for selection`,
       url: 'keyword-generator',
       favorites: true,
-      Extrafields:[
-        {
-          label: 'My Text',
-          type:'textArea',
-          placeholder: 'Product you provide',
-          maxLength: 250,
-          value:''
-        }
-      ] 
+      // Extrafields:[
+      //   {
+      //     label: 'My Text',
+      //     type:'textArea',
+      //     placeholder: 'Product you provide',
+      //     maxLength: 250,
+      //     value:''
+      //   }
+      // ] 
     },
     {
       icon1: "/images/icon-social-media.svg",
@@ -150,15 +165,15 @@ const Favorites = ({search}) => {
       desc: `Unleash the power of connectivity with the Product Description card designed for the tech-savvy and socially inclined`,
       url:'product-description',
       favorites: true,
-      Extrafields:[
-        {
-          label: 'Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
+      // Extrafields:[
+      //   {
+      //     label: 'Topic',
+      //     type:'textArea',
+      //     placeholder: 'Topic you provide',
+      //     maxLength: 75,
+      //     value:''
+      //   }
+      // ] 
     },
     {
       icon1: "/images/icon-social-media.svg",
@@ -167,15 +182,15 @@ const Favorites = ({search}) => {
       desc: `Unleash the power of connectivity with the Meta Description card designed for the tech-savvy and socially inclined`,
       url:'meta-description',
       favorites: true,
-      Extrafields:[
-        {
-          label: 'Page Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
+      // Extrafields:[
+      //   {
+      //     label: 'Page Topic',
+      //     type:'textArea',
+      //     placeholder: 'Topic you provide',
+      //     maxLength: 75,
+      //     value:''
+      //   }
+      // ] 
     },
     
   ];
@@ -192,6 +207,7 @@ const Favorites = ({search}) => {
                 heading={data?.heading}
                 desc={data?.desc}
                 url={data?.url}
+                data={data}
               />
             </div>
           ))}
