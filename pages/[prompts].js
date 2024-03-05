@@ -18,22 +18,48 @@ import PromptForm from "../components/common/PromptForm";
 import GoogleAds from "../components/Template/GoogleAds";
 import FacebookAds from "../components/Template/FacebookAds";
 import LinkedInAds from "../components/Template/LinkedInAds";
+import UrlToAds from "../components/Template/UrlToAds";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
+  const [inputData, setInputData] = useState([]);
   const router = useRouter();
+
+  useEffect(()=>{
+    if(router?.query?.data)
+    {
+      const data = JSON.parse(router?.query?.data)
+      setInputData(data?.extrafields)
+    }
+  },[router])
 
   const handleNavigation = () => {
     router.push("/Writerlanding");
   };
+  // console.log(1234,inputData)
+
+  const handleChange = (e) => {  
+    // console.log(4343,e);
+    // console.log(7878,e?.target?.name);
+    setInputData((prev)=>{
+      return prev.map((item)=>{
+        if(item.label === e.target.name)
+        {
+          item.value = e.target.value || e.target.checked
+        }
+        return item
+      })
+    })
+  }
+
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
       <Sidebar />
       <div className="flex-grow m-5">
         <div className="flex flex-grow items-center gap-5">
           <div className="flex items-center gap-6">
-            <span onClick={() => router.push("/Browse")} className="text-3xl">
+            <span onClick={() => router.push("/Browse")} className="text-3xl cursor-pointer">
               <FiArrowLeft />
             </span>
             <p className="text-sm md:text-3xl font-medium">{router?.query?.heading}</p>
@@ -93,7 +119,7 @@ const Prompt = () => {
               <h1 className="hidden md:inline-block text-sm text-navblue font-medium border-b-2 border-navblue">
                 Prompt
               </h1>
-              <PromptForm setGenerate={setGenerate} />
+              <PromptForm inputData={inputData} setInputData={setInputData} handleChange={handleChange} setGenerate={setGenerate} />
             </div>
             <div
               className={` ${
@@ -116,8 +142,16 @@ const Prompt = () => {
               ) : (<>
                 {router.query.prompts === "landing-page" && <LandingPage />}
                 {router.query.prompts  === "google-ads" && <GoogleAds />}
-                {/* {router.query.prompts  === "facebook-ads" && <FacebookAds />}
-                {router.query.prompts  === "linkedin-ads" && <LinkedInAds />} */}
+                {router.query.prompts  === "facebook-ads" && <FacebookAds />}
+                {router.query.prompts  === "linkedin-ads" && <LinkedInAds />}
+                {router.query.prompts  === "keyword-generator" && <LinkedInAds />}
+                {/* {router.query.prompts  === "facebook-ad-short" && <LinkedInAds />} */}
+                {router.query.prompts  === "amazon-ads" && <LinkedInAds />}
+                {router.query.prompts  === "meta-description" && <LinkedInAds />}
+                {/* {router.query.prompts  === "url-to-ads" && <UrlToAds />} */}
+                
+                
+                
                 </>)}
             </div>
           </div>

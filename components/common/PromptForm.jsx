@@ -1,10 +1,13 @@
 import { Checkbox, Input, Select, Switch } from "antd";
 import React from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import SelectPicker from "./SelectPicker";
 
 const { TextArea } = Input;
 
-const PromptForm = ({ setGenerate }) => {
+const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
+
+
   return (
     <form
       method="POST"
@@ -23,6 +26,10 @@ const PromptForm = ({ setGenerate }) => {
                 value: "english",
                 label: "English",
               },
+              {
+                value: "hindi",
+                label: "Hindi",
+              }
             ]}
           />
         </div>
@@ -38,6 +45,10 @@ const PromptForm = ({ setGenerate }) => {
               {
                 value: "console",
                 label: "Console",
+              },
+              {
+                value: "my-project",
+                label: "My Project",
               },
             ]}
           />
@@ -62,47 +73,75 @@ const PromptForm = ({ setGenerate }) => {
         <div className="flex items-center flex-col gap-2">
           <Switch defaultChecked />
           <p className="mb-2 text-sm font-medium text-black opacity-50">
-            Disabled
+            Enabled
           </p>
         </div>
       </div>
 
-      <div className="relative">
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Topic
-        </label>
-				<TextArea placeholder="feature you provide" rows={2} className="rounded-sm resize-none" />
-        <span className="absolute top-12 right-0 p-2 text-sm text-slate-300">
-          0/75
-        </span>
-      </div>
+      {inputData?.map((el, index) => {
+        return (
+          <div key={index}>
+            {el.type === "textArea" && (
+              <div className="relative">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  {el.label}
+                </label>
+                <TextArea
+                  placeholder={el.placeholder}
+                  rows={el.rows || 2}
+                  maxLength={el.maxLength}
+                  value={el.value}
+                  name={el.label}
+                  className="rounded-sm resize-none"
+                  onChange={(e) => handleChange(e)}
+                />
+                <span className="absolute bottom-0 right-0 pr-1 text-sm text-slate-300">
+                  0/{el.maxLength}
+                </span>
+              </div>
+            )}
+            {el.type === "select" && (
+              <div className="focus:outline-none">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  {el.label}
+                </label>
+                <Select
+                  className="w-full rounded-sm text-base h-10"
+                  defaultValue={el.label}
+                  options={el?.selectOptions}
+                  placeholder={el.placeholder}
+                  value={el.value}
+                  onChange={(e) =>
+                    setInputData((prev) => {
+                      return prev.map((item) => {
+                        if (item.label === el.label) {
+                          item.value = e
+                        }
+                        return item;
+                      });
+                    })
+                  }
+                />
+              </div>
+            )}
+            {el.type === "selectPicker" && <SelectPicker />}
 
-      <div className="relative">
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Benefit
-        </label>
-				<TextArea placeholder="benefit you provide" rows={2} className="rounded-sm resize-none" />
-        <span className="absolute top-12 right-0 p-2 text-sm text-slate-300">
-          0/75
-        </span>
-      </div>
-
-      <div className="relative">
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Feature
-        </label>
-				<TextArea placeholder="feature you provide" rows={2} className="rounded-sm resize-none" />
-        <span className="absolute top-12 right-0 p-2 text-sm text-slate-300">
-          0/75
-        </span>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6">
-        <Checkbox className="text-sm text-black opacity-90">
-          Add testimonials
-        </Checkbox>
-        <Checkbox className="text-sm text-black opacity-90">Add FAQs</Checkbox>
-      </div>
+            <div className="grid grid-cols-1 gap-6">
+              {el.type === "checkbox" && (
+                <Checkbox
+                  className="text-sm text-black opacity-90"
+                  name={el.label}
+                  checked={el.value}
+                  onChange={(e) => handleChange(e)}
+                >
+                  {el.label}
+                </Checkbox>
+              )}
+              {/* <Checkbox className="text-sm text-black opacity-90">Add FAQs</Checkbox> */}
+            </div>
+          </div>
+        );
+      })}
 
       <div className="flex flex-row justify-between gap-5">
         <div className="flex items-center gap-1">
