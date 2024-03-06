@@ -13,8 +13,8 @@ const Card = ({ icon1, icon2, heading, desc, badge, url, data }) => {
           query: {
             heading: heading,
             data: JSON.stringify({
-              favorites:data.favorites,
-              extrafields: data.Extrafields
+              favorites:data?.favorites,
+              extrafields: data?.Extrafields
             })
        
           },

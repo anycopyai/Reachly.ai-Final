@@ -18,7 +18,7 @@ const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/Projects" },
   { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
-  { name: "URL to Ads", IconComponent: LiaAdSolid, href: "/browse" },
+  { name: "URL to Ads", IconComponent: LiaAdSolid, href: "/Browse" },
   { name: "Projects", IconComponent: FaRegFileAlt, href: "/copy" },
   { name: "Saved", IconComponent: FiDownload, href: "/download" },
   { name: "Workflow", IconComponent: BsCardChecklist, href: "/Report" },
