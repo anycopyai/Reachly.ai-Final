@@ -5,7 +5,7 @@ import SelectPicker from "./SelectPicker";
 
 const { TextArea } = Input;
 
-const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
+const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedInput, setfixedInput }) => {
 
 
   return (
@@ -20,7 +20,15 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
           </label>
           <Select
             className="w-full rounded-sm text-base h-10"
-            defaultValue="English"
+            placeholder="English"
+            value={fixedInput.language}
+            name='language'
+            onChange={(e)=>setfixedInput((prev)=>{
+              return {
+             ...prev,
+                language: e
+              }
+            })}
             options={[
               {
                 value: "english",
@@ -40,7 +48,14 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
           {/* Dynamic the project form settings */}
           <Select
             className="w-full rounded-sm text-base h-10"
-            defaultValue="Console"
+            value={fixedInput.project}
+            name='project'
+            onChange={(e)=>setfixedInput((prev)=>{
+              return {
+             ...prev,
+                project: e
+              }
+            })}
             options={[
               {
                 value: "console",
@@ -71,9 +86,14 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
           </p>
         </div>
         <div className="flex items-center flex-col gap-2">
-          <Switch defaultChecked />
+          <Switch value={fixedInput.brainstorm} onChange={(e)=>setfixedInput((prev)=>{
+            return {
+              ...prev,
+              brainstorm: e
+            }
+          })} />
           <p className="mb-2 text-sm font-medium text-black opacity-50">
-            Enabled
+            { fixedInput.brainstorm ? "Enabled" : "Disabled" }
           </p>
         </div>
       </div>
@@ -149,9 +169,14 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData }) => {
           <IoIosInformationCircleOutline />
         </div>
         <div className="flex items-center flex-col gap-2">
-          <Switch defaultChecked />
+          <Switch defaultChecked value={fixedInput.safety} onChange={(e)=>setfixedInput((prev)=>{
+            return{
+              ...prev,
+              safety: e
+            }
+          })} />
           <p className="mb-2 text-sm font-medium text-black opacity-50">
-            Disabled
+            { fixedInput.safety ? "Enabled" : "Disabled" }
           </p>
         </div>
       </div>

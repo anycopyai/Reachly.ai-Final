@@ -24,6 +24,8 @@ const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
   const [inputData, setInputData] = useState([]);
+  const [fixedInput, setfixedInput] = useState({language:'English', project:'My Project', brainstorm:false, safety:false});
+
   const router = useRouter();
 
   useEffect(()=>{
@@ -37,7 +39,7 @@ const Prompt = () => {
   const handleNavigation = () => {
     router.push("/Writerlanding");
   };
-  // console.log(1234,inputData)
+  // console.log(1234,fixedInput)
 
   const handleChange = (e) => {  
     // console.log(4343,e);
@@ -119,7 +121,7 @@ const Prompt = () => {
               <h1 className="hidden md:inline-block text-sm text-navblue font-medium border-b-2 border-navblue">
                 Prompt
               </h1>
-              <PromptForm inputData={inputData} setInputData={setInputData} handleChange={handleChange} setGenerate={setGenerate} />
+              <PromptForm inputData={inputData} fixedInput={fixedInput} setfixedInput={setfixedInput} setInputData={setInputData} handleChange={handleChange} handleFixedInput={handleFixedInput} setGenerate={setGenerate} />
             </div>
             <div
               className={` ${
@@ -145,10 +147,10 @@ const Prompt = () => {
                 {router.query.prompts  === "facebook-ads" && <FacebookAds />}
                 {router.query.prompts  === "linkedin-ads" && <LinkedInAds />}
                 {router.query.prompts  === "keyword-generator" && <LinkedInAds />}
-                {/* {router.query.prompts  === "facebook-ad-short" && <LinkedInAds />} */}
+                {router.query.prompts  === "facebook-ad-short" && <LinkedInAds />}
                 {router.query.prompts  === "amazon-ads" && <LinkedInAds />}
                 {router.query.prompts  === "meta-description" && <LinkedInAds />}
-                {/* {router.query.prompts  === "url-to-ads" && <UrlToAds />} */}
+                {router.query.prompts  === "url-to-ads" && <UrlToAds />}
                 
                 
                 
