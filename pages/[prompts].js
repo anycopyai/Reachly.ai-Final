@@ -121,7 +121,7 @@ const Prompt = () => {
               <h1 className="hidden md:inline-block text-sm text-navblue font-medium border-b-2 border-navblue">
                 Prompt
               </h1>
-              <PromptForm inputData={inputData} fixedInput={fixedInput} setfixedInput={setfixedInput} setInputData={setInputData} handleChange={handleChange} handleFixedInput={handleFixedInput} setGenerate={setGenerate} />
+              <PromptForm inputData={inputData} fixedInput={fixedInput} setfixedInput={setfixedInput} setInputData={setInputData} handleChange={handleChange} setGenerate={setGenerate} />
             </div>
             <div
               className={` ${
