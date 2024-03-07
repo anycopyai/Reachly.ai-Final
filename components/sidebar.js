@@ -18,7 +18,20 @@ const navItems = [
   { name: "Projects", IconComponent: GoHome, href: "/Projects" },
   { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
-  { name: "URL to Ads", IconComponent: LiaAdSolid, href: "/Browse" },
+  {
+    name: "URL to Ads",
+    IconComponent: LiaAdSolid,
+    href: "/url-to-ads",
+    Extrafields: [
+      {
+        label: "Website/Landing page URL",
+        type: "textArea",
+        placeholder: "Anycopy.com",
+        maxLength: 75,
+        value: "",
+      },
+    ],
+  },
   { name: "Projects", IconComponent: FaRegFileAlt, href: "/copy" },
   { name: "Saved", IconComponent: FiDownload, href: "/download" },
   { name: "Workflow", IconComponent: BsCardChecklist, href: "/Report" },
@@ -29,8 +42,20 @@ const Sidebar = ({ children }) => {
   const [isOpen, setisOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const handleNavigation = (href) => {
-    router.push(href);
+  const handleNavigation = (href, name, extrafields) => {
+    if (extrafields) {
+      router.push({
+        pathname: `/${href}`,
+        query: {
+          heading: name,
+          data: JSON.stringify({
+            extrafields: extrafields,
+          }),
+        },
+      });
+    } else {
+      router.push(href);
+    }
   };
 
   //logout the website and routeback to the login page
@@ -87,10 +112,10 @@ const Sidebar = ({ children }) => {
               <IoCloseSharp className="text-[#323232] opacity-50" />
             </button>
           </div>
-          {navItems.map(({ name, IconComponent, href }) => (
+          {navItems.map(({ name, IconComponent, href, Extrafields }) => (
             <Tippy key={name} content={name} placement="left">
               <div
-                onClick={() => handleNavigation(href)}
+                onClick={() => handleNavigation(href,name,Extrafields)}
                 className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-[#0033FF]"
               >
                 <IconComponent className="h-6 w-6 text-black-400 hover:text-[#0033FF] transition-colors duration-200" />

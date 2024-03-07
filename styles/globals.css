@@ -2250,3 +2250,19 @@ div#__next > main {
 textarea.resize-none {
   resize: none !important;
 }
+
+/* Modal styles */
+.subscribe-modal {
+  width: 700px !important;
+}
+.subscribe-radio-list li span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+@media screen and (max-width: 767px) {
+  .subscribe-modal {
+    width: 80% !important;
+  } 
+}
