@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { IoIosInformationCircleOutline } from "react-icons/io";
-import { FiArrowLeft, FiPlus } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/router";
-import { MdOutlineContentCopy, MdShowChart } from "react-icons/md";
+import { MdShowChart } from "react-icons/md";
 import Sidebar from "../components/sidebar";
-import {
-  FaRegThumbsDown,
-  FaRegThumbsUp,
-  FaSquarePlus,
-  FaStar,
-} from "react-icons/fa6";
-import { Button, Checkbox, Switch } from "antd";
-import { IoShareSocialOutline } from "react-icons/io5";
-import { AiOutlineDownload } from "react-icons/ai";
+import { FaStar } from "react-icons/fa6";
 import LandingPage from "../components/Template/LandingPage";
 import PromptForm from "../components/common/PromptForm";
 import GoogleAds from "../components/Template/GoogleAds";
@@ -36,10 +27,7 @@ const Prompt = () => {
     }
   },[router])
 
-  const handleNavigation = () => {
-    router.push("/Writerlanding");
-  };
-  // console.log(1234,fixedInput)
+  // console.log(1234,inputData)
 
   const handleChange = (e) => {  
     // console.log(4343,e);

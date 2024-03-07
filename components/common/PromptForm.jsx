@@ -2,6 +2,7 @@ import { Checkbox, Input, Select, Switch } from "antd";
 import React from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import SelectPicker from "./SelectPicker";
+import { TagsInput } from "react-tag-input-component";
 
 const { TextArea } = Input;
 
@@ -144,7 +145,33 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
                 />
               </div>
             )}
-            {el.type === "selectPicker" && <SelectPicker />}
+            {el.type === "selectPicker" && 
+            <div className="relative">
+               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  {el.label}
+                </label>
+                <TagsInput
+                value={el.value}
+                onChange={(e)=>
+                  setInputData((prev) => {
+                  return prev.map((item) => {
+                    if (item.label === el.label) {
+                      item.value = e
+                    }
+                    return item;
+                  });
+                })}
+                onBlur={(e)=>setfixedInput((prev)=>{
+                  return {
+                 ...prev,
+                    language: e
+                  }
+                })}
+                name={el.label}
+                placeHolder={el.placeholder}
+              />
+            </div>
+            }
 
             <div className="grid grid-cols-1 gap-6">
               {el.type === "checkbox" && (

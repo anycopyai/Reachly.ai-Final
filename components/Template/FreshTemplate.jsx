@@ -12,15 +12,15 @@ const FreshTemplate = ({search}) => {
       badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
       url:'facebook-ad-short',
       favorites: false,
-      // Extrafields:[
-      //   {
-      //     label: 'Topic',
-      //     type:'textArea',
-      //     placeholder: 'Topic you provide',
-      //     maxLength: 75,
-      //     value:''
-      //   }
-      // ] 
+      Extrafields:[
+        {
+          label: 'Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
     },
     {
       icon1: "/images/icon-amazon.svg",
@@ -30,15 +30,15 @@ const FreshTemplate = ({search}) => {
       badge:<span className="px-2 py-1.5 bg-[#47BF67] text-xs text-white rounded-sm ml-2">New</span>,
       url:'amazon-ads',
       favorites: false,
-      // Extrafields:[
-      //   {
-      //     label: 'Product',
-      //     type:'textArea',
-      //     placeholder: 'product you provide',
-      //     maxLength: 75,
-      //     value:''
-      //   }
-      // ] 
+      Extrafields:[
+        {
+          label: 'Product',
+          type:'textArea',
+          placeholder: 'product you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
     },
     {
       icon1: "/images/icon-social-media.svg",
@@ -48,15 +48,15 @@ const FreshTemplate = ({search}) => {
       badge:<span className="px-2 py-1.5 bg-[#f0c103d9] text-xs text-white rounded-sm ml-2">Paid</span>,
       url:'url-to-ads',
       favorites: false,
-      // Extrafields:[
-      //   {
-      //     label: 'Website/Landing page URL',
-      //     type:'textArea',
-      //     placeholder: 'Anycopy.com',
-      //     maxLength: 75,
-      //     value:''
-      //   }
-      // ] 
+      Extrafields:[
+        {
+          label: 'Website/Landing page URL',
+          type:'textArea',
+          placeholder: 'Anycopy.com',
+          maxLength: 75,
+          value:''
+        }
+      ] 
     },
 
   ];
