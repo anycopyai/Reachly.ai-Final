@@ -2250,6 +2250,9 @@ div#__next > main {
 textarea.resize-none {
   resize: none !important;
 }
+.ant-btn {
+  height: auto;
+}
 
 /* Modal styles */
 .subscribe-modal {
@@ -2259,6 +2262,10 @@ textarea.resize-none {
   display: flex;
   align-items: center;
   gap: 7px;
+}
+.setting-action-modal .ant-modal-content {
+  box-shadow: none;
+  padding: 20px 16px;
 }
 
 @media screen and (max-width: 767px) {
