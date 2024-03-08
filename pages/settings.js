@@ -10,27 +10,6 @@ const Settings = () => {
   const [changeEmail, setChangeEmail] = useState(false);
   const [sendCode, setSendCode] = useState(false);
 
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767); // Change the threshold as per your requirement
-    };
-    handleResize(); // Set initial value
-    window.addEventListener("resize", handleResize); // Add event listener for resizing
-    return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
-  }, []);
-
-  const handlePasswordCancel = () => {
-    setIsPasswordModalOpen(false);
-  };
-  const handleEmailCancel = () => {
-    setIsEmailModalOpen(false);
-  };
-
   return (
     <div className="flex flex-col h-fit ml-0 md:ml-20">
       <Sidebar />
@@ -118,7 +97,6 @@ const Settings = () => {
                         className="px-7 py-2 border-[#D9D9D9] rounded-sm text-base text-[rgba(0,0,0,0.85)]"
                         onClick={() => {
                           setChangeEmail(true);
-                          setIsEmailModalOpen(true);
                         }}
                       >
                         Change Email
@@ -199,7 +177,6 @@ const Settings = () => {
                         className="px-7 py-2 border-[#D9D9D9] rounded-sm text-base text-[rgba(0,0,0,0.85)]"
                         onClick={() => {
                           setChangePassword(true);
-                          setIsPasswordModalOpen(true);
                         }}
                       >
                         Change Password
@@ -292,130 +269,6 @@ const Settings = () => {
           </div>
         </div>
       </div>
-
-      {/* Change Password Modal */}
-      <Modal
-        open={isPasswordModalOpen && isMobile}
-        footer={null}
-        onCancel={handlePasswordCancel}
-        maskClosable={false}
-        className="setting-action-modal top-0"
-        wrapClassName="bg-white"
-      >
-        <div className="grid gap-6 items-end">
-          <div>
-            <label className="block mb-2 text-sm font-medium text-[rgba(0,0,0,0.85)] dark:text-white">
-              Old Password
-            </label>
-            <Input
-              className="w-full rounded-sm text-base h-10 border-[#D9D9D9] hover:border-[#D9D9D9] focus:border-[#D9D9D9] focus:outline-none"
-              placeholder="altman@gmail.com"
-            />
-          </div>
-          <div>
-            <label className="block mb-2 text-sm font-medium text-[rgba(0,0,0,0.85)] dark:text-white">
-              New Password
-            </label>
-            <Input
-              className="w-full rounded-sm text-base h-10 border-[#D9D9D9] hover:border-[#D9D9D9] focus:border-[#D9D9D9] focus:outline-none"
-              placeholder="altman@gmail.com"
-              onClick={() => setUpdatePassword(true)}
-            />
-          </div>
-          <div className="text-end md:text-start">
-            <Button
-              className={`px-7 py-2 rounded-sm text-base ${
-                updatePassword === true
-                  ? "border-[#0033FF] text-white bg-[#0033FF]"
-                  : "border-[#D9D9D9] text-[rgba(0,0,0,0.85)] bg-[#F5F5F5]"
-              }`}
-              onClick={() => {
-                setUpdatePassword(false);
-                setIsPasswordModalOpen(false);
-              }}
-            >
-              Update Password
-            </Button>
-          </div>
-        </div>
-      </Modal>
-
-      {/* Change Email Modal */}
-      <Modal
-        open={isEmailModalOpen && isMobile}
-        footer={null}
-        onCancel={handleEmailCancel}
-        maskClosable={false}
-        className="setting-action-modal top-0"
-        wrapClassName="bg-white"
-      >
-        <>
-          <div className="grid gap-6 md:grid-cols-3 items-end">
-            <div>
-              <label className="block mb-2 text-sm font-medium text-[rgba(0,0,0,0.85)] dark:text-white">
-                Email
-              </label>
-              <Input
-                className="w-full rounded-sm text-base h-10 border-[#D9D9D9] hover:border-[#D9D9D9] focus:border-[#D9D9D9] focus:outline-none"
-                placeholder="altman@gmail.com"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium text-[rgba(0,0,0,0.85)] dark:text-white">
-                New Email
-              </label>
-              <Input
-                className="w-full rounded-sm text-base h-10 border-[#D9D9D9] hover:border-[#D9D9D9] focus:border-[#D9D9D9] focus:outline-none"
-                placeholder="altman@gmail.com"
-              />
-            </div>
-            <div className="text-end md:text-start">
-              <Button
-                className="px-7 py-2 border-[#D9D9D9] rounded-sm text-base text-[rgba(0,0,0,0.85)] min-w-[150px]"
-                onClick={() => setSendCode(true)}
-              >
-                {sendCode === false ? (
-                  <span>Send Code</span>
-                ) : (
-                  <span>Resend Code</span>
-                )}
-              </Button>
-            </div>
-          </div>
-          {sendCode === true ? (
-            <div className="grid gap-6 md:grid-cols-3 items-end">
-              <div></div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-[rgba(0,0,0,0.85)] dark:text-white">
-                  Enter verification code
-                </label>
-                <Input
-                  className="w-full rounded-sm text-base h-10 border-[#D9D9D9] hover:border-[#D9D9D9] focus:border-[#D9D9D9] focus:outline-none"
-                  placeholder="Enter code "
-                />
-              </div>
-              <div className="text-end md:text-start">
-                <Button
-                  className={`px-7 py-2 rounded-sm text-base border min-w-[150px] ${
-                    sendCode === true
-                      ? "text-white bg-[#0033FF] border-[#0033FF]"
-                      : "text-[rgba(0,0,0,0.85)] bg-[#F5F5F5] border-[#D9D9D9]"
-                  }`}
-                  onClick={() => {
-                    setChangeEmail(false);
-                    setSendCode(false);
-                    setIsEmailModalOpen(false);
-                  }}
-                >
-                  Update Email
-                </Button>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </>
-      </Modal>
     </div>
   );
 };
