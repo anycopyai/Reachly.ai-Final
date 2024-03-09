@@ -5,7 +5,7 @@ const ModalWrapper = ({ isOpen, onClose, children }) => {
     <>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 shadow-md w-96">{children}</div>
+          <div className="bg-white p-6 shadow-md w-full md:w-[600px]">{children}</div>
         </div>
       )}
     </>

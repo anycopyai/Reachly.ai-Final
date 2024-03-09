@@ -222,9 +222,9 @@ const ProjectPage = () => {
         <div className="flex">
           {/* Collection List Section */}
           <div className="w-2/5 pl-4 overflow-y-auto">
-            <div className="flex justify-between items-center mb-5">
-              <h3 className="font-normal mb-2 text-navblue border-b-2 border-navblue">
-                Collection <Badge color="blue" value="2" />
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-normal pb-2.5 text-navblue border-b-2 border-navblue text-sm">
+                Collection <Badge color="#0033FF" value="2" />
               </h3>
               <IconButton
                 icon={<FiPlus className="mr-2" />}
@@ -246,10 +246,11 @@ const ProjectPage = () => {
               {/* Example Collection Block */}
               {collections.map((item) => (
                 <div
-                  className="border-2 p-4 mb-2 flex gap-3 cursor-pointer"
+                  className="border px-6 py-3 mb-2 flex gap-3 cursor-pointer rounded-[calc(theme(borderRadius.small)/2)] items-center"
                   key={item.id}
                 >
-                  {item.icon}
+                  {/* {item.icon} */}
+                  <img className="h-4" src="images/projectIcon.svg"/>
                   <p className="text-sm text-gray-600">{item.title}</p>
                   <Badge color="blue" value={item.count} />
                   <p className="text-sm text-gray-600">{item.description}</p>
@@ -267,7 +268,7 @@ const ProjectPage = () => {
           {/* Project Section */}
           <div className="w-3/5 pl-4 ml-5 overflow-y-auto">
             <div className="flex justify-between items-center mb-5">
-              <h3 className="font-normal mb-2 text-navblue cursor-pointer border-b-2 border-navblue">
+              <h3 className="font-normal pb-2.5 text-navblue cursor-pointer border-b-2 border-navblue">
                 Projects
               </h3>
               <IconButton

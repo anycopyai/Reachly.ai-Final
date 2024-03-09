@@ -26,11 +26,11 @@ const CollectionModal = ({ isOpen, onClose }) => {
 
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-4 mb-3">
         <PiGarageThin />
-        <h3 className="text-base font-semibold ">New Collection</h3>
+        <h3 className="text-base font-semibold text-[#323232]">New Collection</h3>
       </div>
-      <label className="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1">
+      <label className="flex items-center gap-1 text-sm text-[rgba(0,0,0,0.85)] mb-1">
         Collection Name <IoIosInformationCircleOutline cursor="pointer" />
       </label>
       <input

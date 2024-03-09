@@ -13,9 +13,9 @@ const SearchBar = () => {
       <input
         type="search"
         placeholder="Input search text"
-        className="pl-4 pr-10 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-black-600 transition duration-300 ease-in-out"
+        className="pr-12 py-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-black-600 transition duration-300 ease-in-out"
       />
-      <div className=" border-l-1  absolute right-4 text-lg  cursor-pointer p-3 ml-3">
+      <div className=" border-l-1  absolute right-0 text-lg  cursor-pointer p-3 ml-3">
         <FiSearch className=" " />
       </div>
     </div>

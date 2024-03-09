@@ -15,7 +15,6 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { BsCardChecklist } from "react-icons/bs";
 
 const navItems = [
-  { name: "Projects", IconComponent: GoHome, href: "/Projects" },
   { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   {
@@ -32,7 +31,7 @@ const navItems = [
       },
     ],
   },
-  { name: "Projects", IconComponent: FaRegFileAlt, href: "/copy" },
+  { name: "Projects", IconComponent: FaRegFileAlt, href: "/Projects" },
   { name: "Saved", IconComponent: FiDownload, href: "/download" },
   { name: "Workflow", IconComponent: BsCardChecklist, href: "/Report" },
   // { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
