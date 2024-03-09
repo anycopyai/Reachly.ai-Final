@@ -138,7 +138,10 @@ const Prompt = () => {
                 {router.query.prompts  === "facebook-ad-short" && <LinkedInAds />}
                 {router.query.prompts  === "amazon-ads" && <LinkedInAds />}
                 {router.query.prompts  === "meta-description" && <LinkedInAds />}
+                {router.query.prompts  === "aida-frameworks" && <LinkedInAds />}
+                {router.query.prompts  === "cold-email-copy" && <LinkedInAds />}
                 {router.query.prompts  === "url-to-ads" && <UrlToAds />}
+                
                 
                 
                 

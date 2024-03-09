@@ -2,10 +2,10 @@ import { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 
-const ProjectForm = ({ includeCollectionDropdown = true }) => {
+const ProjectForm = ({ includeCollectionDropdown = true , onClose, onAddProject }) => {
   const [selected, setSelected] = useState(["1st"]);
   return (
-    <form>
+    <>
       <label className="flex items-center text-sm font-normal text-gray-700 mb-2">
         Project/Product/Service Name{" "}
         <IoIosInformationCircleOutline cursor="pointer" className="ml-1" />
@@ -65,18 +65,18 @@ const ProjectForm = ({ includeCollectionDropdown = true }) => {
       <div className="flex justify-end gap-3 mt-3">
         <button
           className=" border-1 text-gray-700 px-4 py-2 "
-          // onClick={onClose}
+          onClick={onClose}
         >
           Cancel
         </button>
         <button
           className="bg-navblue text-white px-4 py-2 mr-2 "
-          // onClick={onAddProject}
+          onClick={onAddProject}
         >
           Create Project
         </button>
       </div>
-    </form>
+    </>
   );
 };
 
