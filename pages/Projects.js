@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { BsFilter } from "react-icons/bs";
 import { CiMenuKebab } from "react-icons/ci";
-import { FiPlus } from "react-icons/fi";
+import { FiArrowLeft, FiPlus } from "react-icons/fi";
 import Badge from "../components/Badge";
 import CollectionModal from "../components/project/CollectionModal";
 import CreditBadge from "../components/Creditbadge";
@@ -12,6 +12,9 @@ import ProjectOptionsMenu from "../components/project/ProjectsOptionMenu";
 import Sidebar from "../components/sidebar";
 import NewProjectModal from "../components/project/NewProjectModal";
 import ModalWrapper from "../components/ModalWrapper";
+import { useRouter } from "next/router";
+import { Dropdown } from "antd";
+import { MdAdd } from "react-icons/md";
 
 const ProjectPage = () => {
   // const [projects, setProjects] = useState([]);
@@ -19,8 +22,9 @@ const ProjectPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [newProjectModalOpen, setNewProjectModalOpen] = useState(false);
+  const [showresult, setshowresult] = useState(false);
+  const router = useRouter();
 
   const openNewProjectModal = () => {
     setNewProjectModalOpen(true);
@@ -191,6 +195,39 @@ const ProjectPage = () => {
     },
   ];
 
+  const items = [
+    {
+      label: (
+        <a href="#" onClick={openModal}>
+          <div className="flex items-center gap-4 mb-3">
+            <span>
+              <img src="/images/ic-collection.svg" alt="collection" />
+            </span>
+            <h3 className="text-base font-semibold text-[#323232]">
+              Add Collection
+            </h3>
+          </div>
+        </a>
+      ),
+      key: "0",
+    },
+    {
+      label: (
+        <a href="#" onClick={openNewProjectModal}>
+          <div className="flex items-center gap-4 mb-3">
+            <span>
+              <img src="/images/ic-new-project.svg" alt="collection" />
+            </span>
+            <h3 className="text-base font-semibold text-[#323232]">
+              Add Project
+            </h3>
+          </div>
+        </a>
+      ),
+      key: "1",
+    },
+  ];
+
   // Add a new project to Firestore
   const addProject = async () => {};
 
@@ -211,20 +248,92 @@ const ProjectPage = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row ml-20 h-screen overflow-hidden scrollbar-thin">
+    <div className="flex flex-col lg:flex-row md:ml-20 h-screen md:overflow-hidden scrollbar-thin">
       <Sidebar />
-      <div className="flex-grow p-8">
-        <div className="flex justify-between items-center mb-7">
-          <h1 className="text-2xl font-bold">Projects</h1>
-          <CreditBadge credits={5} />
+      <div className="flex-grow m-5">
+        <div className="bg-white sticky top-0 pt-4 md:pt-0 z-10">
+          <div className="flex md:hidden items-center justify-between">
+            <div className="flex items-center gap-1">
+              <span>
+                <img alt="logo" src="/images/logo.png" className="w-5" />
+              </span>
+              <p className="text-sm font-medium text-black">Anycopy Ai</p>
+              <span className="flex items-center justify-center text-xs bg-[#BFDBFE] text-[#2143B1] px-2 py-1 rounded-full">
+                Beta
+              </span>
+            </div>
+
+            <Dropdown
+              menu={{
+                items,
+              }}
+              trigger={["click"]}
+            >
+              <a className="border border-[#D9D9D9] rounded-sm text-[rgba(0,0,0,0.85)] px-4 py-1 flex items-center gap-3">
+                <MdAdd />
+                Click me
+              </a>
+            </Dropdown>
+          </div>
+
+          <div className="flex justify-between items-center mt-3 md:mt-0">
+            <div className="flex items-center gap-6">
+              <span
+                onClick={() => router.push("/")}
+                className="text-3xl cursor-pointer"
+              >
+                <FiArrowLeft />
+              </span>
+              <p className="text-sm md:text-3xl font-medium">Projects</p>
+            </div>
+            <div className="hidden md:block">
+              <CreditBadge credits={5} />
+            </div>
+          </div>
+
+          <div className="flex gap-5 border-b-2 w-full mt-10 md:hidden">
+            <h1
+              onClick={() => setshowresult(false)}
+              className={`text-sm text-black font-medium p-2 flex items-center gap-1 ${
+                !showresult
+                  ? `text-navblue border-b-2 border-navblue inline-block`
+                  : ``
+              }`}
+            >
+              Collections
+              <span className="bg-[#E6F7FF] rounded-full text-xs text-[#0033FF] min-w-[25px] min-h-[25px] flex items-center justify-center">
+                5
+              </span>
+            </h1>
+            <h1
+              onClick={() => setshowresult(true)}
+              className={`text-sm text-black font-medium p-2 ${
+                showresult
+                  ? `text-navblue border-b-2 border-navblue inline-block`
+                  : ``
+              }`}
+            >
+              Projects
+            </h1>
+          </div>
         </div>
 
-        <div className="flex">
+        <div className="flex flex-col md:flex-row mt-4 md:mt-10">
           {/* Collection List Section */}
-          <div className="w-2/5 pl-4 overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="font-normal pb-2.5 text-navblue border-b-2 border-navblue text-sm">
-                Collection <Badge color="#0033FF" value="2" />
+          <div
+            className={`md:w-2/5 md:pl-4 overflow-y-auto ${
+              showresult
+                ? `hidden col-span-12 md:col-span-4 md:block overflow-y-scroll scrollbar-thin`
+                : `col-span-12 overflow-hidden md:col-span-4 md:overflow-y-scroll md:scrollbar-thin`
+            }`}
+            id="collections"
+          >
+            <div className="hidden md:flex justify-between items-center mb-6">
+              <h3 className="font-normal pb-2.5 text-navblue border-b-2 border-navblue text-sm flex items-center gap-1">
+                Collection
+                <span className="bg-[#E6F7FF] rounded-full text-xs text-[#0033FF] min-w-[25px] min-h-[25px] flex items-center justify-center">
+                  5
+                </span>
               </h3>
               <IconButton
                 icon={<FiPlus className="mr-2" />}
@@ -232,10 +341,10 @@ const ProjectPage = () => {
                 onClick={openModal}
               />
             </div>
+
             <div className="flex">
               <SearchBar className="w-4/5" />
               <button className="w-1/5 flex justify-center items-center gap-1">
-                {" "}
                 <BsFilter size="20px" />
                 Sort
               </button>
@@ -250,7 +359,7 @@ const ProjectPage = () => {
                   key={item.id}
                 >
                   {/* {item.icon} */}
-                  <img className="h-4" src="images/projectIcon.svg"/>
+                  <img className="h-4" src="images/projectIcon.svg" />
                   <p className="text-sm text-gray-600">{item.title}</p>
                   <Badge color="blue" value={item.count} />
                   <p className="text-sm text-gray-600">{item.description}</p>
@@ -266,8 +375,15 @@ const ProjectPage = () => {
           <div className="border-l-5 border-gray-300 mx-4"></div>
 
           {/* Project Section */}
-          <div className="w-3/5 pl-4 ml-5 overflow-y-auto">
-            <div className="flex justify-between items-center mb-5">
+          <div
+            className={`md:w-3/5 md:pl-4 md:ml-5 overflow-y-auto ${
+              !showresult
+                ? `hidden col-span-12 md:col-span-8 md:block`
+                : `col-span-12 md:col-span-8 md:block`
+            }`}
+            id="projects"
+          >
+            <div className="hidden md:flex justify-between items-center mb-5">
               <h3 className="font-normal pb-2.5 text-navblue cursor-pointer border-b-2 border-navblue">
                 Projects
               </h3>
