@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import { PiGarageThin } from "react-icons/pi";
 import Alert from "../Alert";
-import ModalWrapper from "../ModalWrapper";
+import { Button, Input, Modal } from "antd";
 
 const CollectionModal = ({ isOpen, onClose }) => {
   const [collectionName, setCollectionName] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767); // Change the threshold as per your requirement
+    };
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize); // Add event listener for resizing
+    return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
+  }, []);
 
   const handleCreateCollection = () => {
     // Implement logic to create a new collection
@@ -25,34 +34,51 @@ const CollectionModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <ModalWrapper isOpen={isOpen} onClose={onClose}>
+    <Modal
+      open={isOpen}
+      onOk={onClose}
+      onCancel={onClose}
+      footer={null}
+      centered={!isMobile}
+      closable={false}
+      className={`custom-modal-ui ${isMobile && "setting-action-modal top-0"}`}
+      wrapClassName={`${isMobile && "bg-white"}`}
+    >
       <div className="flex items-center gap-4 mb-3">
-        <PiGarageThin />
-        <h3 className="text-base font-semibold text-[#323232]">New Collection</h3>
+        <span>
+          <img src="/images/ic-collection.svg" alt="collection" />
+        </span>
+        <h3 className="text-base font-semibold text-[#323232]">
+          New Collection
+        </h3>
       </div>
-      <label className="flex items-center gap-1 text-sm text-[rgba(0,0,0,0.85)] mb-1">
-        Collection Name <IoIosInformationCircleOutline cursor="pointer" />
-      </label>
-      <input
-        type="text"
-        className="w-full border p-2 mb-4"
-        value={collectionName}
-        onChange={(e) => setCollectionName(e.target.value)}
-      />
-      <div className="flex justify-end gap-3">
-        <button
-          className="border-1 text-gray-700 px-4 py-2 "
-          onClick={() => onClose()}
-        >
-          Cancel
-        </button>
+      <div className="flex flex-col gap-3">
+        <div>
+          <label className="flex items-center gap-1 text-sm text-[rgba(0,0,0,0.85)] mb-2">
+            Collection Name <IoIosInformationCircleOutline cursor="pointer" />
+          </label>
+          <Input
+            type="text"
+            className="w-full border p-2 border-[#D9D9D9]"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+          />
+        </div>
+        <div className="flex justify-end gap-3">
+          <Button
+            className="border border-[#D9D9D9] text-[rgba(0,0,0,0.85)] px-4 py-2 text-base rounded-sm"
+            onClick={() => onClose()}
+          >
+            Cancel
+          </Button>
 
-        <button
-          className="bg-navblue text-white px-4 py-2 mr-2 "
-          onClick={handleCreateCollection}
-        >
-          Create Collection
-        </button>
+          <Button
+            className="bg-[#0033FF] text-white hover:text-white hover:bg-[#0033FF] px-4 py-2 text-base rounded-sm"
+            onClick={handleCreateCollection}
+          >
+            Create Collection
+          </Button>
+        </div>
       </div>
 
       {showAlert && (
@@ -61,7 +87,7 @@ const CollectionModal = ({ isOpen, onClose }) => {
           onClose={handleCloseAlert}
         />
       )}
-    </ModalWrapper>
+    </Modal>
   );
 };
 

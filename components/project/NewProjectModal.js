@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { TfiFolder } from "react-icons/tfi";
 import ProjectForm from "./ProjectForm";
-import ModalWrapper from "../ModalWrapper";
+import { Modal } from "antd";
 
 const NewProjectModal = ({ isOpen, onClose, onAddProject }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767); // Change the threshold as per your requirement
+    };
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize); // Add event listener for resizing
+    return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
+  }, []);
+
   return (
-       <ModalWrapper isOpen={isOpen} onClose={onClose}>
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 shadow-md max-w-[36rem] w-full">
-            <h3 className="text-base font-semibold mb-4 flex gap-2 items-center">
-              <TfiFolder />
-              New Project
-            </h3>
-            <ProjectForm onClose={onClose} onAddProject={onAddProject} />
-          </div>
-        </div>
-        </ModalWrapper>
+    <Modal
+      open={isOpen}
+      onOk={onClose}
+      onCancel={onClose}
+      footer={null}
+      centered={!isMobile}
+      closable={false}
+      className={`custom-modal-ui ${isMobile && "setting-action-modal top-0"}`}
+      wrapClassName={`${isMobile && "bg-white"}`}
+    >
+      <h3 className="text-base font-semibold mb-4 flex gap-2 items-center">
+        <img src="/images/ic-new-project.svg" alt="project" />
+        New Project
+      </h3>
+      <ProjectForm onClose={onClose} onAddProject={onAddProject} />
+    </Modal>
   );
 };
 

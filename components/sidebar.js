@@ -75,7 +75,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px]">
+      <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px] z-20">
         {router.pathname !== "/[prompts]" && (
           <button onClick={() => setisOpen(true)}>
             <MdOutlineMenu />
@@ -114,7 +114,7 @@ const Sidebar = ({ children }) => {
           {navItems.map(({ name, IconComponent, href, Extrafields }) => (
             <Tippy key={name} content={name} placement="left">
               <div
-                onClick={() => handleNavigation(href,name,Extrafields)}
+                onClick={() => handleNavigation(href, name, Extrafields)}
                 className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-[#0033FF]"
               >
                 <IconComponent className="h-6 w-6 text-black-400 hover:text-[#0033FF] transition-colors duration-200" />
