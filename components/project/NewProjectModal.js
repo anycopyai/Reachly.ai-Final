@@ -25,7 +25,7 @@ const NewProjectModal = ({ isOpen, onClose, onAddProject }) => {
       className={`custom-modal-ui ${isMobile && "setting-action-modal top-0"}`}
       wrapClassName={`${isMobile && "bg-white"}`}
     >
-      <h3 className="text-base font-semibold mb-4 flex gap-2 items-center">
+      <h3 className="text-base text-[#323232] font-semibold mb-4 flex gap-2 items-center">
         <img src="/images/ic-new-project.svg" alt="project" />
         New Project
       </h3>

@@ -76,14 +76,14 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px] z-20">
-        {router.pathname !== "/[prompts]" && (
+        {router.pathname !== "/[prompts]" && !router.pathname.includes('Projects') && (
           <button onClick={() => setisOpen(true)}>
             <MdOutlineMenu />
           </button>
         )}
       </div>
       <div
-        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-10 flex ${
+        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${
           isOpen ? "left-0" : "-left-full"
         }`}
         style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}

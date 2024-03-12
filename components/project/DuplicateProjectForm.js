@@ -5,14 +5,14 @@ const DuplicateProjectForm = () => {
     <>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8  shadow-md w-96">
+          <div className="bg-white p-8 shadow-md w-96">
             <div className="flex  items-center gap-2 mb-3">
               <MdFileCopy />
-              <h3 className="text-base font-semibold ">Duplicate Project</h3>
+              <h3 className="text-base font-semibold">Duplicate Project</h3>
             </div>
             <form>
               <label className="flex items-center text-sm font-normal text-gray-700 mb-2">
-                Select Project{" "}
+                Select Project
                 <IoIosInformationCircleOutline
                   cursor="pointer"
                   className="ml-1"
@@ -24,7 +24,7 @@ const DuplicateProjectForm = () => {
               </select>
 
               <label className="flex items-center text-sm font-normal text-gray-700 mb-2">
-                Select Collection{" "}
+                Select Collection
                 <IoIosInformationCircleOutline
                   cursor="pointer"
                   className="ml-1"

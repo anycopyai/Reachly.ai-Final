@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 import { Button, Modal, Select } from "antd";
-import { MdOutlineFileCopy } from "react-icons/md";
 
-const DuplicateProjectModal = ({ isOpen, onClose }) => {
+const MoveProjectModal = ({ isOpen, onClose }) => {
   const [isDisable, setIsDisable] = useState(true);
 
   return (
@@ -17,10 +16,8 @@ const DuplicateProjectModal = ({ isOpen, onClose }) => {
       className="custom-modal-ui"
     >
       <h3 className="text-base text-[#323232] font-semibold mb-4 flex gap-2 items-center">
-        <span className="text-2xl">
-          <MdOutlineFileCopy />
-        </span>
-        Duplicate Project
+        <img src="/images/ic-move-project.svg" alt="move" />
+        Move Project
       </h3>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-2">
@@ -78,7 +75,7 @@ const DuplicateProjectModal = ({ isOpen, onClose }) => {
                 : "bg-[#F5F5F5] border-[#D9D9D9] text-[rgba(0,0,0,0.25)]"
             }`}
           >
-            Duplicate Project
+            Move Project
           </Button>
         </div>
       </div>
@@ -86,4 +83,4 @@ const DuplicateProjectModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default DuplicateProjectModal;
+export default MoveProjectModal;

@@ -11,7 +11,6 @@ import SearchBar from "../components/SearchBar";
 import ProjectOptionsMenu from "../components/project/ProjectsOptionMenu";
 import Sidebar from "../components/sidebar";
 import NewProjectModal from "../components/project/NewProjectModal";
-import ModalWrapper from "../components/ModalWrapper";
 import { useRouter } from "next/router";
 import { Dropdown } from "antd";
 import { MdAdd } from "react-icons/md";
@@ -228,6 +227,25 @@ const ProjectPage = () => {
     },
   ];
 
+  const sortByItems = [
+    {
+      label: "Recent",
+      key: "0",
+    },
+    {
+      label: "Older",
+      key: "1",
+    },
+    {
+      label: "Ascending",
+      key: "2",
+    },
+    {
+      label: "Descending",
+      key: "3",
+    },
+  ];
+
   // Add a new project to Firestore
   const addProject = async () => {};
 
@@ -321,10 +339,10 @@ const ProjectPage = () => {
         <div className="flex flex-col md:flex-row mt-4 md:mt-10">
           {/* Collection List Section */}
           <div
-            className={`md:w-2/5 md:pl-4 overflow-y-auto ${
+            className={`md:w-2/5 md:pl-4 ${
               showresult
-                ? `hidden col-span-12 md:col-span-4 md:block overflow-y-scroll scrollbar-thin`
-                : `col-span-12 overflow-hidden md:col-span-4 md:overflow-y-scroll md:scrollbar-thin`
+                ? `hidden col-span-12 md:col-span-4 md:block`
+                : `col-span-12 overflow-hidden md:col-span-4`
             }`}
             id="collections"
           >
@@ -342,16 +360,25 @@ const ProjectPage = () => {
               />
             </div>
 
-            <div className="flex">
-              <SearchBar className="w-4/5" />
-              <button className="w-1/5 flex justify-center items-center gap-1">
-                <BsFilter size="20px" />
-                Sort
-              </button>
+            <div className="flex gap-4 items-center">
+              <SearchBar />
+              <div className="flex-1">
+                <Dropdown
+                  menu={{
+                    items: sortByItems,
+                  }}
+                  trigger={["click"]}
+                >
+                  <a className="flex justify-center items-center gap-1 py-1 px-4 bg-[#F5F5F5] text-[rgba(0,0,0,0.85)] rounded-sm whitespace-nowrap">
+                    <BsFilter size="20px" />
+                    Sort by
+                  </a>
+                </Dropdown>
+              </div>
             </div>
 
             {/* List of Collections */}
-            <div className="mt-4">
+            <div className="mt-4 md:h-screen md:overflow-y-auto scrollbar-thin">
               {/* Example Collection Block */}
               {collections.map((item) => (
                 <div
@@ -397,12 +424,23 @@ const ProjectPage = () => {
             {/* Conditionally Render Input Field, Sort Button, and List of Projects */}
             {projects && projects.length > 0 ? (
               <>
-                <div className="flex justify-between items-center mb-4">
-                  <SearchBar className="w-4/5" />
-                  <button className="w-1/5 flex justify-center items-center gap-1">
-                    <BsFilter size="20px" />
-                    Sort
-                  </button>
+                <div className="flex justify-between items-center mb-4 gap-4">
+                  <div className="md:w-5/12">
+                    <SearchBar />
+                  </div>
+                  <div>
+                    <Dropdown
+                      menu={{
+                        items: sortByItems,
+                      }}
+                      trigger={["click"]}
+                    >
+                      <a className="flex justify-center items-center gap-1 py-1 px-4 bg-[#F5F5F5] text-[rgba(0,0,0,0.85)] rounded-sm whitespace-nowrap">
+                        <BsFilter size="20px" />
+                        Sort by
+                      </a>
+                    </Dropdown>
+                  </div>
                 </div>
 
                 {/* Individual Projects */}
