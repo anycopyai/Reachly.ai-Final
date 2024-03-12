@@ -28,6 +28,7 @@
         "@hookform/resolvers": "^3.3.4",
         "@nextui-org/react": "^2.2.9",
         "@sentry/nextjs": "^7.77.0",
+        "@tinymce/tinymce-react": "^4.3.2",
         "@tippyjs/react": "^4.2.6",
         "amazon-cognito-identity-js": "^6.3.6",
         "antd": "^5.13.2",
