@@ -424,21 +424,23 @@ const ProjectPage = () => {
             {/* Conditionally Render Input Field, Sort Button, and List of Projects */}
             {projects && projects.length > 0 ? (
               <>
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-4 gap-4">
                   <div className="md:w-5/12">
                     <SearchBar />
                   </div>
-                  <Dropdown
-                    menu={{
-                      items: sortByItems,
-                    }}
-                    trigger={["click"]}
-                  >
-                    <a className="flex justify-center items-center gap-1 py-1 px-4 bg-[#F5F5F5] text-[rgba(0,0,0,0.85)] rounded-sm">
-                      <BsFilter size="20px" />
-                      Sort by
-                    </a>
-                  </Dropdown>
+                  <div>
+                    <Dropdown
+                      menu={{
+                        items: sortByItems,
+                      }}
+                      trigger={["click"]}
+                    >
+                      <a className="flex justify-center items-center gap-1 py-1 px-4 bg-[#F5F5F5] text-[rgba(0,0,0,0.85)] rounded-sm whitespace-nowrap">
+                        <BsFilter size="20px" />
+                        Sort by
+                      </a>
+                    </Dropdown>
+                  </div>
                 </div>
 
                 {/* Individual Projects */}
