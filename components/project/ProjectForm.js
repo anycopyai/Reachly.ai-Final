@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import { Input, Select } from "antd";
+import { Button, Input, Select } from "antd";
 
 const ProjectForm = ({
   includeCollectionDropdown = true,
@@ -97,19 +97,19 @@ const ProjectForm = ({
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-end gap-3">
-        <button
-          className=" border-1 text-gray-700 px-4 py-2 "
+      <div className="flex justify-end gap-6">
+        <Button
+          className="text-base text-[rgba(0,0,0,0.85)] px-4 py-2 rounded-sm"
           onClick={onClose}
         >
           Cancel
-        </button>
-        <button
-          className="bg-navblue text-white px-4 py-2 mr-2 "
+        </Button>
+        <Button
+          className="bg-[#0033FF] border-[#1890FF] text-base text-white hover:text-white px-4 py-2 rounded-sm"
           onClick={onAddProject}
         >
           Create Project
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -44,14 +44,12 @@ const CollectionModal = ({ isOpen, onClose }) => {
       className={`custom-modal-ui ${isMobile && "setting-action-modal top-0"}`}
       wrapClassName={`${isMobile && "bg-white"}`}
     >
-      <div className="flex items-center gap-4 mb-3">
+      <h3 className="text-base font-semibold text-[#323232] flex items-center gap-4 mb-3">
         <span>
           <img src="/images/ic-collection.svg" alt="collection" />
         </span>
-        <h3 className="text-base font-semibold text-[#323232]">
-          New Collection
-        </h3>
-      </div>
+        New Collection
+      </h3>
       <div className="flex flex-col gap-3">
         <div>
           <label className="flex items-center gap-1 text-sm text-[rgba(0,0,0,0.85)] mb-2">
@@ -64,7 +62,7 @@ const CollectionModal = ({ isOpen, onClose }) => {
             onChange={(e) => setCollectionName(e.target.value)}
           />
         </div>
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-end gap-6">
           <Button
             className="border border-[#D9D9D9] text-[rgba(0,0,0,0.85)] px-4 py-2 text-base rounded-sm"
             onClick={() => onClose()}
