@@ -8,7 +8,7 @@ import React, {useEffect } from 'react';
 function Home() {
   const router = useRouter();
   useEffect(() => {
-      router.push('/Browse');
+      router.push('/browse');
   }, []);
   return (
     <>

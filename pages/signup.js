@@ -63,7 +63,7 @@ function Signup() {
             "accessToken",
             userCredential?.user?.accessToken
           );
-          router.push("/Browse");
+          router.push("/browse");
           enqueueSnackbar(`User registered successfully !`, {
             variant: "success",
           });
@@ -88,7 +88,7 @@ function Signup() {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           localStorage.setItem("accessToken", token);
-          router.push("/Browse");
+          router.push("/browse");
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });
