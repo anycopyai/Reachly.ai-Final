@@ -1,4 +1,4 @@
-// pages/Browse.js
+// pages/browse.js
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar";
 import TopBar from "../components/TopBar";

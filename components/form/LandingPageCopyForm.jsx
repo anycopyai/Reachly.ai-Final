@@ -171,7 +171,6 @@ const LandingPageCopyForm = ({ googleAdsData }) => {
                       View and modify your project here
                     </p>
                     <div style={{ color: "#0033ff" }} className="labelContent">
-                      {" "}
                       My Projects
                     </div>
                   </span>
@@ -189,7 +188,6 @@ const LandingPageCopyForm = ({ googleAdsData }) => {
                     <span>
                       <p className="labelContent"> Brainstorm Mode</p>
                       <div className="brainMode" style={{ marginTop: 5 }}>
-                        {" "}
                         Enable to write random ideas/inspiration based on
                         selected project
                       </div>
@@ -221,7 +219,6 @@ const LandingPageCopyForm = ({ googleAdsData }) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {modeValue ? `Enabled` : `Disabled`}
                       </div>
                     </Col>
@@ -231,7 +228,6 @@ const LandingPageCopyForm = ({ googleAdsData }) => {
                   <></>
                 ) : (
                   <>
-                    {" "}
                     <Col span={24} style={{ marginTop: 5 }}>
                       <label htmlFor="topics" className="labelContent">
                         Benefit
@@ -344,7 +340,6 @@ const LandingPageCopyForm = ({ googleAdsData }) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {guideValue ? `Enabled` : `Disabled`}
                       </div>
                     </Col>

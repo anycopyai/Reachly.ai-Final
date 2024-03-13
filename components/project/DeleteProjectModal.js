@@ -27,7 +27,7 @@ const DeleteProjectModal = ({ isOpen, onClose }) => {
           Are you sure you want to delete this project ?
         </p>
         <p className="text-[rgba(0,0,0,0.45)] text-sm">
-          Once deleted it <span className="uppercase font-medium">cannot</span>{" "}
+          Once deleted it <span className="uppercase font-medium">cannot</span>
           be undone
         </p>
         <div className="flex flex-col gap-2">

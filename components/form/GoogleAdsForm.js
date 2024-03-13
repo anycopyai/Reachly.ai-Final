@@ -149,7 +149,6 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                       View and modify your project here
                     </p>
                     <div style={{ color: "#0033ff" }} className="labelContent">
-                      {" "}
                       My Projects
                     </div>
                   </span>
@@ -167,7 +166,6 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                     <span>
                       <p className="labelContent"> Brainstorm Mode</p>
                       <div className="brainMode" style={{ marginTop: 5 }}>
-                        {" "}
                         Enable to write random ideas/inspiration based on
                         selected project
                       </div>
@@ -199,7 +197,6 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {modeValue ? `Enable` : `Disabled`}
                       </div>
                     </Col>
@@ -272,7 +269,6 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {guideValue ? `Enable` : `Disabled`}
                       </div>
                     </Col>

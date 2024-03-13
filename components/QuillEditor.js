@@ -78,14 +78,13 @@ const QuillEditor = () => {
           plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-          ],
-          // toolbar: 'undo redo | blocks | ' +
-          //   'bold italic forecolor | alignleft aligncenter ' +
-          //   'alignright alignjustify | bullist numlist outdent indent | ' +
-          //   'removeformat | help',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount','importcss','autosave',
+            'save', 'directionality', 'visualchars','template','codesample', 'pagebreak',
+            'nonbreaking','quickbars','emoticons','accordion'
+          ], 
 
-          toolbar: "undo redo | save print | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
+          toolbar: "accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent",
+          // toolbar: "undo redo print removeformat image link | blocks fontfamily fontsize | bold italic underline strikethrough forecolor backcolor removeformat align numlist bullist | ltr rtl | outdent indent",
 
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}

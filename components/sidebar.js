@@ -15,7 +15,7 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { BsCardChecklist } from "react-icons/bs";
 
 const navItems = [
-  { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/Browse" },
+  { name: "Templates", IconComponent: LiaNotesMedicalSolid, href: "/browse" },
   { name: "Writer", IconComponent: MdOutlineEdit, href: "/Writer" },
   {
     name: "URL to Ads",

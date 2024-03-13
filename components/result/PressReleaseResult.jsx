@@ -9,7 +9,6 @@ const PressReleaseResult = () => {
         alignItems: "center",
       }}
     >
-      {" "}
       <div> Result Show</div>
     </div>
   );

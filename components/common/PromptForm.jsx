@@ -1,14 +1,18 @@
 import { Checkbox, Input, Select, Switch } from "antd";
 import React from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import SelectPicker from "./SelectPicker";
 import { TagsInput } from "react-tag-input-component";
 
 const { TextArea } = Input;
 
-const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedInput, setfixedInput }) => {
-
-
+const PromptForm = ({
+  inputData,
+  setGenerate,
+  handleChange,
+  setInputData,
+  fixedInput,
+  setfixedInput,
+}) => {
   return (
     <form
       method="POST"
@@ -23,13 +27,15 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
             className="w-full rounded-sm text-base h-10"
             placeholder="English"
             value={fixedInput.language}
-            name='language'
-            onChange={(e)=>setfixedInput((prev)=>{
-              return {
-             ...prev,
-                language: e
-              }
-            })}
+            name="language"
+            onChange={(e) =>
+              setfixedInput((prev) => {
+                return {
+                  ...prev,
+                  language: e,
+                };
+              })
+            }
             options={[
               {
                 value: "english",
@@ -38,7 +44,7 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
               {
                 value: "hindi",
                 label: "Hindi",
-              }
+              },
             ]}
           />
         </div>
@@ -50,13 +56,15 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
           <Select
             className="w-full rounded-sm text-base h-10"
             value={fixedInput.project}
-            name='project'
-            onChange={(e)=>setfixedInput((prev)=>{
-              return {
-             ...prev,
-                project: e
-              }
-            })}
+            name="project"
+            onChange={(e) =>
+              setfixedInput((prev) => {
+                return {
+                  ...prev,
+                  project: e,
+                };
+              })
+            }
             options={[
               {
                 value: "console",
@@ -87,14 +95,19 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
           </p>
         </div>
         <div className="flex items-center flex-col gap-2">
-          <Switch value={fixedInput.brainstorm} onChange={(e)=>setfixedInput((prev)=>{
-            return {
-              ...prev,
-              brainstorm: e
+          <Switch
+            value={fixedInput.brainstorm}
+            onChange={(e) =>
+              setfixedInput((prev) => {
+                return {
+                  ...prev,
+                  brainstorm: e,
+                };
+              })
             }
-          })} />
+          />
           <p className="mb-2 text-sm font-medium text-black opacity-50">
-            { fixedInput.brainstorm ? "Enabled" : "Disabled" }
+            {fixedInput.brainstorm ? "Enabled" : "Disabled"}
           </p>
         </div>
       </div>
@@ -136,7 +149,7 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
                     setInputData((prev) => {
                       return prev.map((item) => {
                         if (item.label === el.label) {
-                          item.value = e
+                          item.value = e;
                         }
                         return item;
                       });
@@ -145,33 +158,36 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
                 />
               </div>
             )}
-            {el.type === "selectPicker" && 
-            <div className="relative">
-               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            {el.type === "selectPicker" && (
+              <div className="relative">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   {el.label}
                 </label>
                 <TagsInput
-                value={el.value}
-                onChange={(e)=>
-                  setInputData((prev) => {
-                  return prev.map((item) => {
-                    if (item.label === el.label) {
-                      item.value = e
-                    }
-                    return item;
-                  });
-                })}
-                onBlur={(e)=>setfixedInput((prev)=>{
-                  return {
-                 ...prev,
-                    language: e
+                  value={el.value}
+                  onChange={(e) =>
+                    setInputData((prev) => {
+                      return prev.map((item) => {
+                        if (item.label === el.label) {
+                          item.value = e;
+                        }
+                        return item;
+                      });
+                    })
                   }
-                })}
-                name={el.label}
-                placeHolder={el.placeholder}
-              />
-            </div>
-            }
+                  onBlur={(e) =>
+                    setfixedInput((prev) => {
+                      return {
+                        ...prev,
+                        language: e,
+                      };
+                    })
+                  }
+                  name={el.label}
+                  placeHolder={el.placeholder}
+                />
+              </div>
+            )}
 
             <div className="grid grid-cols-1 gap-6">
               {el.type === "checkbox" && (
@@ -196,14 +212,20 @@ const PromptForm = ({inputData, setGenerate, handleChange, setInputData, fixedIn
           <IoIosInformationCircleOutline />
         </div>
         <div className="flex items-center flex-col gap-2">
-          <Switch defaultChecked value={fixedInput.safety} onChange={(e)=>setfixedInput((prev)=>{
-            return{
-              ...prev,
-              safety: e
+          <Switch
+            defaultChecked
+            value={fixedInput.safety}
+            onChange={(e) =>
+              setfixedInput((prev) => {
+                return {
+                  ...prev,
+                  safety: e,
+                };
+              })
             }
-          })} />
+          />
           <p className="mb-2 text-sm font-medium text-black opacity-50">
-            { fixedInput.safety ? "Enabled" : "Disabled" }
+            {fixedInput.safety ? "Enabled" : "Disabled"}
           </p>
         </div>
       </div>

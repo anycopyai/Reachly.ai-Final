@@ -8,11 +8,11 @@ import { IoCopyOutline } from "react-icons/io5";
 import { useSnackbar } from "notistack";
 
 const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
-    const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const handleShareModelClose = () => {
     modelClose(!modalOpen);
   };
-  const handleCopyShareLink= () => {
+  const handleCopyShareLink = () => {
     enqueueSnackbar("Coppied successfully !", { variant: "success" });
     navigator.clipboard.writeText(shareLink);
   };
@@ -27,11 +27,7 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
         <div style={{ marginTop: 5 }}>
           <Row style={{ padding: 10 }} gutter={12}>
             <Col xs={2} md={2} lg={2}>
-              {" "}
-              <IoShareSocialOutline
-                size={25}
-                style={{ color: "#0033FF" }}
-              />{" "}
+              <IoShareSocialOutline size={25} style={{ color: "#0033FF" }} />
             </Col>
             <Col xs={22} md={22} lg={22}>
               <Row>
@@ -66,7 +62,7 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
                   </p>
                 </Col>
               </Row>
-            </Col>{" "}
+            </Col>
             <Col xs={24} md={24} lg={24} style={{ marginTop: 15 }}>
               <span
                 style={{
@@ -87,7 +83,7 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
                   className="btnTemplateSubmit"
                   style={{ width: "10%" }}
                   icon={<IoCopyOutline />}
-                  onClick={ handleCopyShareLink}
+                  onClick={handleCopyShareLink}
                 ></Button>
               </span>
             </Col>
