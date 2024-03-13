@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { Switch } from "antd";
 import { CiCircleInfo } from "react-icons/ci";
@@ -7,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
-import apiService from '../../services/base';
+import apiService from "../../services/base";
 import { useRouter } from "next/router";
 
-const AmazonAdsForm = ({googleAdsData}) => {  
+const AmazonAdsForm = ({ googleAdsData }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -62,20 +62,20 @@ const AmazonAdsForm = ({googleAdsData}) => {
   });
 
   const onSubmit = async (data) => {
-  
     try {
       setLoading(true);
-        apiService.post('amazon-ads-ecommerce', {
-            text: data?.topics
+      apiService
+        .post("amazon-ads-ecommerce", {
+          text: data?.topics,
         })
-        .then(response => {
-          console.log(response.data)
+        .then((response) => {
+          console.log(response.data);
           setLoading(false);
-          googleAdsData(response.data)
+          googleAdsData(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           setLoading(false);
-          console.error('Error:', error);
+          console.error("Error:", error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });
         });
     } catch (error) {}
@@ -149,7 +149,6 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       View and modify your project here
                     </p>
                     <div style={{ color: "#0033ff" }} className="labelContent">
-                      {" "}
                       My Projects
                     </div>
                   </span>
@@ -167,7 +166,6 @@ const AmazonAdsForm = ({googleAdsData}) => {
                     <span>
                       <p className="labelContent"> Brainstorm Mode</p>
                       <div className="brainMode" style={{ marginTop: 5 }}>
-                        {" "}
                         Enable to write random ideas/inspiration based on
                         selected project
                       </div>
@@ -199,7 +197,6 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {modeValue ? `Enable` : `Disabled`}
                       </div>
                     </Col>
@@ -208,7 +205,7 @@ const AmazonAdsForm = ({googleAdsData}) => {
 
                 <Col span={24} style={{ marginTop: 5 }}>
                   <label htmlFor="product" className="labelContent">
-                  Product
+                    Product
                   </label>
 
                   <Form.Item
@@ -272,7 +269,6 @@ const AmazonAdsForm = ({googleAdsData}) => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <div style={{ marginTop: "-25px" }} className="brainMode">
-                        {" "}
                         {guideValue ? `Enable` : `Disabled`}
                       </div>
                     </Col>
