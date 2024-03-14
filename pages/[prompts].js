@@ -104,10 +104,10 @@ const Prompt = () => {
           </h1>
         </div>
 
-        <div className="flex md:mt-10">
+        <div className="flex md:mt-10 min-h-[85%] md:min-h-[90%]">
           <div className="grid grid-cols-12 min-w-full">
             <div
-              className={` ${
+              className={`prompt-left-side relative ${
                 showresult
                   ? `hidden col-span-12 md:col-span-4 md:block overflow-y-scroll scrollbar-thin`
                   : `col-span-12 overflow-hidden md:col-span-4 md:overflow-y-scroll md:scrollbar-thin`
