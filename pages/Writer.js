@@ -43,7 +43,7 @@ const Writer = () => {
           <div className="flex flex-grow items-center justify-between gap-5 mt-3 md:mt-0">
             <div className="flex items-center gap-1">
               <span
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/browse")}
                 className="text-3xl cursor-pointer block md:hidden"
               >
                 <FiArrowLeft />
@@ -139,7 +139,7 @@ const Writer = () => {
                     >
                       <div>
                         <span
-                          className={`text-black text-sm font-medium bg-[#E9EAEE] py-1 px-3 rounded-full ${
+                          className={`text-black text-sm font-medium py-1 px-3 rounded-full ${
                             isIntroActive === true
                               ? "bg-[#0B56D0] text-white"
                               : "bg-[#E9EAEE] text-black"

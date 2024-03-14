@@ -1,44 +1,58 @@
-
-
-import React, { useEffect, useState } from 'react';
-import Sidebar from '../components/sidebar'; // Adjust the path as necessary
-import { IoIosSearch } from "react-icons/io";
-import { TiSocialLinkedin } from "react-icons/ti";
-import { MdGrading } from "react-icons/md";
-import { MdOutlineSpellcheck } from "react-icons/md";
-import QuillEditor from '../components/QuillEditor';
-import { FaBars } from "react-icons/fa";
-import { FiPlus } from "react-icons/fi";
-import { MdShowChart } from "react-icons/md";
-import { IoIosArrowRoundBack } from "react-icons/io";
-import { IoIosInformationCircleOutline } from "react-icons/io";
-import { RiPencilFill } from "react-icons/ri";
-import { MdOutlineFullscreen } from "react-icons/md";
-import { AiOutlineCheck } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
+import React, { useState } from "react";
 
 const WriterExpand = () => {
-    const [showresult, setshowresult] = useState(false);
-    const [showtemp, settempresult] = useState(false);
+  const [isIntroActive, setIsIntroActive] = useState(0);
 
-    return (
-        <div className={`flex flex-col mt-5 mb-10`}>
-            <p className='text-sm text-slate-400 ml-4'>Select any of the below results to apply on your writer content</p>
-            <div className='bg-white m-4'>
-                <p className='text-sm text-black-600 p-4 border-1 border-white shadow hover:border-blue-500 text-wrap'>fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community</p>
-            </div>
-            <div className='bg-white m-4'>
-                <p className='text-sm text-black-600 p-4 border-1 border-white shadow hover:border-blue-500 text-wrap'>fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community</p>
-            </div>
-            <div className='bg-white m-4'>
-                <p className='text-sm text-black-600 p-4 border-1 border-white shadow hover:border-blue-500 text-wrap'>fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community</p>
-            </div>
-            <div className='bg-white m-4'>
-                <p className='text-sm text-black-600 p-4 border-1 hover:border-blue-500 text-wrap'>fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community</p>
-            </div>
+  const writerCard = [
+    {
+      label: "Draft 1",
+      text: "Fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community",
+    },
+    {
+      label: "Draft 2",
+      text: "Fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community",
+    },
+    {
+      label: "Draft 3",
+      text: "Fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community",
+    },
+    {
+      label: "Draft 4",
+      text: "Fitness journey, FitLife, all-in-one fitness companion, beginner, seasoned pro, app, guide, personalized workout plans, track progress, motivated community",
+    },
+  ];
 
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-col gap-6 mt-6 mb-10 md:w-11/12">
+      <p className="text-sm text-[#00000073]">
+        Select any of the below results to apply on your writer content
+      </p>
+      {writerCard?.map((item, index) => {
+        return (
+          <div
+            key={index}
+            className={`p-6 flex flex-col gap-6 rounded-[26px] ${
+              isIntroActive === 1 ? "bg-[#D3E3FD]" : "bg-[#F9FAFE]"
+            }`}
+            onClick={() => setIsIntroActive(1)}
+          >
+            <div>
+              <span
+                className={`text-black text-sm font-medium py-1 px-3 rounded-full ${
+                  isIntroActive === 1
+                    ? "bg-[#0B56D0] text-white"
+                    : "bg-[#E9EAEE] text-black"
+                }`}
+              >
+                {item.label}
+              </span>
+            </div>
+            <p className="text-sm text-black">{item.text}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default WriterExpand;

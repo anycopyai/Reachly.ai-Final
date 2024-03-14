@@ -18,6 +18,7 @@ import Expand from "../pages/WriterExpand";
 import Remix from "../pages/WriterRemix";
 import Next from "../pages/WriterNext";
 import { Button, Input } from "antd";
+import { useRouter } from "next/router";
 
 const Writerlanding = () => {
   const [showresult, setshowresult] = useState(false);
@@ -70,6 +71,7 @@ const Writerlanding = () => {
       setIntialcontent(false);
     }
   };
+  const router = useRouter();
 
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
@@ -168,7 +170,7 @@ const Writerlanding = () => {
                 fulleditor && `hidden`
               }`}
             >
-              <div className="w-11/12">
+              <div className="md:w-11/12">
                 <ul className="flex flex-row items-center gap-8 border-b border-[rgba(0,0,0,0.06)]">
                   <li className="hidden md:block">
                     <p
@@ -253,7 +255,7 @@ const Writerlanding = () => {
               </div>
 
               {showintial && (
-                <div className="w-11/12">
+                <div className="md:w-11/12">
                   <form
                     method="POST"
                     className={` ${showresult ? "hidden md:block" : ""}`}
@@ -351,7 +353,7 @@ const Writerlanding = () => {
                         </h6>
                         <div className="flex items-center border border-[#00000040] gap-4 rounded-sm py-3 px-4">
                           <span className="text-2xl text-navblue">
-                            <TiSocialLinkedin />
+                            <FaLinkedin />
                           </span>
                           <span className="text-sm text-[#323232]">
                             Linked in Ads Copy
@@ -382,35 +384,16 @@ const Writerlanding = () => {
               )}
 
               {/* Template Import Next */}
-              {showtemp && !showresult && (
-                <div>
-                  <Template />
-                </div>
-              )}
+              {showtemp && !showresult && <Template />}
 
               {/* import Expand Section */}
-
-              {showexpand && (
-                <div>
-                  <Expand />
-                </div>
-              )}
+              {showexpand && <Expand />}
 
               {/* import Remix Section */}
-
-              {showremix && (
-                <div>
-                  <Remix />
-                </div>
-              )}
+              {showremix && <Remix />}
 
               {/* import Nextsentence Section */}
-
-              {shownext && (
-                <div>
-                  <Next />
-                </div>
-              )}
+              {shownext && <Next />}
             </div>
 
             <div
