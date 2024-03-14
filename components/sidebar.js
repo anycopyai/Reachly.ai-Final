@@ -76,7 +76,7 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px] z-20">
-        {router.pathname !== "/[prompts]" && !router.pathname.includes('Projects') && (
+        {router.pathname !== "/[prompts]" && !router.pathname.includes('Projects') && !router.pathname.includes('Writer')&& (
           <button onClick={() => setisOpen(true)}>
             <MdOutlineMenu />
           </button>

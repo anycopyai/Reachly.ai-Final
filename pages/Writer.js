@@ -43,7 +43,7 @@ const Writer = () => {
           <div className="flex flex-grow items-center justify-between gap-5 mt-3 md:mt-0">
             <div className="flex items-center gap-1">
               <span
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/browse")}
                 className="text-3xl cursor-pointer block md:hidden"
               >
                 <FiArrowLeft />
