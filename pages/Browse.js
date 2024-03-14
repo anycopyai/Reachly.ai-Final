@@ -20,7 +20,7 @@ const Browse = () => {
   };
 
   return (
-    <div className="flex h-fit ml-0 md:ml-20 overflow-hidden bg-gray-100">
+    <div className="flex h-fit ml-0 md:ml-20 overflow-hidden  bg-gray-100">
       <Sidebar />
       <div className="flex flex-col h-fit p-4 md:p-6 bg-white w-full md:w-auto">
         <TopBar
