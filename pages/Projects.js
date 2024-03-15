@@ -62,104 +62,6 @@ const ProjectPage = () => {
       count: 4,
       description: "description asdsa faefa asd ada",
     },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
-    {
-      id: 2,
-      title: "Winston garage",
-      icon: <BsFilter />,
-      count: 4,
-      description: "description asdsa faefa asd ada",
-    },
   ];
 
   const projects = [
@@ -265,6 +167,12 @@ const ProjectPage = () => {
     setSelectedProject(null);
   };
 
+  const handleCollectionSortDrop = (e) =>{
+
+    console.log(e);
+
+  }
+
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen md:overflow-hidden scrollbar-thin">
       <Sidebar />
@@ -366,6 +274,7 @@ const ProjectPage = () => {
                 <Dropdown
                   menu={{
                     items: sortByItems,
+                    onClick: handleCollectionSortDrop,
                   }}
                   trigger={["click"]}
                 >
@@ -432,6 +341,7 @@ const ProjectPage = () => {
                     <Dropdown
                       menu={{
                         items: sortByItems,
+                        onClick:(e)=>console.log(e.key)
                       }}
                       trigger={["click"]}
                     >
@@ -458,15 +368,8 @@ const ProjectPage = () => {
                         <p className="text-sm text-gray-600">{project.title}</p>
                       </div>
 
-                      {/* Kebab Menu Icon */}
-                      <CiMenuKebab
-                        onClick={() => openOptionsMenu(project.id)}
-                      />
-
-                      {/* Conditionally Render Options Menu */}
-                      {selectedProject === project.id && (
-                        <ProjectOptionsMenu onClose={closeOptionsMenu} />
-                      )}
+                   
+                        <ProjectOptionsMenu onClose={closeOptionsMenu} isOpen={selectedProject === project.id} />
                     </div>
                   ))}
                 </div>
