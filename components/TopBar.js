@@ -41,15 +41,15 @@ const CreditBadge = ({ credits, setIsUpgrade }) => {
   }, []);
 
   return (
-      <Button
-        type="primary"
-        onClick={()=>setIsUpgrade(true)}
-        className="bg-white md:bg-[#0033FF] border border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
-      >
-        <img src="/images/icon-upgrade.svg" className="hidden md:block" />
-        <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
-        Upgrade Now
-      </Button>
+    <Button
+      type="primary"
+      onClick={() => setIsUpgrade(true)}
+      className="bg-white md:bg-navblue border border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
+    >
+      <img src="/images/icon-upgrade.svg" className="hidden md:block" />
+      <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
+      Upgrade Now
+    </Button>
   );
 };
 
@@ -72,7 +72,11 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
             <div className="md:hidden flex gap-4 pl-6">
               <p className="text-sm	font-medium text-black">Templates</p>
             </div>
-            <CreditBadge credits={100} setIsUpgrade={setIsUpgrade} className=" -translate-x-6" />
+            <CreditBadge
+              credits={100}
+              setIsUpgrade={setIsUpgrade}
+              className=" -translate-x-6"
+            />
           </div>
         </div>
 

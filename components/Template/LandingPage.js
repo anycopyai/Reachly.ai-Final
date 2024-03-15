@@ -27,13 +27,13 @@ const LandingPage = () => {
             <div className="flex flex-row gap-6">
               <Button
                 type="primary"
-                className="bg-[#0033FF] border border-[#D9D9D9] h-auto md:border-none shadow-none text-white px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
+                className="bg-navblue border border-[#D9D9D9] h-auto md:border-none shadow-none text-white px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
               >
                 Get Started
               </Button>
               <Button
                 type="primary"
-                className="bg-white border border-[#0033FF] h-auto shadow-none text-[#0033FF] px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
+                className="bg-white border border-navblue h-auto shadow-none text-navblue px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
               >
                 Learn More
               </Button>
@@ -42,7 +42,7 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4 md:mb-0">
             <div className="p-3 md:p-6 bg-white flex flex-col gap-3">
-              <span className="text-[#0033FF]">
+              <span className="text-navblue">
                 <FaSquarePlus className="text-2xl" />
               </span>
               <h4 className="text-black text-sm font-medium">
@@ -54,7 +54,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="p-3 md:p-6 bg-white flex flex-col gap-3">
-              <span className="text-[#0033FF]">
+              <span className="text-navblue">
                 <FaSquarePlus className="text-2xl" />
               </span>
               <h4 className="text-black text-sm font-medium">
@@ -66,7 +66,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="p-3 md:p-6 bg-white flex flex-col gap-3">
-              <span className="text-[#0033FF]">
+              <span className="text-navblue">
                 <FaSquarePlus className="text-2xl" />
               </span>
               <h4 className="text-black text-sm font-medium">
@@ -79,7 +79,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className="p-6 bg-[#0033FF] flex flex-col text-center items-center gap-3">
+          <div className="p-6 bg-navblue flex flex-col text-center items-center gap-3">
             <h4 className="text-white text-bold  text-xl">
               Eco-friendly fashion
             </h4>
@@ -90,7 +90,7 @@ const LandingPage = () => {
             </p>
             <Button
               type="primary"
-              className="bg-white border border-[#D9D9D9] h-auto md:border-none shadow-none text-[#0033FF] px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
+              className="bg-white border border-[#D9D9D9] h-auto md:border-none shadow-none text-navblue px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
             >
               Learn More
             </Button>

@@ -105,7 +105,7 @@ const ProjectForm = ({
           Cancel
         </Button>
         <Button
-          className="bg-[#0033FF] border-[#1890FF] text-base text-white hover:text-white px-4 py-2 rounded-sm"
+          className="bg-navblue border-[#1890FF] text-base text-white hover:text-white px-4 py-2 rounded-sm"
           onClick={onAddProject}
         >
           Create Project

@@ -76,11 +76,13 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px] z-20">
-        {router.pathname !== "/[prompts]" && !router.pathname.includes('Projects') && !router.pathname.includes('Writer')&& (
-          <button onClick={() => setisOpen(true)}>
-            <MdOutlineMenu />
-          </button>
-        )}
+        {router.pathname !== "/[prompts]" &&
+          !router.pathname.includes("Projects") &&
+          !router.pathname.includes("Writer") && (
+            <button onClick={() => setisOpen(true)}>
+              <MdOutlineMenu />
+            </button>
+          )}
       </div>
       <div
         className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${
@@ -115,10 +117,10 @@ const Sidebar = ({ children }) => {
             <Tippy key={name} content={name} placement="left">
               <div
                 onClick={() => handleNavigation(href, name, Extrafields)}
-                className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-[#0033FF]"
+                className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-navblue"
               >
-                <IconComponent className="h-6 w-6 text-black-400 hover:text-[#0033FF] transition-colors duration-200" />
-                <p className="text-[#323232] hover:text-[#0033FF] text-sm block md:hidden">
+                <IconComponent className="h-6 w-6 text-black-400 hover:text-navblue transition-colors duration-200" />
+                <p className="text-[#323232] hover:text-navblue text-sm block md:hidden">
                   {name}
                 </p>
               </div>

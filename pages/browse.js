@@ -62,7 +62,7 @@ const Browse = () => {
               </div>
               <ul className="flex flex-col gap-2">
                 <li className="flex items-center gap-4">
-                  <IoCheckmarkSharp className="w-4 h-4 text-[#0033FF]" />
+                  <IoCheckmarkSharp className="w-4 h-4 text-navblue" />
                   <div className="flex flex-col">
                     <h5 className="text-base font-medium text-[rgba(0,0,0,0.85)]">
                       Access to writer
@@ -73,7 +73,7 @@ const Browse = () => {
                   </div>
                 </li>
                 <li className="flex items-center gap-4">
-                  <IoCheckmarkSharp className="w-4 h-4 text-[#0033FF]" />
+                  <IoCheckmarkSharp className="w-4 h-4 text-navblue" />
                   <div className="flex flex-col">
                     <h5 className="text-base font-medium text-[rgba(0,0,0,0.85)]">
                       More Generations
@@ -96,7 +96,7 @@ const Browse = () => {
                 </li>
               </ul>
               <div>
-                <Button className="w-full border border-[rgba(0,51,255,1)] text-base text-[#0033FF] h-auto rounded-sm py-3">
+                <Button className="w-full border border-[rgba(0,51,255,1)] text-base text-navblue h-auto rounded-sm py-3">
                   Subscribe Today
                 </Button>
               </div>
