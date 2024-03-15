@@ -109,7 +109,7 @@ const Writerlanding = () => {
               <Button className="text-sm text-black border-1 border-gray-300 bg-white-100 p-3 flex flex-row items-center gap-2 rounded-sm">
                 <MdShowChart /> <span>5 Credits Limit </span>
               </Button>
-              <Button className="text-sm text-black border-1 border-gray-300 bg-white-100 p-3 md:border-blue-700 md:bg-blue-700 md:text-white flex flex-row items-center gap-2 rounded-sm">
+              <Button className="text-sm text-black border-1 border-gray-300 bg-white-100 p-3 md:border-navblue md:bg-navblue md:text-white flex flex-row items-center gap-2 rounded-sm">
                 <FiPlus className="text-center" />
                 <span className="text-center"> New Document </span>
               </Button>
@@ -419,7 +419,11 @@ const Writerlanding = () => {
                   </button>
                 </div>
               </div>
-              <div className={`${!showresult ? `hidden md:block` : ""}`}>
+              <div
+                className={`px-6 editor-wrapper ${
+                  !showresult ? `hidden md:block` : ""
+                }`}
+              >
                 <QuillEditor />
               </div>
             </div>

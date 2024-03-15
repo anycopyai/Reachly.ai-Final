@@ -131,7 +131,7 @@ const WriterTemplate = () => {
             <div className="flex justify-center">
               <button
                 type="button"
-                className="basis-full text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+                className="basis-full text-white bg-navblue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
               >
                 Generate Template
               </button>

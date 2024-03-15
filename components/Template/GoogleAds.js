@@ -15,12 +15,12 @@ const GoogleAds = () => {
             <div className="bg-white p-3 flex flex-col gap-2 items-start min-h-36">
               <h5 className="flex gap-4 items-center text-xs">
                 Ad .
-                <a href="/" className="pl-1 text-[#0033FF]">
+                <a href="/" className="pl-1 text-navblue">
                   https//www. shirts.com/
                 </a>
                 <BsThreeDotsVertical />
               </h5>
-              <h2 className="font-semibold text-[#0033FF] text-xl">
+              <h2 className="font-semibold text-navblue text-xl">
                 Premium Quality T-Shirts for Every Occasion
               </h2>
               <p className="text-[rgba(0, 0, 0, 0.85)] text-sm font-medium">
@@ -28,7 +28,7 @@ const GoogleAds = () => {
                 and everyday wear,Special discounts on our exclusive T-shirt
                 designs. Limited stock available!
               </p>
-              <h4 className="font-medium text-sm text-[#0033FF]">
+              <h4 className="font-medium text-sm text-navblue">
                 How Much does it cost? . What is Price range? . Location of the
                 shop.
               </h4>
@@ -71,15 +71,15 @@ const GoogleAds = () => {
             <div className="bg-white p-3 flex flex-col gap-2 items-start min-h-36">
               <h5 className="flex gap-4 items-center text-xs">
                 Ad .
-                <a href="/" className="pl-1 text-[#0033FF]">
+                <a href="/" className="pl-1 text-navblue">
                   https//www. shirts.com/
                 </a>
                 <BsThreeDotsVertical />
               </h5>
-              <h2 className="font-semibold text-[#0033FF] text-xl">
+              <h2 className="font-semibold text-navblue text-xl">
                 Premium Quality T-Shirts for Every Occasion
               </h2>
-              <h4 className="font-medium text-sm text-[#0033FF]">
+              <h4 className="font-medium text-sm text-navblue">
                 How Much does it cost? . What is Price range? . Location of the
                 shop.
               </h4>
@@ -122,15 +122,15 @@ const GoogleAds = () => {
             <div className="bg-white p-3 flex flex-col gap-2 items-start min-h-36">
               <h5 className="flex gap-4 items-center text-xs">
                 Ad .
-                <a href="/" className="pl-1 text-[#0033FF]">
+                <a href="/" className="pl-1 text-navblue">
                   https//www. shirts.com/
                 </a>
                 <BsThreeDotsVertical />
               </h5>
-              <h2 className="font-semibold text-[#0033FF] text-xl">
+              <h2 className="font-semibold text-navblue text-xl">
                 Premium Quality T-Shirts for Every Occasion
               </h2>
-              <h4 className="font-medium text-sm text-[#0033FF]">
+              <h4 className="font-medium text-sm text-navblue">
                 How Much does it cost? . What is Price range? . Location of the
                 shop.
               </h4>

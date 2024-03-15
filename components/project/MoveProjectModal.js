@@ -71,7 +71,7 @@ const MoveProjectModal = ({ isOpen, onClose }) => {
           <Button
             className={` text-base px-4 py-2 rounded-sm ${
               isDisable === false
-                ? "bg-[#0033FF] border-[#1890FF] text-white"
+                ? "bg-navblue border-[#1890FF] text-white"
                 : "bg-[#F5F5F5] border-[#D9D9D9] text-[rgba(0,0,0,0.25)]"
             }`}
           >

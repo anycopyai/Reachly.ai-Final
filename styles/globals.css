@@ -2298,6 +2298,21 @@ textarea.resize-none {
   padding: 1.5rem;
 }
 
+/* Editor styles */
+.editor-wrapper .tox-editor-header {
+  padding: 0 !important;
+}
+.editor-wrapper .tox .tox-tbtn svg {
+  fill: #323232;
+}
+.editor-wrapper .tox .tox-tbtn--disabled svg {
+  fill: rgba(34,47,62,.5);
+}
+.editor-wrapper .tox-tinymce {
+  border: none;
+  min-height: 600px;
+}
+
 @media screen and (max-width: 767px) {
   .subscribe-modal {
     width: 80% !important;
@@ -2305,5 +2320,8 @@ textarea.resize-none {
   .custom-modal-ui {
     width: 100%;
     margin: auto 16px;
+  }
+  .editor-wrapper .tox-tinymce {
+    min-height: auto;
   }
 }

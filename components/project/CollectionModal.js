@@ -71,7 +71,7 @@ const CollectionModal = ({ isOpen, onClose }) => {
           </Button>
 
           <Button
-            className="bg-[#0033FF] text-white hover:text-white hover:bg-[#0033FF] px-4 py-2 text-base rounded-sm"
+            className="bg-navblue text-white hover:text-white hover:bg-navblue px-4 py-2 text-base rounded-sm"
             onClick={handleCreateCollection}
           >
             Create Collection
