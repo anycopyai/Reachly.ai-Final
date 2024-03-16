@@ -32,7 +32,7 @@ const DeleteProjectModal = ({ isOpen, onClose }) => {
         </p>
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-1 text-sm text-[rgba(0,0,0,0.85)]">
-            Please type <span className="text-[#0033FF]">Project 2</span> to
+            Please type <span className="text-navblue">Project 2</span> to
             confirm
           </label>
           <Input

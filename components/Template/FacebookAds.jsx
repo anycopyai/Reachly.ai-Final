@@ -18,7 +18,7 @@ const FacebookAds = () => {
                 <div className="flex items-center gap-3">
                   <img src="/images/console-logo.png" alt="logo" />
                   <div>
-                    <h4 className="font-semibold text-base text-[#0033FF]">
+                    <h4 className="font-semibold text-base text-navblue">
                       Console
                     </h4>
                     <p className="font-medium text-sm text-black">Sponsored</p>
@@ -29,20 +29,28 @@ const FacebookAds = () => {
                 </div>
               </div>
               <div>
-                <img src="/images/sale-banner.png" alt="logo" className="max-w-full" />
+                <img
+                  src="/images/sale-banner.png"
+                  alt="logo"
+                  className="max-w-full"
+                />
               </div>
               <div className="flex items-center justify-between py-3 px-6">
-								<div>
-									<p className="text-black opacity-50 text-xs md:text-lg">www.console.com</p>
-									<h4 className="md:text-xl text-black font-semibold">Get Hyped for Our Friday Sale</h4>
-								</div>
-								<Button
-                type="primary"
-                className="bg-[#0033FF] border border-[#D9D9D9] h-auto md:border-none shadow-none text-white px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
-              >
-                Get Started
-              </Button>
-							</div>
+                <div>
+                  <p className="text-black opacity-50 text-xs md:text-lg">
+                    www.console.com
+                  </p>
+                  <h4 className="md:text-xl text-black font-semibold">
+                    Get Hyped for Our Friday Sale
+                  </h4>
+                </div>
+                <Button
+                  type="primary"
+                  className="bg-navblue border border-[#D9D9D9] h-auto md:border-none shadow-none text-white px-4 py-2 rounded-lg gap-2 text-sm font-semibold"
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
             <h4 className="flex justify-end text-black opacity-25 text-sm">
               96 words / 665 characters
