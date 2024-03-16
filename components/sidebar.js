@@ -82,12 +82,9 @@ const Sidebar = ({ children }) => {
           </button>
         )}
       </div>
-      <div
-        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${
-          isOpen ? "left-0" : "-left-full"
-        }`}
-        style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
-      >
+      <div 
+  className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${isOpen ? "left-0" : "-left-full"} border-r border-gray-200`} // Border classes added here
+>
         {/* Updated background color to #F9F8F7 (bg-gray-50) */}
         <div className="flex flex-col item-start md:items-center">
           <div className="mb-8 px-8 md:px-0 flex justify-between items-center pb-2.5 md:pb-0 border-b-1 border-[rgba(0,0,0,0.1)] md:border-none">
