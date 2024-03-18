@@ -92,35 +92,48 @@ const ColdEmail = () => {
             </h4>
             <div className="flex justify-between items-center mb-2 md:m-0">
               <div className="flex gap-4 items-center">
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232]">
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232]"
+                  type="link"
+                >
                   <FaRegThumbsUp />
-                </button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232]">
+                </Button>
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232]"
+                  type="link"
+                >
                   <FaRegThumbsDown />
-                </button>
+                </Button>
               </div>
               <div className="flex gap-4 items-center">
                 <Button
                   className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
                   onClick={openShareModal}
                 >
-                  <IoShareSocialOutline />
+                  <IoShareSocialOutline className="text-[#323232]" />
                   <span className="text-base text-black opacity-80 hidden md:block">
                     Share
                   </span>
                 </Button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]">
-                  <MdOutlineContentCopy />
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
+                >
+                  <MdOutlineContentCopy className="text-[#323232]" />
                   <span className="text-base text-black opacity-80 hidden md:block">
                     Copy
                   </span>
-                </button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]">
-                  <AiOutlineDownload />
+                </Button>
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
+                >
+                  <AiOutlineDownload className="text-[#323232]" />
                   <span className="text-base text-black opacity-80 hidden md:block">
                     Save
                   </span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -197,32 +210,48 @@ const ColdEmail = () => {
             </h4>
             <div className="flex justify-between items-center mb-2 md:m-0">
               <div className="flex gap-4 items-center">
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232]">
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232]"
+                  type="link"
+                >
                   <FaRegThumbsUp />
-                </button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232]">
+                </Button>
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232]"
+                  type="link"
+                >
                   <FaRegThumbsDown />
-                </button>
+                </Button>
               </div>
               <div className="flex gap-4 items-center">
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]">
-                  <IoShareSocialOutline />
-                  <span className="text-base text-black opacity-80 hidden md:block">
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
+                  onClick={openShareModal}
+                >
+                  <IoShareSocialOutline className="text-[#323232]" />
+                  <i className="text-base text-black opacity-80 hidden md:block">
                     Share
-                  </span>
-                </button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]">
-                  <MdOutlineContentCopy />
-                  <span className="text-base text-black opacity-80 hidden md:block">
+                  </i>
+                </Button>
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
+                >
+                  <MdOutlineContentCopy className="text-[#323232]" />
+                  <i className="text-base text-black opacity-80 hidden md:block">
                     Copy
-                  </span>
-                </button>
-                <button className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]">
-                  <AiOutlineDownload />
-                  <span className="text-base text-black opacity-80 hidden md:block">
+                  </i>
+                </Button>
+                <Button
+                  className="py-2 px-3 md:px-4 rounded-sm text-[#323232] flex items-center gap-[10px]"
+                  type="link"
+                >
+                  <AiOutlineDownload className="text-[#323232]" />
+                  <i className="text-base text-black opacity-80 hidden md:block">
                     Save
-                  </span>
-                </button>
+                  </i>
+                </Button>
               </div>
             </div>
           </div>
