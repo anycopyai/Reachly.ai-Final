@@ -2297,6 +2297,13 @@ textarea.resize-none {
   border-radius: 0;
   padding: 1.5rem;
 }
+.share-modal {
+  width: 330px !important;
+}
+.share-modal .ant-modal-content {
+  border-radius: 0;
+  padding: 2rem;
+}
 
 /* Editor styles */
 .editor-wrapper .tox-editor-header {
@@ -2317,7 +2324,7 @@ textarea.resize-none {
   .subscribe-modal {
     width: 80% !important;
   } 
-  .custom-modal-ui {
+  .custom-modal-ui, .share-modal {
     width: 100%;
     margin: auto 16px;
   }

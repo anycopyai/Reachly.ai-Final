@@ -23,8 +23,9 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
         open={modalOpen}
         onCancel={handleShareModelClose}
         footer={(_, { OkBtn, CancelBtn }) => <></>}
+        className="share-modal"
       >
-        <div style={{ marginTop: 5 }}>
+        {/* <div style={{ marginTop: 5 }}>
           <Row style={{ padding: 10 }} gutter={12}>
             <Col xs={2} md={2} lg={2}>
               <IoShareSocialOutline size={25} style={{ color: "#0033FF" }} />
@@ -88,6 +89,39 @@ const SharingModel = ({ modalOpen, modelClose, shareLink }) => {
               </span>
             </Col>
           </Row>
+        </div> */}
+
+        <div className="flex flex-col gap-6">
+          <div className="flex items-start gap-4">
+            <div>
+              <IoShareSocialOutline size={25} style={{ color: "#0033FF" }} />
+            </div>
+            <div>
+              <h4 className="text-base font-medium text-[rgba(0,0,0,0.85)]">
+                Sharing Info
+              </h4>
+              <p className="text-sm text-[rgba(0,0,0,0.85)]">
+                Copy and paste this link to share
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Input
+              className="h-10 p-4 rounded-l-sm border-r-0"
+              placeholder="https://app.anycopy.co"
+              disabled
+              value={shareLink}
+            />
+            <div>
+              <Button
+                type="primary"
+                className="min-h-10 p-3 bg-navblue rounded-none rounded-r-sm"
+                onClick={handleCopyShareLink}
+              >
+                <IoCopyOutline />
+              </Button>
+            </div>
+          </div>
         </div>
       </Modal>
     </>
