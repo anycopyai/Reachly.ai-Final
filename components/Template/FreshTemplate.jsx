@@ -58,6 +58,91 @@ const FreshTemplate = ({search}) => {
         }
       ] 
     },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `AIDA Copywriting`,
+      desc: `Unleash the power of connectivity with the AIDA Frameworks card designed for the tech-savvy and socially inclined`,
+      url:'aida-copywriting',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Purpose',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Cold Emails`,
+      desc: `Unleash the power of connectivity with the Cold Email Copy card designed for the tech-savvy and socially inclined`,
+      url:'cold-emails',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Page Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `RACE Copywriting`,
+      desc: `Unleash the power of connectivity with theRACE Copywriting card designed for the tech-savvy and socially inclined`,
+      url:'race-copywriting',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Page Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: ` Header & Description`,
+      desc: `Unleash the power of connectivity with theRACE Copywriting card designed for the tech-savvy and socially inclined`,
+      url:'header-description',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Page Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Product Description`,
+      desc: `Unleash the power of connectivity with the Product Description card designed for the tech-savvy and socially inclined`,
+      url:'product-description',
+      favorites: true,
+      Extrafields:[
+        {
+          label: 'Topic',
+          type:'textArea',
+          placeholder: 'Topic you provide',
+          maxLength: 75,
+          value:''
+        }
+      ] 
+    },
 
   ];
   return (

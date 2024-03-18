@@ -158,57 +158,8 @@ const Favorites = ({search}) => {
         }
       ] 
     },
-    {
-      icon1: "/images/icon-social-media.svg",
-      icon2: <FaStar />,
-      heading: `Product Description`,
-      desc: `Unleash the power of connectivity with the Product Description card designed for the tech-savvy and socially inclined`,
-      url:'product-description',
-      favorites: true,
-      Extrafields:[
-        {
-          label: 'Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
-    },
-    {
-      icon1: "/images/icon-social-media.svg",
-      icon2: <FaStar />,
-      heading: `Cold Email Copy`,
-      desc: `Unleash the power of connectivity with the Cold Email Copy card designed for the tech-savvy and socially inclined`,
-      url:'cold-email-copy',
-      favorites: true,
-      Extrafields:[
-        {
-          label: 'Page Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
-    },
-    {
-      icon1: "/images/icon-social-media.svg",
-      icon2: <FaStar />,
-      heading: `AIDA Frameworks`,
-      desc: `Unleash the power of connectivity with the AIDA Frameworks card designed for the tech-savvy and socially inclined`,
-      url:'aida-frameworks',
-      favorites: true,
-      Extrafields:[
-        {
-          label: 'Page Topic',
-          type:'textArea',
-          placeholder: 'Topic you provide',
-          maxLength: 75,
-          value:''
-        }
-      ] 
-    },
+    
+    
     
   ];
   return (
