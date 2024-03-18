@@ -10,6 +10,9 @@ import GoogleAds from "../components/Template/GoogleAds";
 import FacebookAds from "../components/Template/FacebookAds";
 import LinkedInAds from "../components/Template/LinkedInAds";
 import UrlToAds from "../components/Template/UrlToAds";
+import ColdEmail from "../components/Template/ColdEmail";
+import HeaderDiscription from "../components/Template/HeaderDiscription";
+import ProductDiscription from "../components/Template/ProductDiscription";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
@@ -160,13 +163,25 @@ const Prompt = () => {
                   {router.query.prompts === "meta-description" && (
                     <LinkedInAds />
                   )}
-                  {router.query.prompts === "aida-frameworks" && (
-                    <LinkedInAds />
-                  )}
-                  {router.query.prompts === "cold-email-copy" && (
+                  {router.query.prompts === "aida-copywriting" && (
                     <LinkedInAds />
                   )}
                   {router.query.prompts === "url-to-ads" && <UrlToAds />}
+                  {router.query.prompts === "cold-emails" && (
+                    <ColdEmail />
+                  )}
+                  {router.query.prompts === "race-copywriting" && (
+                    <LinkedInAds />
+                  )}
+                  {router.query.prompts === "header-description" && (
+                    <HeaderDiscription />
+                  )}
+                  {router.query.prompts === "product-description" && (
+                    <ProductDiscription />
+                  )}
+                  
+                  
+                  
                 </>
               )}
             </div>
