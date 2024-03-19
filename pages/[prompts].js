@@ -13,6 +13,10 @@ import UrlToAds from "../components/Template/UrlToAds";
 import ColdEmail from "../components/Template/ColdEmail";
 import HeaderDiscription from "../components/Template/HeaderDiscription";
 import ProductDiscription from "../components/Template/ProductDiscription";
+import Features from "../components/Template/Features";
+import PitchAnAngle from "../components/Template/PitchAnAngle";
+import SalesOutreach from "../components/Template/SalesOutreach";
+import BlogIdeas from "../components/Template/BlogIdeas";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
@@ -179,6 +183,20 @@ const Prompt = () => {
                   {router.query.prompts === "product-description" && (
                     <ProductDiscription />
                   )}
+                  {router.query.prompts === "features" && (
+                    <Features />
+                  )}
+                  {router.query.prompts === "pitch-an-angel" && (
+                    <PitchAnAngle />
+                  )}
+                  {router.query.prompts === "sales-outreach" && (
+                    <SalesOutreach />
+                  )}
+                  {router.query.prompts === "blog-ideas" && (
+                    <BlogIdeas />
+                  )}
+                  
+                  
                   
                   
                   
