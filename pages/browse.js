@@ -7,11 +7,13 @@ import FreshTemplate from "../components/Template/FreshTemplate";
 import withAuth from "../hoc/withAuth";
 import { Button, Modal, Radio } from "antd";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 const Browse = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const [isUpgrade, setIsUpgrade] = useState(false);
+  const router = useRouter();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ const Browse = () => {
         {(filter === "All" || filter === "Fresh Template") && (
           <FreshTemplate search={search} />
         )}
-        <Modal
+        {/* <Modal
           open={isUpgrade}
           onOk={() => setIsUpgrade(false)}
           onCancel={() => setIsUpgrade(false)}
@@ -45,8 +47,8 @@ const Browse = () => {
         >
           <div className="text-center">
             <h4 className="text-base md:text-2xl text-[rgba(0, 0, 0, 0.85)] mt-4">
-              Keep up the good work! Continue writing with one of the options
-              below
+              Keep up the good work! <br /> Continue writing with one of the
+              options below
             </h4>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mt-9">
@@ -96,7 +98,10 @@ const Browse = () => {
                 </li>
               </ul>
               <div>
-                <Button className="w-full border border-[rgba(0,51,255,1)] text-base text-navblue h-auto rounded-sm py-3">
+                <Button
+                  className="w-full border border-[rgba(0,51,255,1)] text-base text-navblue h-auto rounded-sm py-3"
+                  onClick={() => router.push("/upgrade")}
+                >
                   Subscribe Today
                 </Button>
               </div>
@@ -126,13 +131,16 @@ const Browse = () => {
                 </li>
               </ul>
               <div>
-                <Button className="h-auto w-full border border-[rgba(0,51,255,1)] bg-[#0033FF] text-base text-white rounded-sm py-3">
+                <Button
+                  className="h-auto w-full border border-[rgba(0,51,255,1)] bg-[#0033FF] text-base text-white rounded-sm py-3"
+                  onClick={() => router.push("/upgrade")}
+                >
                   Subscribe Today
                 </Button>
               </div>
             </div>
           </div>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );

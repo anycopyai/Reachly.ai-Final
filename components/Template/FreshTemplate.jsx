@@ -154,6 +154,78 @@ const FreshTemplate = ({ search }) => {
         },
       ],
     },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Features`,
+      desc: `Unleash the power of connectivity with the Features card designed for the tech-savvy and socially inclined`,
+      url: "features",
+      favorites: true,
+      Extrafields: [
+        {
+          label: "Topic",
+          type: "textArea",
+          placeholder: "Topic you provide",
+          maxLength: 75,
+          value: "",
+        },
+      ],
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Pitch an angel`,
+      desc: `Unleash the power of connectivity with the Pitch an angel card designed for the tech-savvy and socially inclined`,
+      url: "pitch-an-angel",
+      favorites: true,
+      Extrafields: [
+        {
+          label: "Topic",
+          type: "textArea",
+          placeholder: "Topic you provide",
+          maxLength: 75,
+          value: "",
+        },
+      ],
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Sales outreach`,
+      desc: `Unleash the power of connectivity with the Pitch an angel card designed for the tech-savvy and socially inclined`,
+      url: "sales-outreach",
+      favorites: true,
+      Extrafields: [
+        {
+          label: "Topic",
+          type: "textArea",
+          placeholder: "Topic you provide",
+          maxLength: 75,
+          value: "",
+        },
+      ],
+    },
+    {
+      icon1: "/images/icon-social-media.svg",
+      icon2: <FaStar />,
+      heading: `Blog Ideas`,
+      desc: `Unleash the power of connectivity with the Blog Ideas card designed for the tech-savvy and socially inclined`,
+      url: "blog-ideas",
+      favorites: true,
+      Extrafields: [
+        {
+          label: "Topic",
+          type: "textArea",
+          placeholder: "Topic you provide",
+          maxLength: 75,
+          value: "",
+        },
+      ],
+    },
+    
+    
+    
+    
   ];
   return (
     <div className="mt-5 p-0 md:p-8">
