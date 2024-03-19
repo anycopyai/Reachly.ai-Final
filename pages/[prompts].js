@@ -17,6 +17,7 @@ import Features from "../components/Template/Features";
 import PitchAnAngle from "../components/Template/PitchAnAngle";
 import SalesOutreach from "../components/Template/SalesOutreach";
 import BlogIdeas from "../components/Template/BlogIdeas";
+import { Button } from "antd";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
@@ -57,13 +58,30 @@ const Prompt = () => {
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
       <Sidebar />
       <div className="flex-grow m-5">
-        <div className="flex flex-grow items-center gap-5">
-          <div className="flex items-center gap-6">
+        <div className="flex md:hidden items-center justify-between">
+          <div className="flex items-center gap-1">
+            <span>
+              <img alt="logo" src="/images/logo.png" className="w-5" />
+            </span>
+            <p className="text-sm font-medium text-black">Anycopy Ai</p>
+            <span className="flex items-center justify-center text-xs bg-[#BFDBFE] text-[#2143B1] px-2 py-1 rounded-full">
+              Beta
+            </span>
+          </div>
+          <Button className="text-xs md:text-sm text-black border-1 border-gray-300 bg-white-100 p-2 md:p-3 py-2 md:py-3 flex flex-row items-center gap-2 md:flex rounded-sm">
+            {/* <MdShowChart />  */}
+            <img src="/images/icon-star-upgrade.svg" alt="star" />
+            <span>5 Credits Limit </span>
+          </Button>
+        </div>
+
+        <div className="flex flex-grow items-center gap-5 mt-3 md:mt-0">
+          <div className="flex items-center gap-1 md:gap-6">
             <span
               onClick={() => router.push("/browse")}
-              className="text-3xl cursor-pointer"
+              className="text-base md:text-3xl cursor-pointer"
             >
-              <FiArrowLeft />
+              <FiArrowLeft className="text-[#323232]" />
             </span>
             <p className="text-sm md:text-3xl font-medium">
               {router?.query?.heading}
@@ -78,9 +96,9 @@ const Prompt = () => {
           </div> */}
 
           <div className="flex flex-row items-center ml-auto gap-2">
-            <button className="text-xs md:text-sm text-black border-1 border-gray-300 bg-white-100 p-2 md:p-3 py-1 md:py-3 flex flex-row items-center gap-2 md:flex">
+            {/* <button className="text-xs md:text-sm text-black border-1 border-gray-300 bg-white-100 p-2 md:p-3 py-1 md:py-3 flex flex-row items-center gap-2 md:flex">
               <MdShowChart /> <span>5 Credits Limit </span>
-            </button>
+            </button> */}
             {/* <button className="text-sm text-black border-1 border-gray-300 bg-white-100 p-3 md:border-blue-700 md:bg-blue-700 md:text-white flex flex-row md:hidden items-center gap-2">
               <FiPlus className="text-center" />
               <span className="text-center"> New Document </span>
@@ -88,7 +106,7 @@ const Prompt = () => {
           </div>
         </div>
 
-        <div className="flex gap-5 border-b-2 w-full mt-10 md:hidden">
+        <div className="flex gap-5 border-b-2 w-full mt-6 md:hidden">
           <h1
             onClick={() => setshowresult(false)}
             className={`text-sm text-black font-medium p-2 ${
@@ -171,9 +189,7 @@ const Prompt = () => {
                     <LinkedInAds />
                   )}
                   {router.query.prompts === "url-to-ads" && <UrlToAds />}
-                  {router.query.prompts === "cold-emails" && (
-                    <ColdEmail />
-                  )}
+                  {router.query.prompts === "cold-emails" && <ColdEmail />}
                   {router.query.prompts === "race-copywriting" && (
                     <LinkedInAds />
                   )}
@@ -183,23 +199,14 @@ const Prompt = () => {
                   {router.query.prompts === "product-description" && (
                     <ProductDiscription />
                   )}
-                  {router.query.prompts === "features" && (
-                    <Features />
-                  )}
+                  {router.query.prompts === "features" && <Features />}
                   {router.query.prompts === "pitch-an-angel" && (
                     <PitchAnAngle />
                   )}
                   {router.query.prompts === "sales-outreach" && (
                     <SalesOutreach />
                   )}
-                  {router.query.prompts === "blog-ideas" && (
-                    <BlogIdeas />
-                  )}
-                  
-                  
-                  
-                  
-                  
+                  {router.query.prompts === "blog-ideas" && <BlogIdeas />}
                 </>
               )}
             </div>
