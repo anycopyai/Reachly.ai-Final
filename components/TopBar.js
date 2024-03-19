@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Button } from "antd";
+import { useRouter } from "next/router";
 
 const categories = [
   "All",
@@ -31,11 +32,12 @@ const categories = [
 
 const CreditBadge = ({ credits, setIsUpgrade }) => {
   const [showCredits, setShowCredits] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCredits((prevState) => !prevState);
-    }, 5000); // Change to the desired duration in milliseconds
+    }, 3000); // Change to the desired duration in milliseconds
 
     return () => clearInterval(interval);
   }, []);
@@ -43,12 +45,23 @@ const CreditBadge = ({ credits, setIsUpgrade }) => {
   return (
     <Button
       type="primary"
-      onClick={() => setIsUpgrade(true)}
-      className="bg-white md:bg-navblue border border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
+      // onClick={() => setIsUpgrade(true)}
+      onClick={() => router.push("/upgrade")}
+      className="bg-white md:bg-navblue border hover:!bg-blue-950 border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
     >
       <img src="/images/icon-upgrade.svg" className="hidden md:block" />
       <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
-      Upgrade Now
+      
+
+      {showCredits ? (
+          <>
+            Credits Left: {credits}
+          </>
+        ) : (
+          <>
+            <span>Upgrade Now</span>
+          </>
+        )}
     </Button>
   );
 };

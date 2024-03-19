@@ -80,7 +80,7 @@ const Upgrade = () => {
         <div className="flex flex-grow items-center gap-5">
           <div className="flex items-center gap-6">
             <span
-              onClick={() => router.push("/Browse")}
+              onClick={() => router.push("/browse")}
               className="text-3xl cursor-pointer"
             >
               <FiArrowLeft />

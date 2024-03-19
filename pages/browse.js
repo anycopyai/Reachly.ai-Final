@@ -37,7 +37,7 @@ const Browse = () => {
         {(filter === "All" || filter === "Fresh Template") && (
           <FreshTemplate search={search} />
         )}
-        <Modal
+        {/* <Modal
           open={isUpgrade}
           onOk={() => setIsUpgrade(false)}
           onCancel={() => setIsUpgrade(false)}
@@ -140,7 +140,7 @@ const Browse = () => {
               </div>
             </div>
           </div>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );
