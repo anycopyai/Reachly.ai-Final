@@ -44,25 +44,23 @@ const CreditBadge = ({ credits, setIsUpgrade }) => {
 
   return (
     <Button
-      type="primary"
-      // onClick={() => setIsUpgrade(true)}
-      onClick={() => router.push("/upgrade")}
-      className="bg-white md:bg-navblue border hover:!bg-blue-950 border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
-    >
-      <img src="/images/icon-upgrade.svg" className="hidden md:block" />
-      <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
-      
+    type="primary"
+    onClick={() => router.push("/upgrade")}
+    className="bg-[#0070f0] rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-white flex items-center px-4 py-2 gap-2"
+  >
+    <img src="/images/icon-upgrade.svg" className="hidden md:block" />
+    <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
 
-      {showCredits ? (
-          <>
-            Credits Left: {credits}
-          </>
-        ) : (
-          <>
-            <span>Upgrade Now</span>
-          </>
-        )}
-    </Button>
+    {showCredits ? (
+      <>
+        Credits Left: {credits}
+      </>
+    ) : (
+      <>
+        <span>Upgrade Now</span>
+      </>
+    )}
+  </Button>
   );
 };
 

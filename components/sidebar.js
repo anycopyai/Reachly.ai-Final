@@ -99,7 +99,7 @@ const Sidebar = ({ children }) => {
                   style={{ height: 25, width: 25 }}
                 />
                 <p className="text-[#323232] font-medium text-2xl block md:hidden">
-                  Anycopy.ai
+                  AnyCopy
                 </p>
               </a>
             </Link>
