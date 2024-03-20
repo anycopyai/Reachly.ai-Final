@@ -14,7 +14,7 @@ const PromptForm = ({
   setfixedInput,
 }) => {
   return (
-    <form method="POST" className="md:w-11/12 mt-4 md:mt-10 pb-4">
+    <form method="POST" className="md:w-11/12 mt-4 md:mt-10 pb-4 h-full">
       <div className="flex flex-col gap-4 md:gap-6 pb-12">
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div className="focus:outline-none">
