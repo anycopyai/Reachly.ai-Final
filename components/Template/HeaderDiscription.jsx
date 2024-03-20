@@ -36,7 +36,7 @@ const HeaderDiscription = () => {
   };
 
   return (
-    <div className="mt-6">
+    <>
       <div className="bg-white md:bg-[#F5F5F5] mb-4 p-0 md:p-6 min-h-screen h-full md:absolute overflow-y-auto">
         <div className="flex flex-col gap-6">
           {headerCardData?.map((item, index) => {
@@ -125,7 +125,7 @@ const HeaderDiscription = () => {
       </div>
 
       <SharingModel modalOpen={isShareModalOpen} modelClose={closeShareModal} />
-    </div>
+    </>
   );
 };
 export default HeaderDiscription;
