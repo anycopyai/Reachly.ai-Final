@@ -34,7 +34,7 @@ const pitchAngelData = [
     info: "Dear (Name),",
     details: [
       {
-        text: "I hope you’re doing well. I wanted to introduce you to my new venture, Digital Products. We’re  all about providing innovative IT solutions and digital products to inspire and educate the younger generation. ",
+        text: "I hope you're doing well. I wanted to introduce you to my new venture, Digital Products. We're  all about providing innovative IT solutions and digital products to inspire and educate the younger generation. ",
       },
       {
         text: "Our platform is gaining traction quickly, with many tech enthusiasts already creating incredible experiences with our tools. I truly believe we have the potential to make a big impact in the industry.",
