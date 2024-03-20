@@ -143,7 +143,7 @@ const Prompt = () => {
           </div>
           <div className="block md:grid grid-cols-12 min-w-full flex-1">
             <div
-              className={`relative col-span-12 md:col-span-5 overflow-y-auto scrollbar-thin h-[calc(100vh-175px)] md:h-auto ${
+              className={`relative col-span-12 md:col-span-5 overflow-y-auto scrollbar-thin h-[calc(100vh-175px)] md:h-[calc(100vh-145px)] ${
                 showresult ? `hidden md:block ` : ""
               }`}
               id="intro"
@@ -158,9 +158,9 @@ const Prompt = () => {
               />
             </div>
             <div
-              className={`col-span-12 md:col-span-7 overflow-y-auto h-[calc(100vh-175px)] md:h-auto ${
-                !showresult ? `hidden  md:block` : `md:block`
-              }`}
+              className={`col-span-12 md:col-span-7 overflow-y-auto h-[calc(100vh-200px)] md:h-[calc(100vh-170px)] mt-6 pb-2 ${
+                !showresult ? `hidden md:block test` : `md:block hello`
+              } ${isgenerate && "bg-white md:bg-[#F5F5F5]"}`}
               id="results"
             >
               {!isgenerate ? (
@@ -170,7 +170,7 @@ const Prompt = () => {
                   </p>
                 </div>
               ) : (
-                <div className="result mt-6 h-full">
+                <div className="result h-full">
                   {router.query.prompts === "landing-page" && <LandingPage />}
                   {router.query.prompts === "google-ads" && <GoogleAds />}
                   {router.query.prompts === "facebook-ads" && <FacebookAds />}

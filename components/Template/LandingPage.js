@@ -7,7 +7,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 
 const LandingPage = () => {
   return (
-    <div className="bg-white md:bg-[#F5F5F5] border border-color-[rgba(50, 50, 50, 0.25)] md:border-none mb-4 p-4 md:p-6 min-h-screen h-full">
+    <div className="border border-color-[rgba(50, 50, 50, 0.25)] md:border-none mb-4 p-4 md:p-6 min-h-screen h-full">
       {/* Content get from AI */}
       <div className="bg-white p-0 md:p-12">
         <div className="flex justify-between items-center mb-6">

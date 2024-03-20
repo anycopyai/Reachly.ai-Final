@@ -18,7 +18,7 @@ const ColdEmail = () => {
 
   return (
     <>
-      <div className="bg-white md:bg-[#F5F5F5] mb-4 p-0 md:p-6 min-h-screen h-full md:absolute overflow-y-auto">
+      <div className="mb-4 p-0 md:p-6 min-h-screen h-full">
         <div className="flex flex-col gap-6">
           <div className="border border-[rgba(50,50,50,0.25)] rounded-sm p-4 md:p-6 flex flex-col gap-3 bg-white">
             <div className="md:px-11">

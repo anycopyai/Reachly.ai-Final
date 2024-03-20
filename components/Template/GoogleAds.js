@@ -7,7 +7,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 
 const GoogleAds = () => {
   return (
-    <div className="bg-white md:bg-[#F5F5F5] mb-4 p-0 md:p-6 min-h-screen h-full">
+    <div className="mb-4 p-0 md:p-6 min-h-screen h-full">
       {/* Content get from AI */}
       <div className="flex flex-col gap-6">
         <div className="bg-white p-4 md:p-6 border border-color-[rgba(50, 50, 50, 0.25)] flex flex-col gap-3">
