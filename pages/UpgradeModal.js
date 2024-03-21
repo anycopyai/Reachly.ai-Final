@@ -125,11 +125,11 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 mx-auto gap-4 md:gap-0 mt-10 mb-10 md:border md:border-[#00000040] bg-white">
+        <div className="grid md:grid-cols-3 mx-auto gap-4 md:gap-0 mt-10 mb-10 md:border md:border-[#00000040] md:bg-white w-full">
           {priceCard?.map((item, index) => {
             return (
               <div
-                className="border md:border-0 md:border-r-1 md:last:border-none border-[rgba(0,0,0,0.25)] py-6 px-6 pb-12 flex flex-col gap-4"
+                className="bg-white border md:border-0 md:border-r-1 md:last:border-none border-[rgba(0,0,0,0.25)] py-6 px-6 pb-12 flex flex-col gap-4"
                 key={index}
               >
                 <div>
