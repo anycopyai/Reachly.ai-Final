@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Button } from "antd";
-import { useRouter } from "next/router";
+import UpgradeModal from "../pages/UpgradeModal";
 
 const categories = [
   "All",
@@ -30,9 +29,8 @@ const categories = [
   // 'Invistor Pitch',
 ];
 
-const CreditBadge = ({ credits, setIsUpgrade }) => {
+const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
   const [showCredits, setShowCredits] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,27 +44,35 @@ const CreditBadge = ({ credits, setIsUpgrade }) => {
     <Button
       type="primary"
       // onClick={() => setIsUpgrade(true)}
-      onClick={() => router.push("/upgrade")}
+      // onClick={() => router.push("/upgrade")}
+      onClick={openUpgradeModal}
       className="bg-white md:bg-navblue border hover:!bg-blue-950 border-[#D9D9D9] md:border-none shadow-none text-black md:text-white flex items-center px-3 py-2 rounded-sm gap-2"
     >
       <img src="/images/icon-upgrade.svg" className="hidden md:block" />
       <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
-      
 
       {showCredits ? (
-          <>
-            Credits Left: {credits}
-          </>
-        ) : (
-          <>
-            <span>Upgrade Now</span>
-          </>
-        )}
+        <>Credits Left: {credits}</>
+      ) : (
+        <>
+          <span>Upgrade Now</span>
+        </>
+      )}
     </Button>
   );
 };
 
 const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
+  const [isUpgradeModal, setIsUpgradeModal] = useState(false);
+
+  const openUpgradeModal = () => {
+    setIsUpgradeModal(true);
+  };
+
+  const closeUpgradeModal = () => {
+    setIsUpgradeModal(false);
+  };
+
   return (
     <div className="bg-white flex justify-between items-center">
       <div className="w-full">
@@ -89,6 +95,7 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
               credits={100}
               setIsUpgrade={setIsUpgrade}
               className=" -translate-x-6"
+              openUpgradeModal={openUpgradeModal}
             />
           </div>
         </div>
@@ -110,6 +117,8 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
           </div>
         </div>
       </div>
+
+      <UpgradeModal modalOpen={isUpgradeModal} modelClose={closeUpgradeModal} />
     </div>
   );
 };
