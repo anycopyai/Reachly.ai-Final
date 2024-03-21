@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
+import { saveUser } from "../utils/functions";
 
 function Signup() {
   const { enqueueSnackbar } = useSnackbar();
@@ -64,6 +65,7 @@ function Signup() {
             userCredential?.user?.accessToken
           );
           router.push("/browse");
+          saveUser(userCredential?.user?.uid , {email:userCredential?.user?.email , uid:userCredential?.user?.uid })
           enqueueSnackbar(`User registered successfully !`, {
             variant: "success",
           });
