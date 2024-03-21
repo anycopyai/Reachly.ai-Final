@@ -12,6 +12,7 @@ const PromptForm = ({
   setInputData,
   fixedInput,
   setfixedInput,
+  handleGenerate
 }) => {
   return (
     <form method="POST" className="md:w-11/12 mt-4 md:mt-10 pb-4 h-full">
@@ -239,7 +240,7 @@ const PromptForm = ({
         <Button
           type="button"
           className="text-white bg-navblue hover:bg-blue-700 hover:text-white focus:outline-none text-base px-5 py-2.5 text-center w-full rounded-sm"
-          onClick={() => setGenerate(true)}
+          onClick={(e) => handleGenerate(e)}
         >
           Generate Copy
         </Button>

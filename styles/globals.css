@@ -2304,6 +2304,12 @@ textarea.resize-none {
   border-radius: 0;
   padding: 2rem;
 }
+.upgrade-modal {
+  transform: none !important;
+}
+.upgrade-modal .ant-modal-content {
+  box-shadow: none;
+}
 
 /* Editor styles */
 .editor-wrapper .tox-editor-header {
@@ -2319,6 +2325,7 @@ textarea.resize-none {
   border: none;
   min-height: 600px;
 }
+
 
 @media screen and (max-width: 767px) {
   .subscribe-modal {

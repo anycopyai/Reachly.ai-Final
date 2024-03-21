@@ -16,7 +16,8 @@ import Features from "../components/Template/Features";
 import PitchAnAngle from "../components/Template/PitchAnAngle";
 import SalesOutreach from "../components/Template/SalesOutreach";
 import BlogIdeas from "../components/Template/BlogIdeas";
-import { Button, Spin } from "antd";
+import { Button } from "antd";
+import Spinner from "../components/Spinner";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
@@ -41,14 +42,14 @@ const Prompt = () => {
 
   // console.log(1234,inputData)
 
-  useEffect(()=>{
-    if(isgenerate){
+  useEffect(() => {
+    if (isgenerate) {
       setShowSpinner(true);
-      setTimeout(()=>{
+      setTimeout(() => {
         setShowSpinner(false);
-      },2000)
+      }, 2000);
     }
-  },[isgenerate])
+  }, [isgenerate]);
 
   const handleChange = (e) => {
     // console.log(4343,e);
@@ -62,6 +63,12 @@ const Prompt = () => {
       });
     });
   };
+
+  const handleGenerate = (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    setGenerate(true);
+  }
 
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
@@ -165,6 +172,7 @@ const Prompt = () => {
                 setInputData={setInputData}
                 handleChange={handleChange}
                 setGenerate={setGenerate}
+                handleGenerate={handleGenerate}
               />
             </div>
             <div
@@ -173,13 +181,15 @@ const Prompt = () => {
               } ${isgenerate && "bg-white md:bg-[#F5F5F5]"}`}
               id="results"
             >
-              {!isgenerate  ? (
+              {!isgenerate ? (
                 <div className="relative top-40 flex justify-center items-center">
                   <p className="text-sm text-center text-slate-400">
                     Generate your intro to see results here or Skip intro
                   </p>
                 </div>
-              ) : showSpinner ? <Spin size="small" /> : (
+              ) : showSpinner ? (
+                <Spinner />
+              ) : (
                 <div className="result h-full">
                   {router.query.prompts === "landing-page" && <LandingPage />}
                   {router.query.prompts === "google-ads" && <GoogleAds />}
