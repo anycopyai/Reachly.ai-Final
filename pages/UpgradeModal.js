@@ -94,12 +94,12 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
       }}
     >
       <div className="flex flex-col h-fit">
-        <div className="p-2">
+        <div className="p-2 pt-6">
           <div className="text-center">
-            <h2 className="text-white text-4xl font-semibold">
+            <h2 className="text-black text-4xl font-semibold">
               Get more done with Premium features
             </h2>
-            <p className="text-base text-white mt-3">
+            <p className="text-base text-black mt-3">
               Pick the right plan for you
             </p>
             <div className="flex gap-4 mt-8 justify-center">
@@ -127,7 +127,7 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 mx-auto gap-0 mt-10 mb-10 md:border md:border-[#00000040] md:bg-white w-full rounded-md overflow-hidden">
+        <div className="grid md:grid-cols-3 mx-auto gap-0 mt-6 md:border md:border-[#00000040] md:bg-white w-full rounded-md overflow-hidden">
           {priceCard?.map((item, index) => {
             return (
               <div

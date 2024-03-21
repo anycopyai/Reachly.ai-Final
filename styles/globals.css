@@ -2308,7 +2308,6 @@ textarea.resize-none {
   transform: none !important;
 }
 .upgrade-modal .ant-modal-content {
-  background-color: transparent;
   box-shadow: none;
 }
 
