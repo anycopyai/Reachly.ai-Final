@@ -22,6 +22,7 @@ const QuillEditor = () => {
         init={{
           height: 500,
           menubar: false,
+          placeholder: 'write something',
           plugins: [
             "advlist",
             "autolink",
@@ -49,12 +50,10 @@ const QuillEditor = () => {
             "codesample",
             "pagebreak",
             "nonbreaking",
-            "quickbars",
             "emoticons",
             "accordion",
           ],
 
-          // toolbar: "accordion accordionremove | blocks fontfamily",
           toolbar:
             "undo redo print removeformat image link | blocks fontfamily fontsize | bold italic underline strikethrough forecolor backcolor removeformat align numlist bullist | ltr rtl | outdent indent",
 

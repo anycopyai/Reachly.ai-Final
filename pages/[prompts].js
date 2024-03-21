@@ -64,6 +64,12 @@ const Prompt = () => {
     });
   };
 
+  const handleGenerate = (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    setGenerate(true);
+  }
+
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
       <Sidebar />
@@ -166,6 +172,7 @@ const Prompt = () => {
                 setInputData={setInputData}
                 handleChange={handleChange}
                 setGenerate={setGenerate}
+                handleGenerate={handleGenerate}
               />
             </div>
             <div

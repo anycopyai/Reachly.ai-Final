@@ -7,8 +7,8 @@ const priceCard = [
   {
     planType: "Basic",
     type: "Basic",
-    price: "$0 USD / month",
-    priceAnnual: "$10 USD / month",
+    price: "$10 USD / month",
+    priceAnnual: "$100 USD / year",
     btnText: "Your Free Trail Completed",
     btnType: "disabled",
     priceList: [
@@ -29,7 +29,7 @@ const priceCard = [
     planType: "Standard",
     type: "Standard Plan",
     price: "$20 USD / month",
-    priceAnnual: "$25 USD / month",
+    priceAnnual: "$200 USD / year",
     btnText: "Buy Now",
     btnType: "success",
     priceList: [
@@ -51,7 +51,7 @@ const priceCard = [
     planType: "Pro",
     type: "Pro Plan",
     price: "$25 USD / month",
-    priceAnnual: "$50 USD / month",
+    priceAnnual: "$250 USD / year",
     btnText: "Buy Now",
     btnType: "info",
     priceList: [
@@ -106,7 +106,7 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
               <Button
                 className={`h-auto py-1 text-sm rounded-sm md:min-w-[160px] ${
                   isAnnualPlan === true
-                    ? "bg-white border-white text-black"
+                    ? "bg-white border-black text-black"
                     : "bg-navblue border-navblue text-white"
                 }`}
                 onClick={() => setIsAnnualPlan(false)}
