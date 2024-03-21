@@ -54,14 +54,14 @@ const SalesOutreach = () => {
     <>
       <div className="mb-4 p-0 md:p-6 min-h-screen h-full">
         <div className="flex flex-col gap-6">
-          {/* {pitchAngelData?.map((item, index) => {
+          {pitchAngelData?.map((item, index) => {
             return (
               <div
                 className="border border-[rgba(50,50,50,0.25)] rounded-sm p-4 md:p-6 flex flex-col gap-3 bg-white"
                 key={index}
               >
                 <div className="md:px-11">
-                  <div className="flex items-center gap-4 md:mt-6">
+                  <div className="flex items-center gap-4">
                     <div>
                       <span className="w-10 h-10 flex items-center justify-center bg-[rgba(255,154,108,0.5)] text-[#FF9A6C] font-semibold text-base rounded-full">
                         D
@@ -141,7 +141,7 @@ const SalesOutreach = () => {
                 </div>
               </div>
             );
-          })} */}
+          })}
         </div>
       </div>
 

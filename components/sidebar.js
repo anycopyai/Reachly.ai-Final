@@ -84,9 +84,11 @@ const Sidebar = ({ children }) => {
             </button>
           )}
       </div>
-      <div 
-  className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${isOpen ? "left-0" : "-left-full"} border-r border-gray-200`} // Border classes added here
->
+      <div
+        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${
+          isOpen ? "left-0" : "-left-full"
+        } border-r border-gray-200`} // Border classes added here
+      >
         {/* Updated background color to #F9F8F7 (bg-gray-50) */}
         <div className="flex flex-col item-start md:items-center">
           <div className="mb-8 px-8 md:px-0 flex justify-between items-center pb-2.5 md:pb-0 border-b-1 border-[rgba(0,0,0,0.1)] md:border-none">
@@ -114,7 +116,7 @@ const Sidebar = ({ children }) => {
             <Tippy key={name} content={name} placement="left">
               <div
                 onClick={() => handleNavigation(href, name, Extrafields)}
-                className="mb-8 px-8 md:px-0 cursor-pointer flex items-center gap-3 hover:text-navblue"
+                className="mb-8 px-8 md:px-1 py-1 cursor-pointer flex items-center gap-3 hover:text-navblue hover:bg-[#e0e6ff] active:bg-[#cfd8ff]"
               >
                 <IconComponent className="h-6 w-6 text-black-400 hover:text-navblue transition-colors duration-200" />
                 <p className="text-[#323232] hover:text-navblue text-sm block md:hidden">
