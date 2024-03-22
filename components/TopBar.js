@@ -46,12 +46,6 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
     onClick={openUpgradeModal}
     className="bg-blue-50 rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-blue-600 flex items-center px-4 py-2 gap-2"
   >
-    <svg
-    class="w-5 h-5 mr-2"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
    
 
     {showCredits ? (
