@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 function Login() {
   const { enqueueSnackbar } = useSnackbar();
@@ -52,6 +53,11 @@ function Login() {
   }, [errors]);
   const onSubmit = async (data) => {
     try {
+      const user = await axios.post(`${process.env.BASE_URL}/api/login`, data);
+      const { status } = user?.data;
+      if (!status) {
+        return;
+      }
       signInWithEmailAndPassword(auth, data?.email, data?.password)
         .then((userCredential) => {
           reset();
@@ -62,7 +68,7 @@ function Login() {
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });
-          router.push("/browse");
+          router.push("/onboard");
         })
         .catch((error) => {
           console.log(error);
@@ -84,7 +90,7 @@ function Login() {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           localStorage.setItem("accessToken", token);
-          router.push("/browse");
+          router.push("/onboard");
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });
@@ -118,17 +124,10 @@ function Login() {
                 </h1>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Don't have an account yet?
-                  <Link
-                   href="/signup"
-                   passHref
-                  >
-                  <a
-                 
-                    className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  
-                  >
-                    Sign up here
-                  </a>
+                  <Link href="/signup" passHref>
+                    <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                      Sign up here
+                    </a>
                   </Link>
                 </p>
               </div>

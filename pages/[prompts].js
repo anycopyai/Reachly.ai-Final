@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/router";
-import { MdShowChart } from "react-icons/md";
 import Sidebar from "../components/sidebar";
 import { FaStar } from "react-icons/fa6";
 import LandingPage from "../components/Template/LandingPage";
@@ -18,10 +17,12 @@ import PitchAnAngle from "../components/Template/PitchAnAngle";
 import SalesOutreach from "../components/Template/SalesOutreach";
 import BlogIdeas from "../components/Template/BlogIdeas";
 import { Button } from "antd";
+import Spinner from "../components/Spinner";
 
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
   const [inputData, setInputData] = useState([]);
   const [fixedInput, setfixedInput] = useState({
     language: "English",
@@ -41,6 +42,15 @@ const Prompt = () => {
 
   // console.log(1234,inputData)
 
+  useEffect(() => {
+    if (isgenerate) {
+      setShowSpinner(true);
+      setTimeout(() => {
+        setShowSpinner(false);
+      }, 2000);
+    }
+  }, [isgenerate]);
+
   const handleChange = (e) => {
     // console.log(4343,e);
     // console.log(7878,e?.target?.name);
@@ -54,10 +64,16 @@ const Prompt = () => {
     });
   };
 
+  const handleGenerate = (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    setGenerate(true);
+  }
+
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
       <Sidebar />
-      <div className="flex-grow m-5">
+      <div className="flex-grow m-5 overflow-hidden">
         <div className="flex md:hidden items-center justify-between">
           <div className="flex items-center gap-1">
             <span>
@@ -129,19 +145,26 @@ const Prompt = () => {
           </h1>
         </div>
 
-        <div className="flex md:mt-10 min-h-[85%] md:min-h-[90%]">
-          <div className="grid grid-cols-12 min-w-full">
-            <div
-              className={`prompt-left-side relative ${
-                showresult
-                  ? `hidden col-span-12 md:col-span-4 md:block overflow-y-scroll scrollbar-thin`
-                  : `col-span-12 overflow-hidden md:col-span-4 md:overflow-y-scroll md:scrollbar-thin`
-              }`}
-              id="intro"
-            >
+        <div className="flex flex-col md:mt-10 min-h-[85%] md:min-h-[90%]">
+          <div className="hidden md:grid grid-cols-12 min-w-full">
+            <div className="col-span-12 md:col-span-5">
               <h1 className="hidden md:inline-block text-sm text-navblue font-medium border-b-2 border-navblue">
                 Prompt
               </h1>
+            </div>
+            <div className="col-span-12 md:col-span-7">
+              <h1 className="hidden text-sm text-navblue font-medium border-b-2 border-navblue ml-4 md:inline-block">
+                Results
+              </h1>
+            </div>
+          </div>
+          <div className="block md:grid grid-cols-12 min-w-full flex-1">
+            <div
+              className={`relative col-span-12 md:col-span-5 overflow-y-auto scrollbar-thin h-[calc(100vh-175px)] md:h-[calc(100vh-145px)] ${
+                showresult ? `hidden md:block ` : ""
+              }`}
+              id="intro"
+            >
               <PromptForm
                 inputData={inputData}
                 fixedInput={fixedInput}
@@ -149,28 +172,25 @@ const Prompt = () => {
                 setInputData={setInputData}
                 handleChange={handleChange}
                 setGenerate={setGenerate}
+                handleGenerate={handleGenerate}
               />
             </div>
             <div
-              className={` ${
-                !showresult
-                  ? `hidden col-span-12 md:col-span-8 md:block`
-                  : `col-span-12 md:col-span-8 md:block`
-              }`}
+              className={`col-span-12 md:col-span-7 overflow-y-auto h-[calc(100vh-200px)] md:h-[calc(100vh-170px)] mt-6 pb-2 ${
+                !showresult ? `hidden md:block test` : `md:block hello`
+              } ${isgenerate && "bg-white md:bg-[#F5F5F5]"}`}
               id="results"
             >
-              <h1 className="hidden text-sm text-navblue font-medium border-b-2 border-navblue ml-4 md:inline-block">
-                Results
-              </h1>
-
               {!isgenerate ? (
                 <div className="relative top-40 flex justify-center items-center">
                   <p className="text-sm text-center text-slate-400">
                     Generate your intro to see results here or Skip intro
                   </p>
                 </div>
+              ) : showSpinner ? (
+                <Spinner />
               ) : (
-                <>
+                <div className="result h-full">
                   {router.query.prompts === "landing-page" && <LandingPage />}
                   {router.query.prompts === "google-ads" && <GoogleAds />}
                   {router.query.prompts === "facebook-ads" && <FacebookAds />}
@@ -207,7 +227,7 @@ const Prompt = () => {
                     <SalesOutreach />
                   )}
                   {router.query.prompts === "blog-ideas" && <BlogIdeas />}
-                </>
+                </div>
               )}
             </div>
           </div>

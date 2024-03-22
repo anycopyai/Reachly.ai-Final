@@ -5,8 +5,6 @@ import TopBar from "../components/TopBar";
 import Favorites from "../components/Template/Favorites";
 import FreshTemplate from "../components/Template/FreshTemplate";
 import withAuth from "../hoc/withAuth";
-import { Button, Modal, Radio } from "antd";
-import { IoCheckmarkSharp } from "react-icons/io5";
 import { useRouter } from "next/router";
 
 const Browse = () => {
