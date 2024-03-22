@@ -52,12 +52,7 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
     viewBox="0 0 20 20"
     fill="currentColor"
   >
-    <path
-      fill-rule="evenodd"
-      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-      clip-rule="evenodd"
-    />
-  </svg>
+   
 
     {showCredits ? (
       <>
@@ -99,7 +94,7 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="md:hidden flex gap-4 pl-6">
-              <p className="text-sm	font-medium text-black">ANYCOPY</p>
+              <p className="text-sm	font-medium text-black">A</p>
             </div>
             <CreditBadge
               credits={100}
