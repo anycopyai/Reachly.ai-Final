@@ -44,10 +44,20 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
     <Button
     type="primary"
     onClick={openUpgradeModal}
-    className="bg-[#0070f0] rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-white flex items-center px-4 py-2 gap-2"
+    className="bg-blue-50 rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-blue-600 flex items-center px-4 py-2 gap-2"
   >
-    <img src="/images/icon-upgrade.svg" className="hidden md:block" />
-    <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
+    <svg
+    class="w-5 h-5 mr-2"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+      clip-rule="evenodd"
+    />
+  </svg>
 
     {showCredits ? (
       <>
@@ -89,7 +99,7 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="md:hidden flex gap-4 pl-6">
-              <p className="text-sm	font-medium text-black">Templates</p>
+              <p className="text-sm	font-medium text-black">ANYCOPY</p>
             </div>
             <CreditBadge
               credits={100}

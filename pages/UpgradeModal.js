@@ -7,8 +7,8 @@ const priceCard = [
   {
     planType: "Basic",
     type: "Basic",
-    price: "$10 USD / month",
-    priceAnnual: "$100 USD / year",
+    price: "$0 USD / month",
+    priceAnnual: "$0 USD / year",
     btnText: "Your Free Trail Completed",
     btnType: "disabled",
     priceList: [
@@ -28,8 +28,8 @@ const priceCard = [
   {
     planType: "Standard",
     type: "Standard Plan",
-    price: "$20 USD / month",
-    priceAnnual: "$200 USD / year",
+    price: "$49 USD / month",
+    priceAnnual: "$39 USD / Month",
     btnText: "Buy Now",
     btnType: "success",
     priceList: [
@@ -50,8 +50,8 @@ const priceCard = [
   {
     planType: "Pro",
     type: "Pro Plan",
-    price: "$25 USD / month",
-    priceAnnual: "$250 USD / year",
+    price: "$99 USD / month",
+    priceAnnual: "$89 USD / Month",
     btnText: "Buy Now",
     btnType: "info",
     priceList: [
@@ -95,10 +95,10 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
       <div className="flex flex-col h-fit">
         <div className="md:p-2 md:pt-6">
           <div className="text-center">
-            <h2 className="text-black text-xl md:text-4xl font-semibold">
+            <h2 className="text-grey text-xl md:text-4xl font-semibold">
               Get more done with Premium features
             </h2>
-            <p className="text-sm md:text-base text-black mt-3">
+            <p className="text-sm md:text-base text-grey mt-3">
               Pick the right plan for you
             </p>
             <div className="flex gap-4 mt-8 justify-center">
