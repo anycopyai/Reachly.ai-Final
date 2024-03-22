@@ -16,7 +16,7 @@ const WelcomeModal = ({ modalOpen, modalClose }) => {
       closeIcon={false}
     >
       <div className="flex flex-col gap-6 w-full">
-        {/* <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center">
           <img src="/images/carla-user.png" alt="user" />
           <p className="text-sm text-[#00000073]">Carla from Anycopy AI</p>
         </div>
@@ -53,7 +53,7 @@ const WelcomeModal = ({ modalOpen, modalClose }) => {
             High- converting campaigns are just around the corner. Chat soon
             <img src="/images/icon-hello.svg" alt="hello" />
           </h4>
-        </div> */}
+        </div>
       </div>
     </Modal>
   );

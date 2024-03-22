@@ -86,7 +86,6 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
       footer={false}
       className="upgrade-modal"
       width={1000}
-      closeIcon={false}
       mask={{
         style: {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -94,17 +93,17 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
       }}
     >
       <div className="flex flex-col h-fit">
-        <div className="p-2 pt-6">
+        <div className="md:p-2 md:pt-6">
           <div className="text-center">
-            <h2 className="text-black text-4xl font-semibold">
+            <h2 className="text-black text-xl md:text-4xl font-semibold">
               Get more done with Premium features
             </h2>
-            <p className="text-base text-black mt-3">
+            <p className="text-sm md:text-base text-black mt-3">
               Pick the right plan for you
             </p>
             <div className="flex gap-4 mt-8 justify-center">
               <Button
-                className={`h-auto py-1 text-sm rounded-sm md:min-w-[160px] ${
+                className={`h-auto py-2 px-6 md:py-1 text-sm rounded-sm md:min-w-[160px] ${
                   isAnnualPlan === true
                     ? "bg-white border-black text-black"
                     : "bg-navblue border-navblue text-white"
@@ -114,7 +113,7 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
                 Monthly
               </Button>
               <Button
-                className={`rounded-sm text-sm py-1 border  md:min-w-[160px] ${
+                className={`rounded-sm text-sm py-2 px-6 md:py-1 border  md:min-w-[160px] ${
                   isAnnualPlan === true
                     ? "bg-navblue border-navblue text-white"
                     : "bg-white text-black"
@@ -131,15 +130,17 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
           {priceCard?.map((item, index) => {
             return (
               <div
-                className="bg-white border md:border-0 md:border-r-1 md:last:border-none border-[rgba(0,0,0,0.25)] py-6 px-6 pb-12 flex flex-col gap-4 rounded-md"
+                className="bg-white border md:border-0 md:border-r-1 md:last:border-none border-[rgba(0,0,0,0.25)] py-4 md:py-6 px-4 md:px-6 md:pb-12 flex flex-col gap-4 rounded-md"
                 key={index}
               >
                 <div className="flex flex-col gap-1">
-                  <h4 className="text-xl text-black font-medium flex items-center gap-2">
-                    {item.planType === "Standard" && (
-                      <img src="images/icon-star-green.svg" alt="star" />
-                    )}
-                    {item.type}
+                  <h4 className="text-lg md:text-xl text-black font-medium flex flex-col md:flex-row items-start md:items-center gap-2">
+                    <div className="flex md:items-center gap-2">
+                      {item.planType === "Standard" && (
+                        <img src="images/icon-star-green.svg" alt="star" />
+                      )}
+                      {item.type}
+                    </div>
                     {item.planType === "Standard" && (
                       <span className="bg-[#EAB308] text-xs text-white px-2 py-1 rounded-sm flex items-center justify-center">
                         Most Popular
@@ -154,7 +155,7 @@ const UpgradeModal = ({ modalOpen, modelClose }) => {
                 </div>
                 <div>
                   <Button
-                    className={`border px-6 py-2 text-base h-auto w-full font-bold ${
+                    className={`border px-6 py-2 text-sm md:text-base h-auto w-full font-bold ${
                       item.btnType === "disabled" &&
                       "bg-[#F5F5F5] border-[#D9D9D9] hover:!border-[#D9D9D9] text-[#00000040] hover:!text-[#00000040]"
                     } ${
