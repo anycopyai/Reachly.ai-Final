@@ -12,6 +12,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
 import { saveUser } from "../utils/functions";
+import axios from "axios";
 
 function Signup() {
   const { enqueueSnackbar } = useSnackbar();
@@ -57,6 +58,14 @@ function Signup() {
   }, [errors]);
   const onSubmit = async (data) => {
     try {
+      const addNewUser = await axios.post(
+        "http://localhost:4000/api/signup",
+        data
+      );
+      const { success } = addNewUser?.data;
+      if (!success) {
+        return;
+      }
       createUserWithEmailAndPassword(auth, data?.email, data?.password)
         .then((userCredential) => {
           reset();
@@ -64,8 +73,11 @@ function Signup() {
             "accessToken",
             userCredential?.user?.accessToken
           );
-          router.push("/onboard");
-          saveUser(userCredential?.user?.uid , {email:userCredential?.user?.email , uid:userCredential?.user?.uid })
+          router.push("/browse");
+          saveUser(userCredential?.user?.uid, {
+            email: userCredential?.user?.email,
+            uid: userCredential?.user?.uid,
+          });
           enqueueSnackbar(`User registered successfully !`, {
             variant: "success",
           });
