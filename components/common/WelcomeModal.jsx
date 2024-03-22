@@ -13,7 +13,6 @@ const WelcomeModal = ({ modalOpen, modalClose }) => {
       onCancel={handleModalClose}
       footer={false}
       width={800}
-      closeIcon={false}
     >
       <div className="flex flex-col gap-6 w-full">
         <div className="flex gap-4 items-center">

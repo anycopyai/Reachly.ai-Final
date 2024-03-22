@@ -62,7 +62,7 @@ function Login() {
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });
-          router.push("/browse");
+          router.push("/onboard");
         })
         .catch((error) => {
           console.log(error);
@@ -84,7 +84,7 @@ function Login() {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           localStorage.setItem("accessToken", token);
-          router.push("/browse");
+          router.push("/onboard");
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });

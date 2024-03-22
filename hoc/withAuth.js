@@ -7,15 +7,9 @@ const withAuth = (WrappedComponent) => {
     const { user, loading, isAuthenticated } = useContext(UserContext);
     const router = useRouter();
 
-    console.log(22222,user)
-    console.log(33333,user?.metadata?.creationTime === user?.metadata?.lastSignInTime)
     useEffect(() => {
       if (!loading && !user) {
         router.push('/login');
-      }
-      else if (user){
-        if(user?.metadata?.creationTime === user?.metadata?.lastSignInTime)
-        router.push('/onboard');
       }
     }, [user, loading, router]);
 

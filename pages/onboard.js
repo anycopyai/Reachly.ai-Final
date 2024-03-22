@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Steps } from "antd";
 import OnboardForm from "../components/form/OnboardForm";
 import WelcomeModal from "../components/common/WelcomeModal";
+import { UserContext } from "../contexts/UserContext";
+import { useRouter } from "next/router";
 
 const Onboard = () => {
   const [isFormStep, setIsFormStep] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useContext(UserContext);
+  const router = useRouter();
+
+//   console.log(22222,user)
+//   console.log(33333,user?.metadata?.creationTime === user?.metadata?.lastSignInTime)
+//   useEffect(() => {
+//      if (user){
+//       if(user?.metadata?.creationTime !== user?.metadata?.lastSignInTime)
+//       router.push('/browse');
+//     }
+//   }, [user, router]);
 
   const openWelcomeModal = () => {
     setIsModalOpen(true);
@@ -13,6 +26,7 @@ const Onboard = () => {
 
   const closeWelcomeModal = () => {
     setIsModalOpen(false);
+    router.push('/browse');
   };
 
   const handleContinue = () => {
