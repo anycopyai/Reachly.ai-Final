@@ -46,7 +46,7 @@ const CreditBadge = ({ credits, setIsUpgrade }) => {
     <Button
     type="primary"
     onClick={() => router.push("/upgrade")}
-    className="bg-[#0070f0] rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-white flex items-center px-4 py-2 gap-2"
+    className="bg-blue-50 rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-blue-600 flex items-center px-4 py-2 gap-2"
   >
     <img src="/images/icon-upgrade.svg" className="hidden md:block" />
     <img src="/images/icon-upgrade-black.svg" className="block md:hidden" />
