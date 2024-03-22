@@ -88,7 +88,12 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
           </div>
           <div className="flex justify-between items-center">
             <div className="md:hidden flex gap-4 pl-6">
-              <p className="text-sm	font-medium text-black">A</p>
+            <img
+                  className="h-6 w-6 image-2-icon2"
+                  alt=""
+                  src="../images/logo.png"
+                  style={{ height: 25, width: 25 }}
+                />
             </div>
             <CreditBadge
               credits={100}
