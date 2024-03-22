@@ -25,12 +25,20 @@ const introData = [
 const Writer = () => {
   const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
-  const [isIntroActive, setIsIntroActive] = useState(false);
+  const [isIntroActive, setIsIntroActive] = useState(null);
 
   const router = useRouter();
 
   const handleNavigation = () => {
     router.push("/Writerlanding");
+  };
+
+  const handleIntroClick = (index) => {
+    setIsIntroActive(index);
+  };
+
+  const handleIntroHover = (index) => {
+    setIsIntroActive(index);
   };
 
   return (
@@ -151,18 +159,18 @@ const Writer = () => {
                         <div
                           key={index}
                           className={`flex flex-col gap-6 rounded-3xl p-6 ${
-                            isIntroActive === true
+                            isIntroActive === index
                               ? "bg-[#D3E3FD]"
                               : "bg-[#F9FAFE]"
                           }`}
-                          onMouseEnter={() => setIsIntroActive(true)}
-                          onMouseLeave={() => setIsIntroActive(false)}
-                          onClick={() => setIsIntroActive(true)}
+                          onClick={() => handleIntroClick(index)}
+                          onMouseEnter={() => handleIntroHover(index)}
+                          onMouseLeave={() => handleIntroHover(null)}
                         >
                           <div>
                             <span
                               className={`text-black text-sm font-medium py-1 px-3 rounded-full ${
-                                isIntroActive === true
+                                isIntroActive === index
                                   ? "bg-[#0B56D0] text-white"
                                   : "bg-[#E9EAEE] text-black"
                               }`}
@@ -184,7 +192,7 @@ const Writer = () => {
                       </Button>
                       <Button
                         className={`focus:outline-none text-base px-5 py-2.5 rounded-sm ${
-                          isIntroActive === true
+                          isIntroActive > 0
                             ? "text-white bg-navblue"
                             : "text-[rgba(0,0,0,0.25)] bg-[#F5F5F5]"
                         }`}
