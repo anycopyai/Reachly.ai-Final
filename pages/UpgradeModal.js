@@ -63,7 +63,7 @@ const priceCard = [
       { text: "Chrome Extension" },
       { text: "Full Desktop App" },
       { text: "Built-in Grammarly" },
-      { text: "Copy Insights (Coming soon)" },
+      { text: "Workflow (Coming soon)" },
       { text: "Priority Support" },
       { text: "Community Access" },
     ],
