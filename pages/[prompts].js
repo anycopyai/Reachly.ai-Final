@@ -17,22 +17,25 @@ import PitchAnAngle from "../components/Template/PitchAnAngle";
 import SalesOutreach from "../components/Template/SalesOutreach";
 import BlogIdeas from "../components/Template/BlogIdeas";
 import { Button } from "antd";
-import Spinner from "../components/Spinner";
-
+import { CirclesWithBar } from 'react-loader-spinner'
+import axios from 'axios'
+import { useSnackbar } from "notistack";
+import SkeltonCard from "../components/Skelton";
 const Prompt = () => {
   const [isgenerate, setGenerate] = useState(false);
   const [showresult, setshowresult] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const [inputData, setInputData] = useState([]);
+  const [value, setValue] = useState('')
+  const [googleAdsData, setgoogleAdsData] = useState([])
   const [fixedInput, setfixedInput] = useState({
     language: "English",
     project: "My Project",
     brainstorm: false,
     safety: false,
   });
-
   const router = useRouter();
-
+  const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
     if (router?.query?.data) {
       const data = JSON.parse(router?.query?.data);
@@ -46,7 +49,7 @@ const Prompt = () => {
     if (isgenerate) {
       setShowSpinner(true);
       setTimeout(() => {
-        setShowSpinner(false);
+        // setShowSpinner(false);
       }, 2000);
     }
   }, [isgenerate]);
@@ -64,11 +67,35 @@ const Prompt = () => {
     });
   };
 
-  const handleGenerate = (e) => {
-    e.preventDefault();
-    setShowSpinner(true);
-    setGenerate(true);
+  const handleGenerate = async () => {
+    try {
+    alert(value)
+    const prompt = value
+      setGenerate(true);
+      
+      console.log(inputData)
+      console.log(value, 'value')
+      const response = await axios.get('http://localhost:8080/api/googleads', {
+        params: { prompt: prompt }
+      });
+
+      console.log(response, 'this is response');
+     
+      console.log(response)
+      setgoogleAdsData(response.data);
+      setShowSpinner(false);
+    } catch (error) {
+      // setLoading(false);
+      console.error("Error:", error);
+      enqueueSnackbar(`${error?.message}`, { variant: "error" });
+    }
   }
+
+  //  const s = (e) => {
+  //   e.preventDefault();
+  //   setShowSpinner(true);
+  //   setGenerate(true);
+  // }
 
   return (
     <div className="flex flex-col lg:flex-row md:ml-20 h-screen">
@@ -125,21 +152,19 @@ const Prompt = () => {
         <div className="flex gap-5 border-b-2 w-full mt-6 md:hidden">
           <h1
             onClick={() => setshowresult(false)}
-            className={`text-sm text-black font-medium p-2 ${
-              !showresult
-                ? `text-navblue border-b-2 border-navblue inline-block`
-                : ``
-            }`}
+            className={`text-sm text-black font-medium p-2 ${!showresult
+              ? `text-navblue border-b-2 border-navblue inline-block`
+              : ``
+              }`}
           >
             Intro
           </h1>
           <h1
             onClick={() => setshowresult(true)}
-            className={`text-sm text-black font-medium p-2 ${
-              showresult
-                ? `text-navblue border-b-2 border-navblue inline-block`
-                : ``
-            }`}
+            className={`text-sm text-black font-medium p-2 ${showresult
+              ? `text-navblue border-b-2 border-navblue inline-block`
+              : ``
+              }`}
           >
             Results
           </h1>
@@ -160,9 +185,8 @@ const Prompt = () => {
           </div>
           <div className="block md:grid grid-cols-12 min-w-full flex-1">
             <div
-              className={`relative col-span-12 md:col-span-5 overflow-y-auto scrollbar-thin h-[calc(100vh-175px)] md:h-[calc(100vh-145px)] ${
-                showresult ? `hidden md:block ` : ""
-              }`}
+              className={`relative col-span-12 md:col-span-5 overflow-y-auto scrollbar-thin h-[calc(100vh-175px)] md:h-[calc(100vh-145px)] ${showresult ? `hidden md:block ` : ""
+                }`}
               id="intro"
             >
               <PromptForm
@@ -173,12 +197,13 @@ const Prompt = () => {
                 handleChange={handleChange}
                 setGenerate={setGenerate}
                 handleGenerate={handleGenerate}
+                setValues={setValue}
+                value={value}
               />
             </div>
             <div
-              className={`col-span-12 md:col-span-7 overflow-y-auto h-[calc(100vh-200px)] md:h-[calc(100vh-170px)] mt-6 pb-2 ${
-                !showresult ? `hidden md:block test` : `md:block hello`
-              } ${isgenerate && "bg-white md:bg-[#F5F5F5]"}`}
+              className={`col-span-12 md:col-span-7 overflow-y-auto h-[calc(100vh-200px)] md:h-[calc(100vh-170px)] mt-6 pb-2 ${!showresult ? `hidden md:block test` : `md:block hello`
+                } ${isgenerate && "bg-white md:bg-[#F5F5F5]"}`}
               id="results"
             >
               {!isgenerate ? (
@@ -188,11 +213,19 @@ const Prompt = () => {
                   </p>
                 </div>
               ) : showSpinner ? (
-                <Spinner />
+                <div>
+               
+
+                    <SkeltonCard/>
+
+
+                    {/* <skeltonCard /> */}
+                </div>
+
               ) : (
                 <div className="result h-full">
                   {router.query.prompts === "landing-page" && <LandingPage />}
-                  {router.query.prompts === "google-ads" && <GoogleAds />}
+                  {router.query.prompts === "google-ads" &&   <GoogleAds googleads={googleAdsData} />}
                   {router.query.prompts === "facebook-ads" && <FacebookAds />}
                   {router.query.prompts === "linkedin-ads" && <LinkedInAds />}
                   {router.query.prompts === "keyword-generator" && (

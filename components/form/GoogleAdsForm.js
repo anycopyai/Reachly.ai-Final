@@ -9,10 +9,14 @@ import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 import apiService from "../../services/base";
 import { useRouter } from "next/router";
+import axios from 'axios'
+
 
 const GoogleAdsForm = ({ googleAdsData }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
+ 
+
   const router = useRouter();
   const pathname = router.pathname;
   const routeParts = pathname.split("/");
@@ -63,11 +67,11 @@ const GoogleAdsForm = ({ googleAdsData }) => {
 
   const onSubmit = async (data) => {
     try {
+      
       setLoading(true);
-      apiService
-        .post(`${lastRouteName}`, {
-          text: data?.topics,
-        })
+      axios.post('http://localhost:8080/api/googleads', {
+        prompt: data?.topics // Make sure to use 'data.topics' instead of 'topics'
+      })
         .then((response) => {
           console.log(response.data);
           setLoading(false);
@@ -78,8 +82,15 @@ const GoogleAdsForm = ({ googleAdsData }) => {
           console.error("Error:", error);
           enqueueSnackbar(`${error?.message}`, { variant: "error" });
         });
-    } catch (error) {}
+    } catch (error) {
+
+      console.error("Error:", error);
+    }
   };
+
+
+
+
 
   return (
     <>
@@ -95,8 +106,12 @@ const GoogleAdsForm = ({ googleAdsData }) => {
             marginRight: 30,
           }}
         >
-          <FormProvider {...methods}>
-            <Form onFinish={handleSubmit(onSubmit)}>
+          <FormProvider 
+          // {...methods}
+          >
+            <Form
+             onFinish={handleSubmit(onSubmit)}
+            >
               <Row gutter={16}>
                 <Col span={12} style={{ marginTop: 5 }}>
                   <label htmlFor="language" className="labelContent">
@@ -220,6 +235,10 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                           className="inputBox"
                           placeholder="+ Add Topics..."
                           {...field}
+                          onChange={(e) => {
+                            setTopics(e.target.value);
+                          }}
+
                         />
                       )}
                     />
@@ -284,10 +303,11 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                 >
                   <Button
                     type="primary"
-                    htmlType="submit"
-                    className="btnTemplateSubmit"
+
+                    // className="btnTemplateSubmit"
                     style={{ width: "100%" }}
                     loading={loading}
+                    onClick={() => { submitForm }}
                   >
                     Generate Copy
                   </Button>

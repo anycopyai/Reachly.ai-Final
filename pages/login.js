@@ -53,7 +53,7 @@ function Login() {
   }, [errors]);
   const onSubmit = async (data) => {
     try {
-      const user = await axios.post(`${process.env.BASE_URL}/api/login`, data);
+      const user = await axios.post(`http://localhost:8080/api/login`, data);
       const { status } = user?.data;
       if (!status) {
         return;
@@ -72,15 +72,20 @@ function Login() {
         })
         .catch((error) => {
           console.log(error);
-
           if (error?.code) {
             enqueueSnackbar(`${error?.code}`, { variant: "error" });
+          } else {
+            enqueueSnackbar("An error occurred during login.", {
+              variant: "error",
+            });
           }
         });
     } catch (error) {
       console.log(error);
+      enqueueSnackbar("An error occurred during login.", { variant: "error" });
     }
   };
+
 
   const signinWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -101,7 +106,7 @@ function Login() {
             enqueueSnackbar(`${error?.code}`, { variant: "error" });
           }
         });
-    } catch (error) {}
+    } catch (error) { }
   };
   return (
     <>
@@ -260,7 +265,7 @@ function Login() {
                           id="remember-me"
                           name="remember-me"
                           type="checkbox"
-                          // class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                        // class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                         />
                       </div>
                       <div class="ms-3">

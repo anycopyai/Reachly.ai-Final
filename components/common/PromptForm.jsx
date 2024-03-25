@@ -1,5 +1,5 @@
 import { Button, Checkbox, Input, Select, Switch } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TagsInput } from "react-tag-input-component";
 
@@ -12,8 +12,13 @@ const PromptForm = ({
   setInputData,
   fixedInput,
   setfixedInput,
-  handleGenerate
+  handleGenerate,
+  setValues,
 }) => {
+  function typin(e) {
+    alert(e.target.value);
+    setValues(e.target.value);
+  }
   return (
     <form method="POST" className="md:w-11/12 mt-4 md:mt-10 pb-4 h-full">
       <div className="flex flex-col gap-4 md:gap-6 pb-12">
@@ -124,10 +129,9 @@ const PromptForm = ({
                     placeholder={el.placeholder}
                     rows={el.rows || 2}
                     maxLength={el.maxLength}
-                    value={el.value}
+                    value={inputData}
                     name={el.label}
                     className="rounded-sm resize-none"
-                    onChange={(e) => handleChange(e)}
                   />
                   <span className="absolute bottom-0 right-0 pr-1 text-sm text-slate-300">
                     0/{el.maxLength}
@@ -170,6 +174,7 @@ const PromptForm = ({
                         return prev.map((item) => {
                           if (item.label === el.label) {
                             item.value = e;
+                            // alert(e)
                           }
                           return item;
                         });
@@ -186,6 +191,12 @@ const PromptForm = ({
                     name={el.label}
                     placeHolder={el.placeholder}
                   />
+                  <input
+                    placeholder="+Add Topics"
+                    type="text"
+                    className="w-48"
+                    onChange={(e) => setValues(e.target.value)}
+                  />
                 </div>
               )}
 
@@ -196,6 +207,10 @@ const PromptForm = ({
                     name={el.label}
                     checked={el.value}
                     onChange={(e) => handleChange(e)}
+                    // onChange={(e) => {
+                    //   // setValues(e.target.value);
+                    //   typin(e)
+                    // }}
                   >
                     {el.label}
                   </Checkbox>
@@ -240,9 +255,9 @@ const PromptForm = ({
         <Button
           type="button"
           className="text-white bg-navblue hover:bg-blue-700 hover:text-white focus:outline-none text-base px-5 py-2.5 text-center w-full rounded-sm"
-          onClick={(e) => handleGenerate(e)}
+          onClick={(e) => handleGenerate()}
         >
-          Generate Copy
+          Generate Copy-b
         </Button>
       </div>
     </form>
