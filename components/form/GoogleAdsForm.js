@@ -65,28 +65,28 @@ const GoogleAdsForm = ({ googleAdsData }) => {
     name: "mode",
   });
 
-  const onSubmit = async (data) => {
-    try {
+  // const onSubmit = async (data) => {
+  //   try {
       
-      setLoading(true);
-      axios.post('http://localhost:8080/api/googleads', {
-        prompt: data?.topics // Make sure to use 'data.topics' instead of 'topics'
-      })
-        .then((response) => {
-          console.log(response.data);
-          setLoading(false);
-          googleAdsData(response.data);
-        })
-        .catch((error) => {
-          setLoading(false);
-          console.error("Error:", error);
-          enqueueSnackbar(`${error?.message}`, { variant: "error" });
-        });
-    } catch (error) {
+  //     setLoading(true);
+  //     axios.post('http://localhost:8080/api/googleads', {
+  //       prompt: data?.topics 
+  //     })
+  //       .then((response) => {
+  //         console.log(response.data);
+  //         setLoading(false);
+  //         googleAdsData(response.data);
+  //       })
+  //       .catch((error) => {
+  //         setLoading(false);
+  //         console.error("Error:", error);
+  //         enqueueSnackbar(`${error?.message}`, { variant: "error" });
+  //       });
+  //   } catch (error) {
 
-      console.error("Error:", error);
-    }
-  };
+  //     console.error("Error:", error);
+  //   }
+  // };
 
 
 
