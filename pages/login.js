@@ -63,7 +63,7 @@ function Login() {
           reset();
           localStorage.setItem(
             "accessToken",
-            userCredential?.user?.accessToken
+            userCredential?.user?.accessToken,
           );
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
@@ -105,15 +105,21 @@ function Login() {
   };
   return (
     <>
-      <div class=" dark:bg-slate-900 bg-gray-100 flex h-full  py-10">
+      <div className="dark:bg-slate-900 bg-gray-100 min-h-screen py-10">
         <main class="w-full max-w-md mx-auto  bg-gray-100 ">
-          <div class="text-center">
-            <img
-              src="../images/logo.png"
-              style={{ maxHeight: 70, maxWidth: 70 }}
-              class="mx-auto"
-              alt="Logo"
-            ></img>
+          <div className="text-center">
+            <a
+              href="https://anycopy.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="../images/logo.png"
+                style={{ maxHeight: 70, maxWidth: 70, marginBottom: "20px" }}
+                className="mx-auto"
+                alt="Logo"
+              />
+            </a>
           </div>
 
           <div class="mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -122,11 +128,14 @@ function Login() {
                 <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">
                   Sign in
                 </h1>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  Don't have an account yet?
+                <p
+                  className="mt-2 text-sm text-gray-600 dark:text-gray-400"
+                  style={{ marginBottom: "10px" }}
+                >
+                  Don't have an account yet?{" "}
                   <Link href="/signup" passHref>
                     <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                      Sign up here
+                      Start Your Free Trial
                     </a>
                   </Link>
                 </p>

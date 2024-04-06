@@ -60,7 +60,7 @@ function Signup() {
     try {
       const addNewUser = await axios.post(
         "http://localhost:4000/api/signup",
-        data
+        data,
       );
       const { success } = addNewUser?.data;
       if (!success) {
@@ -71,7 +71,7 @@ function Signup() {
           reset();
           localStorage.setItem(
             "accessToken",
-            userCredential?.user?.accessToken
+            userCredential?.user?.accessToken,
           );
           router.push("/browse");
           saveUser(userCredential?.user?.uid, {
@@ -117,15 +117,21 @@ function Signup() {
   };
   return (
     <>
-      <div class=" dark:bg-slate-900 bg-gray-100 flex h-full py-10 ">
+      <div class=" dark:bg-slate-900 bg-gray-100 flex min-h-screen py-10 ">
         <main class="w-full max-w-md mx-auto">
-          <div class="text-center">
-            <img
-              src="../images/logo.png"
-              style={{ maxHeight: 70, maxWidth: 70 }}
-              class="mx-auto"
-              alt="Logo"
-            ></img>
+          <div className="text-center">
+            <a
+              href="https://anycopy.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="../images/logo.png"
+                style={{ maxHeight: 70, maxWidth: 70, marginBottom: "20px" }}
+                className="mx-auto"
+                alt="Logo"
+              />
+            </a>
           </div>
           <div class="mt-2 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <div class="p-4 sm:p-7">
@@ -133,10 +139,13 @@ function Signup() {
                 <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">
                   Sign up
                 </h1>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  Already have an account?
+                <p
+                  className="mt-2 text-sm text-gray-600 dark:text-gray-400"
+                  style={{ marginBottom: "10px" }}
+                >
+                  Already have an account?{" "}
                   <Link href="/login" passHref>
-                    <a class="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                       Sign in here
                     </a>
                   </Link>
@@ -311,7 +320,7 @@ function Signup() {
                           I accept the
                           <a
                             class="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                            href="#"
+                            href="https://anycopy.co/terms-of-use"
                           >
                             Terms and Conditions
                           </a>
