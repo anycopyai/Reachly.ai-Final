@@ -59,9 +59,9 @@ const Onboard = () => {
             <h4 className="text-2xl text-black font-medium">Anycopy.ai</h4>
           </div>
           <div className="flex flex-col gap-1 items-center">
-            <div className="w-full">
-              <Steps
-                className="custom-step-box"
+            <div className="w-full" style={{marginLeft:'25px'}}>
+              <Steps style={{display:'flex',flexDirection:'row',justifyContent: 'center'}}
+                className="custom-step-box flex flex-row "
                 current={isFormStep}
                 items={[
                   {

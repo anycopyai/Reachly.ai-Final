@@ -12,6 +12,8 @@ import {
 import { auth } from "../utils/firebase";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginuser } from "../redux/Store/UserSlice";
 
 function Login() {
   const { enqueueSnackbar } = useSnackbar();
@@ -22,6 +24,8 @@ function Login() {
       .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
   });
+
+  const dispatch = useDispatch()
 
   const defaultValues = {
     email: "",
@@ -53,11 +57,19 @@ function Login() {
   }, [errors]);
   const onSubmit = async (data) => {
     try {
-      const user = await axios.post(`http://localhost:8080/api/login`, data);
-      const { status } = user?.data;
-      if (!status) {
-        return;
-      }
+      // const user = await axios.post(`http://localhost:8080/api/login`, data);
+      // const { status } = user?.data;
+      dispatch(loginuser(data)).then((result)=>{
+        if(result.payload){
+          console.log(result,"its result")
+alert('success')
+        }
+      })
+      .catch((error) => {console.log(error)});
+      
+        // if (!status) {
+        //   return;
+        // }
       signInWithEmailAndPassword(auth, data?.email, data?.password)
         .then((userCredential) => {
           reset();

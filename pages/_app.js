@@ -7,11 +7,13 @@ import { SnackbarProvider } from "notistack";
 import { UserProvider } from '../contexts/UserContext';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import PrelineScript from "../components/PrelineScript";
-
+import {Provider} from 'react-redux'
+import store
+ from "../redux/Store";
 function MyApp({ Component, pageProps }) {
 
   return (
-    <>
+    <Provider  store={store}>
       <SkeletonTheme>
 
      
@@ -37,7 +39,7 @@ function MyApp({ Component, pageProps }) {
       
       </SnackbarProvider>
       </SkeletonTheme>
-    </>
+    </Provider>
   );
 }
 

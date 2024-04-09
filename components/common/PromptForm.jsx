@@ -2,7 +2,7 @@ import { Button, Checkbox, Input, Select, Switch } from "antd";
 import React, { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TagsInput } from "react-tag-input-component";
-
+import withAuth from "../../hoc/withAuth";
 const { TextArea } = Input;
 
 const PromptForm = ({
@@ -264,4 +264,5 @@ const PromptForm = ({
   );
 };
 
-export default PromptForm;
+// export default PromptForm;
+export default withAuth(PromptForm);

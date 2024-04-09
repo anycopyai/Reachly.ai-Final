@@ -5,6 +5,7 @@ import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa6";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { MdOutlineContentCopy } from "react-icons/md";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import withAuth from "../../hoc/withAuth";
 import 'react-loading-skeleton/dist/skeleton.css'
 const GoogleAds = ({ googleads }) => {
 
@@ -187,5 +188,5 @@ const GoogleAds = ({ googleads }) => {
     </SkeletonTheme>
   );
 };
-
-export default GoogleAds;
+// export default withAuth(Browse);
+export default withAuth(GoogleAds) ;

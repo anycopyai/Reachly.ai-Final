@@ -187,7 +187,7 @@ function Signup() {
                         for="email"
                         class="block text-sm mb-2 dark:text-white"
                       >
-                        Email address
+                        Email addressfffff
                       </label>
                       <div class="relative">
                         <input
@@ -216,7 +216,7 @@ function Signup() {
                         id="email-error"
                       >
                         Please include a valid email address so we can get back
-                        to you
+                        to you 
                       </p>
                     </div>
 

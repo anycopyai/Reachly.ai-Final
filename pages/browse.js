@@ -18,7 +18,7 @@ const Browse = () => {
     setSearch(e.target.value);
     setFilter("All");
   };
-
+  
   return (
     <div className="flex h-fit ml-0 md:ml-20 overflow-hidden  bg-gray-100">
       <Sidebar />

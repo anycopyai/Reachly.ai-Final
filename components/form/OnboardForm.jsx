@@ -8,13 +8,42 @@ const TextArea = Input;
 const OnboardForm = ({ isOnboardForm1, isOnboardForm2, isOnboardForm3 }) => {
   const [selected, setSelected] = useState(["1st"]);
 
+  const [formData, setFormData] = useState({
+    write: "",
+    frequency: "",
+    companyName: "",
+    website: "",
+    industry: "",
+    businessSize: "",
+    projectName: "",
+    description: "",
+    audience: [],
+    keywords: [],
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Send form data to the server
+      const response = await Axios.post("your-server-endpoint", formData);
+      console.log("Form data submitted:", response.data);
+      // Reset form after successful submission if needed
+      // setFormData({ write: '', frequency: '', ... });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+ const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
   return (
     <>
       {isOnboardForm1 ? (
         <form className="flex flex-col gap-11">
           <div>
             <label className="block mb-2 text-sm text-[#000000D9] dark:text-white">
-              What do you need to write? *
+              What do you need to write? 
             </label>
             <Select
               className="w-full rounded-sm text-base h-10"
