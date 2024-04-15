@@ -14,10 +14,15 @@ const PromptForm = ({
   setfixedInput,
   handleGenerate,
   setValues,
+  setshowresult,
 }) => {
   function typin(e) {
     alert(e.target.value);
     setValues(e.target.value);
+  }
+  function generateResult(){
+    setshowresult(true)
+    handleGenerate()
   }
   return (
     <form method="POST" className="md:w-11/12 mt-4 md:mt-10 pb-4 h-full">
@@ -167,7 +172,7 @@ const PromptForm = ({
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     {el.label}
                   </label>
-                  <TagsInput
+                  {/* <TagsInput
                     value={el.value}
                     onChange={(e) =>
                       setInputData((prev) => {
@@ -190,7 +195,7 @@ const PromptForm = ({
                     }
                     name={el.label}
                     placeHolder={el.placeholder}
-                  />
+                  /> */}
                   <input
                     placeholder="+Add Topics"
                     type="text"
@@ -255,7 +260,7 @@ const PromptForm = ({
         <Button
           type="button"
           className="text-white bg-navblue hover:bg-blue-700 hover:text-white focus:outline-none text-base px-5 py-2.5 text-center w-full rounded-sm"
-          onClick={(e) => handleGenerate()}
+          onClick={(e) => generateResult()}
         >
           Generate Copy-b
         </Button>

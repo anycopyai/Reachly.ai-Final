@@ -73,6 +73,7 @@ const Favorites = ({search}) => {
       desc: `Short description about the title contents can be displayed here to give a glimpse for selection`,
       url:'facebook-ads',
       favorites: true,
+     
       Extrafields:[
         {
           label: 'Subject',
@@ -97,7 +98,8 @@ const Favorites = ({search}) => {
           placeholder: 'Post you provide',
           maxLength: 250,
           rows:4,
-          value:''
+          value:'',
+         
         },
         {
           label: 'Tone',
@@ -176,6 +178,8 @@ const Favorites = ({search}) => {
                 desc={data?.desc}
                 url={data?.url}
                 data={data}
+                 placeholder={data?.placeholder}
+                
               />
             </div>
           ))}

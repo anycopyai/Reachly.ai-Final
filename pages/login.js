@@ -80,7 +80,7 @@ alert('success')
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });
-          router.push("/onboard");
+          router.push("/browse");
         })
         .catch((error) => {
           console.log(error);
@@ -105,9 +105,9 @@ alert('success')
       signInWithPopup(auth, provider)
         .then((result) => {
           const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
+          const token = credential.accessTokwhaen;
           localStorage.setItem("accessToken", token);
-          router.push("/onboard");
+          router.push("/browse");
           enqueueSnackbar(`Login successfully !`, {
             variant: "success",
           });

@@ -66,8 +66,9 @@ const Prompt = () => {
       });
     });
   };
-
-  const handleGenerate = async () => {
+  
+  
+      const handleGenerate = async () => {
     try {
     alert(value)
     const prompt = value
@@ -199,6 +200,9 @@ const Prompt = () => {
                 handleGenerate={handleGenerate}
                 setValues={setValue}
                 value={value}
+                setshowresult={setshowresult}
+                placeholder="write here"
+
               />
             </div>
             <div

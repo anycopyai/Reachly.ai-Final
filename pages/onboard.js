@@ -11,14 +11,14 @@ const Onboard = () => {
   const { user } = useContext(UserContext);
   const router = useRouter();
 
-//   console.log(22222,user)
-//   console.log(33333,user?.metadata?.creationTime === user?.metadata?.lastSignInTime)
-//   useEffect(() => {
-//      if (user){
-//       if(user?.metadata?.creationTime !== user?.metadata?.lastSignInTime)
-//       router.push('/browse');
-//     }
-//   }, [user, router]);
+  //   console.log(22222,user)
+  //   console.log(33333,user?.metadata?.creationTime === user?.metadata?.lastSignInTime)
+  //   useEffect(() => {
+  //      if (user){
+  //       if(user?.metadata?.creationTime !== user?.metadata?.lastSignInTime)
+  //       router.push('/browse');
+  //     }
+  //   }, [user, router]);
 
   const openWelcomeModal = () => {
     setIsModalOpen(true);
@@ -32,6 +32,7 @@ const Onboard = () => {
   const handleContinue = () => {
     setIsFormStep(isFormStep + 1);
     if (isFormStep === 3) {
+
       setIsFormStep(1);
       openWelcomeModal();
     }
@@ -59,8 +60,8 @@ const Onboard = () => {
             <h4 className="text-2xl text-black font-medium">Anycopy.ai</h4>
           </div>
           <div className="flex flex-col gap-1 items-center">
-            <div className="w-full" style={{marginLeft:'25px'}}>
-              <Steps style={{display:'flex',flexDirection:'row',justifyContent: 'center'}}
+            <div className="w-full" style={{ marginLeft: '25px' }}>
+              <Steps style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
                 className="custom-step-box flex flex-row "
                 current={isFormStep}
                 items={[
@@ -85,13 +86,13 @@ const Onboard = () => {
             type="button"
             className="text-white bg-navblue hover:bg-blue-700 hover:text-white focus:outline-none text-base px-5 py-2.5 text-center w-full rounded-sm"
             onClick={handleContinue}
-            // onClick={isModalOpen}
+          // onClick={isModalOpen}
           >
             {isFormStep === 2
               ? "Almost There"
               : isFormStep === 3
-              ? "I'm ready to start writing"
-              : "Continue"}
+                ? "I'm ready to start writing"
+                : "Continue"}
           </Button>
         </div>
       </div>

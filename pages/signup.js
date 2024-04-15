@@ -73,7 +73,7 @@ function Signup() {
             "accessToken",
             userCredential?.user?.accessToken
           );
-          router.push("/browse");
+          router.push("/onboard");
           saveUser(userCredential?.user?.uid, {
             email: userCredential?.user?.email,
             uid: userCredential?.user?.uid,
@@ -187,7 +187,7 @@ function Signup() {
                         for="email"
                         class="block text-sm mb-2 dark:text-white"
                       >
-                        Email addressfffff
+                        Email address
                       </label>
                       <div class="relative">
                         <input
