@@ -41,7 +41,7 @@ div#__next > main {
 
 .premium-spinner {
   border: 4px solid rgba(255, 255, 255, 0.3); /* Light grey border for background */
-  border-top: 4px solid #ffd700; /* Golden color for visibility against blue */
+  border-top: 4px solid hsl(256, 100%, 50%); /* Golden color for visibility against blue */
   border-radius: 50%;
   width: 20px;
   height: 20px;
