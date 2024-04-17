@@ -1,6 +1,8 @@
 import React from "react";
+import withAuth from "../hoc/withAuth";
 
-function HomePage() {
+const Chat = () => {
+
   return (
     <>
     {/* Sidebar */}
@@ -2188,6 +2190,6 @@ function HomePage() {
   </>
   
   );
-}
+};
 
-export default HomePage;
+export default withAuth(Chat);
