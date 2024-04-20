@@ -27,12 +27,14 @@ function Signup() {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),
+    plan: Yup.string().required("Please select a pla"),
   });
 
   const defaultValues = {
     email: "",
     password: "",
     confirmPassword: "",
+    plan: "", // default plan not selected
   };
 
   const methods = useForm({
@@ -233,7 +235,26 @@ function Signup() {
                         to you
                       </p>
                     </div>
-
+                    <div>
+                      <label
+                        htmlFor="plan"
+                        className="block text-sm mb-2 dark:text-white"
+                      >
+                        Select Plan
+                      </label>
+                      <select
+                        {...register("plan")}
+                        id="plan"
+                        className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                      >
+                        <option value="">Choose a plan</option>
+                        <option value="free">Free Forever</option>
+                        <option value="monthly_49">$49 Monthly</option>
+                        <option value="monthly_99">$99 Monthly</option>
+                        <option value="yearly_99">{`$480 Yearly`}</option>
+                        <option value="yearly_99">{`$950 Yearly`}</option>
+                      </select>
+                    </div>
                     <div>
                       <label
                         for="password"
