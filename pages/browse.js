@@ -6,6 +6,8 @@ import Favorites from "../components/Template/Favorites";
 import FreshTemplate from "../components/Template/FreshTemplate";
 import withAuth from "../hoc/withAuth";
 import { useRouter } from "next/router";
+import { SpinnerCircular } from 'spinners-react';
+
 
 const Browse = () => {
   const [search, setSearch] = useState("");

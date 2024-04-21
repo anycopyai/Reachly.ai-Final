@@ -4,6 +4,7 @@ import "../utils/fontawesome";
 import { SidebarProvider } from "../contexts/SidebarContext";
 import { SnackbarProvider } from "notistack";
 import { UserProvider } from "../contexts/UserContext";
+
 import PrelineScript from "../components/PrelineScript";
 import { useEffect } from "react";
 import Head from 'next/head'; // Import Head from next/head
@@ -30,15 +31,13 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </Head>
-      <SnackbarProvider
-        autoHideDuration={1500}
-        maxSnack={2}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
+      <SnackbarProvider autoHideDuration={1500} maxSnack={2} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
         <UserProvider>
           <SidebarProvider>
-            <PrelineScript />
-            <Component {...pageProps} />
+          
+              <PrelineScript />
+              <Component {...pageProps} />
+           
           </SidebarProvider>
         </UserProvider>
       </SnackbarProvider>

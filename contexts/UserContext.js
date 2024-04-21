@@ -4,20 +4,22 @@ import app from '../utils/firebase.js';
 import { useContext } from 'react';
 
 export const UserContext = createContext();
+
 export const useAuth = () => {
   return useContext(UserContext);
 };
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // State to track authentication status
-  const [dbLoading, setDbLoading] = useState(false); // State to track database loading status
+  const [loading, setLoading] = useState(true);
+  const [dbLoading, setDbLoading] = useState(false);
   const auth = getAuth(app);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      setLoading(false); // Set loading to false once the authentication status is determined
+      setLoading(false); // Stop loading once user is fetched
+      setDbLoading(false); // Assuming you also want to handle database loading states
     });
 
     return () => unsubscribe();
