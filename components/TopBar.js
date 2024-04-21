@@ -7,7 +7,9 @@ const categories = [
   "All",
   "Favorites",
   "Fresh Template",
-  // 'EveryDay Tools',
+  "EveryDay Tools",
+  "Emails",
+
   // 'Blog',
   // 'AdCopy',
   // 'E_commerce',
