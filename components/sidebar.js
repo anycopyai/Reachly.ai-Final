@@ -25,7 +25,7 @@ const navItems = [
       {
         label: "Website/Landing page URL",
         type: "textArea",
-        placeholder: "Anycopy.com",
+        placeholder: "Anycopy.co",
         maxLength: 75,
         value: "",
       },
@@ -33,7 +33,7 @@ const navItems = [
   },
   { name: "Projects", IconComponent: FaRegFileAlt, href: "/Projects" },
   { name: "Saved", IconComponent: FiDownload, href: "/download" },
-  { name: "Workflow", IconComponent: BsCardChecklist, href: "/Report" },
+  { name: "AI Copilot", IconComponent: BsCardChecklist, href: "/chat" },
   // { name: "Help", IconComponent: IoIosHelpCircleOutline, href: "/Help" },
 ];
 
@@ -56,7 +56,9 @@ const Sidebar = ({ children }) => {
       router.push(href);
     }
   };
-
+  const toggleSidebar = () => {
+    setisOpen(!isOpen);
+  };
   //logout the website and routeback to the login page
   const logoutWithRedirect = () => {
     signOut(auth)
@@ -75,80 +77,101 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <div className="md:hidden flex gap-4 absolute left-[16px] top-[24px] z-20">
-        {router.pathname !== "/[prompts]" &&
-          !router.pathname.includes("Projects") &&
-          !router.pathname.includes("Writer") && (
-            <button onClick={() => setisOpen(true)}>
-              <MdOutlineMenu />
-            </button>
-          )}
+     <div className="md:hidden flex absolute right-4 top-4 z-20">
+  <button onClick={toggleSidebar} className="text-blue-600 focus:outline-none">
+    {isOpen ? (
+      <IoCloseSharp className="text-4xl transition-transform duration-300" />
+    ) : (
+      <MdOutlineMenu className="text-3xl transition-transform duration-300" />
+    )}
+  </button>
+</div>
+<div className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:left-0 md:w-20 md:bg-gray-50 md:h-screen md:z-50 md:justify-between md:p-4">
+  {/* Logo and potentially other top-level navigation items */}
+  <div className="mb-6">
+    <Link href="/">
+      <a className="flex justify-center items-center">
+        <img className="h-8 w-8" alt="Logo" src="../images/logo.png" />
+      </a>
+    </Link>
+  </div>
+
+  {/* Navigation items with Tippy */}
+  <div className="flex flex-col justify-start items-center">
+    {navItems.map(({ name, IconComponent, href, Extrafields }) => (
+      <Tippy content={name} placement="right" arrow={false} delay={[500, 0]}>
+        <div key={name} onClick={() => handleNavigation(href, name, Extrafields)}
+            className="w-full mb-4 p-2 flex justify-center items-center cursor-pointer hover:bg-gray-100 rounded-md">
+          <IconComponent className="text-2xl text-gray-800" />
+        </div>
+      </Tippy>
+    ))}
+  </div>
+
+  {/* Lower section for settings and logout */}
+  <div className="flex flex-col justify-end items-center w-full">
+    <Tippy content="Settings" placement="right">
+      <div onClick={() => handleNavigation("/settings")}
+          className="cursor-pointer w-full flex justify-center items-center gap-3 mb-4 hover:bg-gray-100 p-2 rounded-md">
+        <FiSettings className="text-2xl text-gray-800" />
       </div>
-      <div
-        className={`fixed top-0 md:left-0 transition-all duration-300 bg-white w-full md:w-20 flex-col justify-between p-0 py-8 md:py-6 h-screen z-50 flex ${
-          isOpen ? "left-0" : "-left-full"
-        } border-r border-gray-200`} // Border classes added here
-      >
-        {/* Updated background color to #F9F8F7 (bg-gray-50) */}
-        <div className="flex flex-col item-start md:items-center">
-          <div className="mb-8 px-8 md:px-0 flex justify-between items-center pb-2.5 md:pb-0 border-b-1 border-[rgba(0,0,0,0.1)] md:border-none">
-            <Link href="/">
-              <a className="cursor-pointer flex items-center gap-3">
-                <img
-                  className="h-6 w-6 image-2-icon2"
-                  alt=""
-                  src="../images/logo.png"
-                  style={{ height: 25, width: 25 }}
-                />
-                <p className="text-[#323232] font-medium text-2xl block md:hidden">
-                  AnyCopy
-                </p>
-              </a>
-            </Link>
-            <button
-              className="block md:hidden"
-              onClick={() => setisOpen(false)}
-            >
-              <IoCloseSharp className="text-[#323232] opacity-50" />
-            </button>
-          </div>
-          {navItems.map(({ name, IconComponent, href, Extrafields }) => (
-  <Tippy key={name} content={name} placement="left">
+    </Tippy>
+    <Tippy content="Logout" placement="right">
+      <div onClick={() => logoutWithRedirect()}
+          className="cursor-pointer w-full flex justify-center items-center gap-3 hover:bg-gray-100 p-2 rounded-md">
+        <FiLogOut className="text-2xl text-gray-800" />
+      </div>
+    </Tippy>
+  </div>
+</div>
+
+<div
+  className={`fixed inset-y-0 right-0 bg-gray-50 w-full h-screen z-50 flex flex-col justify-between p-4 transition-transform duration-300 ease-in-out ${
+    isOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  <div className="flex justify-between items-center mb-6">
+    <Link href="/">
+      <a className="flex items-center gap-3">
+        <img className="h-8 w-8" alt="Logo" src="../images/logo.png" />
+        <span className="font-medium text-xl text-gray-900">AnyCopy</span>
+      </a>
+    </Link>
+    <button onClick={() => setisOpen(false)} className="text-gray-600">
+      <IoCloseSharp className="text-4xl" />
+    </button>
+  </div>
+
+  {navItems.map(({ name, IconComponent, href, Extrafields }) => (
     <div
+      key={name}
       onClick={() => handleNavigation(href, name, Extrafields)}
-      className="nav-item mb-8 px-1 py-1 cursor-pointer hover:text-navblue active:bg-[#cfd8ff]"
+      className="mb-4 p-2 flex items-center gap-3 cursor-pointer hover:bg-gray-100 rounded-md"
     >
-      <IconComponent className="h-6 w-6 text-black-400 hover:text-navblue transition-colors duration-200" />
-      <p className="text-[#323232] hover:text-navblue text-sm block md:hidden ml-2">
-        {name}
-      </p>
+      <IconComponent className="text-2xl text-gray-800" />
+      <span className="text-lg font-medium text-gray-900">{name}</span>
     </div>
-  </Tippy>
-))}
+  ))}
+
+  <div className="mt-auto">
+    <div
+      onClick={() => handleNavigation("/settings")}
+      className="cursor-pointer flex items-center gap-3 mb-4 hover:bg-gray-100 p-2 rounded-md"
+    >
+      <FiSettings className="text-2xl text-gray-800" />
+      <span className="text-lg font-medium text-gray-900">Settings</span>
+    </div>
+    <div
+      onClick={() => logoutWithRedirect()}
+      className="cursor-pointer flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md"
+    >
+      <FiLogOut className="text-2xl text-gray-800" />
+      <span className="text-lg font-medium text-gray-900">Logout</span>
+    </div>
+  </div>
+</div>
 
 
-        </div>
-        <div className="flex flex-col items-start md:items-center space-y-9 mb-2 px-8 md:px-0">
-          <Tippy content="Settings" placement="right">
-            <div
-              onClick={() => handleNavigation("/settings")}
-              className="cursor-pointer flex items-center gap-3"
-            >
-              <FiSettings className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
-              <p className="text-[#323232] text-sm block md:hidden">Settings</p>
-            </div>
-          </Tippy>
-          <Tippy content="Logout" placement="right">
-            <div
-              onClick={() => logoutWithRedirect()}
-              className="flex items-center gap-3 cursor-pointer"
-            >
-              <FiLogOut className="h-6 w-6 text-black-400 hover:text-blue-600 transition-colors duration-200" />
-              <p className="text-[#323232] text-sm block md:hidden">Logout</p>
-            </div>
-          </Tippy>
-        </div>
-      </div>
     </>
   );
 };

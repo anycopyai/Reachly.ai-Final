@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineMenu } from "react-icons/ai";
 import { Button } from "antd";
 import UpgradeModal from "../pages/UpgradeModal";
-
+import Link from "next/link";
 const categories = [
   "All",
   "Favorites",
@@ -37,7 +37,7 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCredits((prevState) => !prevState);
-    }, 3000); // Change to the desired duration in milliseconds
+    }, 6000); // Change to the desired duration in milliseconds
 
     return () => clearInterval(interval);
   }, []);
@@ -50,11 +50,11 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
   >
     {showCredits ? (
       <>
-        Credits Left: {credits}
+        Credits: {credits}
       </>
     ) : (
       <>
-        <span>Upgrade Now for Unlimited</span>
+        <span>Upgrade</span>
       </>
     )}
   </Button>
@@ -68,13 +68,34 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
   const openUpgradeModal = () => {
     setIsUpgradeModal(true);
   };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const closeUpgradeModal = () => {
     setIsUpgradeModal(false);
   };
 
   return (
-    <div className="bg-white flex justify-between items-center">
+    <div className="bg-white flex flex-col md:flex-row justify-between items-center w-full">
+    {/* Logo and Upgrade Button side by side on mobile */}
+    <div className="flex justify-between items-center w-full md:w-auto px-4 py-2">
+      
+
+<Link href="/">
+      <a className="flex items-center gap-3">
+        <img className="h-8 w-8 md:hidden" alt="Logo" src="../images/logo.png" />
+        <span className="font-medium text-xl md:hidden text-gray-900">AnyCopy</span>
+      </a>
+    </Link>
+
+
+
+
+    
+    </div>
       <div className="w-full">
         <div className="flex justify-between flex-col-reverse md:flex-row gap-4">
         <div className="flex items-center w-full max-w-xl relative rounded-full">
@@ -91,22 +112,18 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
   <AiOutlineSearch className="absolute right-4 text-lg text-[#49454F] cursor-pointer" />
 </div>
 
-          <div className="flex justify-between items-center">
-            <div className="md:hidden flex gap-4 pl-6">
-            <img
-                  className="h-6 w-6 image-2-icon2"
-                  alt=""
-                  src="../images/logo.png"
-                  style={{ height: 25, width: 25 }}
-                />
-            </div>
-            <CreditBadge
-              credits={100}
-              setIsUpgrade={setIsUpgrade}
-              className=" -translate-x-6"
-              openUpgradeModal={openUpgradeModal}
-            />
-          </div>
+   
+{/* Upgrade button aligned to the right */}
+<div className="px-4 py-2 flex justify-end items-center">
+        <CreditBadge
+          credits={100}
+          setIsUpgrade={setIsUpgrade}
+          openUpgradeModal={openUpgradeModal}
+        />
+      </div>
+
+     
+
         </div>
 
         {/* Sidebar responsive */}
