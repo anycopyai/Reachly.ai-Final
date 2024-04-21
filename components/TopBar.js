@@ -44,20 +44,19 @@ const CreditBadge = ({ credits, setIsUpgrade, openUpgradeModal }) => {
     <Button
     type="primary"
     onClick={openUpgradeModal}
-    className="bg-blue-50 rounded-full hover:bg-[#0060d0] transition-colors duration-300 text-blue-600 flex items-center px-4 py-2 gap-2"
+    className="bg-[#0061fe] rounded-full hover:bg-[#1e1919] transition-colors duration-300 text-white flex items-center px-4 py-2 gap-2"
   >
-   
-
     {showCredits ? (
       <>
         Credits Left: {credits}
       </>
     ) : (
       <>
-        <span>Upgrade Now</span>
+        <span>Upgrade Now for Unlimited</span>
       </>
     )}
   </Button>
+  
   );
 };
 
@@ -76,16 +75,20 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
     <div className="bg-white flex justify-between items-center">
       <div className="w-full">
         <div className="flex justify-between flex-col-reverse md:flex-row gap-4">
-          <div className="flex items-center w-full max-w-xl relative rounded-full">
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => handleSearch(e)}
-              placeholder="Search your copy"
-              className="pl-4 pr-10 py-2 w-full border-none rounded-full focus:outline-none focus:ring-0 focus:ring-blue-600 transition duration-300 ease-in-out text-base bg-[#f3f3f3] text-[#49454F]"
-            />
-            <AiOutlineSearch className="absolute right-4 text-lg text-[#49454F] cursor-pointer" />
-          </div>
+        <div className="flex items-center w-full max-w-xl relative rounded-full">
+  <input
+    type="search"
+    value={search}
+    onChange={(e) => handleSearch(e)}
+    placeholder="Search your copy"
+    className="pl-4 pr-10 py-2 w-full border-none rounded-full focus:outline-none focus:ring-0 transition duration-300 ease-in-out text-base bg-[#f3f3f3] text-[#49454F] focus:bg-white"
+    style={{ transition: 'background-color 300ms ease-in-out, box-shadow 300ms ease-in-out', boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.075)' }}
+    onFocus={(e) => e.target.style.boxShadow = 'inset 0 1px 3px rgba(0,0,0,0.1)'}
+    onBlur={(e) => e.target.style.boxShadow = 'inset 0 1px 2px rgba(0,0,0,0.075)'}
+  />
+  <AiOutlineSearch className="absolute right-4 text-lg text-[#49454F] cursor-pointer" />
+</div>
+
           <div className="flex justify-between items-center">
             <div className="md:hidden flex gap-4 pl-6">
             <img
@@ -108,18 +111,19 @@ const TopBar = ({ setFilter, handleSearch, search, setIsUpgrade }) => {
         <div className="fixed w-full bg-white block md:hidden"></div>
 
         <div className="w-full">
-          <div className="flex flex-nowrap md:flex-wrap whitespace-nowrap md:whitespace-normal overflow-x-auto scrollbar-hide gap-4 mt-4 md:mt-8">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                className="text-base bg-white border border-[#D9D9D9] text-gray-800 px-4 py-1.5 rounded-full focus:bg-blue-600 focus:text-white focus:border-blue-600 transition  duration-300 ease-in-out hover:bg-blue-600 hover-border-blue-600 hover:text-white"
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
+  <div className="flex flex-wrap overflow-x-auto scrollbar-hide gap-2 mt-2 md:mt-4">
+    {categories.map((category) => (
+      <button
+        key={category}
+        onClick={() => setFilter(category)}
+        className="text-sm bg-blue-100 border border-blue-200 text-blue-800 px-3 py-1 rounded-full transition duration-300 ease-in-out hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+</div>
+
       </div>
 
       <UpgradeModal modalOpen={isUpgradeModal} modelClose={closeUpgradeModal} />

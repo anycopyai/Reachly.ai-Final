@@ -1,14 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "daisyui/dist/full.css";
 
 html,
 body,
 body > div:first-child,
 div#__next,
 div#__next > main {
-  font-family: "Roboto", sans-serif; /* Updated to Roboto */
+  font-family: 'Roboto', sans-serif;
   font-size: 16px; /* Set the font size to 16px */
 
   height: 100%;
@@ -21,6 +20,25 @@ div#__next > main {
     transform: rotate(360deg);
   }
 }
+
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px; /* Adjusted padding for better encapsulation */
+  margin-right: -16px; /* Pulls the hover effect to the edge */
+  margin-left: -16px;
+  border-radius: 20px; /* Rounded corners for a capsule effect */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.nav-item:hover {
+  background-color: #e0e6ff; /* Lighter blue for a noticeable hover */
+  transform: translateX(5px); /* Slight rightward shift */
+}
+
+
+
 
 .premium-spinner {
   border: 4px solid rgba(255, 255, 255, 0.3); /* Light grey border */

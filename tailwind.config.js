@@ -1,12 +1,8 @@
-// tailwind.config.js
-const { nextui } = require('@nextui-org/react');
-
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    'node_modules/preline/dist/*.js', // Keep this line for Preline UI
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", // Add this line for NextUI
+    'node_modules/preline/dist/*.js', // Keep this line if you are still using Preline
   ],
   theme: {
     extend: {
@@ -15,7 +11,7 @@ module.exports = {
         navblue: '#0033FF',
       },
       fontFamily: {
-  
+        sans: ['Roboto', 'sans-serif'],
       },
       backgroundColor: {
         'reachly-blue': '#232634',
@@ -31,9 +27,7 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [
-    require('daisyui'), // Keep the DaisyUI plugin
-   require('@tailwindcss/forms'),
-   require('preline/plugin'),
-    nextui(), // Add the NextUI plugin
+    require('@tailwindcss/forms'),
+    require('preline/plugin'), // Keep if you still use Preline
   ],
 };

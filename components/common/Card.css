@@ -1,0 +1,48 @@
+.card {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-content {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .card-icon img {
+    width: 50px; /* Adjust size as necessary */
+  }
+  
+  .card-details {
+    margin-left: 16px;
+  }
+  
+  .card-title {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .card-badge {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .card-desc {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Additional responsive styling can be added as needed */
+  

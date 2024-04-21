@@ -1,4 +1,3 @@
-import { NextUIProvider } from "@nextui-org/react";
 import "../styles/globals.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "../utils/fontawesome";
@@ -7,6 +6,7 @@ import { SnackbarProvider } from "notistack";
 import { UserProvider } from "../contexts/UserContext";
 import PrelineScript from "../components/PrelineScript";
 import { useEffect } from "react";
+import Head from 'next/head'; // Import Head from next/head
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -27,19 +27,20 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+      </Head>
       <SnackbarProvider
         autoHideDuration={1500}
         maxSnack={2}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <NextUIProvider>
-          <UserProvider>
-            <SidebarProvider>
-              <PrelineScript />
-              <Component {...pageProps} />
-            </SidebarProvider>
-          </UserProvider>
-        </NextUIProvider>
+        <UserProvider>
+          <SidebarProvider>
+            <PrelineScript />
+            <Component {...pageProps} />
+          </SidebarProvider>
+        </UserProvider>
       </SnackbarProvider>
     </>
   );

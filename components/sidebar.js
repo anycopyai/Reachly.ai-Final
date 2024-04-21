@@ -113,18 +113,20 @@ const Sidebar = ({ children }) => {
             </button>
           </div>
           {navItems.map(({ name, IconComponent, href, Extrafields }) => (
-            <Tippy key={name} content={name} placement="left">
-              <div
-                onClick={() => handleNavigation(href, name, Extrafields)}
-                className="mb-8 px-8 md:px-1 py-1 cursor-pointer flex items-center gap-3 hover:text-navblue hover:bg-[#e0e6ff] active:bg-[#cfd8ff]"
-              >
-                <IconComponent className="h-6 w-6 text-black-400 hover:text-navblue transition-colors duration-200" />
-                <p className="text-[#323232] hover:text-navblue text-sm block md:hidden">
-                  {name}
-                </p>
-              </div>
-            </Tippy>
-          ))}
+  <Tippy key={name} content={name} placement="left">
+    <div
+      onClick={() => handleNavigation(href, name, Extrafields)}
+      className="nav-item mb-8 px-1 py-1 cursor-pointer hover:text-navblue active:bg-[#cfd8ff]"
+    >
+      <IconComponent className="h-6 w-6 text-black-400 hover:text-navblue transition-colors duration-200" />
+      <p className="text-[#323232] hover:text-navblue text-sm block md:hidden ml-2">
+        {name}
+      </p>
+    </div>
+  </Tippy>
+))}
+
+
         </div>
         <div className="flex flex-col items-start md:items-center space-y-9 mb-2 px-8 md:px-0">
           <Tippy content="Settings" placement="right">
