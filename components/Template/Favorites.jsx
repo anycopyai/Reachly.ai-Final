@@ -176,6 +176,8 @@ const Favorites = ({search}) => {
                 desc={data?.desc}
                 url={data?.url}
                 data={data}
+                 placeholder={data?.placeholder}
+                
               />
             </div>
           ))}

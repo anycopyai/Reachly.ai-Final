@@ -9,6 +9,8 @@ import { useForm, FormProvider, Controller, useWatch } from "react-hook-form";
 import { Form, Input, Select, Button } from "antd";
 import apiService from "../../services/base";
 import { useRouter } from "next/router";
+import axios from 'axios'
+
 
 const GoogleAdsForm = ({ googleAdsData }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -220,6 +222,10 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                           className="inputBox"
                           placeholder="+ Add Topics..."
                           {...field}
+                          onChange={(e) => {
+                            setTopics(e.target.value);
+                          }}
+
                         />
                       )}
                     />
@@ -288,6 +294,7 @@ const GoogleAdsForm = ({ googleAdsData }) => {
                     className="btnTemplateSubmit"
                     style={{ width: "100%" }}
                     loading={loading}
+                    onClick={() => { submitForm }}
                   >
                     Generate Copy
                   </Button>

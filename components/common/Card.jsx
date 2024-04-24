@@ -2,7 +2,16 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const Card = ({ icon1, icon2, heading, desc, badge, url, data }) => {
+const Card = ({
+  icon1,
+  icon2,
+  heading,
+  desc,
+  badge,
+  url,
+  data,
+  placeholder,
+}) => {
   const router = useRouter();
   const [isClicked, setIsClicked] = useState(false);
 

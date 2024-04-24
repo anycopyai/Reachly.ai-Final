@@ -3,12 +3,15 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "../utils/fontawesome";
 import { SidebarProvider } from "../contexts/SidebarContext";
 import { SnackbarProvider } from "notistack";
-import { UserProvider } from "../contexts/UserContext";
-
-import PrelineScript from "../components/PrelineScript";
 import { useEffect } from "react";
 import Head from 'next/head'; // Import Head from next/head
 
+import { UserProvider } from '../contexts/UserContext';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import PrelineScript from "../components/PrelineScript";
+import {Provider} from 'react-redux'
+import store
+ from "../redux/Store";
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     // Google Tag Manager
@@ -41,6 +44,7 @@ function MyApp({ Component, pageProps }) {
           </SidebarProvider>
         </UserProvider>
       </SnackbarProvider>
+      
     </>
   );
 }
