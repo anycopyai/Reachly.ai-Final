@@ -6,8 +6,8 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSnackbar } from "notistack";
-import { FiSettings, FiLogOut } from "react-icons/fi";
-import { MdOutlineEdit } from "react-icons/md";
+import { FiSettings } from "react-icons/fi";
+import { MdOutlineEdit, MdLogout } from "react-icons/md";
 import { FaRegFileAlt } from "react-icons/fa";
 
 const navItems = [
@@ -19,6 +19,7 @@ const Sidebar = () => {
   const [isOpen, setisOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
+
   const handleNavigation = (href) => {
     router.push(href);
   };
@@ -41,9 +42,9 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="fixed inset-y-0 left-0 bg-white w-20 h-screen z-50 flex flex-col justify-between items-center p-4 border-r border-gray-200">
+      <div className="fixed inset-y-0 left-0 bg-white w-20 h-screen z-50 flex flex-col items-center p-4 border-r border-gray-200">
         {/* Logo and potentially other top-level navigation items */}
-        <div className="mb-6">
+        <div className="mb-12">
           <Link href="/">
             <a className="flex justify-center items-center">
               <img className="h-8 w-8" alt="Logo" src="../images/logo.png" />
@@ -52,7 +53,7 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation items with Tippy */}
-        <div className="flex flex-col justify-start items-center">
+        <div className="flex flex-col justify-start items-center mt-12">
           {navItems.map(({ name, IconComponent, href }) => (
             <Tippy
               content={name}
@@ -72,7 +73,7 @@ const Sidebar = () => {
         </div>
 
         {/* Lower section for settings and logout */}
-        <div className="flex flex-col justify-end items-center w-full">
+        <div className="mt-auto flex flex-col justify-end items-center w-full">
           <Tippy content="Settings" placement="right">
             <div
               onClick={() => handleNavigation("/settings")}
@@ -86,7 +87,7 @@ const Sidebar = () => {
               onClick={() => logoutWithRedirect()}
               className="cursor-pointer w-full flex justify-center items-center gap-3 hover:bg-gray-100 p-2 rounded-full transition-all duration-300"
             >
-              <FiLogOut className="text-2xl text-blue-600" />
+              <MdLogout className="text-2xl text-red-600" />
             </div>
           </Tippy>
         </div>
